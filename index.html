@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoPompe - Prix essence en temps réel</title>
-    <meta name="description" content="Trouvez l'essence la moins chère près de chez vous. Données officielles pour les ~10 000 stations-service de France.">
-    <meta property="og:title" content="EcoPompe - Prix essence en temps réel">
-    <meta property="og:description" content="Trouvez l'essence la moins chère en France, en un coup d'oeil.">
+    <title>AppCraft31 – Applications iOS pensées avec soin</title>
+    <meta name="description" content="AppCraft31 crée des applications et des jeux iOS soignés, utiles et respectueux de votre vie privée.">
+    <meta property="og:title" content="AppCraft31 – Applications iOS pensées avec soin">
+    <meta property="og:description" content="Découvrez EcoPompe et nos prochaines applications iOS.">
     <meta property="og:type" content="website">
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,138 +15,187 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Nav -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="#" class="logo" aria-label="AppCraft31 – accueil">
+                <span class="logo-mark">AC</span>
+                <span class="logo-name">AppCraft<span class="logo-31">31</span></span>
+            </a>
+            <nav aria-label="Navigation principale">
+                <a href="#apps">Applications</a>
+                <a href="#about">À propos</a>
+            </nav>
+        </div>
+    </header>
+
     <!-- Hero -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="badge">Disponible sur iPhone</div>
-                    <h1>Le carburant le moins cher, <span class="highlight">en un coup d'oeil</span></h1>
-                    <p class="subtitle">EcoPompe compare les prix des ~10 000 stations-service de France en temps réel. Trouvez, comparez, économisez.</p>
-                    <a href="#" class="app-store-btn" aria-label="Télécharger sur l'App Store">
-                        <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="54">
-                    </a>
-                    <p class="store-info">Gratuit · Aucune pub · Aucun tracking</p>
-                </div>
-                <div class="hero-image">
-                    <div class="phone-frame">
-                        <img src="assets/Favoris.png" alt="Capture d'écran EcoPompe">
-                    </div>
-                </div>
+            <div class="hero-center">
+                <div class="badge">Développeur iOS indépendant · Toulouse</div>
+                <h1>Des apps et des jeux iOS<br><span class="highlight">pensés avec soin</span></h1>
+                <p class="subtitle">AppCraft31 conçoit des applications mobiles utiles, rapides et respectueuses de votre vie privée — sans publicité, sans tracking.</p>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="features" id="fonctionnalites">
+    <!-- Apps -->
+    <section class="apps" id="apps">
         <div class="container">
-            <h2 class="section-title">Tout ce qu'il faut pour économiser</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">&#9981;</div>
-                    <h3>Prix en temps réel</h3>
-                    <p>Données officielles du gouvernement, mises à jour plusieurs fois par jour pour toutes les stations de France.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">&hearts;</div>
-                    <h3>Stations favorites</h3>
-                    <p>Enregistrez vos stations d'un simple geste. EcoPompe met en avant la moins chère automatiquement.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">&#8593;&#8595;</div>
-                    <h3>Variations de prix</h3>
-                    <p>Suivez l'évolution jour après jour. Voyez immédiatement si le prix a augmenté ou baissé depuis la veille.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">&#128269;</div>
-                    <h3>Recherche intelligente</h3>
-                    <p>Trouvez des stations par ville, code postal ou adresse. Résultats instantanés au fil de la frappe.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">&#128205;</div>
-                    <h3>Moins cher à proximité</h3>
-                    <p>Géolocalisation intégrée pour identifier les stations les moins chères dans un rayon personnalisable.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">&#128736;</div>
-                    <h3>Widget intégré</h3>
-                    <p>Consultez le meilleur prix de vos favoris directement depuis votre écran d'accueil, sans ouvrir l'app.</p>
-                </div>
+            <h2 class="section-title">Nos applications</h2>
+            <p class="section-subtitle">Disponibles sur l'App Store ou à venir très prochainement</p>
+
+            <div class="apps-grid">
+
+                <!-- EcoPompe -->
+                <article class="app-card">
+                    <div class="app-card-header">
+                        <div class="app-icon ecopompe-icon">
+                            <img src="favicon.png" alt="Icône EcoPompe">
+                        </div>
+                        <div class="app-meta">
+                            <h3>EcoPompe</h3>
+                            <p class="app-tagline">Prix carburant en temps réel</p>
+                            <span class="status-badge available">Disponible</span>
+                        </div>
+                    </div>
+
+                    <p class="app-description">Comparez les prix des ~10 000 stations-service de France. Trouvez la moins chère près de chez vous, suivez vos favorites et consultez l'historique des prix — le tout sans pub ni tracking.</p>
+
+                    <div class="app-features">
+                        <span class="chip">&#9981; Prix temps réel</span>
+                        <span class="chip">&hearts; Stations favorites</span>
+                        <span class="chip">&#128205; Géolocalisation</span>
+                        <span class="chip">&#128736; Widget écran d'accueil</span>
+                        <span class="chip">&#128269; Recherche intelligente</span>
+                        <span class="chip">&#8593;&#8595; Variations de prix</span>
+                    </div>
+
+                    <div class="app-card-screenshots">
+                        <div class="mini-screenshots">
+                            <img src="assets/Favoris.png" alt="Favoris">
+                            <img src="assets/Recherche.png" alt="Recherche">
+                            <img src="assets/Moins_cher.png" alt="Moins cher">
+                            <img src="assets/Detail.png" alt="Détail">
+                        </div>
+                    </div>
+
+                    <div class="app-card-footer">
+                        <a href="#" class="app-store-btn" aria-label="Télécharger EcoPompe sur l'App Store">
+                            <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
+                        </a>
+                        <a href="ecopompe.html" class="link-secondary">En savoir plus →</a>
+                    </div>
+                </article>
+
+                <!-- Mots Fléchés -->
+                <article class="app-card app-card--soon">
+                    <div class="app-card-header">
+                        <div class="app-icon mots-fleches-icon">
+                            <span class="app-icon-emoji">&#128221;</span>
+                        </div>
+                        <div class="app-meta">
+                            <h3>Mots Fléchés</h3>
+                            <p class="app-tagline">Le jeu de mots fléchés sur iPhone</p>
+                            <span class="status-badge soon">Prochainement</span>
+                        </div>
+                    </div>
+
+                    <p class="app-description">Un jeu de mots fléchés classique et élégant, pensé pour l'iPhone. Des grilles variées, une expérience fluide et sans distraction — bientôt disponible sur l'App Store.</p>
+
+                    <div class="app-features">
+                        <span class="chip chip--muted">&#129306; Grilles variées</span>
+                        <span class="chip chip--muted">&#127774; Mode hors-ligne</span>
+                        <span class="chip chip--muted">&#128073; Contrôles intuitifs</span>
+                        <span class="chip chip--muted">&#127942; Classements</span>
+                    </div>
+
+                    <div class="coming-soon-teaser">
+                        <div class="cs-grid">
+                            <div class="cs-cell">M</div>
+                            <div class="cs-cell filled">O</div>
+                            <div class="cs-cell">T</div>
+                            <div class="cs-cell cs-cell--black"></div>
+                            <div class="cs-cell">S</div>
+                            <div class="cs-cell filled">?</div>
+                            <div class="cs-cell"></div>
+                            <div class="cs-cell cs-cell--black"></div>
+                        </div>
+                        <p class="cs-label">Grille en cours de conception…</p>
+                    </div>
+
+                    <div class="app-card-footer">
+                        <button class="notify-btn" disabled>
+                            &#128276; Notifiez-moi à la sortie
+                        </button>
+                    </div>
+                </article>
+
             </div>
         </div>
     </section>
 
-    <!-- Screenshots -->
-    <section class="screenshots" id="apercu">
+    <!-- About -->
+    <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title">Aperçu</h2>
-            <div class="screenshots-scroll">
-                <div class="screenshot-item">
-                    <img src="assets/Favoris.png" alt="Favoris">
-                    <span>Favoris</span>
-                </div>
-                <div class="screenshot-item">
-                    <img src="assets/Recherche.png" alt="Recherche">
-                    <span>Recherche</span>
-                </div>
-                <div class="screenshot-item">
-                    <img src="assets/Moins_cher.png" alt="Moins cher">
-                    <span>Moins cher</span>
-                </div>
-                <div class="screenshot-item">
-                    <img src="assets/Detail.png" alt="Détail station">
-                    <span>Détail</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Privacy -->
-    <section class="privacy" id="confidentialite">
-        <div class="container">
-            <div class="privacy-card">
-                <h2>Votre vie privée, notre priorité</h2>
-                <div class="privacy-grid">
-                    <div class="privacy-item">
-                        <span class="privacy-icon">&#10060;</span>
-                        <p>Aucune publicité</p>
+            <div class="about-card">
+                <div class="about-text">
+                    <h2>À propos d'AppCraft31</h2>
+                    <p>AppCraft31 est un studio indépendant basé à Toulouse (Haute-Garonne). Je conçois et développe des applications iOS en solo — de l'idée à la mise en ligne sur l'App Store.</p>
+                    <p>Ma philosophie : des apps <strong>utiles</strong>, <strong>rapides</strong> et <strong>respectueuses</strong>. Pas de dark patterns, pas de monétisation à outrance, pas de données revendues.</p>
+                    <div class="about-values">
+                        <div class="value-item">
+                            <span class="value-icon">&#10060;</span>
+                            <span>Aucune publicité</span>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">&#10060;</span>
+                            <span>Aucun tracker tiers</span>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">&#10060;</span>
+                            <span>Aucune donnée revendue</span>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">&#9989;</span>
+                            <span>Code soigné, UX native iOS</span>
+                        </div>
                     </div>
-                    <div class="privacy-item">
-                        <span class="privacy-icon">&#10060;</span>
-                        <p>Aucun tracker</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">App disponible</span>
                     </div>
-                    <div class="privacy-item">
-                        <span class="privacy-icon">&#10060;</span>
-                        <p>Aucune donnée revendue</p>
+                    <div class="stat">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Jeu en cours</span>
                     </div>
-                    <div class="privacy-item">
-                        <span class="privacy-icon">&#9989;</span>
-                        <p>Localisation utilisée uniquement pour trier les stations</p>
+                    <div class="stat">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Publicité</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta">
-        <div class="container">
-            <h2>Prêt à économiser sur votre carburant ?</h2>
-            <a href="#" class="app-store-btn" aria-label="Télécharger sur l'App Store">
-                <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="54">
-            </a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <p>&copy; 2026 EcoPompe · Nicolas Zanette</p>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo-mark logo-mark--sm">AC</span>
+                <span class="footer-copy">&copy; 2026 AppCraft31 · Nicolas Zanette</span>
+            </div>
             <div class="footer-links">
-                <a href="privacy.html">Politique de confidentialité</a>
-                <a href="https://github.com/truc001/EcoPompe-support/issues">Assistance</a>
+                <a href="ecopompe.html">EcoPompe</a>
+                <a href="privacy.html">Confidentialité</a>
+                <a href="https://github.com/truc001/EcoPompe-support/issues">Support</a>
             </div>
         </div>
     </footer>
+
 </body>
 </html>
