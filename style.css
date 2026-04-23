@@ -258,6 +258,23 @@ nav a:hover { color: var(--text); }
     border-radius: 12px;
 }
 
+.orbis-icon {
+    background: linear-gradient(145deg, #07101a, #0d1a28);
+    border: 1px solid rgba(132,194,175,0.3);
+}
+
+.orbis-logo {
+    font-size: 32px;
+    color: #84c2af;
+    line-height: 1;
+}
+
+.chip--orbis {
+    background: rgba(132, 194, 175, 0.1);
+    color: #2a7a65;
+    border-color: rgba(132, 194, 175, 0.25);
+}
+
 .mots-fleches-icon {
     background: linear-gradient(145deg, #7C3AED, #A78BFA);
 }

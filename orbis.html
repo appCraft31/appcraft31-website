@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orbis — Un toucher. Un univers.</title>
+<meta name="description" content="Orbis est un jeu de cercles zen pour iPhone et iPad. Appuie. Respire. Déploie-toi.">
+<meta property="og:title" content="Orbis — Un toucher. Un univers.">
+<meta property="og:description" content="Un jeu de cercles méditatif conçu pour le silence.">
+<meta property="og:image" content="Simulator Screenshot - iPhone 16e - 2026-04-23 at 11.18.06.png">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg:       #07101a;
+  --bg2:      #0d1a28;
+  --teal:     #84c2af;
+  --teal-dim: rgba(132,194,175,0.15);
+  --gold:     #ebd08e;
+  --text:     #e8eeea;
+  --muted:    rgba(232,238,234,0.42);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px;
+  background: rgba(7,16,26,0.72);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(132,194,175,0.08);
+}
+.nav-logo {
+  font-size: 22px; font-weight: 200; letter-spacing: 0.18em;
+  color: var(--teal); text-decoration: none; text-transform: uppercase;
+}
+.nav-links { display: flex; gap: 36px; }
+.nav-links a {
+  font-size: 14px; font-weight: 300; letter-spacing: 0.08em;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--teal); }
+
+/* ─── HERO ────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding: 100px 48px 80px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 70% at 60% 40%, #112438 0%, #07101a 60%);
+}
+
+/* Bubbles CSS */
+.bubble {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(132,194,175,0.18);
+  animation: drift linear infinite;
+  pointer-events: none;
+}
+@keyframes drift {
+  0%   { transform: translateY(110vh) scale(0.7); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(-20vh) scale(1.1); opacity: 0; }
+}
+
+/* Decorative circles */
+.deco-circle {
+  position: absolute; border-radius: 50%;
+  border: 1.5px solid rgba(132,194,175,0.12);
+  pointer-events: none;
+}
+.dc1 { width: 600px; height: 600px; top: 50%; right: -80px; transform: translateY(-50%); animation: pulse 6s ease-in-out infinite; }
+.dc2 { width: 380px; height: 380px; top: 15%; right: 120px; animation: pulse 8s ease-in-out 1s infinite; }
+.dc3 { width: 200px; height: 200px; bottom: 18%; right: 280px; animation: pulse 5s ease-in-out 2s infinite; }
+.enemy-dot {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle at 38% 38%, #e07070, #b04040 55%, #7a2828);
+  box-shadow: 0 0 40px rgba(192,64,64,0.5);
+  animation: float 7s ease-in-out infinite;
+}
+.ed1 { width: 56px; height: 56px; top: 30%; right: 22%; animation-delay: 0s; }
+.ed2 { width: 36px; height: 36px; bottom: 28%; right: 14%; animation-delay: 2s; }
+@keyframes pulse {
+  0%, 100% { opacity: 0.12; transform: translateY(-50%) scale(1); }
+  50%       { opacity: 0.22; transform: translateY(-50%) scale(1.03); }
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0); }
+  33%       { transform: translate(-14px, -18px); }
+  66%       { transform: translate(10px, -8px); }
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 620px;
+}
+.hero-tag {
+  font-size: 13px; font-weight: 300; letter-spacing: 0.28em;
+  color: rgba(132,194,175,0.6); text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero-bar { width: 60px; height: 1.5px; background: linear-gradient(90deg, var(--teal), transparent); margin-bottom: 32px; }
+h1 {
+  font-size: clamp(56px, 8vw, 96px);
+  font-weight: 100; line-height: 1.0;
+  letter-spacing: -0.02em; color: var(--text);
+  margin-bottom: 32px;
+}
+h1 em { color: var(--teal); font-style: normal; }
+.hero-sub {
+  font-size: 20px; font-weight: 200; line-height: 1.6;
+  color: var(--muted); margin-bottom: 56px;
+  max-width: 480px;
+}
+.cta-row { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+.btn-appstore {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--text); color: #07101a;
+  padding: 14px 28px; border-radius: 14px;
+  text-decoration: none; font-weight: 500; font-size: 15px;
+  letter-spacing: 0.01em;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn-appstore:hover { opacity: 0.88; transform: translateY(-2px); }
+.btn-appstore svg { width: 22px; height: 22px; }
+.btn-more {
+  font-size: 14px; font-weight: 300; letter-spacing: 0.06em;
+  color: var(--teal); text-decoration: none;
+  border-bottom: 1px solid rgba(132,194,175,0.3);
+  padding-bottom: 2px; transition: border-color 0.2s;
+}
+.btn-more:hover { border-color: var(--teal); }
+
+/* ─── SCREENSHOTS ─────────────────────────────── */
+.screenshots {
+  padding: 120px 48px;
+  position: relative; overflow: hidden;
+}
+.screenshots-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 20% 50%, #0f1d2f 0%, var(--bg) 60%);
+}
+.section-label {
+  position: relative; z-index: 2;
+  font-size: 12px; font-weight: 300; letter-spacing: 0.3em;
+  text-transform: uppercase; color: rgba(132,194,175,0.5);
+  margin-bottom: 16px; text-align: center;
+}
+.section-title {
+  position: relative; z-index: 2;
+  font-size: clamp(32px, 4vw, 52px); font-weight: 100;
+  text-align: center; color: var(--text);
+  margin-bottom: 80px; letter-spacing: -0.01em;
+}
+.section-title em { color: var(--teal); font-style: normal; }
+
+.phone-strip {
+  position: relative; z-index: 2;
+  display: flex; gap: 32px; overflow-x: auto; padding-bottom: 24px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.phone-strip::-webkit-scrollbar { display: none; }
+.phone-card {
+  flex-shrink: 0; scroll-snap-align: start;
+  width: 220px;
+}
+.phone-frame {
+  width: 220px; height: 476px;
+  background: #060f1c;
+  border: 6px solid #1c2b40;
+  border-radius: 34px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 30px 80px rgba(0,0,0,0.7);
+  transition: transform 0.3s;
+}
+.phone-card:hover .phone-frame { transform: translateY(-8px); }
+.phone-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top;
+  display: block;
+}
+.phone-caption {
+  margin-top: 16px; text-align: center;
+  font-size: 13px; font-weight: 200; color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+/* ─── FEATURES ────────────────────────────────── */
+.features {
+  padding: 120px 48px;
+  max-width: 1200px; margin: 0 auto;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px; margin-top: 80px;
+}
+.feature-card {
+  background: var(--bg2);
+  border: 1px solid rgba(132,194,175,0.1);
+  border-radius: 20px; padding: 36px 32px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.feature-card:hover {
+  border-color: rgba(132,194,175,0.28);
+  transform: translateY(-4px);
+}
+.feature-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  background: rgba(132,194,175,0.08);
+  border: 1px solid rgba(132,194,175,0.18);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px; font-size: 22px;
+}
+.feature-title {
+  font-size: 18px; font-weight: 300; color: var(--text);
+  margin-bottom: 10px; letter-spacing: 0.02em;
+}
+.feature-desc {
+  font-size: 14px; font-weight: 200; line-height: 1.65;
+  color: var(--muted);
+}
+
+/* ─── MECHANICS ───────────────────────────────── */
+.mechanics {
+  padding: 120px 48px;
+  background: linear-gradient(180deg, var(--bg) 0%, #0a1520 50%, var(--bg) 100%);
+}
+.mechanics-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.mechanics-visual {
+  display: flex; justify-content: center; position: relative;
+}
+.mechanics-phone {
+  width: 260px; height: 562px;
+  background: #060f1c;
+  border: 7px solid #1c2b40;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 50px 120px rgba(0,0,0,0.8),
+              0 0 60px rgba(132,194,175,0.06);
+}
+.mechanics-phone img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top; display: block;
+}
+.mechanics-glow {
+  position: absolute; inset: -40px;
+  background: radial-gradient(circle, rgba(132,194,175,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.steps { display: flex; flex-direction: column; gap: 0; }
+.step {
+  display: flex; gap: 24px; align-items: flex-start;
+  padding: 28px 0; border-top: 1px solid rgba(132,194,175,0.1);
+}
+.step:last-child { border-bottom: 1px solid rgba(132,194,175,0.1); }
+.step-num {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  border: 1px solid rgba(132,194,175,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 200; color: var(--teal);
+  margin-top: 2px;
+}
+.step-title {
+  font-size: 18px; font-weight: 300; color: var(--text);
+  margin-bottom: 6px;
+}
+.step-desc {
+  font-size: 14px; font-weight: 200; color: var(--muted); line-height: 1.6;
+}
+
+/* ─── QUOTE ───────────────────────────────────── */
+.quote-section {
+  padding: 100px 48px; text-align: center;
+}
+.quote {
+  font-size: clamp(28px, 4vw, 48px); font-weight: 100;
+  line-height: 1.3; color: var(--text);
+  max-width: 760px; margin: 0 auto 40px;
+  letter-spacing: -0.01em;
+}
+.quote em { color: var(--teal); font-style: normal; }
+
+/* ─── DOWNLOAD CTA ────────────────────────────── */
+.download {
+  padding: 120px 48px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.download-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, #0f2030 0%, var(--bg) 65%);
+}
+.download-circle {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(132,194,175,0.1);
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.dl-c1 { width: 520px; height: 520px; animation: pulse-c 7s ease-in-out infinite; }
+.dl-c2 { width: 320px; height: 320px; animation: pulse-c 5s ease-in-out 1s infinite; }
+.dl-c3 { width: 160px; height: 160px; animation: pulse-c 4s ease-in-out 0.5s infinite; }
+@keyframes pulse-c {
+  0%, 100% { opacity: 0.1; transform: translate(-50%, -50%) scale(1); }
+  50%       { opacity: 0.22; transform: translate(-50%, -50%) scale(1.05); }
+}
+.download-content { position: relative; z-index: 2; }
+.download h2 {
+  font-size: clamp(36px, 5vw, 64px); font-weight: 100;
+  letter-spacing: -0.01em; margin-bottom: 20px;
+}
+.download h2 em { color: var(--teal); font-style: normal; }
+.download p {
+  font-size: 18px; font-weight: 200; color: var(--muted);
+  margin-bottom: 52px;
+}
+.download-badges { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.badge-appstore {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--text); color: #07101a;
+  padding: 14px 28px; border-radius: 14px;
+  text-decoration: none; font-weight: 500; font-size: 15px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.badge-appstore:hover { opacity: 0.88; transform: translateY(-2px); }
+.badge-appstore svg { width: 22px; height: 22px; }
+.badge-label { display: flex; flex-direction: column; align-items: flex-start; }
+.badge-label span:first-child { font-size: 10px; font-weight: 400; opacity: 0.7; line-height: 1; }
+.badge-label span:last-child  { font-size: 17px; font-weight: 600; line-height: 1.2; }
+
+/* ─── FOOTER ──────────────────────────────────── */
+footer {
+  padding: 48px; text-align: center;
+  border-top: 1px solid rgba(132,194,175,0.08);
+}
+.footer-logo {
+  font-size: 18px; font-weight: 200; letter-spacing: 0.18em;
+  color: var(--teal); text-transform: uppercase; margin-bottom: 20px;
+}
+.footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; }
+.footer-links a {
+  font-size: 13px; font-weight: 200; color: var(--muted);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--teal); }
+.footer-legal {
+  font-size: 12px; font-weight: 200; color: rgba(232,238,234,0.2);
+  line-height: 1.7;
+}
+
+/* ─── RESPONSIVE ──────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 18px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 24px 60px; }
+  .screenshots, .features, .mechanics, .quote-section, .download { padding: 80px 24px; }
+  .mechanics-inner { grid-template-columns: 1fr; gap: 48px; }
+  .mechanics-visual { display: none; }
+  footer { padding: 40px 24px; }
+  .footer-links { flex-wrap: wrap; gap: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Orbis</a>
+  <div class="nav-links">
+    <a href="#screenshots">Captures</a>
+    <a href="#mecanique">Mécanique</a>
+    <a href="#telechargement">Télécharger</a>
+    <a href="orbis-privacy.html">Confidentialité</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Decorative circles -->
+  <div class="deco-circle dc1"></div>
+  <div class="deco-circle dc2"></div>
+  <div class="deco-circle dc3"></div>
+  <div class="enemy-dot ed1"></div>
+  <div class="enemy-dot ed2"></div>
+
+  <!-- Animated bubbles -->
+  <div class="bubble" style="left:8%;width:18px;height:18px;animation-duration:14s;animation-delay:-3s;"></div>
+  <div class="bubble" style="left:18%;width:10px;height:10px;animation-duration:18s;animation-delay:-7s;"></div>
+  <div class="bubble" style="left:30%;width:24px;height:24px;animation-duration:12s;animation-delay:-1s;"></div>
+  <div class="bubble" style="left:72%;width:14px;height:14px;animation-duration:16s;animation-delay:-9s;"></div>
+  <div class="bubble" style="left:85%;width:8px;height:8px;animation-duration:11s;animation-delay:-4s;"></div>
+  <div class="bubble" style="left:50%;width:20px;height:20px;animation-duration:20s;animation-delay:-12s;"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Orbis · Jeu iOS</div>
+    <div class="hero-bar"></div>
+    <h1>Un toucher.<br><em>Un univers.</em></h1>
+    <p class="hero-sub">Appuie et maintiens pour déployer un cercle de lumière. Relâche pour l'ancrer. Couvre 75 % de l'arène — sans frôler le vide.</p>
+    <div class="cta-row">
+      <a class="btn-appstore" href="#telechargement">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.14-2.18 1.27-2.16 3.8.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.84M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div class="badge-label">
+          <span>Télécharger sur l'</span>
+          <span>App Store</span>
+        </div>
+      </a>
+      <a class="btn-more" href="#mecanique">Découvrir la mécanique ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section class="screenshots" id="screenshots">
+  <div class="screenshots-bg"></div>
+  <div class="section-label">Captures d'écran</div>
+  <h2 class="section-title">Le jeu en <em>images</em></h2>
+
+  <div class="phone-strip">
+    <div class="phone-card">
+      <div class="phone-frame">
+        <img src="assets/Orbis - accueil.png" alt="Orbis — Écran d'accueil">
+      </div>
+      <div class="phone-caption">Écran d'accueil</div>
+    </div>
+    <div class="phone-card">
+      <div class="phone-frame">
+        <img src="assets/Orbis - partie en cours.png" alt="Orbis — Partie en cours">
+      </div>
+      <div class="phone-caption">Partie en cours</div>
+    </div>
+    <div class="phone-card">
+      <div class="phone-frame">
+        <img src="assets/Orbis - score.png" alt="Orbis — Score">
+      </div>
+      <div class="phone-caption">Score &amp; Records</div>
+    </div>
+    <div class="phone-card">
+      <div class="phone-frame">
+        <img src="assets/Orbis - progression.png" alt="Orbis — Progression">
+      </div>
+      <div class="phone-caption">Progression</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="fonctionnalites">
+  <div class="section-label">Fonctionnalités</div>
+  <h2 class="section-title">Conçu pour <em>l'essentiel</em></h2>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">◎</div>
+      <div class="feature-title">Un geste unique</div>
+      <div class="feature-desc">Appuie et maintiens pour grandir. Relâche pour t'ancrer. Aucun tutoriel nécessaire — le jeu s'explique par lui-même en une seconde.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">∞</div>
+      <div class="feature-title">Niveaux infinis</div>
+      <div class="feature-desc">Chaque niveau ajoute une nouvelle couche de défi : plus de vides, formations rocheuses, courants d'eau. La difficulté grandit avec toi.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">♬</div>
+      <div class="feature-title">Son entièrement synthétisé</div>
+      <div class="feature-desc">Aucun fichier audio. Chaque son — le grondement d'une bulle, le plop de l'ancrage, le murmure d'un courant — est généré à la main, en temps réel.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⟳</div>
+      <div class="feature-title">Game Center</div>
+      <div class="feature-desc">Classements séparés iPhone et iPad pour un score global et un score par niveau. Mesure-toi aux meilleurs joueurs du monde.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">☽</div>
+      <div class="feature-title">Design zen</div>
+      <div class="feature-desc">Fond sombre, cercles flottants, palette épurée. Orbis a été pensé comme un objet de calme — pas comme un jeu qui te crie dessus.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">✦</div>
+      <div class="feature-title">Une main suffit</div>
+      <div class="feature-desc">Conçu pour le pouce. Joue dans le métro, dans le canapé, les yeux mi-clos. Un seul point de contact, une expérience complète.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MECHANICS -->
+<section class="mechanics" id="mecanique">
+  <div class="mechanics-inner">
+    <div class="mechanics-visual">
+      <div class="mechanics-glow"></div>
+      <div class="mechanics-phone">
+        <img src="Simulator Screenshot - iPhone 16e - 2026-04-23 at 11.18.22.png" alt="Orbis — Gameplay">
+      </div>
+    </div>
+    <div>
+      <div class="section-label" style="text-align:left;">Comment jouer</div>
+      <h2 class="section-title" style="text-align:left;margin-bottom:48px;">Grandis.<br>Solidifie.<br><em>Survis.</em></h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Touche et maintiens</div>
+            <div class="step-desc">Ton cercle se déploie depuis le point de contact. Plus tu maintiens longtemps, plus il grandit.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Couvre l'arène</div>
+            <div class="step-desc">L'objectif est de recouvrir 75 % de la surface. Chaque cercle ancré devient permanent — et compte.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Évite le Vide</div>
+            <div class="step-desc">Les ennemis se déplacent librement. Si l'un d'eux touche ta bulle en croissance, tu perds une vie.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-title">Relâche au bon moment</div>
+            <div class="step-desc">Trop grand, trop risqué. Trop petit, trop lent. Trouver le bon tempo, c'est tout l'art d'Orbis.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <p class="quote">« Ferme les yeux un instant.<br>Ouvre-les. Appuie. Respire.<br><em>Déploie-toi.</em> »</p>
+  <div style="width:40px;height:1px;background:rgba(132,194,175,0.3);margin:0 auto;"></div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="download" id="telechargement">
+  <div class="download-bg"></div>
+  <div class="download-circle dl-c1"></div>
+  <div class="download-circle dl-c2"></div>
+  <div class="download-circle dl-c3"></div>
+  <div class="download-content">
+    <h2>Prêt à<br><em>te déployer ?</em></h2>
+    <p>Gratuit. iPhone &amp; iPad. Game Center inclus.</p>
+    <div class="download-badges">
+      <a class="badge-appstore" href="#">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.14-2.18 1.27-2.16 3.8.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.84M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <div class="badge-label">
+          <span>Télécharger sur l'</span>
+          <span>App Store</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Orbis</div>
+  <div class="footer-links">
+    <a href="#">Accueil</a>
+    <a href="#fonctionnalites">Fonctionnalités</a>
+    <a href="#mecanique">Mécanique</a>
+    <a href="orbis-privacy.html">Politique de confidentialité</a>
+  </div>
+  <div class="footer-legal">
+    © 2026 Orbis. Tous droits réservés.<br>
+    Apple, App Store et Game Center sont des marques d'Apple Inc., enregistrées aux États-Unis et dans d'autres pays.<br>
+    Ce jeu contient des publicités diffusées par Google AdMob.
+  </div>
+</footer>
+
+<script>
+// Stagger phone cards on scroll
+const cards = document.querySelectorAll('.phone-card');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }, i * 80);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+cards.forEach(c => {
+  c.style.opacity = '0';
+  c.style.transform = 'translateY(24px)';
+  c.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  io.observe(c);
+});
+
+// Feature cards
+const features = document.querySelectorAll('.feature-card');
+const fio = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }, i * 60);
+      fio.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+features.forEach(f => {
+  f.style.opacity = '0';
+  f.style.transform = 'translateY(20px)';
+  f.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.25s, transform 0.25s';
+  fio.observe(f);
+});
+</script>
+</body>
+</html>

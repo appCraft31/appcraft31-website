@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Politique de confidentialité — Orbis</title>
+<meta name="description" content="Politique de confidentialité du jeu Orbis pour iPhone et iPad.">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg:    #07101a;
+  --bg2:   #0d1a28;
+  --teal:  #84c2af;
+  --text:  #e8eeea;
+  --muted: rgba(232,238,234,0.5);
+  --dim:   rgba(232,238,234,0.22);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  line-height: 1.7;
+}
+
+/* ─── NAV ─────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px;
+  background: rgba(7,16,26,0.85);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(132,194,175,0.08);
+}
+.nav-logo {
+  font-size: 20px; font-weight: 200; letter-spacing: 0.18em;
+  color: var(--teal); text-decoration: none; text-transform: uppercase;
+}
+.nav-back {
+  font-size: 14px; font-weight: 300; color: var(--muted);
+  text-decoration: none; letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--teal); }
+
+/* ─── HERO ────────────────────────────────────── */
+.hero {
+  padding: 160px 48px 80px;
+  background: radial-gradient(ellipse 60% 60% at 50% 0%, #0f2030 0%, var(--bg) 60%);
+  text-align: center;
+}
+.hero-tag {
+  font-size: 12px; font-weight: 300; letter-spacing: 0.3em;
+  text-transform: uppercase; color: rgba(132,194,175,0.5);
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(32px, 5vw, 56px); font-weight: 100;
+  letter-spacing: -0.01em; margin-bottom: 16px;
+}
+.hero h1 em { color: var(--teal); font-style: normal; }
+.hero-meta {
+  font-size: 14px; font-weight: 200; color: var(--dim);
+  margin-bottom: 0;
+}
+
+/* ─── CONTENT ─────────────────────────────────── */
+.content {
+  max-width: 760px; margin: 0 auto;
+  padding: 80px 48px 120px;
+}
+
+.toc {
+  background: var(--bg2);
+  border: 1px solid rgba(132,194,175,0.1);
+  border-radius: 16px; padding: 28px 32px;
+  margin-bottom: 64px;
+}
+.toc-title {
+  font-size: 13px; font-weight: 300; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--teal);
+  margin-bottom: 16px;
+}
+.toc ol {
+  padding-left: 20px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.toc li { font-size: 14px; font-weight: 200; }
+.toc a {
+  color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.toc a:hover { color: var(--teal); }
+
+section.block {
+  margin-bottom: 64px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(132,194,175,0.08);
+}
+section.block:first-of-type { border-top: none; }
+
+h2 {
+  font-size: 24px; font-weight: 200; color: var(--text);
+  letter-spacing: -0.01em; margin-bottom: 20px;
+}
+h2 .num {
+  font-size: 12px; font-weight: 300; letter-spacing: 0.2em;
+  color: rgba(132,194,175,0.5); text-transform: uppercase;
+  display: block; margin-bottom: 6px;
+}
+
+p {
+  font-size: 15px; font-weight: 200; color: var(--muted);
+  margin-bottom: 16px;
+}
+p:last-child { margin-bottom: 0; }
+
+ul, ol {
+  padding-left: 20px; margin-bottom: 16px;
+}
+li {
+  font-size: 15px; font-weight: 200; color: var(--muted);
+  margin-bottom: 8px; line-height: 1.65;
+}
+
+strong { font-weight: 400; color: var(--text); }
+
+.highlight {
+  background: rgba(132,194,175,0.06);
+  border: 1px solid rgba(132,194,175,0.14);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 10px 10px 0;
+  padding: 16px 20px;
+  margin: 24px 0;
+}
+.highlight p { margin: 0; color: rgba(232,238,234,0.65); }
+
+.admob-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--bg2); border: 1px solid rgba(132,194,175,0.12);
+  border-radius: 10px; padding: 12px 18px;
+  margin: 20px 0;
+}
+.admob-badge span {
+  font-size: 13px; font-weight: 200; color: var(--muted);
+}
+.admob-badge a {
+  font-size: 13px; color: var(--teal); text-decoration: none;
+}
+.admob-badge a:hover { text-decoration: underline; }
+
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── FOOTER ──────────────────────────────────── */
+footer {
+  padding: 40px 48px; text-align: center;
+  border-top: 1px solid rgba(132,194,175,0.08);
+}
+.footer-logo {
+  font-size: 16px; font-weight: 200; letter-spacing: 0.18em;
+  color: var(--teal); text-transform: uppercase; margin-bottom: 16px;
+}
+.footer-links { display: flex; justify-content: center; gap: 28px; margin-bottom: 20px; }
+.footer-links a {
+  font-size: 13px; font-weight: 200; color: var(--muted);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--teal); }
+.footer-legal {
+  font-size: 12px; font-weight: 200; color: var(--dim);
+}
+
+@media (max-width: 640px) {
+  nav { padding: 18px 24px; }
+  .hero { padding: 130px 24px 60px; }
+  .content { padding: 60px 24px 80px; }
+  footer { padding: 32px 24px; }
+  .footer-links { flex-wrap: wrap; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="orbis.html">Orbis</a>
+  <a class="nav-back" href="orbis.html">← Retour au site</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">Orbis · Jeu iOS</div>
+  <h1>Politique de <em>confidentialité</em></h1>
+  <div class="hero-meta">Dernière mise à jour : 23 avril 2026</div>
+</div>
+
+<div class="content">
+
+  <!-- TABLE DES MATIÈRES -->
+  <div class="toc">
+    <div class="toc-title">Sommaire</div>
+    <ol>
+      <li><a href="#presentation">Présentation</a></li>
+      <li><a href="#collecte">Données collectées</a></li>
+      <li><a href="#admob">Publicité Google AdMob</a></li>
+      <li><a href="#gamecenter">Apple Game Center</a></li>
+      <li><a href="#droits">Vos droits</a></li>
+      <li><a href="#mineurs">Mineurs</a></li>
+      <li><a href="#modifications">Modifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 — PRÉSENTATION -->
+  <section class="block" id="presentation">
+    <h2><span class="num">01</span>Présentation</h2>
+    <p>La présente politique de confidentialité décrit la manière dont l'application <strong>Orbis</strong> (ci-après « l'Application ») collecte, utilise et protège les informations vous concernant lorsque vous l'utilisez sur iPhone ou iPad.</p>
+    <p>L'Application est publiée par un développeur indépendant. En téléchargeant et en utilisant Orbis, vous acceptez les pratiques décrites dans cette politique.</p>
+    <div class="highlight">
+      <p><strong>En résumé :</strong> Orbis ne crée aucun compte, ne collecte aucun nom, aucun email et n'enregistre aucune donnée personnelle sur ses propres serveurs. Les données mentionnées ci-dessous proviennent exclusivement de services tiers (Google AdMob, Apple Game Center).</p>
+    </div>
+  </section>
+
+  <!-- 2 — DONNÉES COLLECTÉES -->
+  <section class="block" id="collecte">
+    <h2><span class="num">02</span>Données collectées</h2>
+    <p>Orbis lui-même <strong>ne collecte, ne stocke et ne transmet aucune donnée personnelle</strong> sur ses propres serveurs. L'Application n'exige aucune inscription, aucun compte utilisateur et n'accède pas à vos contacts, photos, localisation précise ni aucune autre ressource sensible de l'appareil.</p>
+    <p>Certains services tiers intégrés à l'Application peuvent collecter des données dans les conditions décrites ci-dessous.</p>
+
+    <h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Données techniques minimales</h2>
+    <p>Lors du bon fonctionnement de l'Application, les éléments suivants peuvent être traités localement sur votre appareil sans être transmis :</p>
+    <ul>
+      <li>Score et progression de partie (stockés localement sur l'appareil)</li>
+      <li>Préférences de son (activé / désactivé)</li>
+    </ul>
+  </section>
+
+  <!-- 3 — ADMOB -->
+  <section class="block" id="admob">
+    <h2><span class="num">03</span>Publicité — Google AdMob</h2>
+    <p>Orbis utilise <strong>Google AdMob</strong>, une plateforme publicitaire exploitée par Google LLC, pour afficher des publicités dans l'Application. AdMob peut collecter et utiliser certaines données pour diffuser des annonces personnalisées ou non personnalisées.</p>
+
+    <h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Données susceptibles d'être collectées par AdMob</h2>
+    <ul>
+      <li><strong>Identifiant publicitaire (IDFA)</strong> — identifiant Apple réinitialisable, utilisé pour la personnalisation des annonces et la mesure des conversions</li>
+      <li><strong>Adresse IP</strong> — utilisée pour déterminer un emplacement géographique approximatif (pays / région)</li>
+      <li><strong>Informations sur l'appareil</strong> — modèle, version iOS, langue, fuseau horaire</li>
+      <li><strong>Données d'interaction publicitaire</strong> — impressions, clics, durée de visionnage</li>
+    </ul>
+
+    <div class="highlight">
+      <p>Conformément au cadre <strong>App Tracking Transparency (ATT)</strong> d'Apple, Orbis vous demandera votre autorisation avant d'accéder à l'IDFA pour des fins de suivi publicitaire. Vous pouvez refuser cette autorisation sans affecter le fonctionnement du jeu. En cas de refus, des publicités non personnalisées vous seront diffusées.</p>
+    </div>
+
+    <div class="admob-badge">
+      <span>Politique de confidentialité Google :</span>
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>
+    </div>
+    <div class="admob-badge">
+      <span>Comment Google utilise les données publicitaires :</span>
+      <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a>
+    </div>
+
+    <h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Désactiver la personnalisation des publicités</h2>
+    <p>Vous pouvez à tout moment réinitialiser ou désactiver l'IDFA depuis les réglages de votre iPhone ou iPad :</p>
+    <ul>
+      <li><strong>iOS 14.5 et supérieur :</strong> Réglages → Confidentialité et sécurité → Suivi → désactiver « Autoriser les demandes de suivi »</li>
+      <li><strong>iOS 14 et inférieur :</strong> Réglages → Confidentialité → Publicité → Limiter le suivi publicitaire</li>
+    </ul>
+  </section>
+
+  <!-- 4 — GAME CENTER -->
+  <section class="block" id="gamecenter">
+    <h2><span class="num">04</span>Apple Game Center</h2>
+    <p>Orbis intègre <strong>Apple Game Center</strong> pour la gestion des classements (meilleur score global, meilleur niveau atteint), sur iPhone et iPad séparément.</p>
+    <p>Game Center est un service d'Apple Inc. Il associe vos scores à votre identifiant Apple Game Center (pseudonyme) et peut les rendre visibles dans les classements publics. Orbis n'a pas accès à votre identifiant Apple, votre email ni vos données de paiement.</p>
+    <p>La politique de confidentialité d'Apple est consultable sur <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>
+  </section>
+
+  <!-- 5 — DROITS -->
+  <section class="block" id="droits">
+    <h2><span class="num">05</span>Vos droits</h2>
+    <p>Selon votre lieu de résidence, vous disposez de droits sur les données vous concernant :</p>
+    <ul>
+      <li><strong>Droit d'accès</strong> — savoir quelles données sont collectées</li>
+      <li><strong>Droit de suppression</strong> — demander l'effacement des données</li>
+      <li><strong>Droit d'opposition</strong> — refuser la personnalisation publicitaire (voir section 3)</li>
+      <li><strong>Droit à la portabilité</strong> — obtenir vos données dans un format lisible</li>
+    </ul>
+    <p>Pour les données traitées par Google AdMob, ces droits s'exercent via les outils Google (<a href="https://myaccount.google.com" target="_blank" rel="noopener">myaccount.google.com</a>). Pour Game Center, ils s'exercent via les paramètres Apple.</p>
+    <p>Pour toute demande relative à l'Application elle-même, contactez-nous à l'adresse indiquée en section 8.</p>
+  </section>
+
+  <!-- 6 — MINEURS -->
+  <section class="block" id="mineurs">
+    <h2><span class="num">06</span>Mineurs</h2>
+    <p>Orbis est un jeu grand public accessible à tous les âges. L'Application ne collecte délibérément aucune donnée personnelle émanant d'enfants de moins de 13 ans (ou l'âge minimum légal applicable dans votre pays).</p>
+    <p>Les annonces diffusées via Google AdMob sont configurées pour respecter les règles relatives aux applications familiales. Si AdMob détecte que l'utilisateur est un enfant (via les signaux de l'écosystème Apple), des publicités adaptées aux familles sont automatiquement diffusées, sans personnalisation basée sur le suivi.</p>
+    <p>Si vous pensez qu'un enfant nous a transmis des données personnelles par inadvertance, veuillez nous contacter afin que nous puissions prendre les mesures appropriées.</p>
+  </section>
+
+  <!-- 7 — MODIFICATIONS -->
+  <section class="block" id="modifications">
+    <h2><span class="num">07</span>Modifications de cette politique</h2>
+    <p>Cette politique peut être mise à jour ponctuellement pour refléter des évolutions de l'Application ou des obligations légales. La date de dernière mise à jour est indiquée en haut de cette page.</p>
+    <p>En cas de modification substantielle, une notice sera affichée au prochain lancement de l'Application. L'utilisation continue d'Orbis après une mise à jour constitue votre acceptation de la politique révisée.</p>
+  </section>
+
+  <!-- 8 — CONTACT -->
+  <section class="block" id="contact">
+    <h2><span class="num">08</span>Contact</h2>
+    <p>Pour toute question relative à cette politique de confidentialité ou aux données traitées par Orbis, vous pouvez nous contacter par e-mail :</p>
+    <div class="admob-badge">
+      <span>Contact :</span>
+      <a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a>
+    </div>
+    <p style="margin-top:16px;">Nous nous efforçons de répondre à toute demande dans un délai de 30 jours ouvrés.</p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Orbis</div>
+  <div class="footer-links">
+    <a href="orbis.html">Accueil</a>
+    <a href="orbis-privacy.html">Politique de confidentialité</a>
+  </div>
+  <div class="footer-legal">© 2026 Orbis. Tous droits réservés.</div>
+</footer>
+
+</body>
+</html>
