@@ -7,176 +7,105 @@
 <meta name="description" content="Politique de confidentialité du jeu Orbis pour iPhone et iPad.">
 <style>
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
 :root {
-  --bg:    #07101a;
-  --bg2:   #0d1a28;
-  --teal:  #84c2af;
-  --text:  #e8eeea;
-  --muted: rgba(232,238,234,0.5);
-  --dim:   rgba(232,238,234,0.22);
+  --bg:    #07101a; --bg2:   #0d1a28; --teal:  #84c2af;
+  --text:  #e8eeea; --muted: rgba(232,238,234,0.5); --dim: rgba(232,238,234,0.22);
 }
+html { scroll-behavior: smooth; }
+body { background:var(--bg); color:var(--text); font-family:-apple-system,'SF Pro Text','Helvetica Neue',sans-serif; line-height:1.7; }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif;
-  line-height: 1.7;
-}
-
-/* ─── NAV ─────────────────────────────────────── */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 48px;
-  background: rgba(7,16,26,0.85);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(132,194,175,0.08);
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 48px;
+  background:rgba(7,16,26,0.85); backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(132,194,175,0.08);
 }
-.nav-logo {
-  font-size: 20px; font-weight: 200; letter-spacing: 0.18em;
-  color: var(--teal); text-decoration: none; text-transform: uppercase;
-}
-.nav-back {
-  font-size: 14px; font-weight: 300; color: var(--muted);
-  text-decoration: none; letter-spacing: 0.04em;
-  transition: color 0.2s;
-}
-.nav-back:hover { color: var(--teal); }
+.nav-logo { font-size:20px; font-weight:200; letter-spacing:0.18em; color:var(--teal); text-decoration:none; text-transform:uppercase; }
+.nav-right { display:flex; align-items:center; gap:20px; }
+.nav-back { font-size:14px; font-weight:300; color:var(--muted); text-decoration:none; letter-spacing:0.04em; transition:color 0.2s; }
+.nav-back:hover { color:var(--teal); }
 
-/* ─── HERO ────────────────────────────────────── */
-.hero {
-  padding: 160px 48px 80px;
-  background: radial-gradient(ellipse 60% 60% at 50% 0%, #0f2030 0%, var(--bg) 60%);
-  text-align: center;
+.lang-switcher { position:relative; }
+.lang-btn {
+  display:flex; align-items:center; gap:7px;
+  background:rgba(132,194,175,0.07); border:1px solid rgba(132,194,175,0.18);
+  border-radius:8px; color:var(--teal);
+  font-size:13px; font-weight:300; letter-spacing:0.04em;
+  padding:7px 13px; cursor:pointer;
+  transition:background 0.2s, border-color 0.2s;
+  font-family:inherit;
 }
-.hero-tag {
-  font-size: 12px; font-weight: 300; letter-spacing: 0.3em;
-  text-transform: uppercase; color: rgba(132,194,175,0.5);
-  margin-bottom: 20px;
+.lang-btn:hover { background:rgba(132,194,175,0.13); border-color:rgba(132,194,175,0.32); }
+.lang-btn svg { flex-shrink:0; }
+.lang-dropdown {
+  position:absolute; top:calc(100% + 8px); right:0;
+  background:#0b1927; border:1px solid rgba(132,194,175,0.15);
+  border-radius:12px; min-width:210px;
+  padding:6px 0;
+  box-shadow:0 24px 64px rgba(0,0,0,0.55);
+  z-index:300; display:none;
 }
-.hero h1 {
-  font-size: clamp(32px, 5vw, 56px); font-weight: 100;
-  letter-spacing: -0.01em; margin-bottom: 16px;
+.lang-dropdown.open { display:block; }
+.lang-option {
+  display:flex; align-items:center; gap:10px;
+  width:100%; padding:10px 16px;
+  background:none; border:none;
+  color:var(--muted); font-size:14px; font-weight:200;
+  text-align:left; cursor:pointer;
+  transition:color 0.15s, background 0.15s;
+  letter-spacing:0.02em; font-family:inherit;
 }
-.hero h1 em { color: var(--teal); font-style: normal; }
-.hero-meta {
-  font-size: 14px; font-weight: 200; color: var(--dim);
-  margin-bottom: 0;
-}
+.lang-option:hover { color:var(--teal); background:rgba(132,194,175,0.06); }
+.lang-option.active { color:var(--teal); }
+.lang-check { width:14px; font-size:11px; flex-shrink:0; }
 
-/* ─── CONTENT ─────────────────────────────────── */
-.content {
-  max-width: 760px; margin: 0 auto;
-  padding: 80px 48px 120px;
-}
+.hero { padding:160px 48px 80px; background:radial-gradient(ellipse 60% 60% at 50% 0%,#0f2030 0%,var(--bg) 60%); text-align:center; }
+.hero-tag { font-size:12px; font-weight:300; letter-spacing:0.3em; text-transform:uppercase; color:rgba(132,194,175,0.5); margin-bottom:20px; }
+.hero h1 { font-size:clamp(32px,5vw,56px); font-weight:100; letter-spacing:-0.01em; margin-bottom:16px; }
+.hero h1 em { color:var(--teal); font-style:normal; }
+.hero-meta { font-size:14px; font-weight:200; color:var(--dim); }
 
-.toc {
-  background: var(--bg2);
-  border: 1px solid rgba(132,194,175,0.1);
-  border-radius: 16px; padding: 28px 32px;
-  margin-bottom: 64px;
-}
-.toc-title {
-  font-size: 13px; font-weight: 300; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--teal);
-  margin-bottom: 16px;
-}
-.toc ol {
-  padding-left: 20px;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.toc li { font-size: 14px; font-weight: 200; }
-.toc a {
-  color: var(--muted); text-decoration: none; transition: color 0.2s;
-}
-.toc a:hover { color: var(--teal); }
+.content { max-width:760px; margin:0 auto; padding:80px 48px 120px; }
+.toc { background:var(--bg2); border:1px solid rgba(132,194,175,0.1); border-radius:16px; padding:28px 32px; margin-bottom:64px; }
+.toc-title { font-size:13px; font-weight:300; letter-spacing:0.2em; text-transform:uppercase; color:var(--teal); margin-bottom:16px; }
+.toc ol { padding-left:20px; display:flex; flex-direction:column; gap:8px; }
+.toc li { font-size:14px; font-weight:200; }
+.toc a { color:var(--muted); text-decoration:none; transition:color 0.2s; }
+.toc a:hover { color:var(--teal); }
 
-section.block {
-  margin-bottom: 64px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(132,194,175,0.08);
-}
-section.block:first-of-type { border-top: none; }
+section.block { margin-bottom:64px; padding-top:24px; border-top:1px solid rgba(132,194,175,0.08); }
+section.block:first-of-type { border-top:none; }
+h2 { font-size:24px; font-weight:200; color:var(--text); letter-spacing:-0.01em; margin-bottom:20px; }
+h2 .num { font-size:12px; font-weight:300; letter-spacing:0.2em; color:rgba(132,194,175,0.5); text-transform:uppercase; display:block; margin-bottom:6px; }
+p { font-size:15px; font-weight:200; color:var(--muted); margin-bottom:16px; }
+p:last-child { margin-bottom:0; }
+ul,ol { padding-left:20px; margin-bottom:16px; }
+li { font-size:15px; font-weight:200; color:var(--muted); margin-bottom:8px; line-height:1.65; }
+strong { font-weight:400; color:var(--text); }
+.highlight { background:rgba(132,194,175,0.06); border:1px solid rgba(132,194,175,0.14); border-left:3px solid var(--teal); border-radius:0 10px 10px 0; padding:16px 20px; margin:24px 0; }
+.highlight p { margin:0; color:rgba(232,238,234,0.65); }
+.admob-badge { display:inline-flex; align-items:center; gap:10px; background:var(--bg2); border:1px solid rgba(132,194,175,0.12); border-radius:10px; padding:12px 18px; margin:20px 0; }
+.admob-badge span { font-size:13px; font-weight:200; color:var(--muted); }
+.admob-badge a { font-size:13px; color:var(--teal); text-decoration:none; }
+.admob-badge a:hover { text-decoration:underline; }
+a { color:var(--teal); text-decoration:none; }
+a:hover { text-decoration:underline; }
 
-h2 {
-  font-size: 24px; font-weight: 200; color: var(--text);
-  letter-spacing: -0.01em; margin-bottom: 20px;
-}
-h2 .num {
-  font-size: 12px; font-weight: 300; letter-spacing: 0.2em;
-  color: rgba(132,194,175,0.5); text-transform: uppercase;
-  display: block; margin-bottom: 6px;
-}
+footer { padding:40px 48px; text-align:center; border-top:1px solid rgba(132,194,175,0.08); }
+.footer-logo { font-size:16px; font-weight:200; letter-spacing:0.18em; color:var(--teal); text-transform:uppercase; margin-bottom:16px; }
+.footer-links { display:flex; justify-content:center; gap:28px; margin-bottom:20px; }
+.footer-links a { font-size:13px; font-weight:200; color:var(--muted); text-decoration:none; transition:color 0.2s; }
+.footer-links a:hover { color:var(--teal); }
+.footer-legal { font-size:12px; font-weight:200; color:var(--dim); }
 
-p {
-  font-size: 15px; font-weight: 200; color: var(--muted);
-  margin-bottom: 16px;
-}
-p:last-child { margin-bottom: 0; }
-
-ul, ol {
-  padding-left: 20px; margin-bottom: 16px;
-}
-li {
-  font-size: 15px; font-weight: 200; color: var(--muted);
-  margin-bottom: 8px; line-height: 1.65;
-}
-
-strong { font-weight: 400; color: var(--text); }
-
-.highlight {
-  background: rgba(132,194,175,0.06);
-  border: 1px solid rgba(132,194,175,0.14);
-  border-left: 3px solid var(--teal);
-  border-radius: 0 10px 10px 0;
-  padding: 16px 20px;
-  margin: 24px 0;
-}
-.highlight p { margin: 0; color: rgba(232,238,234,0.65); }
-
-.admob-badge {
-  display: inline-flex; align-items: center; gap: 10px;
-  background: var(--bg2); border: 1px solid rgba(132,194,175,0.12);
-  border-radius: 10px; padding: 12px 18px;
-  margin: 20px 0;
-}
-.admob-badge span {
-  font-size: 13px; font-weight: 200; color: var(--muted);
-}
-.admob-badge a {
-  font-size: 13px; color: var(--teal); text-decoration: none;
-}
-.admob-badge a:hover { text-decoration: underline; }
-
-a { color: var(--teal); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-/* ─── FOOTER ──────────────────────────────────── */
-footer {
-  padding: 40px 48px; text-align: center;
-  border-top: 1px solid rgba(132,194,175,0.08);
-}
-.footer-logo {
-  font-size: 16px; font-weight: 200; letter-spacing: 0.18em;
-  color: var(--teal); text-transform: uppercase; margin-bottom: 16px;
-}
-.footer-links { display: flex; justify-content: center; gap: 28px; margin-bottom: 20px; }
-.footer-links a {
-  font-size: 13px; font-weight: 200; color: var(--muted);
-  text-decoration: none; transition: color 0.2s;
-}
-.footer-links a:hover { color: var(--teal); }
-.footer-legal {
-  font-size: 12px; font-weight: 200; color: var(--dim);
-}
-
-@media (max-width: 640px) {
-  nav { padding: 18px 24px; }
-  .hero { padding: 130px 24px 60px; }
-  .content { padding: 60px 24px 80px; }
-  footer { padding: 32px 24px; }
-  .footer-links { flex-wrap: wrap; gap: 16px; }
+@media (max-width:640px) {
+  nav { padding:18px 20px; }
+  .nav-back { display:none; }
+  .hero { padding:130px 24px 60px; }
+  .content { padding:60px 24px 80px; }
+  footer { padding:32px 24px; }
+  .footer-links { flex-wrap:wrap; gap:16px; }
 }
 </style>
 </head>
@@ -184,148 +113,381 @@ footer {
 
 <nav>
   <a class="nav-logo" href="orbis.html">Orbis</a>
-  <a class="nav-back" href="orbis.html">← Retour au site</a>
+  <div class="nav-right">
+    <a class="nav-back" href="orbis.html" data-i18n="nav-back">← Retour au site</a>
+    <div class="lang-switcher">
+      <button class="lang-btn" id="lang-btn" aria-haspopup="listbox" aria-expanded="false">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" width="15" height="15"><circle cx="10" cy="10" r="8.5"/><path d="M10 1.5c0 0-3 3.5-3 8.5s3 8.5 3 8.5M10 1.5c0 0 3 3.5 3 8.5s-3 8.5-3 8.5M1.5 10h17"/></svg>
+        <span id="lang-label">Français</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown" role="listbox"></div>
+    </div>
+  </div>
 </nav>
 
 <div class="hero">
-  <div class="hero-tag">Orbis · Jeu iOS</div>
-  <h1>Politique de <em>confidentialité</em></h1>
-  <div class="hero-meta">Dernière mise à jour : 23 avril 2026</div>
+  <div class="hero-tag" data-i18n="hero-tag">Orbis · Jeu iOS</div>
+  <h1 data-i18n-html="hero-title">Politique de <em>confidentialité</em></h1>
+  <div class="hero-meta" data-i18n="hero-meta">Dernière mise à jour : 23 avril 2026</div>
 </div>
 
 <div class="content">
-
-  <!-- TABLE DES MATIÈRES -->
   <div class="toc">
-    <div class="toc-title">Sommaire</div>
+    <div class="toc-title" data-i18n="toc-title">Sommaire</div>
     <ol>
-      <li><a href="#presentation">Présentation</a></li>
-      <li><a href="#collecte">Données collectées</a></li>
-      <li><a href="#admob">Publicité Google AdMob</a></li>
-      <li><a href="#gamecenter">Apple Game Center</a></li>
-      <li><a href="#droits">Vos droits</a></li>
-      <li><a href="#mineurs">Mineurs</a></li>
-      <li><a href="#modifications">Modifications</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#s1" data-i18n="toc-1">Présentation</a></li>
+      <li><a href="#s2" data-i18n="toc-2">Données collectées</a></li>
+      <li><a href="#s3" data-i18n="toc-3">Publicité Google AdMob</a></li>
+      <li><a href="#s4" data-i18n="toc-4">Apple Game Center</a></li>
+      <li><a href="#s5" data-i18n="toc-5">Vos droits</a></li>
+      <li><a href="#s6" data-i18n="toc-6">Mineurs</a></li>
+      <li><a href="#s7" data-i18n="toc-7">Modifications</a></li>
+      <li><a href="#s8" data-i18n="toc-8">Contact</a></li>
     </ol>
   </div>
 
-  <!-- 1 — PRÉSENTATION -->
-  <section class="block" id="presentation">
-    <h2><span class="num">01</span>Présentation</h2>
-    <p>La présente politique de confidentialité décrit la manière dont l'application <strong>Orbis</strong> (ci-après « l'Application ») collecte, utilise et protège les informations vous concernant lorsque vous l'utilisez sur iPhone ou iPad.</p>
-    <p>L'Application est publiée par un développeur indépendant. En téléchargeant et en utilisant Orbis, vous acceptez les pratiques décrites dans cette politique.</p>
-    <div class="highlight">
-      <p><strong>En résumé :</strong> Orbis ne crée aucun compte, ne collecte aucun nom, aucun email et n'enregistre aucune donnée personnelle sur ses propres serveurs. Les données mentionnées ci-dessous proviennent exclusivement de services tiers (Google AdMob, Apple Game Center).</p>
-    </div>
+  <section class="block" id="s1">
+    <h2><span class="num">01</span><span data-i18n="s1-title">Présentation</span></h2>
+    <div data-i18n-html="s1-body"></div>
   </section>
 
-  <!-- 2 — DONNÉES COLLECTÉES -->
-  <section class="block" id="collecte">
-    <h2><span class="num">02</span>Données collectées</h2>
-    <p>Orbis lui-même <strong>ne collecte, ne stocke et ne transmet aucune donnée personnelle</strong> sur ses propres serveurs. L'Application n'exige aucune inscription, aucun compte utilisateur et n'accède pas à vos contacts, photos, localisation précise ni aucune autre ressource sensible de l'appareil.</p>
-    <p>Certains services tiers intégrés à l'Application peuvent collecter des données dans les conditions décrites ci-dessous.</p>
-
-    <h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Données techniques minimales</h2>
-    <p>Lors du bon fonctionnement de l'Application, les éléments suivants peuvent être traités localement sur votre appareil sans être transmis :</p>
-    <ul>
-      <li>Score et progression de partie (stockés localement sur l'appareil)</li>
-      <li>Préférences de son (activé / désactivé)</li>
-    </ul>
+  <section class="block" id="s2">
+    <h2><span class="num">02</span><span data-i18n="s2-title">Données collectées</span></h2>
+    <div data-i18n-html="s2-body"></div>
   </section>
 
-  <!-- 3 — ADMOB -->
-  <section class="block" id="admob">
-    <h2><span class="num">03</span>Publicité — Google AdMob</h2>
-    <p>Orbis utilise <strong>Google AdMob</strong>, une plateforme publicitaire exploitée par Google LLC, pour afficher des publicités dans l'Application. AdMob peut collecter et utiliser certaines données pour diffuser des annonces personnalisées ou non personnalisées.</p>
-
-    <h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Données susceptibles d'être collectées par AdMob</h2>
-    <ul>
-      <li><strong>Identifiant publicitaire (IDFA)</strong> — identifiant Apple réinitialisable, utilisé pour la personnalisation des annonces et la mesure des conversions</li>
-      <li><strong>Adresse IP</strong> — utilisée pour déterminer un emplacement géographique approximatif (pays / région)</li>
-      <li><strong>Informations sur l'appareil</strong> — modèle, version iOS, langue, fuseau horaire</li>
-      <li><strong>Données d'interaction publicitaire</strong> — impressions, clics, durée de visionnage</li>
-    </ul>
-
-    <div class="highlight">
-      <p>Conformément au cadre <strong>App Tracking Transparency (ATT)</strong> d'Apple, Orbis vous demandera votre autorisation avant d'accéder à l'IDFA pour des fins de suivi publicitaire. Vous pouvez refuser cette autorisation sans affecter le fonctionnement du jeu. En cas de refus, des publicités non personnalisées vous seront diffusées.</p>
-    </div>
-
-    <div class="admob-badge">
-      <span>Politique de confidentialité Google :</span>
-      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>
-    </div>
-    <div class="admob-badge">
-      <span>Comment Google utilise les données publicitaires :</span>
-      <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a>
-    </div>
-
-    <h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Désactiver la personnalisation des publicités</h2>
-    <p>Vous pouvez à tout moment réinitialiser ou désactiver l'IDFA depuis les réglages de votre iPhone ou iPad :</p>
-    <ul>
-      <li><strong>iOS 14.5 et supérieur :</strong> Réglages → Confidentialité et sécurité → Suivi → désactiver « Autoriser les demandes de suivi »</li>
-      <li><strong>iOS 14 et inférieur :</strong> Réglages → Confidentialité → Publicité → Limiter le suivi publicitaire</li>
-    </ul>
+  <section class="block" id="s3">
+    <h2><span class="num">03</span><span data-i18n="s3-title">Publicité — Google AdMob</span></h2>
+    <div data-i18n-html="s3-body"></div>
   </section>
 
-  <!-- 4 — GAME CENTER -->
-  <section class="block" id="gamecenter">
-    <h2><span class="num">04</span>Apple Game Center</h2>
-    <p>Orbis intègre <strong>Apple Game Center</strong> pour la gestion des classements (meilleur score global, meilleur niveau atteint), sur iPhone et iPad séparément.</p>
-    <p>Game Center est un service d'Apple Inc. Il associe vos scores à votre identifiant Apple Game Center (pseudonyme) et peut les rendre visibles dans les classements publics. Orbis n'a pas accès à votre identifiant Apple, votre email ni vos données de paiement.</p>
-    <p>La politique de confidentialité d'Apple est consultable sur <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>
+  <section class="block" id="s4">
+    <h2><span class="num">04</span><span data-i18n="s4-title">Apple Game Center</span></h2>
+    <div data-i18n-html="s4-body"></div>
   </section>
 
-  <!-- 5 — DROITS -->
-  <section class="block" id="droits">
-    <h2><span class="num">05</span>Vos droits</h2>
-    <p>Selon votre lieu de résidence, vous disposez de droits sur les données vous concernant :</p>
-    <ul>
-      <li><strong>Droit d'accès</strong> — savoir quelles données sont collectées</li>
-      <li><strong>Droit de suppression</strong> — demander l'effacement des données</li>
-      <li><strong>Droit d'opposition</strong> — refuser la personnalisation publicitaire (voir section 3)</li>
-      <li><strong>Droit à la portabilité</strong> — obtenir vos données dans un format lisible</li>
-    </ul>
-    <p>Pour les données traitées par Google AdMob, ces droits s'exercent via les outils Google (<a href="https://myaccount.google.com" target="_blank" rel="noopener">myaccount.google.com</a>). Pour Game Center, ils s'exercent via les paramètres Apple.</p>
-    <p>Pour toute demande relative à l'Application elle-même, contactez-nous à l'adresse indiquée en section 8.</p>
+  <section class="block" id="s5">
+    <h2><span class="num">05</span><span data-i18n="s5-title">Vos droits</span></h2>
+    <div data-i18n-html="s5-body"></div>
   </section>
 
-  <!-- 6 — MINEURS -->
-  <section class="block" id="mineurs">
-    <h2><span class="num">06</span>Mineurs</h2>
-    <p>Orbis est un jeu grand public accessible à tous les âges. L'Application ne collecte délibérément aucune donnée personnelle émanant d'enfants de moins de 13 ans (ou l'âge minimum légal applicable dans votre pays).</p>
-    <p>Les annonces diffusées via Google AdMob sont configurées pour respecter les règles relatives aux applications familiales. Si AdMob détecte que l'utilisateur est un enfant (via les signaux de l'écosystème Apple), des publicités adaptées aux familles sont automatiquement diffusées, sans personnalisation basée sur le suivi.</p>
-    <p>Si vous pensez qu'un enfant nous a transmis des données personnelles par inadvertance, veuillez nous contacter afin que nous puissions prendre les mesures appropriées.</p>
+  <section class="block" id="s6">
+    <h2><span class="num">06</span><span data-i18n="s6-title">Mineurs</span></h2>
+    <div data-i18n-html="s6-body"></div>
   </section>
 
-  <!-- 7 — MODIFICATIONS -->
-  <section class="block" id="modifications">
-    <h2><span class="num">07</span>Modifications de cette politique</h2>
-    <p>Cette politique peut être mise à jour ponctuellement pour refléter des évolutions de l'Application ou des obligations légales. La date de dernière mise à jour est indiquée en haut de cette page.</p>
-    <p>En cas de modification substantielle, une notice sera affichée au prochain lancement de l'Application. L'utilisation continue d'Orbis après une mise à jour constitue votre acceptation de la politique révisée.</p>
+  <section class="block" id="s7">
+    <h2><span class="num">07</span><span data-i18n="s7-title">Modifications</span></h2>
+    <div data-i18n-html="s7-body"></div>
   </section>
 
-  <!-- 8 — CONTACT -->
-  <section class="block" id="contact">
-    <h2><span class="num">08</span>Contact</h2>
-    <p>Pour toute question relative à cette politique de confidentialité ou aux données traitées par Orbis, vous pouvez nous contacter par e-mail :</p>
-    <div class="admob-badge">
-      <span>Contact :</span>
-      <a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a>
-    </div>
-    <p style="margin-top:16px;">Nous nous efforçons de répondre à toute demande dans un délai de 30 jours ouvrés.</p>
+  <section class="block" id="s8">
+    <h2><span class="num">08</span><span data-i18n="s8-title">Contact</span></h2>
+    <div data-i18n-html="s8-body"></div>
   </section>
-
 </div>
 
 <footer>
   <div class="footer-logo">Orbis</div>
   <div class="footer-links">
-    <a href="orbis.html">Accueil</a>
-    <a href="orbis-privacy.html">Politique de confidentialité</a>
+    <a href="orbis.html" data-i18n="footer-home">Accueil</a>
+    <a href="orbis-privacy.html" data-i18n="footer-privacy">Politique de confidentialité</a>
   </div>
-  <div class="footer-legal">© 2026 Orbis. Tous droits réservés.</div>
+  <div class="footer-legal" data-i18n="footer-legal">© 2026 Orbis. Tous droits réservés.</div>
 </footer>
 
+<script>
+const LANGS = [
+  { code:'fr',    label:'Français',              flag:'🇫🇷' },
+  { code:'de',    label:'Deutsch',               flag:'🇩🇪' },
+  { code:'en-AU', label:'English (Australia)',   flag:'🇦🇺' },
+  { code:'en-US', label:'English (United States)',flag:'🇺🇸' },
+  { code:'en-GB', label:'English (United Kingdom)',flag:'🇬🇧' },
+  { code:'es-ES', label:'Español (España)',       flag:'🇪🇸' },
+  { code:'es-MX', label:'Español (México)',       flag:'🇲🇽' },
+  { code:'it',    label:'Italiano',              flag:'🇮🇹' },
+  { code:'pt-BR', label:'Português (Brasil)',    flag:'🇧🇷' },
+  { code:'pt-PT', label:'Português (Portugal)',  flag:'🇵🇹' },
+];
+
+const T = {};
+
+T.fr = {
+  'nav-back':'← Retour au site',
+  'hero-tag':'Orbis · Jeu iOS',
+  'hero-title':'Politique de <em>confidentialité</em>',
+  'hero-meta':'Dernière mise à jour : 23 avril 2026',
+  'toc-title':'Sommaire',
+  'toc-1':'Présentation','toc-2':'Données collectées','toc-3':'Publicité Google AdMob',
+  'toc-4':'Apple Game Center','toc-5':'Vos droits','toc-6':'Mineurs',
+  'toc-7':'Modifications','toc-8':'Contact',
+  's1-title':'Présentation',
+  's1-body':`<p>La présente politique de confidentialité décrit la manière dont l'application <strong>Orbis</strong> (ci-après « l'Application ») collecte, utilise et protège les informations vous concernant lorsque vous l'utilisez sur iPhone ou iPad.</p><p>L'Application est publiée par un développeur indépendant. En téléchargeant et en utilisant Orbis, vous acceptez les pratiques décrites dans cette politique.</p><div class="highlight"><p><strong>En résumé :</strong> Orbis ne crée aucun compte, ne collecte aucun nom, aucun email et n'enregistre aucune donnée personnelle sur ses propres serveurs. Les données mentionnées ci-dessous proviennent exclusivement de services tiers (Google AdMob, Apple Game Center).</p></div>`,
+  's2-title':'Données collectées',
+  's2-body':`<p>Orbis lui-même <strong>ne collecte, ne stocke et ne transmet aucune donnée personnelle</strong> sur ses propres serveurs. L'Application n'exige aucune inscription, aucun compte utilisateur et n'accède pas à vos contacts, photos, localisation précise ni aucune autre ressource sensible de l'appareil.</p><p>Certains services tiers intégrés à l'Application peuvent collecter des données dans les conditions décrites ci-dessous.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Données techniques minimales</h2><p>Lors du bon fonctionnement de l'Application, les éléments suivants peuvent être traités localement sur votre appareil sans être transmis :</p><ul><li>Score et progression de partie (stockés localement sur l'appareil)</li><li>Préférences de son (activé / désactivé)</li></ul>`,
+  's3-title':'Publicité — Google AdMob',
+  's3-body':`<p>Orbis utilise <strong>Google AdMob</strong>, une plateforme publicitaire exploitée par Google LLC, pour afficher des publicités dans l'Application. AdMob peut collecter et utiliser certaines données pour diffuser des annonces personnalisées ou non personnalisées.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Données susceptibles d'être collectées par AdMob</h2><ul><li><strong>Identifiant publicitaire (IDFA)</strong> — identifiant Apple réinitialisable, utilisé pour la personnalisation des annonces et la mesure des conversions</li><li><strong>Adresse IP</strong> — utilisée pour déterminer un emplacement géographique approximatif (pays / région)</li><li><strong>Informations sur l'appareil</strong> — modèle, version iOS, langue, fuseau horaire</li><li><strong>Données d'interaction publicitaire</strong> — impressions, clics, durée de visionnage</li></ul><div class="highlight"><p>Conformément au cadre <strong>App Tracking Transparency (ATT)</strong> d'Apple, Orbis vous demandera votre autorisation avant d'accéder à l'IDFA pour des fins de suivi publicitaire. Vous pouvez refuser cette autorisation sans affecter le fonctionnement du jeu. En cas de refus, des publicités non personnalisées vous seront diffusées.</p></div><div class="admob-badge"><span>Politique de confidentialité Google :</span><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></div><div class="admob-badge"><span>Comment Google utilise les données publicitaires :</span><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a></div><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Désactiver la personnalisation des publicités</h2><p>Vous pouvez à tout moment réinitialiser ou désactiver l'IDFA depuis les réglages de votre iPhone ou iPad :</p><ul><li><strong>iOS 14.5 et supérieur :</strong> Réglages → Confidentialité et sécurité → Suivi → désactiver « Autoriser les demandes de suivi »</li><li><strong>iOS 14 et inférieur :</strong> Réglages → Confidentialité → Publicité → Limiter le suivi publicitaire</li></ul>`,
+  's4-title':'Apple Game Center',
+  's4-body':`<p>Orbis intègre <strong>Apple Game Center</strong> pour la gestion des classements (meilleur score global, meilleur niveau atteint), sur iPhone et iPad séparément.</p><p>Game Center est un service d'Apple Inc. Il associe vos scores à votre identifiant Apple Game Center (pseudonyme) et peut les rendre visibles dans les classements publics. Orbis n'a pas accès à votre identifiant Apple, votre email ni vos données de paiement.</p><p>La politique de confidentialité d'Apple est consultable sur <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>`,
+  's5-title':'Vos droits',
+  's5-body':`<p>Selon votre lieu de résidence, vous disposez de droits sur les données vous concernant :</p><ul><li><strong>Droit d'accès</strong> — savoir quelles données sont collectées</li><li><strong>Droit de suppression</strong> — demander l'effacement des données</li><li><strong>Droit d'opposition</strong> — refuser la personnalisation publicitaire (voir section 3)</li><li><strong>Droit à la portabilité</strong> — obtenir vos données dans un format lisible</li></ul><p>Pour les données traitées par Google AdMob, ces droits s'exercent via les outils Google (<a href="https://myaccount.google.com" target="_blank" rel="noopener">myaccount.google.com</a>). Pour Game Center, ils s'exercent via les paramètres Apple.</p><p>Pour toute demande relative à l'Application elle-même, contactez-nous à l'adresse indiquée en section 8.</p>`,
+  's6-title':'Mineurs',
+  's6-body':`<p>Orbis est un jeu grand public accessible à tous les âges. L'Application ne collecte délibérément aucune donnée personnelle émanant d'enfants de moins de 13 ans (ou l'âge minimum légal applicable dans votre pays).</p><p>Les annonces diffusées via Google AdMob sont configurées pour respecter les règles relatives aux applications familiales. Si AdMob détecte que l'utilisateur est un enfant, des publicités adaptées aux familles sont automatiquement diffusées, sans personnalisation basée sur le suivi.</p><p>Si vous pensez qu'un enfant nous a transmis des données personnelles par inadvertance, veuillez nous contacter afin que nous puissions prendre les mesures appropriées.</p>`,
+  's7-title':'Modifications de cette politique',
+  's7-body':`<p>Cette politique peut être mise à jour ponctuellement pour refléter des évolutions de l'Application ou des obligations légales. La date de dernière mise à jour est indiquée en haut de cette page.</p><p>En cas de modification substantielle, une notice sera affichée au prochain lancement de l'Application. L'utilisation continue d'Orbis après une mise à jour constitue votre acceptation de la politique révisée.</p>`,
+  's8-title':'Contact',
+  's8-body':`<p>Pour toute question relative à cette politique de confidentialité ou aux données traitées par Orbis, vous pouvez nous contacter par e-mail :</p><div class="admob-badge"><span>Contact :</span><a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a></div><p style="margin-top:16px;">Nous nous efforçons de répondre à toute demande dans un délai de 30 jours ouvrés.</p>`,
+  'footer-home':'Accueil','footer-privacy':'Politique de confidentialité','footer-legal':'© 2026 Orbis. Tous droits réservés.'
+};
+
+T.de = {
+  'nav-back':'← Zurück zur Website',
+  'hero-tag':'Orbis · iOS-Spiel',
+  'hero-title':'Datenschutz<em>erklärung</em>',
+  'hero-meta':'Letzte Aktualisierung: 23. April 2026',
+  'toc-title':'Inhalt',
+  'toc-1':'Einleitung','toc-2':'Erhobene Daten','toc-3':'Werbung – Google AdMob',
+  'toc-4':'Apple Game Center','toc-5':'Ihre Rechte','toc-6':'Minderjährige',
+  'toc-7':'Änderungen','toc-8':'Kontakt',
+  's1-title':'Einleitung',
+  's1-body':`<p>Diese Datenschutzerklärung beschreibt, wie die Anwendung <strong>Orbis</strong> (nachfolgend „die Anwendung") die Sie betreffenden Informationen erhebt, verwendet und schützt, wenn Sie sie auf iPhone oder iPad nutzen.</p><p>Die Anwendung wird von einem unabhängigen Entwickler veröffentlicht. Durch das Herunterladen und die Nutzung von Orbis stimmen Sie den in dieser Erklärung beschriebenen Praktiken zu.</p><div class="highlight"><p><strong>Zusammenfassung:</strong> Orbis erstellt keine Konten, erhebt keine Namen oder E-Mail-Adressen und speichert keine personenbezogenen Daten auf eigenen Servern. Die nachfolgend genannten Daten stammen ausschließlich von Drittanbieterdiensten (Google AdMob, Apple Game Center).</p></div>`,
+  's2-title':'Erhobene Daten',
+  's2-body':`<p>Orbis selbst <strong>erhebt, speichert oder überträgt keine personenbezogenen Daten</strong> auf eigenen Servern. Die Anwendung erfordert keine Registrierung, kein Benutzerkonto und greift nicht auf Ihre Kontakte, Fotos, den genauen Standort oder andere sensible Geräteressourcen zu.</p><p>Bestimmte in die Anwendung integrierte Drittanbieterdienste können unter den nachfolgend beschriebenen Bedingungen Daten erheben.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Technische Minimaldaten</h2><p>Im normalen Betrieb der Anwendung können folgende Elemente lokal auf Ihrem Gerät verarbeitet werden, ohne übertragen zu werden:</p><ul><li>Spielstand und Spielfortschritt (lokal auf dem Gerät gespeichert)</li><li>Toneinstellungen (ein / aus)</li></ul>`,
+  's3-title':'Werbung — Google AdMob',
+  's3-body':`<p>Orbis verwendet <strong>Google AdMob</strong>, eine von Google LLC betriebene Werbeplattform, um Anzeigen in der Anwendung zu schalten. AdMob kann bestimmte Daten erheben und verwenden, um personalisierte oder nicht personalisierte Anzeigen zu liefern.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Von AdMob möglicherweise erhobene Daten</h2><ul><li><strong>Werbe-ID (IDFA)</strong> — zurücksetzbarer Apple-Identifier für Anzeigenpersonalisierung und Conversion-Messung</li><li><strong>IP-Adresse</strong> — zur Bestimmung des ungefähren geografischen Standorts (Land / Region)</li><li><strong>Geräteinformationen</strong> — Modell, iOS-Version, Sprache, Zeitzone</li><li><strong>Werbeinteraktionsdaten</strong> — Impressionen, Klicks, Betrachtungsdauer</li></ul><div class="highlight"><p>Gemäß Apples <strong>App Tracking Transparency (ATT)</strong>-Framework wird Orbis Ihre Erlaubnis einholen, bevor auf die IDFA für Werbezwecke zugegriffen wird. Sie können die Erlaubnis verweigern, ohne dass das Spiel beeinträchtigt wird. Bei Ablehnung werden nicht personalisierte Anzeigen gezeigt.</p></div><div class="admob-badge"><span>Google-Datenschutzrichtlinie:</span><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></div><div class="admob-badge"><span>Wie Google Werbedaten verwendet:</span><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a></div><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Anzeigenpersonalisierung deaktivieren</h2><p>Sie können die IDFA jederzeit in den Einstellungen Ihres iPhone oder iPad zurücksetzen oder deaktivieren:</p><ul><li><strong>iOS 14.5 und höher:</strong> Einstellungen → Datenschutz & Sicherheit → Tracking → „Apps erlauben, Tracking anzufragen" deaktivieren</li><li><strong>iOS 14 und früher:</strong> Einstellungen → Datenschutz → Werbung → Personalisierte Werbung deaktivieren</li></ul>`,
+  's4-title':'Apple Game Center',
+  's4-body':`<p>Orbis integriert <strong>Apple Game Center</strong> für die Verwaltung von Bestenlisten (bestes Gesamtergebnis, bestes erreichtes Level), getrennt für iPhone und iPad.</p><p>Game Center ist ein Dienst von Apple Inc. Es verknüpft Ihre Punktzahlen mit Ihrer Apple-Game-Center-ID (Pseudonym) und kann sie in öffentlichen Bestenlisten anzeigen. Orbis hat keinen Zugriff auf Ihre Apple-ID, Ihre E-Mail-Adresse oder Ihre Zahlungsdaten.</p><p>Die Datenschutzrichtlinie von Apple ist abrufbar unter <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>`,
+  's5-title':'Ihre Rechte',
+  's5-body':`<p>Je nach Ihrem Wohnsitzland haben Sie Rechte in Bezug auf die Sie betreffenden Daten:</p><ul><li><strong>Auskunftsrecht</strong> — zu erfahren, welche Daten erhoben werden</li><li><strong>Recht auf Löschung</strong> — die Löschung von Daten zu beantragen</li><li><strong>Widerspruchsrecht</strong> — die Anzeigenpersonalisierung abzulehnen (siehe Abschnitt 3)</li><li><strong>Recht auf Datenübertragbarkeit</strong> — Ihre Daten in einem lesbaren Format zu erhalten</li></ul><p>Rechte bezüglich von Google AdMob verarbeiteter Daten können über die Google-Tools (<a href="https://myaccount.google.com" target="_blank" rel="noopener">myaccount.google.com</a>) ausgeübt werden. Für Game Center über die Apple-Einstellungen.</p><p>Für alle Anfragen bezüglich der Anwendung selbst kontaktieren Sie uns bitte unter der in Abschnitt 8 angegebenen Adresse.</p>`,
+  's6-title':'Minderjährige',
+  's6-body':`<p>Orbis ist ein Spiel für ein allgemeines Publikum, das für alle Altersgruppen zugänglich ist. Die Anwendung erhebt wissentlich keine personenbezogenen Daten von Kindern unter 13 Jahren (oder dem in Ihrem Land geltenden Mindestalter).</p><p>Über Google AdMob geschaltete Anzeigen sind so konfiguriert, dass sie die Regeln für Familienanwendungen einhalten. Wenn AdMob erkennt, dass der Nutzer ein Kind ist, werden automatisch familiengerechte Anzeigen ohne trackingbasierte Personalisierung gezeigt.</p><p>Wenn Sie glauben, dass uns ein Kind versehentlich personenbezogene Daten übermittelt hat, kontaktieren Sie uns bitte, damit wir geeignete Maßnahmen ergreifen können.</p>`,
+  's7-title':'Änderungen dieser Erklärung',
+  's7-body':`<p>Diese Datenschutzerklärung kann gelegentlich aktualisiert werden, um Änderungen der Anwendung oder gesetzliche Anforderungen widerzuspiegeln. Das Datum der letzten Aktualisierung ist oben auf dieser Seite angegeben.</p><p>Bei wesentlichen Änderungen wird beim nächsten Start der Anwendung ein Hinweis angezeigt. Die weitere Nutzung von Orbis nach einer Aktualisierung gilt als Zustimmung zur geänderten Erklärung.</p>`,
+  's8-title':'Kontakt',
+  's8-body':`<p>Bei Fragen zu dieser Datenschutzerklärung oder zu den von Orbis verarbeiteten Daten können Sie uns per E-Mail kontaktieren:</p><div class="admob-badge"><span>Kontakt:</span><a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a></div><p style="margin-top:16px;">Wir bemühen uns, alle Anfragen innerhalb von 30 Werktagen zu beantworten.</p>`,
+  'footer-home':'Startseite','footer-privacy':'Datenschutzerklärung','footer-legal':'© 2026 Orbis. Alle Rechte vorbehalten.'
+};
+
+T['en-US'] = {
+  'nav-back':'← Back to site',
+  'hero-tag':'Orbis · iOS Game',
+  'hero-title':'Privacy <em>Policy</em>',
+  'hero-meta':'Last updated: April 23, 2026',
+  'toc-title':'Contents',
+  'toc-1':'Overview','toc-2':'Data Collected','toc-3':'Google AdMob Advertising',
+  'toc-4':'Apple Game Center','toc-5':'Your Rights','toc-6':'Minors',
+  'toc-7':'Changes','toc-8':'Contact',
+  's1-title':'Overview',
+  's1-body':`<p>This privacy policy describes how the application <strong>Orbis</strong> (hereinafter "the Application") collects, uses, and protects information about you when you use it on iPhone or iPad.</p><p>The Application is published by an independent developer. By downloading and using Orbis, you agree to the practices described in this policy.</p><div class="highlight"><p><strong>Summary:</strong> Orbis does not create accounts, collect names or emails, or store any personal data on its own servers. The data mentioned below comes exclusively from third-party services (Google AdMob, Apple Game Center).</p></div>`,
+  's2-title':'Data Collected',
+  's2-body':`<p>Orbis itself <strong>does not collect, store, or transmit any personal data</strong> on its own servers. The Application does not require registration, a user account, and does not access your contacts, photos, precise location, or any other sensitive device resources.</p><p>Certain third-party services integrated into the Application may collect data under the conditions described below.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Minimal Technical Data</h2><p>During normal operation of the Application, the following items may be processed locally on your device without being transmitted:</p><ul><li>Game score and progress (stored locally on the device)</li><li>Sound preferences (on / off)</li></ul>`,
+  's3-title':'Advertising — Google AdMob',
+  's3-body':`<p>Orbis uses <strong>Google AdMob</strong>, an advertising platform operated by Google LLC, to display ads within the Application. AdMob may collect and use certain data to serve personalized or non-personalized ads.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Data Potentially Collected by AdMob</h2><ul><li><strong>Advertising Identifier (IDFA)</strong> — a resettable Apple identifier used for ad personalization and conversion measurement</li><li><strong>IP Address</strong> — used to determine approximate geographic location (country / region)</li><li><strong>Device Information</strong> — model, iOS version, language, time zone</li><li><strong>Ad Interaction Data</strong> — impressions, clicks, view duration</li></ul><div class="highlight"><p>In accordance with Apple's <strong>App Tracking Transparency (ATT)</strong> framework, Orbis will request your permission before accessing the IDFA for advertising tracking purposes. You may deny this permission without affecting gameplay. If denied, non-personalized ads will be shown.</p></div><div class="admob-badge"><span>Google Privacy Policy:</span><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></div><div class="admob-badge"><span>How Google uses advertising data:</span><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a></div><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Disable Ad Personalization</h2><p>You can reset or disable the IDFA at any time in your iPhone or iPad settings:</p><ul><li><strong>iOS 14.5 and above:</strong> Settings → Privacy &amp; Security → Tracking → disable "Allow Apps to Request to Track"</li><li><strong>iOS 14 and below:</strong> Settings → Privacy → Advertising → Limit Ad Tracking</li></ul>`,
+  's4-title':'Apple Game Center',
+  's4-body':`<p>Orbis integrates <strong>Apple Game Center</strong> to manage leaderboards (best overall score, best level reached), separately for iPhone and iPad.</p><p>Game Center is a service of Apple Inc. It links your scores to your Apple Game Center ID (username) and may make them visible in public leaderboards. Orbis does not have access to your Apple ID, email, or payment information.</p><p>Apple's privacy policy is available at <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>`,
+  's5-title':'Your Rights',
+  's5-body':`<p>Depending on your country of residence, you have rights regarding data about you:</p><ul><li><strong>Right of Access</strong> — to know what data is collected</li><li><strong>Right to Deletion</strong> — to request erasure of data</li><li><strong>Right to Object</strong> — to refuse ad personalization (see section 3)</li><li><strong>Right to Portability</strong> — to receive your data in a readable format</li></ul><p>For data processed by Google AdMob, these rights can be exercised via Google's tools (<a href="https://myaccount.google.com" target="_blank" rel="noopener">myaccount.google.com</a>). For Game Center, via Apple's settings.</p><p>For any request regarding the Application itself, contact us at the address provided in section 8.</p>`,
+  's6-title':'Minors',
+  's6-body':`<p>Orbis is a general-audience game accessible to all ages. The Application does not knowingly collect personal data from children under 13 (or the minimum legal age applicable in your country).</p><p>Ads served via Google AdMob are configured to comply with family app policies. If AdMob detects the user is a child, family-friendly ads are automatically served without tracking-based personalization.</p><p>If you believe a child has inadvertently submitted personal data to us, please contact us so we can take appropriate action.</p>`,
+  's7-title':'Changes to This Policy',
+  's7-body':`<p>This policy may be updated from time to time to reflect changes to the Application or legal requirements. The date of the last update is shown at the top of this page.</p><p>In the event of a material change, a notice will be displayed the next time the Application is launched. Continued use of Orbis after an update constitutes your acceptance of the revised policy.</p>`,
+  's8-title':'Contact',
+  's8-body':`<p>For any questions about this privacy policy or the data processed by Orbis, you can contact us by email:</p><div class="admob-badge"><span>Contact:</span><a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a></div><p style="margin-top:16px;">We will endeavor to respond to all requests within 30 business days.</p>`,
+  'footer-home':'Home','footer-privacy':'Privacy Policy','footer-legal':'© 2026 Orbis. All rights reserved.'
+};
+
+T['en-GB'] = Object.assign({}, T['en-US'], {
+  'hero-meta':'Last updated: 23 April 2026',
+  's3-body': T['en-US']['s3-body'].replace('Privacy &amp; Security','Privacy &amp; Security'),
+  'footer-legal':'© 2026 Orbis. All rights reserved.'
+});
+
+T['en-AU'] = Object.assign({}, T['en-GB'], {
+  'hero-meta':'Last updated: 23 April 2026'
+});
+
+T['es-ES'] = {
+  'nav-back':'← Volver al sitio',
+  'hero-tag':'Orbis · Juego iOS',
+  'hero-title':'Política de <em>privacidad</em>',
+  'hero-meta':'Última actualización: 23 de abril de 2026',
+  'toc-title':'Contenido',
+  'toc-1':'Presentación','toc-2':'Datos recopilados','toc-3':'Publicidad de Google AdMob',
+  'toc-4':'Apple Game Center','toc-5':'Sus derechos','toc-6':'Menores',
+  'toc-7':'Modificaciones','toc-8':'Contacto',
+  's1-title':'Presentación',
+  's1-body':`<p>La presente política de privacidad describe cómo la aplicación <strong>Orbis</strong> (en adelante, «la Aplicación») recopila, utiliza y protege la información que le concierne cuando la utiliza en iPhone o iPad.</p><p>La Aplicación es publicada por un desarrollador independiente. Al descargar y utilizar Orbis, usted acepta las prácticas descritas en esta política.</p><div class="highlight"><p><strong>En resumen:</strong> Orbis no crea cuentas, no recopila nombres ni correos electrónicos y no almacena datos personales en sus propios servidores. Los datos mencionados a continuación proceden exclusivamente de servicios de terceros (Google AdMob, Apple Game Center).</p></div>`,
+  's2-title':'Datos recopilados',
+  's2-body':`<p>Orbis en sí mismo <strong>no recopila, almacena ni transmite datos personales</strong> en sus propios servidores. La Aplicación no requiere registro ni cuenta de usuario y no accede a sus contactos, fotos, ubicación precisa ni a ningún otro recurso sensible del dispositivo.</p><p>Determinados servicios de terceros integrados en la Aplicación pueden recopilar datos en las condiciones descritas a continuación.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Datos técnicos mínimos</h2><p>Durante el funcionamiento normal de la Aplicación, los siguientes elementos pueden procesarse localmente en su dispositivo sin ser transmitidos:</p><ul><li>Puntuación y progreso de partida (almacenados localmente en el dispositivo)</li><li>Preferencias de sonido (activado / desactivado)</li></ul>`,
+  's3-title':'Publicidad — Google AdMob',
+  's3-body':`<p>Orbis utiliza <strong>Google AdMob</strong>, una plataforma publicitaria gestionada por Google LLC, para mostrar anuncios en la Aplicación. AdMob puede recopilar y utilizar ciertos datos para mostrar anuncios personalizados o no personalizados.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Datos que AdMob puede recopilar</h2><ul><li><strong>Identificador publicitario (IDFA)</strong> — identificador Apple restablecible utilizado para la personalización de anuncios y la medición de conversiones</li><li><strong>Dirección IP</strong> — utilizada para determinar una ubicación geográfica aproximada (país / región)</li><li><strong>Información del dispositivo</strong> — modelo, versión de iOS, idioma, zona horaria</li><li><strong>Datos de interacción publicitaria</strong> — impresiones, clics, duración de visualización</li></ul><div class="highlight"><p>De acuerdo con el marco <strong>App Tracking Transparency (ATT)</strong> de Apple, Orbis le solicitará su autorización antes de acceder al IDFA con fines de seguimiento publicitario. Puede denegar esta autorización sin que ello afecte al funcionamiento del juego. En caso de denegación, se mostrarán anuncios no personalizados.</p></div><div class="admob-badge"><span>Política de privacidad de Google:</span><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></div><div class="admob-badge"><span>Cómo usa Google los datos publicitarios:</span><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a></div><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Desactivar la personalización de anuncios</h2><p>Puede restablecer o desactivar el IDFA en cualquier momento desde los ajustes de su iPhone o iPad:</p><ul><li><strong>iOS 14.5 y superior:</strong> Ajustes → Privacidad y seguridad → Rastreo → desactivar «Permitir que las apps soliciten rastrearte»</li><li><strong>iOS 14 e inferior:</strong> Ajustes → Privacidad → Publicidad → Limitar rastreo de anuncios</li></ul>`,
+  's4-title':'Apple Game Center',
+  's4-body':`<p>Orbis integra <strong>Apple Game Center</strong> para la gestión de clasificaciones (mejor puntuación global, mejor nivel alcanzado), de forma separada para iPhone y iPad.</p><p>Game Center es un servicio de Apple Inc. Vincula sus puntuaciones a su identificador de Apple Game Center (seudónimo) y puede hacerlas visibles en clasificaciones públicas. Orbis no tiene acceso a su ID de Apple, su correo electrónico ni sus datos de pago.</p><p>La política de privacidad de Apple está disponible en <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>`,
+  's5-title':'Sus derechos',
+  's5-body':`<p>Según su lugar de residencia, dispone de derechos sobre los datos que le conciernen:</p><ul><li><strong>Derecho de acceso</strong> — saber qué datos se recopilan</li><li><strong>Derecho de supresión</strong> — solicitar la eliminación de los datos</li><li><strong>Derecho de oposición</strong> — rechazar la personalización publicitaria (véase sección 3)</li><li><strong>Derecho a la portabilidad</strong> — obtener sus datos en un formato legible</li></ul><p>Para los datos tratados por Google AdMob, estos derechos se ejercen a través de las herramientas de Google (<a href="https://myaccount.google.com" target="_blank" rel="noopener">myaccount.google.com</a>). Para Game Center, a través de los ajustes de Apple.</p><p>Para cualquier solicitud relativa a la propia Aplicación, contáctenos en la dirección indicada en la sección 8.</p>`,
+  's6-title':'Menores',
+  's6-body':`<p>Orbis es un juego para el público general, accesible a todas las edades. La Aplicación no recopila deliberadamente datos personales de niños menores de 13 años (o la edad mínima legal aplicable en su país).</p><p>Los anuncios mostrados a través de Google AdMob están configurados para cumplir las normas relativas a las aplicaciones familiares. Si AdMob detecta que el usuario es un niño, se muestran automáticamente anuncios aptos para familias sin personalización basada en rastreo.</p><p>Si cree que un niño nos ha enviado datos personales de forma inadvertida, contáctenos para que podamos tomar las medidas oportunas.</p>`,
+  's7-title':'Modificaciones de esta política',
+  's7-body':`<p>Esta política puede actualizarse periódicamente para reflejar cambios en la Aplicación o requisitos legales. La fecha de la última actualización figura en la parte superior de esta página.</p><p>En caso de modificación sustancial, se mostrará un aviso en el próximo inicio de la Aplicación. El uso continuado de Orbis tras una actualización implica la aceptación de la política revisada.</p>`,
+  's8-title':'Contacto',
+  's8-body':`<p>Para cualquier pregunta relativa a esta política de privacidad o a los datos tratados por Orbis, puede contactarnos por correo electrónico:</p><div class="admob-badge"><span>Contacto:</span><a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a></div><p style="margin-top:16px;">Nos esforzamos por responder a todas las solicitudes en un plazo de 30 días hábiles.</p>`,
+  'footer-home':'Inicio','footer-privacy':'Política de privacidad','footer-legal':'© 2026 Orbis. Todos los derechos reservados.'
+};
+
+T['es-MX'] = Object.assign({}, T['es-ES'], {
+  'hero-meta':'Última actualización: 23 de abril de 2026',
+  's1-body': T['es-ES']['s1-body'].replace('usted acepta','aceptas').replace('le concierne','te concierne'),
+});
+
+T.it = {
+  'nav-back':'← Torna al sito',
+  'hero-tag':'Orbis · Gioco iOS',
+  'hero-title':'Informativa sulla <em>privacy</em>',
+  'hero-meta':'Ultimo aggiornamento: 23 aprile 2026',
+  'toc-title':'Sommario',
+  'toc-1':'Presentazione','toc-2':'Dati raccolti','toc-3':'Pubblicità Google AdMob',
+  'toc-4':'Apple Game Center','toc-5':'I tuoi diritti','toc-6':'Minori',
+  'toc-7':'Modifiche','toc-8':'Contatto',
+  's1-title':'Presentazione',
+  's1-body':`<p>La presente informativa sulla privacy descrive come l'applicazione <strong>Orbis</strong> (di seguito «l'Applicazione») raccoglie, utilizza e protegge le informazioni che ti riguardano quando la usi su iPhone o iPad.</p><p>L'Applicazione è pubblicata da uno sviluppatore indipendente. Scaricando e utilizzando Orbis, accetti le pratiche descritte in questa informativa.</p><div class="highlight"><p><strong>In sintesi:</strong> Orbis non crea account, non raccoglie nomi né indirizzi e-mail e non memorizza dati personali sui propri server. I dati menzionati di seguito provengono esclusivamente da servizi di terze parti (Google AdMob, Apple Game Center).</p></div>`,
+  's2-title':'Dati raccolti',
+  's2-body':`<p>Orbis stesso <strong>non raccoglie, memorizza né trasmette dati personali</strong> sui propri server. L'Applicazione non richiede registrazione né account utente e non accede ai tuoi contatti, foto, posizione precisa né ad altre risorse sensibili del dispositivo.</p><p>Alcuni servizi di terze parti integrati nell'Applicazione possono raccogliere dati alle condizioni descritte di seguito.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Dati tecnici minimi</h2><p>Durante il normale funzionamento dell'Applicazione, i seguenti elementi possono essere elaborati localmente sul tuo dispositivo senza essere trasmessi:</p><ul><li>Punteggio e avanzamento di gioco (memorizzati localmente sul dispositivo)</li><li>Preferenze audio (attivato / disattivato)</li></ul>`,
+  's3-title':'Pubblicità — Google AdMob',
+  's3-body':`<p>Orbis utilizza <strong>Google AdMob</strong>, una piattaforma pubblicitaria gestita da Google LLC, per mostrare annunci nell'Applicazione. AdMob può raccogliere e utilizzare determinati dati per mostrare annunci personalizzati o non personalizzati.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Dati potenzialmente raccolti da AdMob</h2><ul><li><strong>Identificatore pubblicitario (IDFA)</strong> — identificatore Apple reimpostabile, usato per la personalizzazione degli annunci e la misurazione delle conversioni</li><li><strong>Indirizzo IP</strong> — utilizzato per determinare la posizione geografica approssimativa (paese / regione)</li><li><strong>Informazioni sul dispositivo</strong> — modello, versione iOS, lingua, fuso orario</li><li><strong>Dati di interazione pubblicitaria</strong> — impressioni, clic, durata di visualizzazione</li></ul><div class="highlight"><p>In conformità con il framework <strong>App Tracking Transparency (ATT)</strong> di Apple, Orbis richiederà la tua autorizzazione prima di accedere all'IDFA a fini pubblicitari. Puoi rifiutare l'autorizzazione senza che ciò influisca sul funzionamento del gioco. In caso di rifiuto, verranno mostrati annunci non personalizzati.</p></div><div class="admob-badge"><span>Norme sulla privacy di Google:</span><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></div><div class="admob-badge"><span>Come Google utilizza i dati pubblicitari:</span><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a></div><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Disabilitare la personalizzazione degli annunci</h2><p>Puoi reimpostare o disabilitare l'IDFA in qualsiasi momento dalle impostazioni del tuo iPhone o iPad:</p><ul><li><strong>iOS 14.5 e superiori:</strong> Impostazioni → Privacy e sicurezza → Tracciamento → disabilitare «Consenti alle app di richiedere il tracciamento»</li><li><strong>iOS 14 e precedenti:</strong> Impostazioni → Privacy → Pubblicità → Limita tracciamento annunci</li></ul>`,
+  's4-title':'Apple Game Center',
+  's4-body':`<p>Orbis integra <strong>Apple Game Center</strong> per la gestione delle classifiche (miglior punteggio globale, miglior livello raggiunto), separatamente per iPhone e iPad.</p><p>Game Center è un servizio di Apple Inc. Associa i tuoi punteggi al tuo identificatore Apple Game Center (pseudonimo) e può renderli visibili nelle classifiche pubbliche. Orbis non ha accesso al tuo ID Apple, alla tua e-mail né ai tuoi dati di pagamento.</p><p>L'informativa sulla privacy di Apple è disponibile su <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>`,
+  's5-title':'I tuoi diritti',
+  's5-body':`<p>A seconda del tuo paese di residenza, disponi di diritti sui dati che ti riguardano:</p><ul><li><strong>Diritto di accesso</strong> — sapere quali dati vengono raccolti</li><li><strong>Diritto alla cancellazione</strong> — richiedere la cancellazione dei dati</li><li><strong>Diritto di opposizione</strong> — rifiutare la personalizzazione pubblicitaria (vedi sezione 3)</li><li><strong>Diritto alla portabilità</strong> — ottenere i tuoi dati in un formato leggibile</li></ul><p>Per i dati trattati da Google AdMob, questi diritti si esercitano tramite gli strumenti Google (<a href="https://myaccount.google.com" target="_blank" rel="noopener">myaccount.google.com</a>). Per Game Center, tramite le impostazioni Apple.</p><p>Per qualsiasi richiesta relativa all'Applicazione stessa, contattaci all'indirizzo indicato nella sezione 8.</p>`,
+  's6-title':'Minori',
+  's6-body':`<p>Orbis è un gioco per il pubblico generale, accessibile a tutte le età. L'Applicazione non raccoglie consapevolmente dati personali di bambini di età inferiore a 13 anni (o l'età minima legale applicabile nel tuo paese).</p><p>Gli annunci mostrati tramite Google AdMob sono configurati per rispettare le norme relative alle app per famiglie. Se AdMob rileva che l'utente è un bambino, vengono mostrati automaticamente annunci adatti alle famiglie, senza personalizzazione basata sul tracciamento.</p><p>Se ritieni che un bambino ci abbia trasmesso inavvertitamente dati personali, ti preghiamo di contattarci affinché possiamo adottare le misure appropriate.</p>`,
+  's7-title':'Modifiche a questa informativa',
+  's7-body':`<p>Questa informativa può essere aggiornata periodicamente per riflettere cambiamenti all'Applicazione o requisiti legali. La data dell'ultimo aggiornamento è indicata in cima a questa pagina.</p><p>In caso di modifica sostanziale, verrà mostrato un avviso al successivo avvio dell'Applicazione. Il continuo utilizzo di Orbis dopo un aggiornamento costituisce l'accettazione dell'informativa aggiornata.</p>`,
+  's8-title':'Contatto',
+  's8-body':`<p>Per qualsiasi domanda relativa a questa informativa sulla privacy o ai dati trattati da Orbis, puoi contattarci via e-mail:</p><div class="admob-badge"><span>Contatto:</span><a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a></div><p style="margin-top:16px;">Ci impegniamo a rispondere a tutte le richieste entro 30 giorni lavorativi.</p>`,
+  'footer-home':'Home','footer-privacy':'Informativa sulla privacy','footer-legal':'© 2026 Orbis. Tutti i diritti riservati.'
+};
+
+T['pt-BR'] = {
+  'nav-back':'← Voltar ao site',
+  'hero-tag':'Orbis · Jogo iOS',
+  'hero-title':'Política de <em>privacidade</em>',
+  'hero-meta':'Última atualização: 23 de abril de 2026',
+  'toc-title':'Sumário',
+  'toc-1':'Apresentação','toc-2':'Dados coletados','toc-3':'Publicidade Google AdMob',
+  'toc-4':'Apple Game Center','toc-5':'Seus direitos','toc-6':'Menores',
+  'toc-7':'Modificações','toc-8':'Contato',
+  's1-title':'Apresentação',
+  's1-body':`<p>Esta política de privacidade descreve como o aplicativo <strong>Orbis</strong> (doravante "o Aplicativo") coleta, usa e protege as informações sobre você quando você o usa no iPhone ou iPad.</p><p>O Aplicativo é publicado por um desenvolvedor independente. Ao baixar e usar o Orbis, você concorda com as práticas descritas nesta política.</p><div class="highlight"><p><strong>Resumo:</strong> O Orbis não cria contas, não coleta nomes nem e-mails e não armazena dados pessoais em seus próprios servidores. Os dados mencionados abaixo provêm exclusivamente de serviços de terceiros (Google AdMob, Apple Game Center).</p></div>`,
+  's2-title':'Dados coletados',
+  's2-body':`<p>O próprio Orbis <strong>não coleta, armazena nem transmite dados pessoais</strong> em seus próprios servidores. O Aplicativo não requer cadastro, conta de usuário e não acessa seus contatos, fotos, localização precisa nem qualquer outro recurso sensível do dispositivo.</p><p>Certos serviços de terceiros integrados ao Aplicativo podem coletar dados nas condições descritas abaixo.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Dados técnicos mínimos</h2><p>Durante o funcionamento normal do Aplicativo, os seguintes itens podem ser processados localmente no seu dispositivo sem serem transmitidos:</p><ul><li>Pontuação e progresso de jogo (armazenados localmente no dispositivo)</li><li>Preferências de som (ativado / desativado)</li></ul>`,
+  's3-title':'Publicidade — Google AdMob',
+  's3-body':`<p>O Orbis usa o <strong>Google AdMob</strong>, uma plataforma publicitária operada pelo Google LLC, para exibir anúncios no Aplicativo. O AdMob pode coletar e usar determinados dados para veicular anúncios personalizados ou não personalizados.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Dados que o AdMob pode coletar</h2><ul><li><strong>Identificador de publicidade (IDFA)</strong> — identificador Apple redefinível, usado para personalização de anúncios e medição de conversões</li><li><strong>Endereço IP</strong> — usado para determinar a localização geográfica aproximada (país / região)</li><li><strong>Informações do dispositivo</strong> — modelo, versão do iOS, idioma, fuso horário</li><li><strong>Dados de interação com anúncios</strong> — impressões, cliques, duração de visualização</li></ul><div class="highlight"><p>De acordo com a estrutura <strong>App Tracking Transparency (ATT)</strong> da Apple, o Orbis solicitará sua permissão antes de acessar o IDFA para fins de rastreamento publicitário. Você pode recusar essa permissão sem afetar o funcionamento do jogo. Em caso de recusa, anúncios não personalizados serão exibidos.</p></div><div class="admob-badge"><span>Política de privacidade do Google:</span><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></div><div class="admob-badge"><span>Como o Google usa dados de publicidade:</span><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a></div><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Desativar a personalização de anúncios</h2><p>Você pode redefinir ou desativar o IDFA a qualquer momento nas configurações do seu iPhone ou iPad:</p><ul><li><strong>iOS 14.5 e superior:</strong> Ajustes → Privacidade e Segurança → Rastreamento → desativar "Permitir que apps solicitem rastreamento"</li><li><strong>iOS 14 e inferior:</strong> Ajustes → Privacidade → Publicidade → Limitar Rastreamento de Anúncios</li></ul>`,
+  's4-title':'Apple Game Center',
+  's4-body':`<p>O Orbis integra o <strong>Apple Game Center</strong> para gerenciar classificações (melhor pontuação geral, melhor nível atingido), separadamente para iPhone e iPad.</p><p>O Game Center é um serviço da Apple Inc. Ele vincula suas pontuações ao seu identificador do Apple Game Center (apelido) e pode torná-las visíveis nas classificações públicas. O Orbis não tem acesso ao seu ID Apple, e-mail ou dados de pagamento.</p><p>A política de privacidade da Apple está disponível em <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>`,
+  's5-title':'Seus direitos',
+  's5-body':`<p>Dependendo do seu país de residência, você tem direitos sobre os dados que lhe dizem respeito:</p><ul><li><strong>Direito de acesso</strong> — saber quais dados são coletados</li><li><strong>Direito de exclusão</strong> — solicitar o apagamento dos dados</li><li><strong>Direito de oposição</strong> — recusar a personalização de anúncios (veja seção 3)</li><li><strong>Direito à portabilidade</strong> — obter seus dados em formato legível</li></ul><p>Para dados processados pelo Google AdMob, esses direitos podem ser exercidos pelas ferramentas do Google (<a href="https://myaccount.google.com" target="_blank" rel="noopener">myaccount.google.com</a>). Para o Game Center, pelas configurações da Apple.</p><p>Para qualquer solicitação relacionada ao próprio Aplicativo, entre em contato pelo endereço indicado na seção 8.</p>`,
+  's6-title':'Menores',
+  's6-body':`<p>O Orbis é um jogo para o público em geral, acessível a todas as idades. O Aplicativo não coleta intencionalmente dados pessoais de crianças menores de 13 anos (ou a idade mínima legal aplicável no seu país).</p><p>Os anúncios veiculados pelo Google AdMob são configurados para cumprir as regras relativas a aplicativos para famílias. Se o AdMob detectar que o usuário é uma criança, anúncios adequados para famílias são exibidos automaticamente, sem personalização baseada em rastreamento.</p><p>Se você acredita que uma criança nos enviou dados pessoais inadvertidamente, entre em contato conosco para que possamos tomar as providências adequadas.</p>`,
+  's7-title':'Modificações desta política',
+  's7-body':`<p>Esta política pode ser atualizada periodicamente para refletir mudanças no Aplicativo ou requisitos legais. A data da última atualização está indicada no topo desta página.</p><p>Em caso de alteração significativa, um aviso será exibido no próximo lançamento do Aplicativo. O uso continuado do Orbis após uma atualização constitui sua aceitação da política revisada.</p>`,
+  's8-title':'Contato',
+  's8-body':`<p>Para qualquer dúvida sobre esta política de privacidade ou sobre os dados processados pelo Orbis, você pode nos contatar por e-mail:</p><div class="admob-badge"><span>Contato:</span><a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a></div><p style="margin-top:16px;">Nos esforçamos para responder a todas as solicitações em até 30 dias úteis.</p>`,
+  'footer-home':'Início','footer-privacy':'Política de privacidade','footer-legal':'© 2026 Orbis. Todos os direitos reservados.'
+};
+
+T['pt-PT'] = {
+  'nav-back':'← Voltar ao site',
+  'hero-tag':'Orbis · Jogo iOS',
+  'hero-title':'Política de <em>privacidade</em>',
+  'hero-meta':'Última atualização: 23 de abril de 2026',
+  'toc-title':'Sumário',
+  'toc-1':'Apresentação','toc-2':'Dados recolhidos','toc-3':'Publicidade Google AdMob',
+  'toc-4':'Apple Game Center','toc-5':'Os seus direitos','toc-6':'Menores',
+  'toc-7':'Modificações','toc-8':'Contacto',
+  's1-title':'Apresentação',
+  's1-body':`<p>A presente política de privacidade descreve como a aplicação <strong>Orbis</strong> (doravante «a Aplicação») recolhe, utiliza e protege as informações que lhe dizem respeito quando a utiliza no iPhone ou iPad.</p><p>A Aplicação é publicada por um programador independente. Ao transferir e utilizar o Orbis, aceita as práticas descritas nesta política.</p><div class="highlight"><p><strong>Em resumo:</strong> O Orbis não cria contas, não recolhe nomes nem endereços de e-mail e não armazena dados pessoais nos seus próprios servidores. Os dados mencionados abaixo provêm exclusivamente de serviços de terceiros (Google AdMob, Apple Game Center).</p></div>`,
+  's2-title':'Dados recolhidos',
+  's2-body':`<p>O próprio Orbis <strong>não recolhe, armazena nem transmite dados pessoais</strong> nos seus próprios servidores. A Aplicação não requer registo, conta de utilizador e não acede aos seus contactos, fotografias, localização precisa nem a qualquer outro recurso sensível do dispositivo.</p><p>Certos serviços de terceiros integrados na Aplicação podem recolher dados nas condições descritas abaixo.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Dados técnicos mínimos</h2><p>Durante o funcionamento normal da Aplicação, os seguintes elementos podem ser processados localmente no seu dispositivo sem serem transmitidos:</p><ul><li>Pontuação e progressão de jogo (armazenados localmente no dispositivo)</li><li>Preferências de som (ativado / desativado)</li></ul>`,
+  's3-title':'Publicidade — Google AdMob',
+  's3-body':`<p>O Orbis utiliza o <strong>Google AdMob</strong>, uma plataforma publicitária operada pela Google LLC, para apresentar anúncios na Aplicação. O AdMob pode recolher e utilizar determinados dados para difundir anúncios personalizados ou não personalizados.</p><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Dados suscetíveis de serem recolhidos pelo AdMob</h2><ul><li><strong>Identificador publicitário (IDFA)</strong> — identificador Apple reiniciável, utilizado para personalização de anúncios e medição de conversões</li><li><strong>Endereço IP</strong> — utilizado para determinar uma localização geográfica aproximada (país / região)</li><li><strong>Informações sobre o dispositivo</strong> — modelo, versão do iOS, idioma, fuso horário</li><li><strong>Dados de interação publicitária</strong> — impressões, cliques, duração de visualização</li></ul><div class="highlight"><p>Em conformidade com a estrutura <strong>App Tracking Transparency (ATT)</strong> da Apple, o Orbis solicitará a sua autorização antes de aceder ao IDFA para fins de rastreamento publicitário. Pode recusar esta autorização sem que o funcionamento do jogo seja afetado. Em caso de recusa, serão apresentados anúncios não personalizados.</p></div><div class="admob-badge"><span>Política de privacidade da Google:</span><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></div><div class="admob-badge"><span>Como a Google utiliza os dados publicitários:</span><a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">policies.google.com/technologies/ads</a></div><h2 style="font-size:17px;margin-top:28px;margin-bottom:12px;color:var(--muted);">Desativar a personalização de anúncios</h2><p>Pode reiniciar ou desativar o IDFA a qualquer momento nas definições do seu iPhone ou iPad:</p><ul><li><strong>iOS 14.5 e superior:</strong> Definições → Privacidade e Segurança → Rastreamento → desativar «Permitir que as apps solicitem rastreamento»</li><li><strong>iOS 14 e inferior:</strong> Definições → Privacidade → Publicidade → Limitar rastreamento de anúncios</li></ul>`,
+  's4-title':'Apple Game Center',
+  's4-body':`<p>O Orbis integra o <strong>Apple Game Center</strong> para a gestão de classificações (melhor pontuação global, melhor nível atingido), separadamente para iPhone e iPad.</p><p>O Game Center é um serviço da Apple Inc. Associa as suas pontuações ao seu identificador do Apple Game Center (pseudónimo) e pode torná-las visíveis nas classificações públicas. O Orbis não tem acesso ao seu ID Apple, e-mail nem dados de pagamento.</p><p>A política de privacidade da Apple está disponível em <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>`,
+  's5-title':'Os seus direitos',
+  's5-body':`<p>Dependendo do seu país de residência, dispõe de direitos sobre os dados que lhe dizem respeito:</p><ul><li><strong>Direito de acesso</strong> — saber quais dados são recolhidos</li><li><strong>Direito de eliminação</strong> — solicitar o apagamento dos dados</li><li><strong>Direito de oposição</strong> — recusar a personalização publicitária (ver secção 3)</li><li><strong>Direito à portabilidade</strong> — obter os seus dados num formato legível</li></ul><p>Para os dados tratados pelo Google AdMob, estes direitos exercem-se através das ferramentas da Google (<a href="https://myaccount.google.com" target="_blank" rel="noopener">myaccount.google.com</a>). Para o Game Center, através das definições da Apple.</p><p>Para qualquer pedido relativo à própria Aplicação, contacte-nos no endereço indicado na secção 8.</p>`,
+  's6-title':'Menores',
+  's6-body':`<p>O Orbis é um jogo para o público em geral, acessível a todas as idades. A Aplicação não recolhe deliberadamente dados pessoais de crianças com menos de 13 anos (ou a idade mínima legal aplicável no seu país).</p><p>Os anúncios difundidos através do Google AdMob estão configurados para respeitar as regras relativas às aplicações familiares. Se o AdMob detetar que o utilizador é uma criança, são automaticamente apresentados anúncios adequados para famílias, sem personalização baseada em rastreamento.</p><p>Se considerar que uma criança nos transmitiu dados pessoais inadvertidamente, contacte-nos para que possamos tomar as medidas adequadas.</p>`,
+  's7-title':'Modificações desta política',
+  's7-body':`<p>Esta política pode ser atualizada periodicamente para refletir alterações na Aplicação ou requisitos legais. A data da última atualização está indicada no topo desta página.</p><p>Em caso de alteração substancial, será apresentado um aviso no próximo lançamento da Aplicação. A utilização continuada do Orbis após uma atualização constitui a sua aceitação da política revista.</p>`,
+  's8-title':'Contacto',
+  's8-body':`<p>Para qualquer questão relativa a esta política de privacidade ou aos dados tratados pelo Orbis, pode contactar-nos por e-mail:</p><div class="admob-badge"><span>Contacto:</span><a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a></div><p style="margin-top:16px;">Esforçamo-nos por responder a todos os pedidos num prazo de 30 dias úteis.</p>`,
+  'footer-home':'Início','footer-privacy':'Política de privacidade','footer-legal':'© 2026 Orbis. Todos os direitos reservados.'
+};
+
+// Build dropdown
+const dropdown = document.getElementById('lang-dropdown');
+LANGS.forEach(l => {
+  const btn = document.createElement('button');
+  btn.className = 'lang-option';
+  btn.dataset.code = l.code;
+  btn.innerHTML = `<span class="lang-check"></span>${l.label}`;
+  btn.addEventListener('click', () => setLanguage(l.code));
+  dropdown.appendChild(btn);
+});
+
+// Toggle dropdown
+const langBtn = document.getElementById('lang-btn');
+langBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = dropdown.classList.toggle('open');
+  langBtn.setAttribute('aria-expanded', open);
+});
+document.addEventListener('click', () => {
+  dropdown.classList.remove('open');
+  langBtn.setAttribute('aria-expanded', 'false');
+});
+
+function setLanguage(code) {
+  const d = T[code];
+  if (!d) return;
+
+  // Update html lang
+  document.documentElement.lang = code.split('-')[0];
+
+  // Simple text
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (d[key] !== undefined) el.textContent = d[key];
+  });
+
+  // HTML content
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.dataset.i18nHtml;
+    if (d[key] !== undefined) el.innerHTML = d[key];
+  });
+
+  // Page title
+  if (d['hero-title']) document.title = d['hero-title'].replace(/<[^>]+>/g,'') + ' — Orbis';
+
+  // Update button label
+  const lang = LANGS.find(l => l.code === code);
+  if (lang) document.getElementById('lang-label').textContent = lang.label;
+
+  // Update active state
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    const active = btn.dataset.code === code;
+    btn.classList.toggle('active', active);
+    btn.querySelector('.lang-check').textContent = active ? '✓' : '';
+  });
+
+  dropdown.classList.remove('open');
+  langBtn.setAttribute('aria-expanded', 'false');
+
+  localStorage.setItem('orbis-lang', code);
+}
+
+// Init
+const saved = localStorage.getItem('orbis-lang') || 'fr';
+setLanguage(saved);
+</script>
 </body>
 </html>
