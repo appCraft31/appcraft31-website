@@ -17,6 +17,10 @@
 .tg-body {
     background: var(--tg-bg);
     position: relative;
+    --text: #1D1D1F;
+    --text-secondary: #6E6E73;
+    --border: rgba(0,0,0,0.07);
+    color: #1D1D1F;
 }
 
 /* Animated floating bubbles background */
@@ -55,6 +59,11 @@ section,
 footer { position: relative; z-index: 1; }
 
 /* ===== Hero ===== */
+.tg-hero {
+    background: transparent;
+    min-height: auto;
+}
+
 .tg-hero::before {
     background: radial-gradient(circle, rgba(245, 168, 184, 0.12) 0%, rgba(184, 230, 193, 0.08) 40%, transparent 70%);
 }
