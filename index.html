@@ -11,7 +11,7 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,6 +24,7 @@
             </a>
             <nav aria-label="Navigation principale">
                 <a href="#apps">Applications</a>
+                <a href="#jeux">Jeux</a>
                 <a href="#about">À propos</a>
             </nav>
         </div>
@@ -31,25 +32,46 @@
 
     <!-- Hero -->
     <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-glow hero-glow--top"></div>
+            <div class="hero-glow hero-glow--bottom"></div>
+            <div class="hero-dots"></div>
+        </div>
         <div class="container">
             <div class="hero-center">
-                <div class="badge">Développeur iOS indépendant · Toulouse</div>
-                <h1>Des apps et des jeux iOS<br><span class="highlight">pensés avec soin</span></h1>
-                <p class="subtitle">AppCraft31 conçoit des applications mobiles utiles, rapides et respectueuses de votre vie privée — sans publicité, sans tracking.</p>
+                <div class="hero-logo-wrap">
+                    <img src="logo.png" alt="AppCraft31" class="hero-logo">
+                </div>
+                <p class="hero-tagline">Créateur d'expériences mobiles.</p>
+                <p class="hero-sub">Des applications et des jeux iOS pensés avec soin — utiles, rapides et respectueux de votre vie privée.</p>
+                <div class="hero-cta">
+                    <a href="#apps" class="btn-primary">Nos applications</a>
+                    <a href="#jeux" class="btn-ghost">Nos jeux</a>
+                </div>
             </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <span></span>
         </div>
     </section>
 
-    <!-- Apps -->
-    <section class="apps" id="apps">
+    <!-- ─── APPLICATIONS ─── -->
+    <section class="apps-section" id="apps">
         <div class="container">
-            <h2 class="section-title">Nos applications</h2>
-            <p class="section-subtitle">Disponibles sur l'App Store ou à venir très prochainement</p>
 
-            <div class="apps-grid">
+            <div class="category-header">
+                <div class="category-pill category-pill--apps">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    Applications
+                </div>
+                <h2 class="category-title">Des outils du quotidien</h2>
+                <p class="category-subtitle">Utiles, rapides, sans pub ni tracking.</p>
+            </div>
+
+            <div class="apps-grid apps-grid--single">
 
                 <!-- EcoPompe -->
-                <article class="app-card">
+                <article class="app-card app-card--featured">
                     <div class="app-card-header">
                         <div class="app-icon ecopompe-icon">
                             <img src="assets/logo_ecopompe.png" alt="Icône EcoPompe">
@@ -89,8 +111,27 @@
                     </div>
                 </article>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── JEUX ─── -->
+    <section class="apps-section apps-section--games" id="jeux">
+        <div class="container">
+
+            <div class="category-header">
+                <div class="category-pill category-pill--games">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4M15 12h.01M18 10h.01"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 13.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-2.544-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
+                    Jeux
+                </div>
+                <h2 class="category-title">Des jeux pour s'évader</h2>
+                <p class="category-subtitle">Minimalistes, zen, conçus pour durer.</p>
+            </div>
+
+            <div class="apps-grid">
+
                 <!-- tenGO -->
-                <article class="app-card">
+                <article class="app-card app-card--game">
                     <div class="app-card-header">
                         <div class="app-icon tengo-icon">
                             <span class="tengo-logo"><span class="tengo-ten">TEN</span><span class="tengo-dot"></span><span class="tengo-go">GO</span></span>
@@ -102,7 +143,7 @@
                         </div>
                     </div>
 
-                    <p class="app-description">Un puzzle minimaliste et apaisant : trace un chemin sur une grille de bulles colorées pour former des sommes de 10 pile. Plus la chaîne est longue, plus le score grimpe. Simple à prendre en main, impossible à lâcher.</p>
+                    <p class="app-description">Un puzzle minimaliste et apaisant : trace un chemin sur une grille de bulles colorées pour former des sommes de 10 pile. Plus la chaîne est longue, plus le score grimpe.</p>
 
                     <div class="app-features">
                         <span class="chip chip--tengo">&#127919; Objectif 10</span>
@@ -131,7 +172,7 @@
                 </article>
 
                 <!-- Orbis -->
-                <article class="app-card">
+                <article class="app-card app-card--game">
                     <div class="app-card-header">
                         <div class="app-icon orbis-icon">
                             <span class="orbis-logo">◎</span>
@@ -143,7 +184,7 @@
                         </div>
                     </div>
 
-                    <p class="app-description">Appuie et maintiens pour déployer un cercle de lumière. Relâche pour l'ancrer. Couvre 75 % de l'arène sans frôler les ennemis. Un puzzle zen à un seul geste, pensé pour le calme — son entièrement synthétisé, Game Center inclus.</p>
+                    <p class="app-description">Appuie et maintiens pour déployer un cercle de lumière. Relâche pour l'ancrer. Couvre 75 % de l'arène sans frôler les ennemis. Un puzzle zen à un seul geste.</p>
 
                     <div class="app-features">
                         <span class="chip chip--orbis">◎ Un geste unique</span>
@@ -163,7 +204,7 @@
                 </article>
 
                 <!-- Mots Fléchés -->
-                <article class="app-card">
+                <article class="app-card app-card--game">
                     <div class="app-card-header">
                         <div class="app-icon mots-fleches-icon">
                             <img src="assets/mf-icon.png" alt="Icône Mots Fléchés">
@@ -232,12 +273,12 @@
                 </div>
                 <div class="about-stats">
                     <div class="stat">
-                        <span class="stat-number">5</span>
-                        <span class="stat-label">Apps disponibles</span>
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Application</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-number">0</span>
-                        <span class="stat-label">En conception</span>
+                        <span class="stat-number">3</span>
+                        <span class="stat-label">Jeux</span>
                     </div>
                 </div>
             </div>
