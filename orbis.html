@@ -31,25 +31,23 @@ body {
 }
 
 /* ─── NAV ─────────────────────────────────────── */
-nav {
+.orbis-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 48px;
-  background: rgba(7,16,26,0.72);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(132,194,175,0.08);
+  padding: 0 48px; height: 60px;
+  background: rgba(7,16,26,0.88);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
-.nav-logo {
-  font-size: 22px; font-weight: 200; letter-spacing: 0.18em;
-  color: var(--teal); text-decoration: none; text-transform: uppercase;
-}
-.nav-links { display: flex; gap: 36px; }
-.nav-links a {
-  font-size: 14px; font-weight: 300; letter-spacing: 0.08em;
-  color: var(--muted); text-decoration: none;
+.orbis-nav-logo { display: flex; align-items: center; text-decoration: none; }
+.orbis-nav-logo img { height: 34px; width: auto; display: block; }
+.orbis-nav-links { display: flex; gap: 32px; }
+.orbis-nav-links a {
+  font-size: 14px; font-weight: 500; letter-spacing: 0.01em;
+  color: rgba(255,255,255,0.55); text-decoration: none;
   transition: color 0.2s;
 }
-.nav-links a:hover { color: var(--teal); }
+.orbis-nav-links a:hover { color: rgba(255,255,255,0.9); }
 
 /* ─── HERO ────────────────────────────────────── */
 .hero {
@@ -346,29 +344,11 @@ h1 em { color: var(--teal); font-style: normal; }
 .badge-label span:last-child  { font-size: 17px; font-weight: 600; line-height: 1.2; }
 
 /* ─── FOOTER ──────────────────────────────────── */
-footer {
-  padding: 48px; text-align: center;
-  border-top: 1px solid rgba(132,194,175,0.08);
-}
-.footer-logo {
-  font-size: 18px; font-weight: 200; letter-spacing: 0.18em;
-  color: var(--teal); text-transform: uppercase; margin-bottom: 20px;
-}
-.footer-links { display: flex; justify-content: center; gap: 32px; margin-bottom: 24px; }
-.footer-links a {
-  font-size: 13px; font-weight: 200; color: var(--muted);
-  text-decoration: none; transition: color 0.2s;
-}
-.footer-links a:hover { color: var(--teal); }
-.footer-legal {
-  font-size: 12px; font-weight: 200; color: rgba(232,238,234,0.2);
-  line-height: 1.7;
-}
 
 /* ─── RESPONSIVE ──────────────────────────────── */
 @media (max-width: 768px) {
-  nav { padding: 18px 24px; }
-  .nav-links { display: none; }
+  .orbis-nav { padding: 0 24px; }
+  .orbis-nav-links { display: none; }
   .hero { padding: 100px 24px 60px; }
   .screenshots, .features, .mechanics, .quote-section, .download { padding: 80px 24px; }
   .mechanics-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -381,9 +361,11 @@ footer {
 <body>
 
 <!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#">Orbis</a>
-  <div class="nav-links">
+<nav class="orbis-nav">
+  <a class="orbis-nav-logo" href="index.html" aria-label="AppCraft31 – accueil">
+    <img src="logo.png" alt="AppCraft31">
+  </a>
+  <div class="orbis-nav-links">
     <a href="#screenshots">Captures</a>
     <a href="#mecanique">Mécanique</a>
     <a href="#telechargement">Télécharger</a>
@@ -575,18 +557,21 @@ footer {
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-logo">Orbis</div>
-  <div class="footer-links">
-    <a href="#">Accueil</a>
-    <a href="#fonctionnalites">Fonctionnalités</a>
-    <a href="#mecanique">Mécanique</a>
-    <a href="orbis-privacy.html">Politique de confidentialité</a>
+<footer style="background:#0C1220;border-top:1px solid rgba(255,255,255,0.07);padding:32px 48px;">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <img src="logo.png" alt="AppCraft31" style="height:28px;width:auto;">
+      <span style="font-size:13px;color:rgba(255,255,255,0.35);">© 2026 AppCraft31 · Nicolas Zanette</span>
+    </div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap;">
+      <a href="index.html" style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;">Accueil</a>
+      <a href="#fonctionnalites" style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;">Fonctionnalités</a>
+      <a href="#mecanique" style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;">Mécanique</a>
+      <a href="orbis-privacy.html" style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;">Confidentialité</a>
+    </div>
   </div>
-  <div class="footer-legal">
-    © 2026 Orbis. Tous droits réservés.<br>
-    Apple, App Store et Game Center sont des marques d'Apple Inc., enregistrées aux États-Unis et dans d'autres pays.<br>
-    Ce jeu contient des publicités diffusées par Google AdMob.
+  <div style="max-width:1100px;margin:16px auto 0;font-size:12px;color:rgba(255,255,255,0.2);line-height:1.6;">
+    Apple, App Store et Game Center sont des marques d'Apple Inc. Ce jeu contient des publicités diffusées par Google AdMob.
   </div>
 </footer>
 
