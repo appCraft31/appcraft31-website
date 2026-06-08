@@ -375,6 +375,17 @@ nav a:hover { color: #fff; }
     border-radius: 12px;
 }
 
+.shizuku-icon {
+    background: linear-gradient(160deg, #322C23, #1A1614);
+    border: 1px solid rgba(201, 123, 74, 0.35);
+}
+
+.shizuku-drop {
+    font-size: 40px;
+    line-height: 1;
+    color: #C97B4A;
+}
+
 .orbis-icon {
     background: #ffffff;
     padding: 0;
@@ -562,6 +573,12 @@ nav a:hover { color: #fff; }
     background: rgba(250, 103, 129, 0.12);
     color: #fb7185;
     border-color: rgba(250, 103, 129, 0.25);
+}
+
+.chip--shizuku {
+    background: rgba(201, 123, 74, 0.12);
+    color: #E0A579;
+    border-color: rgba(201, 123, 74, 0.28);
 }
 
 /* ===== Mini Screenshots ===== */
