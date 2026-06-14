@@ -8,13 +8,35 @@
     <meta property="og:title" content="AppCraft31 – Applications iOS pensées avec soin">
     <meta property="og:description" content="Découvrez EcoPompe, tenGO, Orbis, Mots Fléchés, Mêliz, GraviWords, randompix et nos applications iOS.">
     <meta property="og:type" content="website">
+    <meta name="theme-color" content="#f7f4fd" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#14111e" media="(prefers-color-scheme: dark)">
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Anti-flash : applique le thème + active le mode JS avant le rendu -->
+    <script>
+        (function () {
+            document.documentElement.classList.add("js");
+            try {
+                var t = localStorage.getItem("ac31_theme");
+                if (t !== "light" && t !== "dark") {
+                    t = (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark";
+                }
+                document.documentElement.setAttribute("data-theme", t);
+            } catch (e) {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+        })();
+    </script>
+    <script src="i18n.js" defer></script>
+    <script src="reveal.js" defer></script>
 </head>
 <body>
+
+    <!-- Barre de progression du scroll -->
+    <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
 
     <!-- Nav -->
     <header class="site-header">
@@ -22,77 +44,90 @@
             <a href="#" class="logo" aria-label="AppCraft31 – accueil">
                 <img src="logo.png" alt="AppCraft31" class="logo-img">
             </a>
-            <nav aria-label="Navigation principale">
-                <a href="#apps">Applications</a>
-                <a href="#jeux">Jeux</a>
-                <a href="#about">À propos</a>
+            <nav class="nav-main" aria-label="Navigation principale">
+                <a href="#apps" data-i18n="nav.apps">Applications</a>
+                <a href="#jeux" data-i18n="nav.games">Jeux</a>
+                <a href="#about" data-i18n="nav.about">À propos</a>
             </nav>
+            <div class="header-tools">
+                <button id="theme-toggle" class="icon-btn" type="button" aria-pressed="false"
+                        data-i18n-attr="aria-label:ui.theme_label;title:ui.theme_label" aria-label="Changer de thème" title="Changer de thème">
+                    <span class="theme-icon" aria-hidden="true">☾</span>
+                </button>
+                <div class="lang-select">
+                    <button id="lang-trigger" class="lang-trigger" type="button" aria-haspopup="true" aria-expanded="false"
+                            data-i18n-attr="aria-label:ui.lang_label" aria-label="Changer de langue">
+                        <span id="lang-current">🇫🇷 FR</span>
+                        <span class="chevron" aria-hidden="true">▾</span>
+                    </button>
+                    <div id="lang-menu" class="lang-menu" role="menu" aria-label="Langues"></div>
+                </div>
+            </div>
         </div>
     </header>
 
     <!-- Hero -->
     <section class="hero">
         <div class="hero-bg">
-            <div class="hero-glow hero-glow--top"></div>
-            <div class="hero-glow hero-glow--bottom"></div>
+            <div class="hero-blob hero-blob--1"></div>
+            <div class="hero-blob hero-blob--2"></div>
+            <div class="hero-blob hero-blob--3"></div>
             <div class="hero-dots"></div>
         </div>
         <div class="container">
             <div class="hero-center">
-                <div class="hero-logo-wrap">
+                <div class="hero-logo-wrap hero-anim" style="--hero-delay:0ms">
                     <img src="logo.png" alt="AppCraft31" class="hero-logo">
                 </div>
-                <p class="hero-tagline">Créateur d'expériences mobiles.</p>
-                <p class="hero-sub">Des applications et des jeux iOS pensés avec soin — utiles, rapides et respectueux de votre vie privée.</p>
-                <div class="hero-cta">
-                    <a href="#apps" class="btn-ghost">Nos applications</a>
-                    <a href="#jeux" class="btn-ghost">Nos jeux</a>
-                    <a href="https://linktr.ee/appcraft31" class="btn-ghost" target="_blank" rel="noopener">Tous nos liens</a>
+                <p class="hero-tagline hero-anim" style="--hero-delay:120ms" data-i18n="hero.tagline">Créateur d'expériences mobiles.</p>
+                <p class="hero-sub hero-anim" style="--hero-delay:240ms" data-i18n="hero.sub">Des applications et des jeux iOS pensés avec soin — utiles, rapides et respectueux de votre vie privée.</p>
+                <div class="hero-cta hero-anim" style="--hero-delay:360ms">
+                    <a href="#apps" class="btn-primary" data-i18n="hero.cta_apps">Nos applications</a>
+                    <a href="#jeux" class="btn-ghost" data-i18n="hero.cta_games">Nos jeux</a>
+                    <a href="https://linktr.ee/appcraft31" class="btn-ghost" target="_blank" rel="noopener" data-i18n="hero.cta_links">Tous nos liens</a>
                 </div>
             </div>
         </div>
-        <div class="hero-scroll-hint">
-            <span></span>
-        </div>
+        <div class="hero-scroll-hint"><span></span></div>
     </section>
 
     <!-- ─── APPLICATIONS ─── -->
     <section class="apps-section" id="apps">
         <div class="container">
 
-            <div class="category-header">
+            <div class="category-header reveal">
                 <div class="category-pill category-pill--apps">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                    Applications
+                    <span data-i18n="apps.pill">Applications</span>
                 </div>
-                <h2 class="category-title">Des outils du quotidien</h2>
-                <p class="category-subtitle">Utiles, rapides, sans pub ni tracking.</p>
+                <h2 class="category-title" data-i18n="apps.title">Des outils du quotidien</h2>
+                <p class="category-subtitle" data-i18n="apps.subtitle">Utiles, rapides, sans pub ni tracking.</p>
             </div>
 
-            <div class="apps-grid">
+            <div class="apps-grid" data-stagger>
 
                 <!-- EcoPompe -->
-                <article class="app-card app-card--featured">
+                <article class="app-card app-card--ecopompe reveal">
                     <div class="app-card-header">
                         <div class="app-icon ecopompe-icon">
                             <img src="assets/logo_ecopompe.png" alt="Icône EcoPompe">
                         </div>
                         <div class="app-meta">
                             <h3>EcoPompe</h3>
-                            <p class="app-tagline">Prix carburant en temps réel</p>
-                            <span class="status-badge available">Disponible</span>
+                            <p class="app-tagline" data-i18n="ecopompe.tagline">Prix carburant en temps réel</p>
+                            <span class="status-badge available" data-i18n="badge.available">Disponible</span>
                         </div>
                     </div>
 
-                    <p class="app-description">Comparez les prix des ~10 000 stations-service de France. Trouvez la moins chère près de chez vous, suivez vos favorites et consultez l'historique des prix — le tout sans pub ni tracking.</p>
+                    <p class="app-description" data-i18n="ecopompe.desc">Comparez les prix des ~10 000 stations-service de France. Trouvez la moins chère près de chez vous, suivez vos favorites et consultez l'historique des prix — le tout sans pub ni tracking.</p>
 
                     <div class="app-features">
-                        <span class="chip">&#9981; Prix temps réel</span>
-                        <span class="chip">&hearts; Stations favorites</span>
-                        <span class="chip">&#128205; Géolocalisation</span>
-                        <span class="chip">&#128736; Widget écran d'accueil</span>
-                        <span class="chip">&#128269; Recherche intelligente</span>
-                        <span class="chip">&#8593;&#8595; Variations de prix</span>
+                        <span class="chip">&#9981; <span data-i18n="ecopompe.c1">Prix temps réel</span></span>
+                        <span class="chip">&hearts; <span data-i18n="ecopompe.c2">Stations favorites</span></span>
+                        <span class="chip">&#128205; <span data-i18n="ecopompe.c3">Géolocalisation</span></span>
+                        <span class="chip">&#128736; <span data-i18n="ecopompe.c4">Widget écran d'accueil</span></span>
+                        <span class="chip">&#128269; <span data-i18n="ecopompe.c5">Recherche intelligente</span></span>
+                        <span class="chip">&#8593;&#8595; <span data-i18n="ecopompe.c6">Variations de prix</span></span>
                     </div>
 
                     <div class="app-card-screenshots">
@@ -108,36 +143,36 @@
                         <a href="https://apps.apple.com/fr/app/ecopompe-prix-carburant/id6761409265" class="app-store-btn" aria-label="Télécharger EcoPompe sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="ecopompe.html" class="link-secondary">En savoir plus →</a>
+                        <a href="ecopompe.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
                 <!-- Shizuku -->
-                <article class="app-card">
+                <article class="app-card app-card--shizuku reveal">
                     <div class="app-card-header">
                         <div class="app-icon shizuku-icon">
                             <span class="shizuku-drop">&#9826;</span>
                         </div>
                         <div class="app-meta">
                             <h3>Shizuku 雫</h3>
-                            <p class="app-tagline">Minuteur café filtre · Pour Over</p>
-                            <span class="status-badge soon">Bientôt</span>
+                            <p class="app-tagline" data-i18n="shizuku.tagline">Minuteur café filtre · Pour Over</p>
+                            <span class="status-badge soon" data-i18n="badge.soon">Bientôt</span>
                         </div>
                     </div>
 
-                    <p class="app-description">Le minuteur mains libres pour réussir votre café filtre. Suivez chaque étape de versement au rythme parfait, pilotez à la voix ou depuis votre Apple Watch, et ajustez vos recettes grâce au calculateur de ratio — sans toucher l'écran.</p>
+                    <p class="app-description" data-i18n="shizuku.desc">Le minuteur mains libres pour réussir votre café filtre. Suivez chaque étape de versement au rythme parfait, pilotez à la voix ou depuis votre Apple Watch, et ajustez vos recettes grâce au calculateur de ratio — sans toucher l'écran.</p>
 
                     <div class="app-features">
-                        <span class="chip chip--shizuku">&#127908; Commandes vocales</span>
-                        <span class="chip chip--shizuku">&#9971; Mains libres</span>
-                        <span class="chip chip--shizuku">&#8987; Minuteur par étape</span>
-                        <span class="chip chip--shizuku">&#8986; Apple Watch</span>
-                        <span class="chip chip--shizuku">&#9878; Calculateur de ratio</span>
-                        <span class="chip chip--shizuku">&#9749; Recettes personnalisées</span>
+                        <span class="chip">&#127908; <span data-i18n="shizuku.c1">Commandes vocales</span></span>
+                        <span class="chip">&#9971; <span data-i18n="shizuku.c2">Mains libres</span></span>
+                        <span class="chip">&#8987; <span data-i18n="shizuku.c3">Minuteur par étape</span></span>
+                        <span class="chip">&#8986; <span data-i18n="shizuku.c4">Apple Watch</span></span>
+                        <span class="chip">&#9878; <span data-i18n="shizuku.c5">Calculateur de ratio</span></span>
+                        <span class="chip">&#9749; <span data-i18n="shizuku.c6">Recettes personnalisées</span></span>
                     </div>
 
                     <div class="app-card-footer">
-                        <a href="shizuku.html" class="link-secondary">En savoir plus →</a>
+                        <a href="shizuku.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -149,71 +184,71 @@
     <section class="apps-section apps-section--games" id="jeux">
         <div class="container">
 
-            <div class="category-header">
+            <div class="category-header reveal">
                 <div class="category-pill category-pill--games">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4M15 12h.01M18 10h.01"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 13.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-2.544-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
-                    Jeux
+                    <span data-i18n="games.pill">Jeux</span>
                 </div>
-                <h2 class="category-title">Des jeux pour s'évader</h2>
-                <p class="category-subtitle">Minimalistes, zen, conçus pour durer.</p>
+                <h2 class="category-title" data-i18n="games.title">Des jeux pour s'évader</h2>
+                <p class="category-subtitle" data-i18n="games.subtitle">Minimalistes, zen, conçus pour durer.</p>
             </div>
 
-            <div class="apps-grid">
+            <div class="apps-grid" data-stagger>
 
                 <!-- randompix -->
-                <article class="app-card app-card--game">
+                <article class="app-card app-card--randompix reveal">
                     <div class="app-card-header">
                         <div class="app-icon randompix-icon">
                             <img src="assets/randompix-icon.png" alt="Icône randompix">
                         </div>
                         <div class="app-meta">
                             <h3>randompix</h3>
-                            <p class="app-tagline">Devine à qui est la photo</p>
-                            <span class="status-badge available">Disponible</span>
+                            <p class="app-tagline" data-i18n="randompix.tagline">Devine à qui est la photo</p>
+                            <span class="status-badge available" data-i18n="badge.available">Disponible</span>
                         </div>
                     </div>
 
-                    <p class="app-description">Le party game qui pioche dans VOS souvenirs. Chacun ajoute quelques photos au hasard de sa galerie, et tout le monde devine à qui elles appartiennent. De 2 à 10 joueurs, 5 minutes par partie, fous rires garantis.</p>
+                    <p class="app-description" data-i18n="randompix.desc">Le party game qui pioche dans VOS souvenirs. Chacun ajoute quelques photos au hasard de sa galerie, et tout le monde devine à qui elles appartiennent. De 2 à 10 joueurs, 5 minutes par partie, fous rires garantis.</p>
 
                     <div class="app-features">
-                        <span class="chip chip--randompix">&#128248; Vos vraies photos</span>
-                        <span class="chip chip--randompix">&#128111; 2 à 10 joueurs</span>
-                        <span class="chip chip--randompix">&#9201; 10s pour deviner</span>
-                        <span class="chip chip--randompix">&#9889; Combos x2</span>
-                        <span class="chip chip--randompix">&#128557; Réactions emoji</span>
-                        <span class="chip chip--randompix">&#128274; Photos éphémères</span>
+                        <span class="chip">&#128248; <span data-i18n="randompix.c1">Vos vraies photos</span></span>
+                        <span class="chip">&#128111; <span data-i18n="randompix.c2">2 à 10 joueurs</span></span>
+                        <span class="chip">&#9201; <span data-i18n="randompix.c3">10s pour deviner</span></span>
+                        <span class="chip">&#9889; <span data-i18n="randompix.c4">Combos x2</span></span>
+                        <span class="chip">&#128557; <span data-i18n="randompix.c5">Réactions emoji</span></span>
+                        <span class="chip">&#128274; <span data-i18n="randompix.c6">Photos éphémères</span></span>
                     </div>
 
                     <div class="app-card-footer">
                         <a href="https://apps.apple.com/app/id6773356363" class="app-store-btn" aria-label="Télécharger randompix sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="randompix.html" class="link-secondary">En savoir plus →</a>
+                        <a href="randompix.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
                 <!-- GraviWords -->
-                <article class="app-card app-card--game">
+                <article class="app-card app-card--graviwords reveal">
                     <div class="app-card-header">
                         <div class="app-icon graviwords-icon">
                             <img src="assets/icon.png" alt="Icône GraviWords">
                         </div>
                         <div class="app-meta">
                             <h3>GraviWords</h3>
-                            <p class="app-tagline">Le puzzle de mots arcade rétro</p>
-                            <span class="status-badge soon">Bientôt</span>
+                            <p class="app-tagline" data-i18n="graviwords.tagline">Le puzzle de mots arcade rétro</p>
+                            <span class="status-badge soon" data-i18n="badge.soon">Bientôt</span>
                         </div>
                     </div>
 
-                    <p class="app-description">Un mélange nerveux de jeu de mots et de puzzle de briques rétro. Les lettres tombent et s'empilent : trace des mots pour les faire exploser, déclenche 7 pouvoirs et empêche la pile de déborder.</p>
+                    <p class="app-description" data-i18n="graviwords.desc">Un mélange nerveux de jeu de mots et de puzzle de briques rétro. Les lettres tombent et s'empilent : trace des mots pour les faire exploser, déclenche 7 pouvoirs et empêche la pile de déborder.</p>
 
                     <div class="app-features">
-                        <span class="chip chip--graviwords">&#9999; Trace des mots</span>
-                        <span class="chip chip--graviwords">&#129521; Physique des blocs</span>
-                        <span class="chip chip--graviwords">&#9889; 7 pouvoirs</span>
-                        <span class="chip chip--graviwords">&#127942; Classement Game Center</span>
-                        <span class="chip chip--graviwords">&#127760; Bilingue FR / EN</span>
-                        <span class="chip chip--graviwords">&#128722; Boutique &amp; pièces</span>
+                        <span class="chip">&#9999; <span data-i18n="graviwords.c1">Trace des mots</span></span>
+                        <span class="chip">&#129521; <span data-i18n="graviwords.c2">Physique des blocs</span></span>
+                        <span class="chip">&#9889; <span data-i18n="graviwords.c3">7 pouvoirs</span></span>
+                        <span class="chip">&#127942; <span data-i18n="graviwords.c4">Classement Game Center</span></span>
+                        <span class="chip">&#127760; <span data-i18n="graviwords.c5">Bilingue FR / EN</span></span>
+                        <span class="chip">&#128722; <span data-i18n="graviwords.c6">Boutique &amp; pièces</span></span>
                     </div>
 
                     <div class="app-card-screenshots">
@@ -225,32 +260,32 @@
                     </div>
 
                     <div class="app-card-footer">
-                        <a href="graviwords.html" class="link-secondary">En savoir plus →</a>
+                        <a href="graviwords.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
                 <!-- tenGO -->
-                <article class="app-card app-card--game">
+                <article class="app-card app-card--tengo reveal">
                     <div class="app-card-header">
                         <div class="app-icon tengo-icon">
                             <span class="tengo-logo"><span class="tengo-ten">TEN</span><span class="tengo-dot"></span><span class="tengo-go">GO</span></span>
                         </div>
                         <div class="app-meta">
                             <h3>tenGO</h3>
-                            <p class="app-tagline">Relie. Additionne. Libère.</p>
-                            <span class="status-badge available">Disponible</span>
+                            <p class="app-tagline" data-i18n="tengo.tagline">Relie. Additionne. Libère.</p>
+                            <span class="status-badge available" data-i18n="badge.available">Disponible</span>
                         </div>
                     </div>
 
-                    <p class="app-description">Un puzzle minimaliste et apaisant : trace un chemin sur une grille de bulles colorées pour former des sommes de 10 pile. Plus la chaîne est longue, plus le score grimpe.</p>
+                    <p class="app-description" data-i18n="tengo.desc">Un puzzle minimaliste et apaisant : trace un chemin sur une grille de bulles colorées pour former des sommes de 10 pile. Plus la chaîne est longue, plus le score grimpe.</p>
 
                     <div class="app-features">
-                        <span class="chip chip--tengo">&#127919; Objectif 10</span>
-                        <span class="chip chip--tengo">&#128293; Combos XL</span>
-                        <span class="chip chip--tengo">&#127941; Classement</span>
-                        <span class="chip chip--tengo">&#127760; 10 langues</span>
-                        <span class="chip chip--tengo">&#128190; Sauvegarde auto</span>
-                        <span class="chip chip--tengo">&#9889; Haptique + sons</span>
+                        <span class="chip">&#127919; <span data-i18n="tengo.c1">Objectif 10</span></span>
+                        <span class="chip">&#128293; <span data-i18n="tengo.c2">Combos XL</span></span>
+                        <span class="chip">&#127941; <span data-i18n="tengo.c3">Classement</span></span>
+                        <span class="chip">&#127760; <span data-i18n="tengo.c4">10 langues</span></span>
+                        <span class="chip">&#128190; <span data-i18n="tengo.c5">Sauvegarde auto</span></span>
+                        <span class="chip">&#9889; <span data-i18n="tengo.c6">Haptique + sons</span></span>
                     </div>
 
                     <div class="app-card-screenshots">
@@ -266,64 +301,64 @@
                         <a href="https://apps.apple.com/fr/app/ten-go-number-chain-puzzle/id6762470649" class="app-store-btn" aria-label="Télécharger tenGO sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="tengo.html" class="link-secondary">En savoir plus →</a>
+                        <a href="tengo.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
                 <!-- Orbis -->
-                <article class="app-card app-card--game">
+                <article class="app-card app-card--orbis reveal">
                     <div class="app-card-header">
                         <div class="app-icon orbis-icon">
                             <img src="assets/Orbis_icon.png" alt="Icône Orbis">
                         </div>
                         <div class="app-meta">
                             <h3>Orbis</h3>
-                            <p class="app-tagline">Un toucher. Un univers.</p>
-                            <span class="status-badge available">Disponible</span>
+                            <p class="app-tagline" data-i18n="orbis.tagline">Un toucher. Un univers.</p>
+                            <span class="status-badge available" data-i18n="badge.available">Disponible</span>
                         </div>
                     </div>
 
-                    <p class="app-description">Appuie et maintiens pour déployer un cercle de lumière. Relâche pour l'ancrer. Couvre 75 % de l'arène sans frôler les ennemis. Un puzzle zen à un seul geste.</p>
+                    <p class="app-description" data-i18n="orbis.desc">Appuie et maintiens pour déployer un cercle de lumière. Relâche pour l'ancrer. Couvre 75 % de l'arène sans frôler les ennemis. Un puzzle zen à un seul geste.</p>
 
                     <div class="app-features">
-                        <span class="chip chip--orbis">◎ Un geste unique</span>
-                        <span class="chip chip--orbis">∞ Niveaux infinis</span>
-                        <span class="chip chip--orbis">♬ Son synthétisé</span>
-                        <span class="chip chip--orbis">&#127941; Game Center</span>
-                        <span class="chip chip--orbis">☽ Design zen</span>
-                        <span class="chip chip--orbis">&#128405; Une main suffit</span>
+                        <span class="chip">◎ <span data-i18n="orbis.c1">Un geste unique</span></span>
+                        <span class="chip">∞ <span data-i18n="orbis.c2">Niveaux infinis</span></span>
+                        <span class="chip">♬ <span data-i18n="orbis.c3">Son synthétisé</span></span>
+                        <span class="chip">&#127941; <span data-i18n="orbis.c4">Game Center</span></span>
+                        <span class="chip">☽ <span data-i18n="orbis.c5">Design zen</span></span>
+                        <span class="chip">&#128405; <span data-i18n="orbis.c6">Une main suffit</span></span>
                     </div>
 
                     <div class="app-card-footer">
                         <a href="https://apps.apple.com/us/app/orbis-reflex-arcade/id6763065365" class="app-store-btn" aria-label="Télécharger Orbis sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="orbis.html" class="link-secondary">En savoir plus →</a>
+                        <a href="orbis.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
                 <!-- Mêliz -->
-                <article class="app-card app-card--game">
+                <article class="app-card app-card--meliz reveal">
                     <div class="app-card-header">
                         <div class="app-icon meliz-icon">
                             <img src="assets/meliz-icon.png" alt="Icône Mêliz">
                         </div>
                         <div class="app-meta">
                             <h3>Mêliz</h3>
-                            <p class="app-tagline">Trouve les mots, retrouve le calme.</p>
-                            <span class="status-badge available">Disponible</span>
+                            <p class="app-tagline" data-i18n="meliz.tagline">Trouve les mots, retrouve le calme.</p>
+                            <span class="status-badge available" data-i18n="badge.available">Disponible</span>
                         </div>
                     </div>
 
-                    <p class="app-description">Un jeu de mots mêlés au design pastel apaisant. Six univers colorés (Animaux, Fruits, Pays, Sports, Couleurs, Métiers), trois niveaux de difficulté et un chrono pour défier tes meilleurs scores.</p>
+                    <p class="app-description" data-i18n="meliz.desc">Un jeu de mots mêlés au design pastel apaisant. Six univers colorés (Animaux, Fruits, Pays, Sports, Couleurs, Métiers), trois niveaux de difficulté et un chrono pour défier tes meilleurs scores.</p>
 
                     <div class="app-features">
-                        <span class="chip chip--meliz">&#127912; Design pastel</span>
-                        <span class="chip chip--meliz">&#9201; Chrono &amp; score</span>
-                        <span class="chip chip--meliz">&#128161; Indices à la demande</span>
-                        <span class="chip chip--meliz">&#127760; Bilingue FR / EN</span>
-                        <span class="chip chip--meliz">&#128241; Haptiques fines</span>
-                        <span class="chip chip--meliz">&#128274; Données locales</span>
+                        <span class="chip">&#127912; <span data-i18n="meliz.c1">Design pastel</span></span>
+                        <span class="chip">&#9201; <span data-i18n="meliz.c2">Chrono &amp; score</span></span>
+                        <span class="chip">&#128161; <span data-i18n="meliz.c3">Indices à la demande</span></span>
+                        <span class="chip">&#127760; <span data-i18n="meliz.c4">Bilingue FR / EN</span></span>
+                        <span class="chip">&#128241; <span data-i18n="meliz.c5">Haptiques fines</span></span>
+                        <span class="chip">&#128274; <span data-i18n="meliz.c6">Données locales</span></span>
                     </div>
 
                     <div class="app-card-screenshots">
@@ -339,32 +374,32 @@
                         <a href="https://apps.apple.com/us/app/m%C3%AAliz-cozy-word-search/id6767558990" class="app-store-btn" aria-label="Télécharger Mêliz sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="meliz.html" class="link-secondary">En savoir plus →</a>
+                        <a href="meliz.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
                 <!-- Mots Fléchés -->
-                <article class="app-card app-card--game">
+                <article class="app-card app-card--motfleche reveal">
                     <div class="app-card-header">
                         <div class="app-icon mots-fleches-icon">
                             <img src="assets/mf-icon.png" alt="Icône Mots Fléchés">
                         </div>
                         <div class="app-meta">
                             <h3>Mots Fléchés</h3>
-                            <p class="app-tagline">Déchiffrez les mots interdits</p>
-                            <span class="status-badge available">Disponible</span>
+                            <p class="app-tagline" data-i18n="motfleche.tagline">Déchiffrez les mots interdits</p>
+                            <span class="status-badge available" data-i18n="badge.available">Disponible</span>
                         </div>
                     </div>
 
-                    <p class="app-description">Un jeu de mots fléchés au style vintage 1952. Des thèmes à débloquer avec des étoiles (Nature, Animaux, Cuisine, Espace…), des indices à la carte et une sauvegarde automatique.</p>
+                    <p class="app-description" data-i18n="motfleche.desc">Un jeu de mots fléchés au style vintage 1952. Des thèmes à débloquer avec des étoiles (Nature, Animaux, Cuisine, Espace…), des indices à la carte et une sauvegarde automatique.</p>
 
                     <div class="app-features">
-                        <span class="chip chip--muted">&#128221; Édition censurée</span>
-                        <span class="chip chip--muted">&#11088; Boutique d'étoiles</span>
-                        <span class="chip chip--muted">&#128161; Indices Lettre/Mot</span>
-                        <span class="chip chip--muted">&#128203; Carnet de bord</span>
-                        <span class="chip chip--muted">&#127774; Hors-ligne</span>
-                        <span class="chip chip--muted">&#128190; Sauvegarde auto</span>
+                        <span class="chip">&#128221; <span data-i18n="motfleche.c1">Édition censurée</span></span>
+                        <span class="chip">&#11088; <span data-i18n="motfleche.c2">Boutique d'étoiles</span></span>
+                        <span class="chip">&#128161; <span data-i18n="motfleche.c3">Indices Lettre/Mot</span></span>
+                        <span class="chip">&#128203; <span data-i18n="motfleche.c4">Carnet de bord</span></span>
+                        <span class="chip">&#127774; <span data-i18n="motfleche.c5">Hors-ligne</span></span>
+                        <span class="chip">&#128190; <span data-i18n="motfleche.c6">Sauvegarde auto</span></span>
                     </div>
 
                     <div class="app-card-screenshots">
@@ -380,7 +415,7 @@
                         <a href="https://apps.apple.com/us/app/censored-arrowwords/id6762137189" class="app-store-btn" aria-label="Télécharger Mots Fléchés sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="motfleche.html" class="link-secondary">En savoir plus →</a>
+                        <a href="motfleche.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -391,20 +426,20 @@
     <!-- About -->
     <section class="about" id="about">
         <div class="container">
-            <div class="about-card">
+            <div class="about-card reveal">
                 <div class="about-text">
-                    <h2>À propos d'AppCraft31</h2>
-                    <p>AppCraft31 est un studio indépendant basé à Toulouse (Haute-Garonne). Je conçois et développe des applications iOS en solo — de l'idée à la mise en ligne sur l'App Store.</p>
-                    <p>Ma philosophie : des apps <strong>utiles</strong>, <strong>rapides</strong> et <strong>respectueuses</strong>. Pas de dark patterns, pas de monétisation à outrance, pas de données revendues.</p>
+                    <h2 data-i18n="about.title">À propos d'AppCraft31</h2>
+                    <p data-i18n="about.p1">AppCraft31 est un studio indépendant basé à Toulouse (Haute-Garonne). Je conçois et développe des applications iOS en solo — de l'idée à la mise en ligne sur l'App Store.</p>
+                    <p data-i18n="about.p2">Ma philosophie : des apps <strong>utiles</strong>, <strong>rapides</strong> et <strong>respectueuses</strong>. Pas de dark patterns, pas de monétisation à outrance, pas de données revendues.</p>
                 </div>
                 <div class="about-stats">
                     <div class="stat">
                         <span class="stat-number">1</span>
-                        <span class="stat-label">Application</span>
+                        <span class="stat-label" data-i18n="about.stat_app_label">Application</span>
                     </div>
                     <div class="stat">
                         <span class="stat-number">6</span>
-                        <span class="stat-label">Jeux</span>
+                        <span class="stat-label" data-i18n="about.stat_games_label">Jeux</span>
                     </div>
                 </div>
             </div>
@@ -427,9 +462,9 @@
                 <a href="meliz.html">Mêliz</a>
                 <a href="graviwords.html">GraviWords</a>
                 <a href="randompix.html">randompix</a>
-                <a href="privacy.html">Confidentialité</a>
+                <a href="privacy.html" data-i18n="footer.privacy">Confidentialité</a>
                 <a href="https://linktr.ee/appcraft31" target="_blank" rel="noopener">Linktree</a>
-                <a href="https://github.com/truc001/EcoPompe-support/issues">Support</a>
+                <a href="https://github.com/truc001/EcoPompe-support/issues" data-i18n="footer.support">Support</a>
             </div>
         </div>
     </footer>
