@@ -443,6 +443,7 @@ body {
 
 /* Accents par produit */
 .app-card--ecopompe  { --accent: var(--pastel-sky); }
+.app-card--poddroid  { --accent: var(--pastel-lavender); }
 .app-card--shizuku   { --accent: var(--pastel-peach); }
 .app-card--randompix { --accent: var(--pastel-rose); }
 .app-card--graviwords{ --accent: #7aa0ff; }
@@ -468,6 +469,8 @@ body {
 
 .ecopompe-icon { background: #ffffff; padding: 8px; }
 .ecopompe-icon img { object-fit: contain; border-radius: 12px; }
+.poddroid-icon { background: linear-gradient(135deg, #7C5CD9, #40258A); }
+.poddroid-icon svg { width: 100%; height: 100%; border-radius: 18px; }
 .shizuku-icon { background: linear-gradient(160deg, #322C23, #1A1614); border: 1px solid rgba(201, 123, 74, 0.35); }
 .shizuku-drop { font-size: 40px; line-height: 1; color: #C97B4A; }
 .orbis-icon { background: #ffffff; }
