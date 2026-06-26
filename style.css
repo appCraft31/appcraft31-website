@@ -482,6 +482,8 @@ body {
 .binero-icon { background: #ffffff; padding: 9px; border: 1px solid rgba(111, 197, 155, 0.3); }
 .binero-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; width: 100%; height: 100%; }
 .binero-grid i { border-radius: 4px; display: block; }
+.glyphe-icon { background: radial-gradient(120% 120% at 50% 0%, #20224a, #15162a); border: 1px solid rgba(231, 184, 75, 0.25); padding: 6px; }
+.glyphe-icon svg { width: 100%; height: 100%; }
 
 .tengo-logo {
     display: inline-flex; align-items: center; gap: 3px;
