@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQUARELINK — Tuiles &amp; Combos</title>
+  <meta name="description" content="SQUARELINK, le puzzle de tuiles à 4 faces inspiré du triomino. Pose, encastre, enchaîne les combos en pastel apaisant. 100 niveaux, mode infini et défi du jour. Disponible sur iPhone." />
+  <link rel="icon" type="image/png" href="../assets/combo-icon.png" />
+  <meta property="og:title" content="SQUARELINK — Tuiles &amp; Combos" />
+  <meta property="og:description" content="Le puzzle de tuiles à 4 faces, version pastel et apaisante. Inspiré du triomino." />
+  <meta property="og:image" content="../assets/combo-icon.png" />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg:        #F7F3EE;
+      --card:      #FFFCF7;
+      --peach:     #FFD6BA;
+      --mint:      #B8E0D2;
+      --lavender:  #C9B8E0;
+      --blush:     #F4C2C2;
+      --butter:    #FFF1B6;
+      --text:      #3A3A4A;
+      --text-soft: #7A7A8A;
+      --shadow:    0 18px 40px -18px rgba(58, 58, 74, 0.28);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, "SF Pro Rounded", "Nunito", BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Decorative blobs */
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.5;
+      z-index: -1;
+      pointer-events: none;
+    }
+    body::before { background: var(--lavender); top: -180px; left: -200px; }
+    body::after  { background: var(--peach);    bottom: -200px; right: -200px; }
+
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(18px);
+      -webkit-backdrop-filter: saturate(180%) blur(18px);
+      background: rgba(247, 243, 238, 0.78);
+      border-bottom: 1px solid rgba(58, 58, 74, 0.06);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand img { width: 38px; height: 38px; border-radius: 10px; box-shadow: 0 4px 12px -4px rgba(58, 58, 74, 0.3); }
+    .brand span { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-weight: 600; color: var(--text-soft); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .btn-pill {
+      background: var(--lavender); color: var(--text);
+      padding: 10px 20px; border-radius: 999px;
+      font-weight: 700;
+      box-shadow: 0 8px 18px -8px rgba(201, 184, 224, 0.85);
+      transition: transform 0.15s ease;
+    }
+    .btn-pill:hover { transform: translateY(-1px); }
+
+    /* Hero */
+    header.hero { padding: 90px 0 80px; position: relative; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 6.5vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+    .hero h1 .accent {
+      background: linear-gradient(135deg, var(--lavender) 0%, var(--peach) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero .lead {
+      font-size: 1.25rem;
+      color: var(--text-soft);
+      margin-bottom: 32px;
+      max-width: 540px;
+    }
+    .hero .ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--text); color: #fff;
+      padding: 16px 26px; border-radius: 999px;
+      font-weight: 700; font-size: 1.05rem;
+      box-shadow: 0 12px 28px -10px rgba(58, 58, 74, 0.6);
+      transition: transform 0.15s ease;
+    }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 22px; border-radius: 999px;
+      font-weight: 700; font-size: 1rem;
+      background: var(--card); color: var(--text);
+      border: 1px solid rgba(58, 58, 74, 0.1);
+      transition: transform 0.15s ease;
+    }
+    .btn-secondary:hover { transform: translateY(-2px); }
+
+    /* Phone frame */
+    .phone {
+      position: relative;
+      width: 100%; max-width: 340px;
+      margin: 0 auto;
+      aspect-ratio: 1320 / 2868;
+      background: #1c1620;
+      border-radius: 56px;
+      padding: 12px;
+      box-shadow:
+        0 30px 70px -20px rgba(58, 58, 74, 0.48),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.04);
+    }
+    .phone img {
+      border-radius: 44px;
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .phone-tilt { transform: rotate(-3deg); transition: transform 0.4s ease; }
+    .phone-tilt:hover { transform: rotate(0deg) scale(1.02); }
+
+    /* Section title */
+    section { padding: 88px 0; }
+    .section-title { text-align: center; margin-bottom: 56px; }
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 900; letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+    .section-title p {
+      color: var(--text-soft); max-width: 580px;
+      margin: 0 auto; font-size: 1.1rem;
+    }
+    .eyebrow {
+      display: inline-block;
+      background: var(--mint); color: var(--text);
+      padding: 6px 14px; border-radius: 999px;
+      font-size: 0.85rem; font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    /* Features */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .feature-card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease;
+    }
+    .feature-card:hover { transform: translateY(-4px); }
+    .feature-icon {
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 18px;
+    }
+    .feature-card h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 8px; }
+    .feature-card p { color: var(--text-soft); font-size: 0.97rem; }
+
+    /* Modes (3 grid) */
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .mode-card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .mode-emoji {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 18px;
+    }
+    .mode-card h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
+    .mode-card p { color: var(--text-soft); font-size: 1rem; }
+
+    /* Tile preview (decorative 4-face tile) */
+    .tile-preview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .tile {
+      aspect-ratio: 1;
+      border-radius: 18px;
+      position: relative;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .tile::before, .tile::after,
+    .tile .ext-1, .tile .ext-2 {
+      content: "";
+      position: absolute; inset: 0;
+    }
+    .tile::before { background: var(--peach);    clip-path: polygon(0 0, 100% 0, 50% 50%); }
+    .tile::after  { background: var(--mint);     clip-path: polygon(100% 0, 100% 100%, 50% 50%); }
+    .tile .ext-1  { background: var(--lavender); clip-path: polygon(100% 100%, 0 100%, 50% 50%); }
+    .tile .ext-2  { background: var(--blush);    clip-path: polygon(0 100%, 0 0, 50% 50%); }
+    .tile .center {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 40%; height: 40%;
+      background: var(--card);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: inset 0 0 0 1px rgba(58, 58, 74, 0.1);
+    }
+
+    /* Showcase */
+    .showcase {
+      background: linear-gradient(180deg, transparent 0%, rgba(201, 184, 224, 0.18) 100%);
+      border-radius: 40px;
+      padding: 64px 24px;
+    }
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      align-items: end;
+    }
+    .showcase-grid .phone { max-width: 100%; }
+    .showcase-grid .phone:nth-child(odd) { transform: translateY(20px); }
+
+    /* CTA */
+    .cta-band {
+      background: var(--card);
+      border-radius: 40px;
+      padding: 64px 48px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before, .cta-band::after {
+      content: ""; position: absolute;
+      width: 320px; height: 320px; border-radius: 50%;
+      opacity: 0.55; filter: blur(40px);
+    }
+    .cta-band::before { background: var(--butter); top: -120px; right: -100px; }
+    .cta-band::after  { background: var(--mint);   bottom: -120px; left: -100px; }
+    .cta-band h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 900; letter-spacing: -1px;
+      margin-bottom: 14px; position: relative;
+    }
+    .cta-band p {
+      color: var(--text-soft); font-size: 1.1rem;
+      margin-bottom: 28px; position: relative;
+    }
+    .cta-band .btn-primary { position: relative; }
+
+    /* Footer */
+    footer {
+      padding: 48px 0 36px;
+      border-top: 1px solid rgba(58, 58, 74, 0.08);
+      margin-top: 60px;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-soft); font-weight: 600; font-size: 0.95rem; }
+    .footer-links a:hover { color: var(--text); }
+    .copy { color: var(--text-soft); font-size: 0.9rem; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .modes-grid { grid-template-columns: 1fr; }
+      .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { gap: 14px; }
+      .nav-links a:not(.btn-pill) { display: none; }
+      header.hero { padding: 60px 0 40px; }
+      section { padding: 60px 0; }
+    }
+    @media (max-width: 520px) {
+      .showcase-grid { grid-template-columns: 1fr; }
+      .cta-band { padding: 44px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="#top" class="brand">
+        <img src="../assets/combo-icon.png" alt="SQUARELINK" />
+        <span>SQUARELINK</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Fonctionnalités</a>
+        <a href="#modes">Modes</a>
+        <a href="#galerie">Galerie</a>
+        <a href="../privacy/combo.html">Confidentialité</a>
+        <a href="#download" class="btn-pill">Télécharger</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Tuiles &amp; Combos — Inspiré du triomino</span>
+        <h1>Pose, encastre, <span class="accent">enchaîne.</span></h1>
+        <p class="lead">
+          SQUARELINK est un puzzle de tuiles à quatre faces. Place chaque tuile pour que ses chiffres correspondent à ceux des voisines. Plus tu connectes de côtés d'un seul coup, plus le combo monte — et le multiplicateur s'enchaîne.
+        </p>
+        <div class="ctas">
+          <a href="#download" class="btn-primary">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+            Disponible sur l'App Store
+          </a>
+          <a href="#features" class="btn-secondary">Découvrir le jeu →</a>
+        </div>
+      </div>
+      <div class="phone phone-tilt">
+        <img src="../assets/combo-menu.png" alt="Écran d'accueil de SQUARELINK" />
+      </div>
+    </div>
+  </header>
+
+  <section id="features">
+    <div class="container">
+      <div class="section-title">
+        <span class="eyebrow" style="background: var(--peach);">Fonctionnalités</span>
+        <h2>Une mécanique simple, un univers tout doux.</h2>
+        <p>Le gameplay du triomino transposé en quatre faces, animé d'effets pastel, et calibré pour des sessions de 3 minutes comme des soirées entières.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon" style="background: var(--lavender);">🎨</div>
+          <h3>Design pastel</h3>
+          <p>Palette douce (peach, mint, lavande, blush, butter), animations spring soyeuses, mode sombre adapté pour les sessions du soir.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: var(--mint);">✨</div>
+          <h3>Combos jusqu'à ×3</h3>
+          <p>1 côté = 10 points. 2 côtés = 50. 3 côtés = 200 et la pose suivante est ×2. Encastrement parfait sur 4 côtés ? +500 et ×3.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: var(--peach);">💡</div>
+          <h3>Aide intelligente</h3>
+          <p>3 indications par partie en Mode Infini. Et si tu coinces, regarder une pub bonus te donne une indication supplémentaire.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: var(--blush);">📳</div>
+          <h3>Haptiques fines</h3>
+          <p>Chaque pose, chaque combo et chaque encastrement parfait est ponctué d'une vibration discrète. Et des confettis pastel à la clé.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: var(--butter);">🏆</div>
+          <h3>Game Center</h3>
+          <p>Compare ton meilleur score Mode Infini avec celui de tes amis et de la communauté, directement via le leaderboard Game Center.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background: var(--mint);">🔒</div>
+          <h3>Respect de ta vie privée</h3>
+          <p>Aucun compte requis. Toutes tes données (progression, scores, préférences) restent sur ton iPhone. Consentement publicitaire clair et révisable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="modes" style="padding-top: 40px;">
+    <div class="container">
+      <div class="section-title">
+        <span class="eyebrow" style="background: var(--lavender);">Trois modes</span>
+        <h2>Choisis ton humeur, lance la partie.</h2>
+        <p>Du défi quotidien partagé à la longue session sans fin, chaque mode a sa cadence et son rythme.</p>
+      </div>
+      <div class="modes-grid">
+        <div class="mode-card">
+          <div class="mode-emoji" style="background: var(--lavender);">∞</div>
+          <h3>Mode Infini</h3>
+          <p>Pose, enchaîne, tiens le plus longtemps possible avant d'être bloqué. Ton meilleur score grimpe au leaderboard.</p>
+        </div>
+        <div class="mode-card">
+          <div class="mode-emoji" style="background: var(--mint);">🗓️</div>
+          <h3>Défi quotidien</h3>
+          <p>Tous les jours, la même grille pour tous les joueurs. Affronte la communauté avec exactement les mêmes contraintes.</p>
+        </div>
+        <div class="mode-card">
+          <div class="mode-emoji" style="background: var(--peach);">🗺️</div>
+          <h3>Voyage</h3>
+          <p>100 niveaux progressifs avec objectifs variés (atteindre un score, poser X tuiles, vider la grille) et un système d'étoiles 1-3.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top: 40px;">
+    <div class="container">
+      <div class="section-title">
+        <span class="eyebrow" style="background: var(--peach);">La tuile</span>
+        <h2>Quatre côtés, quatre chiffres, mille combinaisons.</h2>
+        <p>Chaque tuile a un chiffre sur chacun de ses quatre côtés. Tu la places pour que ses chiffres correspondent à ceux des tuiles déjà posées.</p>
+      </div>
+      <div class="tile-preview">
+        <div class="tile"><span class="ext-1"></span><span class="ext-2"></span><span class="center"></span></div>
+        <div class="tile"><span class="ext-1"></span><span class="ext-2"></span><span class="center"></span></div>
+        <div class="tile"><span class="ext-1"></span><span class="ext-2"></span><span class="center"></span></div>
+        <div class="tile"><span class="ext-1"></span><span class="ext-2"></span><span class="center"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="galerie">
+    <div class="container">
+      <div class="section-title">
+        <span class="eyebrow" style="background: var(--mint);">En images</span>
+        <h2>Une expérience cohérente, du menu au score final.</h2>
+        <p>Quelques captures réelles de l'application, en français.</p>
+      </div>
+      <div class="showcase">
+        <div class="showcase-grid">
+          <div class="phone"><img src="../assets/combo-menu.png" alt="Écran d'accueil" /></div>
+          <div class="phone"><img src="../assets/combo-game.png" alt="Partie en cours" /></div>
+          <div class="phone"><img src="../assets/combo-drag.png" alt="Drag &amp; drop" /></div>
+          <div class="phone"><img src="../assets/combo-summary.png" alt="Score final" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="container">
+      <div class="cta-band">
+        <h2>Prêt·e à enchaîner les combos ?</h2>
+        <p>SQUARELINK est gratuit, sans inscription, et conçu pour iPhone.</p>
+        <a href="https://apps.apple.com/us/app/squarelink-tile-match-combo/id6773255081" class="btn-primary" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          Télécharger sur l'App Store
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="brand">
+        <img src="../assets/combo-icon.png" alt="SQUARELINK" style="width:32px;height:32px;border-radius:8px;" />
+        <span style="font-weight: 800;">SQUARELINK</span>
+      </div>
+      <div class="footer-links">
+        <a href="../privacy/combo.html">Confidentialité</a>
+        <a href="mailto:nicolas.zanette.nz@gmail.com">Contact</a>
+      </div>
+      <div class="copy">© 2026 SQUARELINK. Tous droits réservés.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

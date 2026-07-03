@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tenGO – Puzzle de bulles, relie pour faire 10 · AppCraft31</title>
+    <meta name="description" content="tenGO : un puzzle mobile casual et minimaliste. Trace un chemin sur une grille de bulles colorées pour former des sommes de 10 pile. Disponible sur iPhone.">
+    <meta property="og:title" content="tenGO – Relie. Additionne. Libère.">
+    <meta property="og:description" content="Un puzzle apaisant où chaque chemin qui fait 10 libère une cascade de bulles.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="../favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tengo.css">
+</head>
+<body class="tg-body">
+
+    <!-- Floating bubbles background -->
+    <div class="tg-bubbles" aria-hidden="true">
+        <span class="tg-bubble tg-bubble--pink"></span>
+        <span class="tg-bubble tg-bubble--mint"></span>
+        <span class="tg-bubble tg-bubble--lavender"></span>
+        <span class="tg-bubble tg-bubble--peach"></span>
+        <span class="tg-bubble tg-bubble--blue"></span>
+        <span class="tg-bubble tg-bubble--yellow"></span>
+    </div>
+
+    <!-- Nav -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="../index.html" class="logo" aria-label="AppCraft31 – accueil">
+                <img src="../assets/logo.png" alt="AppCraft31" class="logo-img">
+            </a>
+            <nav aria-label="Navigation principale">
+                <a href="../index.html#apps">Applications</a>
+                <a href="../index.html#about">À propos</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="tg-hero hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="badge tg-badge">Disponible sur iPhone</div>
+                    <div class="tg-wordmark" aria-hidden="true">
+                        <span>TEN</span><span class="tg-wordmark-dot"></span><span>GO</span>
+                    </div>
+                    <h1>Relie les bulles, <span class="tg-highlight">fais 10, libère la grille</span></h1>
+                    <p class="subtitle">Un puzzle minimaliste et apaisant. Glisse ton doigt pour tracer un chemin dont la somme fait exactement 10 — les bulles éclatent, la grille s'effondre, les combos s'enchaînent.</p>
+                    <a href="https://apps.apple.com/fr/app/ten-go-number-chain-puzzle/id6762470649" class="app-store-btn" aria-label="Télécharger tenGO sur l'App Store" target="_blank" rel="noopener">
+                        <img src="../assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="54">
+                    </a>
+                    <p class="store-info">Gratuit · Financé par la publicité</p>
+                </div>
+                <div class="hero-image">
+                    <div class="phone-frame tg-phone">
+                        <img src="../assets/tengo-menu.png" alt="Menu principal tenGO">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to play -->
+    <section class="tg-rules" id="regles">
+        <div class="container">
+            <h2 class="section-title">Le principe en 30 secondes</h2>
+            <p class="section-subtitle">Une règle unique, des centaines de combinaisons.</p>
+
+            <div class="tg-rules-grid">
+                <div class="tg-rule">
+                    <div class="tg-rule-step">1</div>
+                    <h3>Connecte</h3>
+                    <p>Glisse ton doigt d'une bulle à l'autre, en passant par les cases adjacentes — diagonales comprises.</p>
+                </div>
+                <div class="tg-rule">
+                    <div class="tg-rule-step">2</div>
+                    <h3>Additionne</h3>
+                    <p>Les chiffres du chemin s'additionnent. Ton objectif : atteindre exactement <strong>10</strong>. Ni plus, ni moins.</p>
+                </div>
+                <div class="tg-rule">
+                    <div class="tg-rule-step">3</div>
+                    <h3>Libère</h3>
+                    <p>Les bulles éclatent, la grille s'effondre par gravité, de nouvelles combinaisons apparaissent. Enchaîne.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="tg-features features" id="fonctionnalites">
+        <div class="container">
+            <h2 class="section-title">Pensé pour les pauses… et les marathons</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon tg-icon-1">&#127919;</div>
+                    <h3>Scoring progressif</h3>
+                    <p>2 bulles = 10 pts. 3 bulles = 30. 4 bulles = 100. Au-delà, chaque bulle supplémentaire rapporte 50. Les longues chaînes paient.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon tg-icon-2">&#10024;</div>
+                    <h3>Perfect Clear</h3>
+                    <p>Vider entièrement la grille déclenche un bonus de +1000 points. Le Graal des joueurs aguerris.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon tg-icon-3">&#127941;</div>
+                    <h3>Classement local</h3>
+                    <p>Tes 10 meilleurs scores sont conservés sur l'appareil, avec mise en avant du record. Pas de compte à créer.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon tg-icon-4">&#128218;</div>
+                    <h3>Tutoriel intégré</h3>
+                    <p>Trois étapes guidées pour découvrir les gestes, la règle du 10 et le calcul du score. Tu joues au bout d'une minute.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon tg-icon-5">&#128190;</div>
+                    <h3>Reprise instantanée</h3>
+                    <p>Ta partie est sauvegardée automatiquement. Ferme l'app, reprends plus tard exactement où tu en étais.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon tg-icon-6">&#127760;</div>
+                    <h3>10 langues</h3>
+                    <p>Interface traduite dans 10 langues, retour haptique configurable, sons de sélection, combo et victoire.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scoring table -->
+    <section class="tg-scoring">
+        <div class="container">
+            <div class="tg-scoring-card">
+                <h2>Le score, bulle par bulle</h2>
+                <p class="tg-scoring-lead">Plus ton chemin est long, plus la récompense explose.</p>
+                <div class="tg-scoring-grid">
+                    <div class="tg-score-row">
+                        <span class="tg-score-len">2 bulles</span>
+                        <span class="tg-score-bar" style="--w:5%"></span>
+                        <span class="tg-score-pts">10 pts</span>
+                    </div>
+                    <div class="tg-score-row">
+                        <span class="tg-score-len">3 bulles</span>
+                        <span class="tg-score-bar" style="--w:15%"></span>
+                        <span class="tg-score-pts">30 pts</span>
+                    </div>
+                    <div class="tg-score-row">
+                        <span class="tg-score-len">4 bulles</span>
+                        <span class="tg-score-bar" style="--w:50%"></span>
+                        <span class="tg-score-pts">100 pts</span>
+                    </div>
+                    <div class="tg-score-row">
+                        <span class="tg-score-len">5 bulles</span>
+                        <span class="tg-score-bar" style="--w:75%"></span>
+                        <span class="tg-score-pts">150 pts</span>
+                    </div>
+                    <div class="tg-score-row tg-score-row--bonus">
+                        <span class="tg-score-len">Perfect Clear</span>
+                        <span class="tg-score-bar" style="--w:100%"></span>
+                        <span class="tg-score-pts">+1000 pts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots -->
+    <section class="screenshots tg-screenshots" id="apercu">
+        <div class="container">
+            <h2 class="section-title">Aperçu</h2>
+            <div class="screenshots-scroll">
+                <div class="screenshot-item">
+                    <img src="../assets/tengo-menu.png" alt="Menu principal">
+                    <span>Menu</span>
+                </div>
+                <div class="screenshot-item">
+                    <img src="../assets/tengo-grid.png" alt="Grille de départ">
+                    <span>Grille</span>
+                </div>
+                <div class="screenshot-item">
+                    <img src="../assets/tengo-play.png" alt="Partie en cours">
+                    <span>En jeu</span>
+                </div>
+                <div class="screenshot-item">
+                    <img src="../assets/tengo-combo.png" alt="Combo à +100 points">
+                    <span>Combo</span>
+                </div>
+                <div class="screenshot-item">
+                    <img src="../assets/tengo-leaderboard.png" alt="Classement des meilleurs scores">
+                    <span>Classement</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta tg-cta">
+        <div class="container">
+            <h2>Prêt à faire sauter les bulles&nbsp;?</h2>
+            <a href="https://apps.apple.com/fr/app/ten-go-number-chain-puzzle/id6762470649" class="app-store-btn" aria-label="Télécharger tenGO sur l'App Store" target="_blank" rel="noopener">
+                <img src="../assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="54">
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo-mark logo-mark--sm">AC</span>
+                <span class="footer-copy">&copy; 2026 AppCraft31 · Nicolas Zanette</span>
+            </div>
+            <div class="footer-links">
+                <a href="../index.html">Accueil</a>
+                <a href="ecopompe.html">EcoPompe</a>
+                <a href="../privacy/tengo.html">Confidentialité tenGO</a>
+                <a href="mailto:appcraft31@gmail.com?subject=Support%20tenGO">Assistance : appcraft31@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

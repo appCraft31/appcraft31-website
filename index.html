@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- Anti-flash : applique le thème + active le mode JS avant le rendu -->
     <script>
         (function () {
@@ -30,8 +30,8 @@
             }
         })();
     </script>
-    <script src="i18n.js" defer></script>
-    <script src="reveal.js" defer></script>
+    <script src="js/i18n.js" defer></script>
+    <script src="js/reveal.js" defer></script>
 </head>
 <body>
 
@@ -42,7 +42,7 @@
     <header class="site-header">
         <div class="container header-inner">
             <a href="#" class="logo" aria-label="AppCraft31 – accueil">
-                <img src="logo.png" alt="AppCraft31" class="logo-img">
+                <img src="assets/logo.png" alt="AppCraft31" class="logo-img">
             </a>
             <nav class="nav-main" aria-label="Navigation principale">
                 <a href="#apps" data-i18n="nav.apps">Applications</a>
@@ -77,7 +77,7 @@
         <div class="container">
             <div class="hero-center">
                 <div class="hero-logo-wrap hero-anim" style="--hero-delay:0ms">
-                    <img src="logo.png" alt="AppCraft31" class="hero-logo">
+                    <img src="assets/logo.png" alt="AppCraft31" class="hero-logo">
                 </div>
                 <p class="hero-tagline hero-anim" style="--hero-delay:120ms" data-i18n="hero.tagline">Créateur d'expériences mobiles.</p>
                 <p class="hero-sub hero-anim" style="--hero-delay:240ms" data-i18n="hero.sub">Des applications et des jeux iOS pensés avec soin — utiles, rapides et respectueux de votre vie privée.</p>
@@ -143,7 +143,49 @@
                         <a href="https://apps.apple.com/fr/app/ecopompe-prix-carburant/id6761409265" class="app-store-btn" aria-label="Télécharger EcoPompe sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="ecopompe.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
+                        <a href="apps/ecopompe.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
+                    </div>
+                </article>
+
+                <!-- Keeply -->
+                <article class="app-card app-card--keeply reveal">
+                    <div class="app-card-header">
+                        <div class="app-icon keeply-icon">
+                            <svg viewBox="0 0 100 100" aria-label="Icône Keeply" role="img">
+                                <rect width="100" height="100" rx="18" fill="#D6452B"/>
+                                <text x="50" y="74" font-family="Georgia, serif" font-style="italic" font-size="70" fill="#F4F1EA" text-anchor="middle">K</text>
+                            </svg>
+                        </div>
+                        <div class="app-meta">
+                            <h3>Keeply</h3>
+                            <p class="app-tagline" data-i18n="keeply.tagline">Le tri photo sans stress</p>
+                            <span class="status-badge available" data-i18n="badge.available">Disponible</span>
+                        </div>
+                    </div>
+
+                    <p class="app-description" data-i18n="keeply.desc">Balayez, gardez, libérez. Keeply transforme des milliers de photos en missions courtes et rassurantes — doublons, similaires, captures d'écran, vidéos lourdes — 100 % local, aucune donnée collectée.</p>
+
+                    <div class="app-features">
+                        <span class="chip">&#128203; <span data-i18n="keeply.c1">Missions guidées</span></span>
+                        <span class="chip">&#128465; <span data-i18n="keeply.c2">Corbeille de sécurité</span></span>
+                        <span class="chip">&#128248; <span data-i18n="keeply.c3">Doublons & similaires</span></span>
+                        <span class="chip">&#127909; <span data-i18n="keeply.c4">Vidéos lourdes</span></span>
+                        <span class="chip">&#128274; <span data-i18n="keeply.c5">100&nbsp;% local</span></span>
+                        <span class="chip">&#128228; <span data-i18n="keeply.c6">Export libre</span></span>
+                    </div>
+
+                    <div class="app-card-screenshots">
+                        <div class="mini-screenshots">
+                            <img src="assets/keeply-screen-missions.png" alt="Keeply — écran Missions">
+                            <img src="assets/keeply-screen-trier.jpg" alt="Keeply — écran de tri">
+                        </div>
+                    </div>
+
+                    <div class="app-card-footer">
+                        <a href="https://apps.apple.com/app/id6786308238" class="app-store-btn" aria-label="Télécharger Keeply sur l'App Store" target="_blank" rel="noopener">
+                            <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
+                        </a>
+                        <a href="apps/keeply.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -193,7 +235,7 @@
                         <a href="https://play.google.com/store/apps/details?id=com.appcraft31.poddroid" class="app-store-btn" aria-label="Télécharger PodDroid sur Google Play" target="_blank" rel="noopener">
                             <img src="assets/google-play-badge.svg" alt="Disponible sur Google Play" height="48">
                         </a>
-                        <a href="poddroid-index.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
+                        <a href="apps/poddroid.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -222,7 +264,7 @@
                     </div>
 
                     <div class="app-card-footer">
-                        <a href="shizuku.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
+                        <a href="apps/shizuku.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -285,7 +327,7 @@
                         <a href="https://apps.apple.com/app/id6784743658" class="app-store-btn" aria-label="Télécharger Glyphe sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="glyphe-index.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
+                        <a href="apps/glyphe.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -319,7 +361,7 @@
                     </div>
 
                     <div class="app-card-footer">
-                        <a href="binero-index.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
+                        <a href="apps/binero.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -351,7 +393,7 @@
                         <a href="https://apps.apple.com/app/id6773356363" class="app-store-btn" aria-label="Télécharger randompix sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="randompix.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
+                        <a href="apps/randompix.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -388,7 +430,7 @@
                     </div>
 
                     <div class="app-card-footer">
-                        <a href="graviwords.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
+                        <a href="apps/graviwords.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -429,7 +471,7 @@
                         <a href="https://apps.apple.com/fr/app/ten-go-number-chain-puzzle/id6762470649" class="app-store-btn" aria-label="Télécharger tenGO sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="tengo.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
+                        <a href="apps/tengo.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -461,7 +503,7 @@
                         <a href="https://apps.apple.com/us/app/orbis-reflex-arcade/id6763065365" class="app-store-btn" aria-label="Télécharger Orbis sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="orbis.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
+                        <a href="apps/orbis.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -502,7 +544,7 @@
                         <a href="https://apps.apple.com/us/app/m%C3%AAliz-cozy-word-search/id6767558990" class="app-store-btn" aria-label="Télécharger Mêliz sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="meliz.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
+                        <a href="apps/meliz.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -543,7 +585,7 @@
                         <a href="https://apps.apple.com/us/app/censored-arrowwords/id6762137189" class="app-store-btn" aria-label="Télécharger Mots Fléchés sur l'App Store" target="_blank" rel="noopener">
                             <img src="assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="48">
                         </a>
-                        <a href="motfleche.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
+                        <a href="apps/motfleche.html" class="link-secondary"><span data-i18n="common.learn_more">En savoir plus</span> →</a>
                     </div>
                 </article>
 
@@ -578,22 +620,22 @@
     <footer>
         <div class="container footer-inner">
             <div class="footer-brand">
-                <img src="logo.png" alt="AppCraft31" class="logo-img logo-img--footer">
+                <img src="assets/logo.png" alt="AppCraft31" class="logo-img logo-img--footer">
                 <span class="footer-copy">&copy; 2026 AppCraft31 · Nicolas Zanette</span>
             </div>
             <div class="footer-links">
-                <a href="ecopompe.html">EcoPompe</a>
-                <a href="poddroid-index.html">PodDroid</a>
-                <a href="shizuku.html">Shizuku</a>
-                <a href="tengo.html">tenGO</a>
-                <a href="orbis.html">Orbis</a>
-                <a href="motfleche.html">Mots Fléchés</a>
-                <a href="meliz.html">Mêliz</a>
-                <a href="graviwords.html">GraviWords</a>
-                <a href="randompix.html">randompix</a>
-                <a href="binero-index.html">Binero</a>
-                <a href="glyphe-index.html">Glyphe</a>
-                <a href="privacy.html" data-i18n="footer.privacy">Confidentialité</a>
+                <a href="apps/ecopompe.html">EcoPompe</a>
+                <a href="apps/poddroid.html">PodDroid</a>
+                <a href="apps/shizuku.html">Shizuku</a>
+                <a href="apps/tengo.html">tenGO</a>
+                <a href="apps/orbis.html">Orbis</a>
+                <a href="apps/motfleche.html">Mots Fléchés</a>
+                <a href="apps/meliz.html">Mêliz</a>
+                <a href="apps/graviwords.html">GraviWords</a>
+                <a href="apps/randompix.html">randompix</a>
+                <a href="apps/binero.html">Binero</a>
+                <a href="apps/glyphe.html">Glyphe</a>
+                <a href="privacy/index.html" data-i18n="footer.privacy">Confidentialité</a>
                 <a href="https://linktr.ee/appcraft31" target="_blank" rel="noopener">Linktree</a>
                 <a href="https://github.com/truc001/EcoPompe-support/issues" data-i18n="footer.support">Support</a>
             </div>

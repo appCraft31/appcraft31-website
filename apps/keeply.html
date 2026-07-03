@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keeply — Le tri photo sans stress sur iPhone</title>
+<meta name="description" content="Keeply trie votre photothèque iPhone sans stress : doublons, similaires, captures d'écran et vidéos lourdes. 100 % local, aucune donnée collectée. Essai gratuit 7 jours.">
+<link rel="canonical" href="https://appcraft31.vercel.app/apps/keeply.html">
+<meta name="theme-color" content="#F4F1EA">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23D6452B'/%3E%3Ctext x='50' y='74' font-family='Georgia,serif' font-style='italic' font-size='70' fill='%23F4F1EA' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+
+<!-- Open Graph / réseaux sociaux -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Keeply">
+<meta property="og:title" content="Keeply — Le tri photo sans stress sur iPhone">
+<meta property="og:description" content="Doublons, similaires, captures d'écran et vidéos lourdes — sans peur de supprimer. 100 % local, aucune donnée collectée.">
+<meta property="og:url" content="https://appcraft31.vercel.app/apps/keeply.html">
+<meta property="og:image" content="https://appcraft31.vercel.app/assets/keeply-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Keeply — Le tri photo sans stress sur iPhone">
+<meta name="twitter:description" content="Doublons, similaires, captures d'écran et vidéos lourdes — sans peur de supprimer. 100 % local.">
+<meta name="twitter:image" content="https://appcraft31.vercel.app/assets/keeply-og.png">
+
+<!-- Données structurées : application mobile iOS -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Keeply",
+  "operatingSystem": "iOS 16.0 or later",
+  "applicationCategory": "UtilitiesApplication",
+  "description": "Keeply trie votre photothèque iPhone sans stress : doublons, similaires, captures d'écran et vidéos lourdes. Corbeille de sécurité, dossiers, export ZIP/WiFi. 100 % local, aucune donnée collectée.",
+  "url": "https://apps.apple.com/app/id6786308238",
+  "installUrl": "https://apps.apple.com/app/id6786308238",
+  "downloadUrl": "https://apps.apple.com/app/id6786308238",
+  "image": "https://appcraft31.vercel.app/assets/keeply-og.png",
+  "screenshot": [
+    "https://appcraft31.vercel.app/assets/keeply-screen-missions.png",
+    "https://appcraft31.vercel.app/assets/keeply-screen-trier.jpg"
+  ],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "author": { "@type": "Organization", "name": "AppCraft31", "url": "https://appcraft31.vercel.app/" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4F1EA;
+    --paper-dim: #ECE7DC;
+    --card: #FFFFFF;
+    --ink: #1A1A1A;
+    --brick: #D6452B;
+    --sand: #9A8F7D;
+    --line: #E3DDD0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+
+  /* Bascule de langue : on affiche [lang-fr] ou [lang-en] selon <html data-lang> */
+  [lang-en] { display: none !important; }
+  html[data-lang="en"] [lang-en] { display: revert !important; }
+  html[data-lang="en"] [lang-fr] { display: none !important; }
+
+  /* Header */
+  header {
+    border-bottom: 1.5px solid var(--line);
+    padding: 18px 0;
+    position: sticky; top: 0;
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 28px; text-decoration: none; color: var(--ink); }
+  nav { display: flex; align-items: center; }
+  nav a {
+    color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; margin-left: 26px;
+  }
+  nav a:hover { color: var(--brick); }
+  .lang-btn {
+    margin-left: 26px; font: inherit; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    background: none; border: 1.5px solid var(--ink); border-radius: 3px;
+    padding: 4px 10px; cursor: pointer; color: var(--ink);
+  }
+  .lang-btn:hover { background: var(--ink); color: var(--paper); }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; padding: 72px 0 64px; }
+  .kicker { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 22px; color: var(--sand); }
+  h1 { font-size: clamp(38px, 6vw, 60px); line-height: 1.05; font-weight: 700; letter-spacing: -0.02em; margin: 8px 0 18px; }
+  h1 em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--brick); }
+  .lead { font-size: 18px; color: #4a4a4a; max-width: 46ch; margin-bottom: 28px; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    display: inline-block; padding: 14px 26px; font-size: 15px; font-weight: 600;
+    text-decoration: none; border-radius: 4px; letter-spacing: 0.02em;
+  }
+  .btn-primary { background: var(--brick); color: var(--paper); }
+  .btn-primary:hover { background: #c03d25; }
+  .btn-ghost { border: 1.5px solid var(--ink); color: var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .hero-note { font-size: 13px; color: var(--sand); margin-top: 14px; }
+
+  /* Phone mockups */
+  .phones { position: relative; display: flex; justify-content: center; }
+  .phone {
+    background: var(--ink); border-radius: 34px; padding: 10px;
+    box-shadow: 0 24px 60px rgba(26,26,26,0.18);
+    width: 250px;
+  }
+  .phone img { display: block; width: 100%; border-radius: 26px; }
+  .phone--back { position: absolute; right: 4%; top: 44px; transform: rotate(6deg) scale(0.9); z-index: 0; opacity: 0.92; }
+  .phone--front { position: relative; z-index: 1; transform: rotate(-3deg); margin-right: 24%; }
+
+  /* Sections */
+  section { padding: 64px 0; border-top: 1.5px solid var(--line); }
+  .section-kicker { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 20px; color: var(--sand); }
+  h2 { font-size: clamp(28px, 4vw, 38px); font-weight: 700; letter-spacing: -0.01em; margin: 4px 0 34px; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card {
+    background: var(--card); border: 1.5px solid var(--line); border-radius: 4px;
+    padding: 24px 22px;
+  }
+  .card h3 { font-size: 17px; font-weight: 600; margin: 12px 0 6px; }
+  .card p { font-size: 14px; color: #55503f; }
+  .card .num { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 26px; color: var(--brick); }
+  .card a { color: var(--brick); font-weight: 600; }
+
+  /* Premium */
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 640px; }
+  .plan { background: var(--card); border: 1.5px solid var(--line); border-radius: 4px; padding: 26px 24px; }
+  .plan--best { border: 2px solid var(--ink); position: relative; }
+  .plan .tag {
+    position: absolute; top: -12px; left: 20px; background: var(--brick); color: var(--paper);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 2px;
+  }
+  .plan .price { font-size: 34px; font-weight: 700; margin: 6px 0 2px; }
+  .plan .per { font-size: 13px; color: var(--sand); }
+  .plan ul { list-style: none; margin-top: 16px; }
+  .plan li { font-size: 14px; padding: 5px 0 5px 22px; position: relative; color: #444; }
+  .plan li::before { content: "—"; position: absolute; left: 0; color: var(--brick); }
+  .trial { font-size: 14px; color: #55503f; margin-top: 20px; }
+
+  /* Support */
+  .support-box { background: var(--card); border: 1.5px solid var(--line); border-radius: 4px; padding: 30px; max-width: 640px; }
+  .support-box a { color: var(--brick); font-weight: 600; text-decoration: none; }
+  .support-box a:hover { text-decoration: underline; }
+  .faq dt { font-weight: 600; margin-top: 18px; }
+  .faq dd { color: #55503f; font-size: 15px; margin-top: 4px; }
+
+  footer { border-top: 1.5px solid var(--line); padding: 34px 0 46px; font-size: 13px; color: var(--sand); }
+  .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer a { color: var(--sand); }
+  footer a:hover { color: var(--brick); }
+
+  @media (max-width: 820px) {
+    .hero { grid-template-columns: 1fr; padding-top: 48px; }
+    .phones { margin-top: 12px; }
+    .phone { width: 210px; }
+    .grid { grid-template-columns: 1fr; }
+    .plans { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a class="logo" href="#">Keeply</a>
+    <nav>
+      <a href="#missions">Missions</a>
+      <a href="#premium">Premium</a>
+      <a href="#support">Support</a>
+      <a href="../privacy/keeply.html" lang-fr>Confidentialité</a>
+      <a href="../privacy/keeply.html" lang-en>Privacy</a>
+      <button class="lang-btn" id="langToggle" type="button" aria-label="Switch language">EN</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="kicker" lang-fr>votre photothèque, enfin respirable</div>
+      <div class="kicker" lang-en>your photo library, finally breathing</div>
+      <h1 lang-fr>Le tri photo <em>sans stress</em>.</h1>
+      <h1 lang-en>Photo cleanup, <em>without the stress</em>.</h1>
+      <p class="lead" lang-fr>
+        Balayez, gardez, libérez. Keeply transforme des milliers de photos en
+        missions courtes et rassurantes — doublons, similaires, captures d'écran,
+        vidéos lourdes — avec l'espace récupérable visible avant chaque décision.
+      </p>
+      <p class="lead" lang-en>
+        Swipe, keep, free up space. Keeply turns thousands of photos into short,
+        reassuring missions — duplicates, similar shots, screenshots, heavy videos —
+        with the reclaimable space visible before every decision.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6786308238"><span lang-fr>Télécharger sur l'App&nbsp;Store</span><span lang-en>Download on the App&nbsp;Store</span></a>
+        <a class="btn btn-ghost" href="#missions"><span lang-fr>Découvrir</span><span lang-en>Learn more</span></a>
+      </div>
+      <p class="hero-note" lang-fr>iPhone · iOS 16+ · 100 % local, aucune donnée collectée</p>
+      <p class="hero-note" lang-en>iPhone · iOS 16+ · 100% on-device, no data collected</p>
+    </div>
+    <div class="phones">
+      <div class="phone phone--back"><img src="../assets/keeply-screen-trier.jpg" alt="Keeply — écran de tri / sorting screen" loading="lazy"></div>
+      <div class="phone phone--front"><img src="../assets/keeply-screen-missions.png" alt="Keeply — écran Missions / Missions screen"></div>
+    </div>
+  </div>
+
+  <!-- POURQUOI / WHY -->
+  <section id="missions">
+    <div class="section-kicker" lang-fr>pourquoi ça marche</div>
+    <div class="section-kicker" lang-en>why it works</div>
+    <h2 lang-fr>Des missions, pas une montagne.</h2>
+    <h2 lang-en>Missions, not a mountain.</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="num">01</div>
+        <h3 lang-fr>Swipe garder / supprimer</h3>
+        <h3 lang-en>Keep / delete swipes</h3>
+        <p lang-fr>Une photo à la fois, plein écran si vous voulez, zoom pour vérifier.
+        Un geste, une décision — et « Annuler » si vous changez d'avis.</p>
+        <p lang-en>One photo at a time, fullscreen if you like, pinch to zoom before deciding.
+        One gesture, one decision — and "Undo" if you change your mind.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3 lang-fr>Missions intelligentes</h3>
+        <h3 lang-en>Smart missions</h3>
+        <p lang-fr>Doublons exacts, photos similaires (on garde la plus nette), captures
+        d'écran, rafales, vidéos lourdes. L'espace récupérable est affiché avant de commencer.</p>
+        <p lang-en>Exact duplicates, similar shots (we keep the sharpest), screenshots,
+        bursts, heavy videos. The reclaimable space is shown before you start.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3 lang-fr>Corbeille de sécurité</h3>
+        <h3 lang-en>Safety trash</h3>
+        <p lang-fr>Rien n'est supprimé tant que vous ne videz pas la corbeille.
+        Restaurez d'un geste, supprimez en confiance.</p>
+        <p lang-en>Nothing is deleted until you empty the trash.
+        Restore with one tap, delete with confidence.</p>
+      </div>
+      <div class="card">
+        <div class="num">04</div>
+        <h3 lang-fr>Reprenez où vous en étiez</h3>
+        <h3 lang-en>Pick up where you left off</h3>
+        <p lang-fr>Fermez l'app, revenez demain : votre session, votre mois, votre mission
+        vous attendent. Trier 30 000 photos devient une habitude, pas une corvée.</p>
+        <p lang-en>Close the app, come back tomorrow: your session, your month, your mission
+        are waiting. Sorting 30,000 photos becomes a habit, not a chore.</p>
+      </div>
+      <div class="card">
+        <div class="num">05</div>
+        <h3 lang-fr>Dossiers &amp; curation</h3>
+        <h3 lang-en>Folders &amp; curation</h3>
+        <p lang-fr>Vos photos gardées se rangent par mois automatiquement, ou dans vos
+        propres dossiers. Recréez-les en albums iOS quand vous êtes prêt.</p>
+        <p lang-en>Kept photos are organized by month automatically, or into your own
+        folders. Recreate them as iOS albums whenever you're ready.</p>
+      </div>
+      <div class="card">
+        <div class="num">06</div>
+        <h3 lang-fr>Export libre</h3>
+        <h3 lang-en>Export freely</h3>
+        <p lang-fr>ZIP, albums Photos, ou transfert WiFi vers n'importe quel navigateur
+        de votre réseau local. Vos photos restent les vôtres.</p>
+        <p lang-en>ZIP archives, Photos albums, or WiFi transfer to any browser on your
+        local network. Your photos stay yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONFIDENTIALITÉ / PRIVACY -->
+  <section>
+    <div class="section-kicker" lang-fr>et vos données ?</div>
+    <div class="section-kicker" lang-en>and your data?</div>
+    <h2 lang-fr>Tout se passe sur votre iPhone.</h2>
+    <h2 lang-en>Everything happens on your iPhone.</h2>
+    <div class="grid">
+      <div class="card">
+        <h3 lang-fr>Aucune donnée collectée</h3>
+        <h3 lang-en>No data collected</h3>
+        <p lang-fr>Pas de compte, pas de serveur, pas de traqueur, pas de publicité.
+        L'analyse des doublons et des photos similaires tourne sur l'appareil.</p>
+        <p lang-en>No account, no server, no trackers, no ads.
+        Duplicate and similar-photo analysis runs on-device.</p>
+      </div>
+      <div class="card">
+        <h3 lang-fr>Vos photos ne partent nulle part</h3>
+        <h3 lang-en>Your photos go nowhere</h3>
+        <p lang-fr>Le transfert WiFi sert vos photos uniquement sur votre réseau local,
+        protégé par un lien à usage unique.</p>
+        <p lang-en>WiFi transfer serves your photos only on your local network,
+        protected by a single-use link.</p>
+      </div>
+      <div class="card">
+        <h3 lang-fr>Noir sur blanc</h3>
+        <h3 lang-en>In plain words</h3>
+        <p lang-fr>Notre politique tient sur une page, sans jargon.
+        <a href="../privacy/keeply.html">La lire ici →</a></p>
+        <p lang-en>Our privacy policy fits on one page, jargon-free.
+        <a href="../privacy/keeply.html">Read it here →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM -->
+  <section id="premium">
+    <div class="section-kicker" lang-fr>quand vous voulez aller plus loin</div>
+    <div class="section-kicker" lang-en>when you want to go further</div>
+    <h2>Keeply Premium.</h2>
+    <div class="plans">
+      <div class="plan plan--best">
+        <span class="tag" lang-fr>Meilleure offre</span>
+        <span class="tag" lang-en>Best value</span>
+        <div class="price">14,99&nbsp;€</div>
+        <div class="per" lang-fr>par an — soit 1,25 €/mois</div>
+        <div class="per" lang-en>per year — that's €1.25/month</div>
+        <ul lang-fr>
+          <li>Doublons — copies exactes repérées</li>
+          <li>Similaires &amp; flou — on garde la meilleure</li>
+          <li>Vidéos lourdes — le plus d'espace d'un coup</li>
+          <li>Export complet : WiFi, ZIP, albums iOS</li>
+        </ul>
+        <ul lang-en>
+          <li>Duplicates — exact copies spotted</li>
+          <li>Similar &amp; blurry — we keep the best one</li>
+          <li>Heavy videos — the most space in one go</li>
+          <li>Full export: WiFi, ZIP, iOS albums</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <div class="price">1,99&nbsp;€</div>
+        <div class="per" lang-fr>par mois</div>
+        <div class="per" lang-en>per month</div>
+        <ul lang-fr>
+          <li>Les mêmes fonctionnalités</li>
+          <li>Sans engagement</li>
+        </ul>
+        <ul lang-en>
+          <li>Same features</li>
+          <li>No commitment</li>
+        </ul>
+      </div>
+    </div>
+    <p class="trial" lang-fr>
+      <strong>Essai gratuit de 7 jours</strong> sur chaque formule. Abonnement auto-renouvelable,
+      résiliable à tout moment dans les Réglages iOS. Le tri libre, les captures d'écran,
+      les rafales et la corbeille restent gratuits, pour toujours.
+    </p>
+    <p class="trial" lang-en>
+      <strong>7-day free trial</strong> on both plans. Auto-renewable subscription,
+      cancel anytime in iOS Settings. Free-flow sorting, screenshots, bursts and the
+      trash remain free, forever.
+    </p>
+  </section>
+
+  <!-- SUPPORT -->
+  <section id="support">
+    <div class="section-kicker" lang-fr>besoin d'aide ?</div>
+    <div class="section-kicker" lang-en>need a hand?</div>
+    <h2>Support.</h2>
+    <div class="support-box">
+      <p lang-fr>Une question, un problème, une idée ? Écrivez-nous :
+        <a href="mailto:nicolas.zanette.nz@gmail.com?subject=Keeply%20—%20Support">nicolas.zanette.nz@gmail.com</a>
+        — réponse sous 48 h ouvrées.</p>
+      <p lang-en>A question, an issue, an idea? Write to us:
+        <a href="mailto:nicolas.zanette.nz@gmail.com?subject=Keeply%20—%20Support">nicolas.zanette.nz@gmail.com</a>
+        — we reply within 48 business hours.</p>
+      <dl class="faq" lang-fr>
+        <dt>Les photos supprimées sont-elles récupérables ?</dt>
+        <dd>Oui, deux filets de sécurité : la corbeille Keeply (rien n'est supprimé tant qu'elle
+        n'est pas vidée), puis l'album « Supprimés récemment » d'iOS (30 jours).</dd>
+        <dt>Comment annuler mon abonnement ?</dt>
+        <dd>Réglages iOS → votre nom → Abonnements → Keeply Premium → Résilier.
+        L'essai gratuit peut être annulé sans frais avant sa fin.</dd>
+        <dt>Keeply accède-t-il à mes photos en ligne ?</dt>
+        <dd>Keeply lit votre photothèque locale via l'autorisation Photos d'iOS, uniquement
+        pour l'afficher et la trier. Rien n'est envoyé sur Internet.</dd>
+      </dl>
+      <dl class="faq" lang-en>
+        <dt>Can deleted photos be recovered?</dt>
+        <dd>Yes, two safety nets: the Keeply trash (nothing is deleted until you empty it),
+        then iOS's "Recently Deleted" album (30 days).</dd>
+        <dt>How do I cancel my subscription?</dt>
+        <dd>iOS Settings → your name → Subscriptions → Keeply Premium → Cancel.
+        The free trial can be cancelled at no cost before it ends.</dd>
+        <dt>Does Keeply access my photos online?</dt>
+        <dd>Keeply reads your local photo library through iOS's Photos permission, solely
+        to display and sort it. Nothing is sent over the Internet.</dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span lang-fr>© 2026 Keeply — AppCraft31. Tous droits réservés.</span>
+    <span lang-en>© 2026 Keeply — AppCraft31. All rights reserved.</span>
+    <span>
+      <a href="../privacy/keeply.html" lang-fr>Politique de confidentialité</a>
+      <a href="../privacy/keeply.html" lang-en>Privacy policy</a> ·
+      <a href="#support">Support</a> ·
+      <a href="mailto:nicolas.zanette.nz@gmail.com">Contact</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('keeply-lang'); } catch (e) {}
+    var lang = saved || ((navigator.language || 'fr').toLowerCase().indexOf('fr') === 0 ? 'fr' : 'en');
+    apply(lang);
+    document.getElementById('langToggle').addEventListener('click', function () {
+      apply(document.documentElement.getAttribute('data-lang') === 'en' ? 'fr' : 'en');
+    });
+    function apply(l) {
+      document.documentElement.setAttribute('data-lang', l);
+      document.documentElement.setAttribute('lang', l);
+      document.title = (l === 'en') ? 'Keeply — Stress-free photo cleanup for iPhone' : 'Keeply — Le tri photo sans stress sur iPhone';
+      document.getElementById('langToggle').textContent = (l === 'en') ? 'FR' : 'EN';
+      try { localStorage.setItem('keeply-lang', l); } catch (e) {}
+    }
+  })();
+</script>
+
+</body>
+</html>

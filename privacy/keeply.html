@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Politique de confidentialité — Keeply</title>
+<meta name="description" content="Politique de confidentialité de Keeply : aucune donnée collectée, tout le traitement reste local à votre iPhone. Conforme RGPD.">
+<link rel="canonical" href="https://appcraft31.vercel.app/privacy/keeply.html">
+<meta name="theme-color" content="#F4F1EA">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23D6452B'/%3E%3Ctext x='50' y='74' font-family='Georgia,serif' font-style='italic' font-size='70' fill='%23F4F1EA' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Keeply">
+<meta property="og:title" content="Politique de confidentialité — Keeply">
+<meta property="og:description" content="Aucune donnée collectée. Tout le traitement reste local à votre iPhone.">
+<meta property="og:url" content="https://appcraft31.vercel.app/privacy/keeply.html">
+<meta property="og:image" content="https://appcraft31.vercel.app/assets/keeply-og.png">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_US">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4F1EA;
+    --card: #FFFFFF;
+    --ink: #1A1A1A;
+    --brick: #D6452B;
+    --sand: #9A8F7D;
+    --line: #E3DDD0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    line-height: 1.7;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  /* Bascule de langue : on affiche [lang-fr] ou [lang-en] selon <html data-lang> */
+  [lang-en] { display: none !important; }
+  html[data-lang="en"] [lang-en] { display: revert !important; }
+  html[data-lang="en"] [lang-fr] { display: none !important; }
+
+  header { border-bottom: 1.5px solid var(--line); padding: 18px 0; }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 28px; text-decoration: none; color: var(--ink); }
+  header a.back { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+  header a.back:hover { color: var(--brick); }
+  .lang-btn {
+    margin-right: 18px; font: inherit; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    background: none; border: 1.5px solid var(--ink); border-radius: 3px;
+    padding: 4px 10px; cursor: pointer; color: var(--ink);
+  }
+  .lang-btn:hover { background: var(--ink); color: var(--paper); }
+
+  main { padding: 56px 0 72px; }
+  .kicker { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 20px; color: var(--sand); }
+  h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 700; letter-spacing: -0.01em; margin: 4px 0 8px; }
+  .updated { font-size: 13px; color: var(--sand); margin-bottom: 34px; }
+
+  .tldr {
+    background: var(--card); border: 2px solid var(--ink); border-radius: 4px;
+    padding: 22px 24px; margin-bottom: 40px; font-size: 16px;
+  }
+  .tldr strong { color: var(--brick); }
+
+  h2 { font-size: 21px; font-weight: 700; margin: 38px 0 10px; }
+  p, li { font-size: 15.5px; color: #3c3c3c; }
+  ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  a { color: var(--brick); }
+  .divider { border: none; border-top: 1.5px solid var(--line); margin: 40px 0; }
+
+  footer { border-top: 1.5px solid var(--line); padding: 30px 0 44px; font-size: 13px; color: var(--sand); }
+  .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer a { color: var(--sand); }
+  footer a:hover { color: var(--brick); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a class="logo" href="../apps/keeply.html">Keeply</a>
+    <span>
+      <button class="lang-btn" id="langToggle" type="button" aria-label="Switch language">EN</button>
+      <a class="back" href="../apps/keeply.html" lang-fr>← Retour au site</a>
+      <a class="back" href="../apps/keeply.html" lang-en>← Back to site</a>
+    </span>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="kicker" lang-fr>noir sur blanc</div>
+  <div class="kicker" lang-en>in plain words</div>
+  <h1 lang-fr>Politique de confidentialité</h1>
+  <h1 lang-en>Privacy Policy</h1>
+  <p class="updated" lang-fr>Dernière mise à jour : 3 juillet 2026 · S'applique à l'application iOS « Keeply » (com.appcraft31.keeply)</p>
+  <p class="updated" lang-en>Last updated: July 3, 2026 · Applies to the iOS app "Keeply" (com.appcraft31.keeply)</p>
+
+  <div class="tldr" lang-fr>
+    En résumé : <strong>Keeply ne collecte aucune donnée.</strong> Pas de compte, pas de serveur,
+    pas de statistiques d'usage, pas de publicité, pas de traqueur. Vos photos et vos décisions
+    de tri ne quittent jamais votre iPhone.
+  </div>
+  <div class="tldr" lang-en>
+    In short: <strong>Keeply collects no data.</strong> No account, no server,
+    no usage analytics, no ads, no trackers. Your photos and your sorting decisions
+    never leave your iPhone.
+  </div>
+
+  <div lang-fr>
+    <h2>1. Qui sommes-nous ?</h2>
+    <p>
+      Keeply est éditée par Nicolas Zanette (AppCraft31), France.
+      Pour toute question relative à cette politique :
+      <a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a>.
+    </p>
+
+    <h2>2. Données collectées : aucune</h2>
+    <p>Keeply ne collecte, ne transmet et ne vend <strong>aucune donnée personnelle</strong> :</p>
+    <ul>
+      <li>aucun compte ni inscription — l'app fonctionne sans identifiant ;</li>
+      <li>aucun serveur distant — Keeply ne communique avec aucun service tiers de l'éditeur ;</li>
+      <li>aucun outil d'analyse d'audience, de mesure publicitaire ou de suivi (tracking) ;</li>
+      <li>aucune publicité.</li>
+    </ul>
+    <p>
+      Dans le questionnaire « Confidentialité de l'app » de l'App Store, Keeply relève de la
+      catégorie <em>« Données non collectées »</em>.
+    </p>
+
+    <h2>3. Accès à votre photothèque</h2>
+    <p>
+      Keeply demande l'autorisation d'accéder à vos photos (framework Photos d'iOS) dans un seul
+      but : afficher votre photothèque pour vous permettre de la trier, la ranger et l'exporter.
+    </p>
+    <ul>
+      <li>L'analyse des doublons, des photos similaires et du flou est réalisée
+          <strong>entièrement sur votre appareil</strong> (frameworks Apple Vision et Core Image) ;</li>
+      <li>vos décisions de tri (garder / corbeille, dossiers) sont enregistrées dans une base
+          locale sur votre iPhone, et nulle part ailleurs ;</li>
+      <li>aucune photo, vignette, empreinte ou métadonnée n'est envoyée sur Internet ;</li>
+      <li>la suppression définitive d'une photo passe toujours par la boîte de confirmation
+          d'iOS, puis par l'album « Supprimés récemment » d'Apple (récupérable 30 jours).</li>
+    </ul>
+    <p>Vous pouvez retirer cet accès à tout moment : Réglages iOS → Confidentialité → Photos → Keeply.</p>
+
+    <h2>4. Transfert WiFi</h2>
+    <p>
+      La fonction « Transfert WiFi » démarre un petit serveur <strong>sur votre iPhone</strong>,
+      accessible uniquement depuis votre <strong>réseau local</strong> (votre box, votre WiFi) via
+      un lien contenant un jeton aléatoire à usage de session. Seules les photos que vous avez
+      explicitement choisies d'exporter sont servies. Rien ne transite par Internet ; le serveur
+      s'arrête dès que vous quittez l'écran d'export.
+    </p>
+
+    <h2>5. Abonnements et paiement</h2>
+    <p>
+      L'abonnement Keeply Premium est géré exclusivement par Apple (App Store / StoreKit).
+      Keeply ne voit ni ne stocke aucune donnée bancaire, aucune adresse, aucun identifiant Apple.
+      Apple nous transmet uniquement un statut anonyme d'abonnement (actif / inactif) nécessaire
+      au déblocage des fonctions Premium. La gestion et la résiliation se font dans
+      Réglages iOS → votre nom → Abonnements.
+    </p>
+
+    <h2>6. Notifications</h2>
+    <p>
+      Keeply peut proposer un rappel hebdomadaire discret (notification locale, programmée sur
+      l'appareil). Aucune notification « push » distante n'est utilisée ; aucun jeton de
+      notification n'est envoyé à un serveur.
+    </p>
+
+    <h2>7. Vos droits</h2>
+    <p>
+      Keeply ne détenant aucune donnée vous concernant, il n'existe rien à consulter, exporter ou
+      effacer de notre côté : toutes vos données restent sur votre appareil et disparaissent avec
+      la désinstallation de l'app (les décisions de tri) — vos photos, elles, restent bien sûr dans
+      votre photothèque. Pour toute question relevant du RGPD, contactez-nous à l'adresse ci-dessus.
+    </p>
+
+    <h2>8. Enfants</h2>
+    <p>
+      Keeply ne s'adresse pas spécifiquement aux enfants et ne collecte aucune donnée, y compris
+      concernant les mineurs.
+    </p>
+
+    <h2>9. Modifications</h2>
+    <p>
+      Si cette politique évolue (par exemple à l'occasion d'une nouvelle fonctionnalité), la
+      présente page sera mise à jour et la date en tête de document modifiée. Une modification
+      substantielle sera signalée dans les notes de version de l'app.
+    </p>
+  </div>
+
+  <div lang-en>
+    <h2>1. Who are we?</h2>
+    <p>
+      Keeply is published by Nicolas Zanette (AppCraft31), France.
+      For any question about this policy:
+      <a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a>.
+    </p>
+
+    <h2>2. Data collected: none</h2>
+    <p>Keeply does not collect, transmit or sell <strong>any personal data</strong>:</p>
+    <ul>
+      <li>no account or sign-up — the app works without any identifier;</li>
+      <li>no remote server — Keeply communicates with no third-party service of the publisher;</li>
+      <li>no audience analytics, ad-measurement or tracking tools;</li>
+      <li>no advertising.</li>
+    </ul>
+    <p>
+      In the App Store's "App Privacy" questionnaire, Keeply falls under the
+      <em>"Data Not Collected"</em> category.
+    </p>
+
+    <h2>3. Access to your photo library</h2>
+    <p>
+      Keeply requests permission to access your photos (iOS Photos framework) for a single
+      purpose: displaying your library so you can sort, organize and export it.
+    </p>
+    <ul>
+      <li>Duplicate, similar-photo and blur analysis runs
+          <strong>entirely on your device</strong> (Apple's Vision and Core Image frameworks);</li>
+      <li>your sorting decisions (keep / trash, folders) are stored in a local database
+          on your iPhone, and nowhere else;</li>
+      <li>no photo, thumbnail, fingerprint or metadata is ever sent over the Internet;</li>
+      <li>permanently deleting a photo always goes through iOS's confirmation dialog,
+          then Apple's "Recently Deleted" album (recoverable for 30 days).</li>
+    </ul>
+    <p>You can revoke this access at any time: iOS Settings → Privacy → Photos → Keeply.</p>
+
+    <h2>4. WiFi transfer</h2>
+    <p>
+      The "WiFi transfer" feature starts a small server <strong>on your iPhone</strong>,
+      reachable only from your <strong>local network</strong> (your router, your WiFi) through
+      a link containing a random session token. Only the photos you explicitly chose to export
+      are served. Nothing goes through the Internet; the server stops as soon as you leave
+      the export screen.
+    </p>
+
+    <h2>5. Subscriptions and payment</h2>
+    <p>
+      The Keeply Premium subscription is handled exclusively by Apple (App Store / StoreKit).
+      Keeply never sees or stores any payment data, address, or Apple ID. Apple only provides
+      us with an anonymous subscription status (active / inactive) needed to unlock Premium
+      features. Management and cancellation happen in iOS Settings → your name → Subscriptions.
+    </p>
+
+    <h2>6. Notifications</h2>
+    <p>
+      Keeply may offer a gentle weekly reminder (a local notification, scheduled on the
+      device). No remote "push" notifications are used; no notification token is sent
+      to any server.
+    </p>
+
+    <h2>7. Your rights</h2>
+    <p>
+      Since Keeply holds no data about you, there is nothing to access, export or erase on
+      our side: all your data stays on your device and disappears when you uninstall the app
+      (your sorting decisions) — your photos, of course, remain in your photo library.
+      For any GDPR-related question, contact us at the address above.
+    </p>
+
+    <h2>8. Children</h2>
+    <p>
+      Keeply is not specifically directed at children and collects no data, including
+      from minors.
+    </p>
+
+    <h2>9. Changes</h2>
+    <p>
+      If this policy evolves (for instance with a new feature), this page will be updated
+      and the date at the top revised. Any substantial change will be flagged in the app's
+      release notes.
+    </p>
+  </div>
+
+  <hr class="divider">
+  <p style="font-size:13.5px; color:var(--sand);" lang-fr>
+    Contact : <a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a> ·
+    Support : <a href="keeply.html#support">keeply — support</a>
+  </p>
+  <p style="font-size:13.5px; color:var(--sand);" lang-en>
+    Contact: <a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a> ·
+    Support: <a href="keeply.html#support">keeply — support</a>
+  </p>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span lang-fr>© 2026 Keeply — AppCraft31. Tous droits réservés.</span>
+    <span lang-en>© 2026 Keeply — AppCraft31. All rights reserved.</span>
+    <span>
+      <a href="../apps/keeply.html" lang-fr>Accueil</a>
+      <a href="../apps/keeply.html" lang-en>Home</a> ·
+      <a href="keeply.html#support">Support</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('keeply-lang'); } catch (e) {}
+    var lang = saved || ((navigator.language || 'fr').toLowerCase().indexOf('fr') === 0 ? 'fr' : 'en');
+    apply(lang);
+    document.getElementById('langToggle').addEventListener('click', function () {
+      apply(document.documentElement.getAttribute('data-lang') === 'en' ? 'fr' : 'en');
+    });
+    function apply(l) {
+      document.documentElement.setAttribute('data-lang', l);
+      document.documentElement.setAttribute('lang', l);
+      document.title = (l === 'en') ? 'Privacy Policy — Keeply' : 'Politique de confidentialité — Keeply';
+      document.getElementById('langToggle').textContent = (l === 'en') ? 'FR' : 'EN';
+      try { localStorage.setItem('keeply-lang', l); } catch (e) {}
+    }
+  })();
+</script>
+
+</body>
+</html>
