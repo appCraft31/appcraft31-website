@@ -465,6 +465,7 @@ body {
     justify-content: center;
     overflow: hidden;
     box-shadow: var(--shadow-soft);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 .app-icon img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
 
@@ -757,3 +758,96 @@ footer { padding: 36px 0; background: var(--bg); border-top: 1px solid var(--bor
     .js .hero-anim { opacity: 1; transform: none; animation: none; }
     * { scroll-behavior: auto; }
 }
+
+/* ===== Filtres interactifs du Portfolio ===== */
+.portfolio-section {
+    padding: 96px 0;
+    background: var(--bg);
+    transition: background 0.4s ease;
+}
+
+.portfolio-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.portfolio-filters-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.portfolio-filters {
+    display: inline-flex;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    padding: 6px;
+    border-radius: 100px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    z-index: 10;
+}
+
+.filter-btn {
+    border: none;
+    background: transparent;
+    padding: 10px 26px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    outline: none;
+}
+
+.filter-btn:hover {
+    color: var(--text);
+}
+
+.filter-btn.active {
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: 0 4px 12px rgba(83, 60, 140, 0.08);
+}
+
+/* Filtrage des cartes avec transition */
+.app-card {
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+}
+
+/* Effet interactif de déplacement de l'icône et des captures d'écran sur hover */
+.app-card:hover .app-icon {
+    transform: scale(1.05) rotate(2deg);
+}
+
+.app-card:hover .mini-screenshots img {
+    transform: translateY(-5px);
+}
+
+/* Effets parallaxe 3D sur le hero */
+.hero {
+    --mx: 0;
+    --my: 0;
+}
+
+.hero-blob--1 {
+    transform: translate(calc(var(--mx) * 35px), calc(var(--my) * 35px));
+    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.hero-blob--2 {
+    transform: translate(calc(var(--mx) * -25px), calc(var(--my) * -25px));
+    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.hero-blob--3 {
+    transform: translate(calc(var(--mx) * 15px), calc(var(--my) * 15px));
+    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+

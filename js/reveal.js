@@ -6,6 +6,7 @@
 
   function init() {
     setupProgressBar();
+    setupPortfolioFilters();
 
     if (reduce) {
       // Pas d'animation : on rend tout visible immédiatement
@@ -17,6 +18,7 @@
 
     setupReveal();
     setupParallax();
+    setupMouseParallax();
   }
 
   /* ---- Barre de progression du scroll ---- */
@@ -89,6 +91,82 @@
       if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
     }, { passive: true });
     update();
+  }
+
+  /* ---- Parallaxe de la souris dans le hero ---- */
+  function setupMouseParallax() {
+    var hero = document.querySelector(".hero");
+    if (!hero) return;
+    hero.addEventListener("mousemove", function (e) {
+      var rect = hero.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width - 0.5;
+      var y = (e.clientY - rect.top) / rect.height - 0.5;
+      hero.style.setProperty("--mx", x);
+      hero.style.setProperty("--my", y);
+    });
+    hero.addEventListener("mouseleave", function () {
+      hero.style.setProperty("--mx", 0);
+      hero.style.setProperty("--my", 0);
+    });
+  }
+
+  /* ---- Filtrage du Portfolio ---- */
+  function setupPortfolioFilters() {
+    var filterBtns = document.querySelectorAll(".filter-btn");
+    var filterItems = document.querySelectorAll(".app-card");
+    if (!filterBtns.length) return;
+
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var filterValue = btn.getAttribute("data-filter");
+        
+        filterBtns.forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+
+        filterItems.forEach(function (item) {
+          if (filterValue === "all" || item.classList.contains("category-" + filterValue)) {
+            item.style.display = "flex";
+            if (reduce) {
+              item.style.opacity = "1";
+              item.style.transform = "none";
+            } else {
+              window.requestAnimationFrame(function () {
+                item.style.opacity = "1";
+                item.style.transform = "scale(1)";
+              });
+            }
+          } else {
+            if (reduce) {
+              item.style.opacity = "0";
+              item.style.transform = "none";
+              item.style.display = "none";
+            } else {
+              item.style.opacity = "0";
+              item.style.transform = "scale(0.95)";
+              setTimeout(function () {
+                if (item.style.opacity === "0") {
+                  item.style.display = "none";
+                }
+              }, 400);
+            }
+          }
+        });
+      });
+    });
+
+    function checkHash() {
+      var hash = window.location.hash;
+      if (hash === "#apps" || hash === "#portfolio-apps") {
+        var btn = document.querySelector('.filter-btn[data-filter="app"]');
+        if (btn) btn.click();
+      } else if (hash === "#jeux" || hash === "#portfolio-jeux") {
+        var btn = document.querySelector('.filter-btn[data-filter="game"]');
+        if (btn) btn.click();
+      }
+    }
+    
+    window.addEventListener("hashchange", checkHash);
+    checkHash();
   }
 
   if (document.readyState === "loading") {

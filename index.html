@@ -91,23 +91,31 @@
         <div class="hero-scroll-hint"><span></span></div>
     </section>
 
-    <!-- ─── APPLICATIONS ─── -->
-    <section class="apps-section" id="apps">
-        <div class="container">
+    <!-- ─── PORTFOLIO (NOS CRÉATIONS) ─── -->
+    <section class="portfolio-section" id="portfolio">
+        <!-- Ancrages de redirection pour assurer la compatibilité descendante des liens internes -->
+        <div id="apps" style="position: absolute; transform: translateY(-100px);"></div>
+        <div id="jeux" style="position: absolute; transform: translateY(-100px);"></div>
 
-            <div class="category-header reveal">
-                <div class="category-pill category-pill--apps">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                    <span data-i18n="apps.pill">Applications</span>
+        <div class="container">
+            <div class="portfolio-header reveal">
+                <h2 class="category-title" data-i18n="portfolio.title">Nos Créations</h2>
+                <p class="category-subtitle" data-i18n="portfolio.subtitle">Des applications utiles et des jeux pour s'évader, sans tracking ni publicité.</p>
+            </div>
+
+            <!-- Filtres de catégorie -->
+            <div class="portfolio-filters-container reveal">
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" type="button" data-filter="all" data-i18n="portfolio.filter_all">Tout</button>
+                    <button class="filter-btn" type="button" data-filter="app" data-i18n="portfolio.filter_apps">Applications</button>
+                    <button class="filter-btn" type="button" data-filter="game" data-i18n="portfolio.filter_games">Jeux</button>
                 </div>
-                <h2 class="category-title" data-i18n="apps.title">Des outils du quotidien</h2>
-                <p class="category-subtitle" data-i18n="apps.subtitle">Utiles, rapides, sans pub ni tracking.</p>
             </div>
 
             <div class="apps-grid" data-stagger>
 
                 <!-- EcoPompe -->
-                <article class="app-card app-card--ecopompe reveal">
+                <article class="app-card app-card--ecopompe category-app reveal">
                     <div class="app-card-header">
                         <div class="app-icon ecopompe-icon">
                             <img src="assets/logo_ecopompe.png" alt="Icône EcoPompe">
@@ -148,7 +156,7 @@
                 </article>
 
                 <!-- Keeply -->
-                <article class="app-card app-card--keeply reveal">
+                <article class="app-card app-card--keeply category-app reveal">
                     <div class="app-card-header">
                         <div class="app-icon keeply-icon">
                             <svg viewBox="0 0 100 100" aria-label="Icône Keeply" role="img">
@@ -190,7 +198,7 @@
                 </article>
 
                 <!-- PodDroid -->
-                <article class="app-card app-card--poddroid reveal">
+                <article class="app-card app-card--poddroid category-app reveal">
                     <div class="app-card-header">
                         <div class="app-icon poddroid-icon">
                             <svg width="72" height="72" viewBox="0 0 108 108" xmlns="http://www.w3.org/2000/svg" aria-label="Icône PodDroid" role="img">
@@ -240,7 +248,7 @@
                 </article>
 
                 <!-- Shizuku -->
-                <article class="app-card app-card--shizuku reveal">
+                <article class="app-card app-card--shizuku category-app reveal">
                     <div class="app-card-header">
                         <div class="app-icon shizuku-icon">
                             <span class="shizuku-drop">&#9826;</span>
@@ -268,27 +276,8 @@
                     </div>
                 </article>
 
-            </div>
-        </div>
-    </section>
-
-    <!-- ─── JEUX ─── -->
-    <section class="apps-section apps-section--games" id="jeux">
-        <div class="container">
-
-            <div class="category-header reveal">
-                <div class="category-pill category-pill--games">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11h4M8 9v4M15 12h.01M18 10h.01"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 13.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-2.544-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
-                    <span data-i18n="games.pill">Jeux</span>
-                </div>
-                <h2 class="category-title" data-i18n="games.title">Des jeux pour s'évader</h2>
-                <p class="category-subtitle" data-i18n="games.subtitle">Minimalistes, zen, conçus pour durer.</p>
-            </div>
-
-            <div class="apps-grid" data-stagger>
-
                 <!-- Glyphe -->
-                <article class="app-card app-card--glyphe reveal">
+                <article class="app-card app-card--glyphe category-game reveal">
                     <div class="app-card-header">
                         <div class="app-icon glyphe-icon">
                             <svg viewBox="0 0 150 150" aria-label="Icône Glyphe" role="img">
@@ -332,7 +321,7 @@
                 </article>
 
                 <!-- Binero -->
-                <article class="app-card app-card--binero reveal">
+                <article class="app-card app-card--binero category-game reveal">
                     <div class="app-card-header">
                         <div class="app-icon binero-icon">
                             <span class="binero-grid">
@@ -366,7 +355,7 @@
                 </article>
 
                 <!-- randompix -->
-                <article class="app-card app-card--randompix reveal">
+                <article class="app-card app-card--randompix category-game reveal">
                     <div class="app-card-header">
                         <div class="app-icon randompix-icon">
                             <img src="assets/randompix-icon.png" alt="Icône randompix">
@@ -398,7 +387,7 @@
                 </article>
 
                 <!-- GraviWords -->
-                <article class="app-card app-card--graviwords reveal">
+                <article class="app-card app-card--graviwords category-game reveal">
                     <div class="app-card-header">
                         <div class="app-icon graviwords-icon">
                             <img src="assets/icon.png" alt="Icône GraviWords">
@@ -435,7 +424,7 @@
                 </article>
 
                 <!-- tenGO -->
-                <article class="app-card app-card--tengo reveal">
+                <article class="app-card app-card--tengo category-game reveal">
                     <div class="app-card-header">
                         <div class="app-icon tengo-icon">
                             <span class="tengo-logo"><span class="tengo-ten">TEN</span><span class="tengo-dot"></span><span class="tengo-go">GO</span></span>
@@ -476,7 +465,7 @@
                 </article>
 
                 <!-- Orbis -->
-                <article class="app-card app-card--orbis reveal">
+                <article class="app-card app-card--orbis category-game reveal">
                     <div class="app-card-header">
                         <div class="app-icon orbis-icon">
                             <img src="assets/Orbis_icon.png" alt="Icône Orbis">
@@ -508,7 +497,7 @@
                 </article>
 
                 <!-- Mêliz -->
-                <article class="app-card app-card--meliz reveal">
+                <article class="app-card app-card--meliz category-game reveal">
                     <div class="app-card-header">
                         <div class="app-icon meliz-icon">
                             <img src="assets/meliz-icon.png" alt="Icône Mêliz">
@@ -549,7 +538,7 @@
                 </article>
 
                 <!-- Mots Fléchés -->
-                <article class="app-card app-card--motfleche reveal">
+                <article class="app-card app-card--motfleche category-game reveal">
                     <div class="app-card-header">
                         <div class="app-icon mots-fleches-icon">
                             <img src="assets/mf-icon.png" alt="Icône Mots Fléchés">
