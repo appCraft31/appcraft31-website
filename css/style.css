@@ -559,14 +559,23 @@ body {
 /* ===== Pied de carte ===== */
 .app-card-footer {
     display: flex;
-    align-items: center;
-    gap: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
     margin-top: auto;
     position: relative;
     z-index: 1;
 }
+.app-store-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
 .app-store-btn { display: inline-block; transition: transform 0.2s; flex-shrink: 0; }
 .app-store-btn:hover { transform: scale(1.05); }
+.app-store-btn img { height: 38px; width: auto; display: block; }
 
 .link-secondary {
     font-size: 14px;
