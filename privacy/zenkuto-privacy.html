@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zenkuro — Politique de confidentialité</title>
+<meta name="description" content="Politique de confidentialité de l'application Zenkuro.">
+<style>
+:root{
+ --cream:#F6F1E5;--cream2:#EAE1D0;--ink:#37453E;--soft:#75817A;--sage:#A7C39B;
+ --sage-deep:#5E8154;--peach:#EBB79A;--card:#FBF9F3;--line:rgba(55,69,62,.12);
+ --shadow:rgba(45,52,44,.14);
+}
+@media (prefers-color-scheme:dark){:root{
+ --cream:#211F1A;--cream2:#18160F;--ink:#ECE7DA;--soft:#A69E90;--card:#2A281F;
+ --line:rgba(255,255,255,.09);--shadow:rgba(0,0,0,.5);}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);
+ font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+ line-height:1.6;-webkit-font-smoothing:antialiased}
+.rounded{font-family:ui-rounded,"SF Pro Rounded",-apple-system,system-ui,sans-serif}
+a{color:var(--sage-deep);text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.mono-mark{width:40px;height:40px;border-radius:12px;background:#FBF9F3;
+ box-shadow:0 4px 12px var(--shadow);display:grid;place-items:center;flex:0 0 auto}
+.mono-mark svg{width:70%}
+/* phone */
+.phone{width:230px;background:linear-gradient(160deg,#3a3a3c,#232324);border-radius:34px;
+ padding:7px;box-shadow:0 26px 50px var(--shadow);flex:0 0 auto}
+.scr{position:relative;border-radius:28px;overflow:hidden;background:#000;line-height:0}
+.scr img{width:100%;display:block}
+.isl{position:absolute;top:9px;left:50%;transform:translateX(-50%);width:32%;height:11px;
+ background:#0d0d0d;border-radius:99px;z-index:2}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;
+ font-weight:700;padding:14px 26px;border-radius:999px;font-size:16px}
+.btn.sage{background:var(--sage-deep)}
+.btn svg{width:20px;height:20px;fill:currentColor}
+
+.phead{background:radial-gradient(120% 90% at 80% -10%,var(--cream) 0,var(--cream2) 100%);
+ border-bottom:1px solid var(--line)}
+.phead .wrap{display:flex;align-items:center;gap:14px;padding:22px}
+.phead .name{font-weight:800;font-size:20px}
+.phead .back{margin-left:auto;color:var(--soft);font-weight:600;font-size:15px}
+main{max-width:760px;margin:0 auto;padding:clamp(34px,6vw,64px) 22px 80px}
+main h1{font-size:clamp(30px,5vw,44px);letter-spacing:-.01em;margin:0 0 6px;font-weight:800}
+.upd{color:var(--soft);font-size:14px;margin:0 0 34px}
+main h2{font-size:22px;margin:38px 0 10px;font-weight:700}
+main p,main li{color:var(--ink);font-size:16px}
+main p{margin:0 0 14px}
+ul{padding-left:22px;margin:0 0 14px}
+li{margin:6px 0}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--sage);
+ border-radius:12px;padding:16px 18px;margin:18px 0;color:var(--soft);font-size:15px}
+.note b{color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:28px 0 44px;color:var(--soft);font-size:14px;text-align:center}
+footer a{font-weight:600}
+</style>
+</head>
+<body>
+<header class="phead"><div class="wrap">
+  <div class="mono-mark"><svg viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="100" cy="169" rx="50" ry="8.5" fill="#000" opacity=".07"/>
+  <path d="M100 36c-38 0-56 26-56 62 0 40 26 60 56 60s56-20 56-60c0-36-18-62-56-62Z" fill="#A7C39B"/>
+  <path d="M100 36c-38 0-56 26-56 62 0 5 .6 10 1.6 14.5C53 84 71 67 100 67s47 17 54.4 45.5c1-4.5 1.6-9.5 1.6-14.5 0-36-18-62-56-62Z" fill="#B8D0AD"/>
+  <path d="M96 30c-6-10-20-11-24-3 8 0 14 4 16 12Z" fill="#5E8154"/>
+  <path d="M104 30c6-12 20-13 25-4-9 0-15 5-17 13Z" fill="#6E9161"/>
+  <ellipse cx="82" cy="158" rx="10" ry="6" fill="#93B486"/>
+  <ellipse cx="118" cy="158" rx="10" ry="6" fill="#93B486"/>
+
+  <ellipse cx="79" cy="113" rx="12" ry="9" fill="#EBB79A" opacity=".62"/>
+  <ellipse cx="121" cy="113" rx="12" ry="9" fill="#EBB79A" opacity=".62"/>
+  <ellipse cx="82" cy="99" rx="5" ry="7" fill="#37453E"/>
+  <ellipse cx="118" cy="99" rx="5" ry="7" fill="#37453E"/>
+  <circle cx="84" cy="96" r="1.7" fill="#fff"/><circle cx="120" cy="96" r="1.7" fill="#fff"/>
+  <path d="M92 113c4 5 12 5 16 0" fill="none" stroke="#37453E" stroke-width="3" stroke-linecap="round"/></svg></div>
+  <span class="name rounded">Zenkuro</span>
+  <a class="back" href="zenkuto-index.html">← Accueil</a>
+</div></header>
+
+<main>
+  <h1 class="rounded">Politique de confidentialité</h1>
+  <p class="upd">Dernière mise à jour : 3 juillet 2026</p>
+
+  <p>Zenkuro (« l'application ») est éditée par <b>AppCraft31</b>. Nous attachons une grande
+  importance à ta vie privée. Cette politique explique quelles données l'application traite,
+  pourquoi, et les choix dont tu disposes. En résumé : <b>nous ne collectons aucune donnée
+  personnelle nous concernant, et ta progression reste sur ton appareil.</b></p>
+
+  <div class="note"><b>L'essentiel.</b> Pas de compte, pas d'inscription. Ta progression et tes
+  meilleurs temps sont stockés localement sur ton appareil. Les seules données transmises à des
+  tiers le sont par la régie publicitaire (Google AdMob), et uniquement avec ton consentement.</div>
+
+  <h2>Données stockées sur ton appareil</h2>
+  <p>Pour te permettre de reprendre une partie et de conserver tes records, l'application
+  enregistre localement (via le stockage standard d'iOS) :</p>
+  <ul>
+    <li>la partie en cours (grille, saisies, notes, chronomètre) ;</li>
+    <li>tes meilleurs temps par niveau de difficulté ;</li>
+    <li>tes préférences (règles déjà vues, achat « Sans publicité »).</li>
+  </ul>
+  <p>Ces informations ne quittent jamais ton appareil et ne nous sont pas transmises. Les
+  supprimer est aussi simple que de désinstaller l'application.</p>
+
+  <h2>Publicité (Google AdMob)</h2>
+  <p>L'application propose des publicités <b>récompensées et optionnelles</b> : elles ne
+  s'affichent que si tu choisis, par exemple, de regarder une vidéo pour obtenir un indice
+  supplémentaire. Elles sont fournies par <b>Google AdMob</b>.</p>
+  <p>Pour afficher ces publicités, AdMob peut traiter des données techniques comme des
+  identifiants de l'appareil, l'adresse IP approximative et des informations sur l'appareil.
+  Ces données servent à diffuser et à mesurer les publicités.</p>
+  <ul>
+    <li><b>Consentement (RGPD).</b> Dans les régions concernées, un écran de consentement Google
+    te permet d'accepter ou de refuser la publicité personnalisée avant tout traitement.</li>
+    <li><b>Suivi (ATT).</b> Sur iOS, l'application te demande via la fenêtre « App Tracking
+    Transparency » si tu autorises le suivi. Si tu refuses, les publicités restent affichées mais
+    <b>non personnalisées</b>.</li>
+  </ul>
+  <p>Le traitement des données par Google est régi par sa propre politique :
+  <a href="https://policies.google.com/privacy">policies.google.com/privacy</a>.</p>
+
+  <h2>Achats intégrés</h2>
+  <p>L'achat « Sans publicité » est un achat unique traité entièrement par <b>Apple</b> via
+  l'App Store. Nous ne recevons ni ne stockons aucune donnée de paiement (ni carte, ni identité).
+  Apple nous confirme uniquement, de façon anonyme, si l'achat est actif afin de retirer les
+  publicités.</p>
+
+  <h2>Enfants</h2>
+  <p>Zenkuro ne s'adresse pas spécifiquement aux enfants et ne collecte pas sciemment de données
+  les concernant. En présence de publicité, seules des publicités appropriées à un large public
+  sont demandées.</p>
+
+  <h2>Tes choix</h2>
+  <ul>
+    <li>Modifier l'autorisation de suivi à tout moment dans <i>Réglages ▸ Confidentialité et
+    sécurité ▸ Suivi</i> de ton iPhone.</li>
+    <li>Revoir ton consentement publicitaire depuis l'application.</li>
+    <li>Acheter « Sans publicité » pour retirer toute publicité.</li>
+  </ul>
+
+  <h2>Conservation</h2>
+  <p>Les données locales sont conservées tant que l'application est installée. Les données traitées
+  par Google le sont selon les durées indiquées dans sa politique.</p>
+
+  <h2>Modifications</h2>
+  <p>Cette politique peut évoluer. La date de dernière mise à jour figure en haut de page ; les
+  changements importants seront signalés au sein de l'application.</p>
+
+  <h2>Contact</h2>
+  <p>Pour toute question sur cette politique ou tes données :
+  <a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a>.</p>
+</main>
+
+<footer>© 2026 AppCraft31 — Zenkuro · <a href="zenkuto-index.html">Accueil</a></footer>
+</body>
+</html>
