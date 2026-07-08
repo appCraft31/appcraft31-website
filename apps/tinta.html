@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tinta — Puzzle logique couleur</title>
+<meta name="description" content="Tinta est un puzzle de déduction pure : 300 grilles logiques, des indices, zéro hasard. Un café, une grille, et que la logique parle.">
+<meta name="theme-color" content="#f6f1e7">
+
+<!-- Open Graph / partage social -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tinta — Puzzle logique couleur">
+<meta property="og:description" content="300 grilles de pure logique : des indices, de la déduction, zéro hasard. Saurez-vous les résoudre du premier coup ?">
+<meta property="og:url" content="https://appcraft31.app/">
+<!-- <meta property="og:image" content="https://appcraft31.app/assets/og-tinta.png"> -->
+
+<style>
+  :root{
+    --bg:#f6f1e7;
+    --surface:#fffdf8;
+    --ink:#2c2a26;
+    --ink-soft:#6b6660;
+    --line:#e7dfd0;
+    --brand:#e07a5f;      /* corail */
+    --brand-2:#3d9a8b;    /* teal */
+    --c1:#e07a5f;         /* corail */
+    --c2:#3d9a8b;         /* teal */
+    --c3:#e9b949;         /* ambre */
+    --c4:#7d6bb0;         /* violet */
+    --c5:#5b8fc9;         /* bleu */
+    --shadow:0 20px 45px -25px rgba(44,42,38,.45);
+    --radius:20px;
+    --maxw:1080px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1c1a17;
+      --surface:#26231e;
+      --ink:#f2ece1;
+      --ink-soft:#a9a296;
+      --line:#38332b;
+      --shadow:0 20px 45px -25px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1c1a17;--surface:#26231e;--ink:#f2ece1;--ink-soft:#a9a296;--line:#38332b;
+    --shadow:0 20px 45px -25px rgba(0,0,0,.7);
+  }
+  :root[data-theme="light"]{
+    --bg:#f6f1e7;--surface:#fffdf8;--ink:#2c2a26;--ink-soft:#6b6660;--line:#e7dfd0;
+    --shadow:0 20px 45px -25px rgba(44,42,38,.45);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  section{padding:72px 0}
+
+  /* ---- Header ---- */
+  header.site{
+    position:sticky;top:0;z-index:20;
+    backdrop-filter:saturate(1.4) blur(10px);
+    background:color-mix(in srgb, var(--bg) 82%, transparent);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .logo{display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.15rem;letter-spacing:.2px;text-decoration:none}
+  .logo .mark{width:30px;height:30px;border-radius:8px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;overflow:hidden;box-shadow:var(--shadow)}
+  .logo .mark i{display:block}
+  .logo .mark i:nth-child(1){background:var(--c1)}
+  .logo .mark i:nth-child(2){background:var(--c3)}
+  .logo .mark i:nth-child(3){background:var(--c2)}
+  .logo .mark i:nth-child(4){background:var(--c4)}
+  .nav a.cta{text-decoration:none;background:var(--ink);color:var(--bg);padding:9px 18px;border-radius:999px;font-weight:600;font-size:.92rem}
+
+  /* ---- Hero ---- */
+  .hero{padding-top:56px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .eyebrow{display:inline-block;font-size:.82rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--brand);margin-bottom:18px}
+  h1{font-size:clamp(2.3rem,5vw,3.5rem);line-height:1.08;margin:0 0 18px;letter-spacing:-.02em}
+  .lede{font-size:1.2rem;color:var(--ink-soft);margin:0 0 30px;max-width:34ch}
+  .badges{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .appstore{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);text-decoration:none;padding:12px 20px;border-radius:14px;font-weight:600}
+  .appstore small{display:block;font-size:.68rem;font-weight:500;opacity:.75;line-height:1}
+  .appstore span{font-size:1.05rem;line-height:1.15}
+  .note{font-size:.85rem;color:var(--ink-soft)}
+
+  /* ---- Puzzle mockup (CSS pur) ---- */
+  .device{
+    background:var(--surface);border:1px solid var(--line);border-radius:34px;
+    box-shadow:var(--shadow);padding:26px;max-width:340px;margin:0 auto;
+  }
+  .device .title{font-weight:700;text-align:center;margin-bottom:4px}
+  .device .sub{text-align:center;color:var(--ink-soft);font-size:.85rem;margin-bottom:20px}
+  .board{display:grid;gap:8px}
+  .board .row{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .cell{aspect-ratio:1;border-radius:12px;background:color-mix(in srgb,var(--ink) 8%,transparent);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:1.1rem}
+  .cell.e{background:transparent;border:2px dashed var(--line);color:var(--ink-soft)}
+  .c1{background:var(--c1)} .c2{background:var(--c2)} .c3{background:var(--c3)} .c4{background:var(--c4)} .c5{background:var(--c5)}
+  .clue{font-size:.75rem;color:var(--ink-soft);text-align:center;margin-top:14px}
+
+  /* ---- Feature cards ---- */
+  .section-head{max-width:640px;margin:0 auto 46px;text-align:center}
+  .section-head h2{font-size:clamp(1.7rem,3.5vw,2.3rem);margin:0 0 12px;letter-spacing:-.01em}
+  .section-head p{color:var(--ink-soft);font-size:1.08rem;margin:0}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+  .card .ic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px;background:color-mix(in srgb,var(--brand) 15%,transparent)}
+  .card h3{margin:0 0 8px;font-size:1.15rem}
+  .card p{margin:0;color:var(--ink-soft);font-size:.98rem}
+
+  /* ---- Steps ---- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step}
+  .step{position:relative;padding-top:8px}
+  .step .n{width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin-bottom:14px}
+  .step h4{margin:0 0 6px;font-size:1.05rem}
+  .step p{margin:0;color:var(--ink-soft);font-size:.95rem}
+
+  /* ---- Worlds ---- */
+  .worlds{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .world{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;text-align:center;box-shadow:var(--shadow)}
+  .mini{display:grid;gap:5px;width:110px;margin:0 auto 16px}
+  .mini .row{display:grid;gap:5px}
+  .mini .cell{border-radius:7px}
+  .world h4{margin:0 0 4px}
+  .world p{margin:0;color:var(--ink-soft);font-size:.92rem}
+
+  /* ---- CTA band ---- */
+  .band{background:var(--ink);color:var(--bg);border-radius:28px;padding:56px 40px;text-align:center;box-shadow:var(--shadow)}
+  .band h2{font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 14px}
+  .band p{color:color-mix(in srgb,var(--bg) 78%,transparent);font-size:1.1rem;margin:0 0 28px}
+  .band .appstore{background:var(--bg);color:var(--ink)}
+
+  /* ---- Footer ---- */
+  footer.site{border-top:1px solid var(--line);padding:40px 0;color:var(--ink-soft);font-size:.92rem}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot a{text-decoration:none}
+  .foot a:hover{color:var(--ink)}
+  .foot nav{display:flex;gap:22px;flex-wrap:wrap}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .lede{max-width:none}
+    .cards,.steps,.worlds{grid-template-columns:1fr 1fr}
+    .device{order:-1}
+  }
+  @media (max-width:560px){
+    section{padding:56px 0}
+    .cards,.steps,.worlds{grid-template-columns:1fr}
+    .band{padding:40px 24px}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="/">
+      <span class="mark"><i></i><i></i><i></i><i></i></span>
+      Tinta
+    </a>
+    <a class="cta" href="#telecharger">Télécharger</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Puzzle logique couleur</span>
+        <h1>Déduction pure,<br>sans jamais deviner.</h1>
+        <p class="lede">Chaque grille cache un coloriage secret. Les indices suffisent toujours à le retrouver — un café, une grille, et que la logique parle.</p>
+        <div class="badges">
+          <a class="appstore" id="telecharger" href="#" aria-label="Télécharger sur l'App Store">
+            <span aria-hidden="true" style="font-size:1.5rem"></span>
+            <span><small>Télécharger sur</small>l'App&nbsp;Store</span>
+          </a>
+          <span class="note">iPhone · iOS 17+ · Gratuit</span>
+        </div>
+      </div>
+
+      <div class="device" aria-hidden="true">
+        <div class="title">Niveau 47</div>
+        <div class="sub">Grille 5×5 · quatre couleurs</div>
+        <div class="board">
+          <div class="row">
+            <div class="cell c1"></div><div class="cell c3"></div><div class="cell e">≠</div><div class="cell c2"></div><div class="cell e"></div>
+          </div>
+          <div class="row">
+            <div class="cell e"></div><div class="cell c2"></div><div class="cell c4"></div><div class="cell e">=</div><div class="cell c1"></div>
+          </div>
+          <div class="row">
+            <div class="cell c4"></div><div class="cell e"></div><div class="cell c1"></div><div class="cell c3"></div><div class="cell e"></div>
+          </div>
+          <div class="row">
+            <div class="cell e">=</div><div class="cell c1"></div><div class="cell e"></div><div class="cell c4"></div><div class="cell c2"></div>
+          </div>
+          <div class="row">
+            <div class="cell c3"></div><div class="cell e"></div><div class="cell c2"></div><div class="cell e">≠</div><div class="cell c4"></div>
+          </div>
+        </div>
+        <p class="clue">Les pastilles comptent les couleurs · = et ≠ relient les voisines</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Un puzzle qui récompense le raisonnement</h2>
+        <p>300 grilles générées et vérifiées par un moteur logique : chaque solution est unique, et toujours déductible sans hasard.</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="ic">🧠</div>
+          <h3>Zéro hasard</h3>
+          <p>Chaque grille a une solution unique, atteignable par le raisonnement seul. On ne devine jamais — on déduit.</p>
+        </div>
+        <div class="card">
+          <div class="ic">📈</div>
+          <h3>300 niveaux</h3>
+          <p>Difficulté croissante sur trois mondes. Gagnez jusqu'à 3 étoiles par niveau et reprenez chaque partie où vous l'aviez laissée.</p>
+        </div>
+        <div class="card">
+          <div class="ic">💡</div>
+          <h3>Indices malins</h3>
+          <p>L'indice logique met en évidence la prochaine case déductible — à vous de comprendre pourquoi.</p>
+        </div>
+        <div class="card">
+          <div class="ic">♟️</div>
+          <h3>Mode expert</h3>
+          <p>Désactivez le compteur de cases correctes pour un défi de pure déduction, sans filet.</p>
+        </div>
+        <div class="card">
+          <div class="ic">🎨</div>
+          <h3>Accessible</h3>
+          <p>Un symbole distinct par couleur : jamais besoin de dépendre de la couleur seule. Interface calme, mode sombre inclus.</p>
+        </div>
+        <div class="card">
+          <div class="ic">☕️</div>
+          <h3>Sans publicité</h3>
+          <p>Un achat unique pour retirer les pubs. Le reste du jeu est entièrement jouable gratuitement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO PLAY -->
+  <section style="background:color-mix(in srgb,var(--brand) 6%,transparent)">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Comment on joue</h2>
+        <p>Quelques règles simples, une infinité de raisonnements.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <h4>Colorez les cases</h4>
+          <p>Touchez une case pour changer sa couleur et reconstituer le coloriage caché.</p>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h4>Lisez les pastilles</h4>
+          <p>Elles indiquent combien de cases de chaque couleur se trouvent sur une ligne ou une colonne.</p>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h4>Suivez = et ≠</h4>
+          <p>Ces marqueurs relient deux voisines : même couleur, ou couleurs différentes.</p>
+        </div>
+        <div class="step">
+          <div class="n">4</div>
+          <h4>Vérifiez</h4>
+          <p>Appuyez sur Check. Moins d'essais, plus d'étoiles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORLDS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Trois mondes, une montée en puissance</h2>
+        <p>De la grille d'échauffement au vrai casse-tête.</p>
+      </div>
+      <div class="worlds">
+        <div class="world">
+          <div class="mini" aria-hidden="true">
+            <div class="row" style="grid-template-columns:repeat(4,1fr)"><div class="cell c1"></div><div class="cell c3"></div><div class="cell c2"></div><div class="cell c1"></div></div>
+            <div class="row" style="grid-template-columns:repeat(4,1fr)"><div class="cell c2"></div><div class="cell c1"></div><div class="cell c3"></div><div class="cell c2"></div></div>
+            <div class="row" style="grid-template-columns:repeat(4,1fr)"><div class="cell c3"></div><div class="cell c2"></div><div class="cell c1"></div><div class="cell c3"></div></div>
+            <div class="row" style="grid-template-columns:repeat(4,1fr)"><div class="cell c1"></div><div class="cell c3"></div><div class="cell c2"></div><div class="cell c1"></div></div>
+          </div>
+          <h4>4×4 · 3 couleurs</h4>
+          <p>Les fondations. On apprend à lire les indices.</p>
+        </div>
+        <div class="world">
+          <div class="mini" aria-hidden="true">
+            <div class="row" style="grid-template-columns:repeat(4,1fr)"><div class="cell c4"></div><div class="cell c1"></div><div class="cell c3"></div><div class="cell c2"></div></div>
+            <div class="row" style="grid-template-columns:repeat(4,1fr)"><div class="cell c2"></div><div class="cell c4"></div><div class="cell c1"></div><div class="cell c3"></div></div>
+            <div class="row" style="grid-template-columns:repeat(4,1fr)"><div class="cell c3"></div><div class="cell c2"></div><div class="cell c4"></div><div class="cell c1"></div></div>
+            <div class="row" style="grid-template-columns:repeat(4,1fr)"><div class="cell c1"></div><div class="cell c3"></div><div class="cell c2"></div><div class="cell c4"></div></div>
+          </div>
+          <h4>4×4 · 4 couleurs</h4>
+          <p>Une couleur de plus, bien plus de combinaisons.</p>
+        </div>
+        <div class="world">
+          <div class="mini" aria-hidden="true">
+            <div class="row" style="grid-template-columns:repeat(5,1fr)"><div class="cell c5"></div><div class="cell c1"></div><div class="cell c3"></div><div class="cell c2"></div><div class="cell c4"></div></div>
+            <div class="row" style="grid-template-columns:repeat(5,1fr)"><div class="cell c2"></div><div class="cell c4"></div><div class="cell c5"></div><div class="cell c1"></div><div class="cell c3"></div></div>
+            <div class="row" style="grid-template-columns:repeat(5,1fr)"><div class="cell c3"></div><div class="cell c5"></div><div class="cell c1"></div><div class="cell c4"></div><div class="cell c2"></div></div>
+            <div class="row" style="grid-template-columns:repeat(5,1fr)"><div class="cell c1"></div><div class="cell c2"></div><div class="cell c4"></div><div class="cell c3"></div><div class="cell c5"></div></div>
+            <div class="row" style="grid-template-columns:repeat(5,1fr)"><div class="cell c4"></div><div class="cell c3"></div><div class="cell c2"></div><div class="cell c5"></div><div class="cell c1"></div></div>
+          </div>
+          <h4>5×5</h4>
+          <p>Le grand format. La logique pure, à son sommet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="wrap">
+      <div class="band">
+        <h2>Prêt à faire parler la logique ?</h2>
+        <p>300 grilles vous attendent. Saurez-vous les résoudre du premier coup ?</p>
+        <a class="appstore" href="#" aria-label="Télécharger sur l'App Store">
+          <span aria-hidden="true" style="font-size:1.5rem"></span>
+          <span><small>Télécharger sur</small>l'App&nbsp;Store</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <div>© 2026 Nicolas Zanette · appcraft31</div>
+    <nav>
+      <a href="/privacy/">Confidentialité</a>
+      <a href="mailto:nicolas.zanette.nz@gmail.com">Support</a>
+    </nav>
+  </div>
+</footer>
+
+<!--
+  À personnaliser avant mise en ligne :
+  • Remplacer les href="#" des boutons App Store par le lien réel (https://apps.apple.com/app/idXXXXXXXXX)
+  • Ajouter une image og:image pour le partage social (balise commentée dans <head>)
+  • Remplacer la maquette CSS du hero par un vrai screenshot si souhaité (fastlane/screenshots)
+-->
+
+</body>
+</html>
