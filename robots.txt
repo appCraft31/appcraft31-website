@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://appcraft31.app/sitemap.xml

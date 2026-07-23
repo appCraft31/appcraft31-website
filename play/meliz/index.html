@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Mots mêlés en ligne gratuits — Jouer à Mêliz sans inscription</title>
+  <meta name="description" content="Jouez aux mots mêlés en ligne gratuitement : défi du jour, 9 thèmes et 3 niveaux de difficulté. Jeu de mots cachés directement dans le navigateur, sans téléchargement ni inscription." />
+  <meta name="keywords" content="mots mêlés, mots mêlés en ligne, mots mêlés gratuit, jeu de mots mêlés, mots cachés, jeux en ligne, jeu de lettres, grille de mots mêlés, word search, défi du jour" />
+  <link rel="canonical" href="https://appcraft31.app/play/meliz/" />
+  <link rel="alternate" hreflang="fr" href="https://appcraft31.app/play/meliz/" />
+  <link rel="alternate" hreflang="en" href="https://appcraft31.app/play/meliz/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://appcraft31.app/play/meliz/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="icon" type="image/png" href="../../assets/meliz-icon.png" />
+  <meta property="og:title" content="Mots mêlés en ligne gratuits — Jouer à Mêliz" />
+  <meta property="og:description" content="Défi du jour, 9 thèmes, 3 niveaux : un jeu de mots mêlés gratuit qui se joue directement dans le navigateur." />
+  <meta property="og:image" content="https://appcraft31.app/assets/meliz-icon.png" />
+  <meta property="og:url" content="https://appcraft31.app/play/meliz/" />
+  <meta property="og:site_name" content="AppCraft31" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mots mêlés en ligne gratuits — Jouer à Mêliz" />
+  <meta name="twitter:description" content="Défi du jour, 9 thèmes, 3 niveaux : jeu de mots mêlés gratuit, sans téléchargement." />
+  <meta name="twitter:image" content="https://appcraft31.app/assets/meliz-icon.png" />
+  <meta name="theme-color" content="#FFF8F0" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#221C2B" media="(prefers-color-scheme: dark)" />
+  <style>
+    :root {
+      --bg:        #FFF8F0;
+      --card:      #FFFFFF;
+      --primary:   #FFB5C5;
+      --mint:      #B8E6D3;
+      --lavender:  #C8B6E2;
+      --peach:     #FFD4B8;
+      --lemon:     #FFF1A8;
+      --text:      #5A4A6A;
+      --text-soft: #8A7C97;
+      --line:      rgba(90, 74, 106, 0.10);
+      --shadow:    0 18px 40px -18px rgba(90, 74, 106, 0.25);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:        #221C2B;
+        --card:      #2E2739;
+        --mint:      #7FC9AE;
+        --lavender:  #A490C9;
+        --peach:     #E0A98A;
+        --lemon:     #D8C97A;
+        --text:      #F2ECF7;
+        --text-soft: #B4A8C2;
+        --line:      rgba(255, 255, 255, 0.10);
+        --shadow:    0 18px 40px -18px rgba(0, 0, 0, 0.55);
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, "SF Pro Rounded", "Nunito", BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100dvh;
+      padding: 16px 16px 40px;
+    }
+
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      width: 460px; height: 460px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.45;
+      z-index: -1;
+      pointer-events: none;
+    }
+    body::before { background: var(--primary);  top: -200px; left: -180px; }
+    body::after  { background: var(--lavender); bottom: -220px; right: -180px; }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; cursor: pointer; border: none; background: none; }
+    button:disabled { opacity: 0.4; cursor: default; }
+
+    .wrap { max-width: 640px; margin: 0 auto; }
+
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; margin-bottom: 20px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; }
+    .brand img { width: 34px; height: 34px; border-radius: 9px; }
+    .topbar a { color: var(--text-soft); font-weight: 600; font-size: 0.9rem; }
+    .topbar a:hover { color: var(--text); }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      margin-bottom: 16px;
+    }
+    .card h2 { font-size: 1.15rem; font-weight: 800; margin-bottom: 4px; }
+    .muted { color: var(--text-soft); font-size: 0.92rem; }
+
+    .intro { margin-bottom: 18px; }
+    .intro h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); font-weight: 900; letter-spacing: -0.5px; }
+    .intro p { margin-top: 6px; }
+
+    .seo { color: var(--text-soft); font-size: 0.92rem; }
+    .seo h2 { color: var(--text); margin-top: 18px; }
+    .seo h2:first-child { margin-top: 0; }
+    .seo p { margin-top: 6px; }
+    .seo dt { font-weight: 800; color: var(--text); margin-top: 12px; }
+    .seo dd { margin-top: 4px; }
+    .seo a { text-decoration: underline; }
+
+    .pill {
+      display: inline-block; padding: 4px 12px; border-radius: 999px;
+      background: var(--lemon); color: #5A4A6A;
+      font-size: 0.78rem; font-weight: 800; margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 22px; border-radius: 999px; font-weight: 800;
+      background: var(--primary); color: #5A4A6A;
+      transition: transform 0.15s ease;
+      width: 100%; margin-top: 14px;
+    }
+    .btn:hover:not(:disabled) { transform: translateY(-2px); }
+    .btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--text); }
+
+    select {
+      width: 100%; padding: 12px 14px; margin-top: 6px;
+      border-radius: var(--radius-md); border: 1px solid var(--line);
+      background: var(--bg); color: var(--text); font-weight: 700;
+    }
+
+    .field { display: block; font-size: 0.82rem; font-weight: 800; color: var(--text-soft); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 14px; }
+
+    #difficulty-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 6px; }
+    .diff {
+      display: flex; flex-direction: column; gap: 2px; align-items: center;
+      padding: 12px 6px; border-radius: var(--radius-md);
+      border: 2px solid var(--line); background: var(--bg);
+      text-align: center;
+    }
+    .diff strong { font-size: 0.95rem; }
+    .diff span { font-size: 0.72rem; color: var(--text-soft); }
+    .diff.active { border-color: var(--primary); background: color-mix(in srgb, var(--primary) 22%, var(--card)); }
+
+    .score-row {
+      display: grid; grid-template-columns: 1fr auto auto; gap: 12px;
+      padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 0.9rem;
+    }
+    .score-row:last-child { border-bottom: none; }
+    .score-row span:nth-child(2) { color: var(--text-soft); font-variant-numeric: tabular-nums; }
+
+    /* ------------------------------------------------------------- partie */
+
+    .hud {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .hud .stat {
+      background: var(--card); border-radius: 999px; padding: 8px 16px;
+      font-weight: 800; font-variant-numeric: tabular-nums; box-shadow: var(--shadow);
+    }
+    .hud .spacer { flex: 1; }
+    .hud button {
+      background: var(--card); border-radius: 999px; padding: 8px 16px;
+      font-weight: 700; box-shadow: var(--shadow);
+    }
+    #hint-count { font-size: 0.75rem; color: var(--text-soft); font-weight: 700; }
+
+    .grid-wrap { position: relative; aspect-ratio: 1; touch-action: none; }
+
+    /* Pas de padding : le pas d'une cellule vaut exactement largeur/size, ce
+       dont dépend la conversion pointeur → cellule (cf. ui.js). La marge
+       visuelle vient des bordures transparentes des cellules. */
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(var(--grid-size, 12), 1fr);
+      width: 100%; height: 100%;
+      background: color-mix(in srgb, var(--card) 55%, transparent);
+      border-radius: var(--radius-md);
+      touch-action: none;
+      user-select: none; -webkit-user-select: none;
+    }
+
+    /* Pas de `gap` : la conversion pointeur → cellule suppose un pas régulier
+       de largeur/size. L'espacement passe par une bordure transparente. */
+    .cell {
+      display: flex; align-items: center; justify-content: center;
+      border: 3px solid transparent;
+      background-clip: padding-box;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: clamp(0.6rem, calc(46vw / var(--grid-size, 12)), 1.4rem);
+      color: var(--text);
+      transition: background-color 0.12s ease, color 0.12s ease;
+    }
+    #grid.dense .cell { border-width: 2px; border-radius: 7px; }
+    #grid .loading { grid-column: 1 / -1; align-self: center; text-align: center; }
+
+    .cell.selected { background-color: color-mix(in srgb, var(--lavender) 70%, transparent); }
+    .cell.hinted   { background-color: color-mix(in srgb, var(--lemon) 75%, transparent); }
+    .cell.found    { color: #4A3C58; }
+    .cell.accent-primary  { background-color: var(--primary); }
+    .cell.accent-mint     { background-color: var(--mint); }
+    .cell.accent-lavender { background-color: var(--lavender); }
+    .cell.accent-peach    { background-color: var(--peach); }
+    .cell.accent-lemon    { background-color: var(--lemon); }
+
+    #selection-line {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    #selection-line line { stroke: color-mix(in srgb, var(--lavender) 60%, transparent); }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+    #grid.shake { animation: shake 0.3s ease; }
+
+    #words {
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+      margin-top: 16px;
+    }
+    .word {
+      padding: 6px 14px; border-radius: 999px;
+      background: var(--card); box-shadow: var(--shadow);
+      font-weight: 700; font-size: 0.85rem; letter-spacing: 0.5px;
+    }
+    .word.found { text-decoration: line-through; color: #4A3C58; opacity: 0.85; }
+    .word.accent-primary  { background: var(--primary); }
+    .word.accent-mint     { background: var(--mint); }
+    .word.accent-lavender { background: var(--lavender); }
+    .word.accent-peach    { background: var(--peach); }
+    .word.accent-lemon    { background: var(--lemon); }
+
+    #board.paused #grid { filter: blur(6px); }
+    #pause-overlay {
+      position: fixed; inset: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: center;
+      background: color-mix(in srgb, var(--bg) 70%, transparent);
+      backdrop-filter: blur(4px);
+      font-weight: 800; font-size: 1.2rem;
+    }
+
+    /* ----------------------------------------------------------- victoire */
+
+    #victory { text-align: center; }
+    #victory h2 { font-size: 1.8rem; }
+    .result-grid {
+      display: flex; justify-content: center; gap: 28px;
+      margin: 18px 0 4px;
+    }
+    .result-grid div { display: flex; flex-direction: column; }
+    .result-grid .label { font-size: 0.78rem; color: var(--text-soft); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+    .result-grid .value { font-size: 1.7rem; font-weight: 900; font-variant-numeric: tabular-nums; }
+
+    .stores { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 14px; }
+    .stores a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 20px; border-radius: 999px; font-weight: 800; font-size: 0.9rem;
+      background: var(--text); color: var(--bg);
+    }
+    .stores a.play { background: #0d9488; color: #fff; }
+
+    [hidden] { display: none !important; }
+
+    @media (max-width: 480px) {
+      body { padding: 12px 12px 32px; }
+      .card { padding: 18px; border-radius: var(--radius-md); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="brand">
+        <img src="../../assets/meliz-icon.png" alt="Mêliz" />
+        <span>Mêliz</span>
+      </div>
+      <a href="../../apps/meliz.html" data-i18n="back.site">Retour au site</a>
+    </div>
+
+    <!-- ------------------------------------------------------------ menu -->
+    <main id="menu">
+      <header class="intro">
+        <h1 data-i18n="seo.h1">Mots mêlés en ligne</h1>
+        <p class="muted" data-i18n="seo.intro">Mêliz est un jeu de mots mêlés gratuit — aussi
+          appelé mots cachés — qui se joue en ligne, directement dans votre navigateur : pas de
+          téléchargement, pas d’inscription. Relevez le défi du jour ou composez votre partie
+          parmi neuf thèmes et trois niveaux de difficulté.</p>
+      </header>
+
+      <section class="card">
+        <span class="pill" data-i18n="menu.daily">Défi du jour</span>
+        <h2 id="daily-theme">—</h2>
+        <p class="muted" id="daily-status"></p>
+        <p class="muted" id="daily-streak" hidden></p>
+        <button class="btn" id="daily-play" type="button">Jouer</button>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="menu.free">Partie libre</h2>
+        <label class="field" for="theme-select" data-i18n="menu.theme">Thème</label>
+        <select id="theme-select"></select>
+        <span class="field" data-i18n="menu.difficulty">Difficulté</span>
+        <div id="difficulty-list"></div>
+        <button class="btn" id="free-play" type="button" data-i18n="menu.play">Jouer</button>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="menu.scores">Meilleurs scores</h2>
+        <div id="scores"></div>
+      </section>
+
+      <!-- Contenu éditorial : décrit le jeu pour les visiteurs arrivant par
+           recherche, et donne aux moteurs un texte à indexer là où le jeu
+           lui-même est entièrement construit en JavaScript. -->
+      <section class="card seo">
+        <h2 data-i18n="seo.how_title">Comment jouer aux mots mêlés</h2>
+        <p data-i18n="seo.how_body">Chaque grille cache une liste de mots à retrouver. Faites
+          glisser le doigt ou la souris de la première à la dernière lettre pour valider un mot.
+          Les mots se lisent horizontalement, verticalement et en diagonale — et dans les deux
+          sens dès le niveau moyen. Le chronomètre tourne : plus vous êtes rapide, plus le score
+          est élevé.</p>
+
+        <h2 data-i18n="seo.themes_title">Neuf thèmes de grilles</h2>
+        <p data-i18n="seo.themes_body">Animaux, fruits, pays, sports, couleurs, métiers, espace,
+          musique et transport : chaque thème puise dans sa propre liste de mots, en français
+          comme en anglais. Le défi du jour propose à tout le monde la même grille, renouvelée
+          chaque jour à minuit.</p>
+
+        <h2 data-i18n="seo.faq_title">Questions fréquentes</h2>
+        <dl class="faq">
+          <dt data-i18n="seo.q1">Le jeu est-il gratuit ?</dt>
+          <dd data-i18n="seo.a1">Oui, entièrement gratuit et sans inscription. Aucune donnée n’est
+            envoyée à un serveur : vos scores restent dans votre navigateur.</dd>
+
+          <dt data-i18n="seo.q2">Faut-il télécharger quelque chose ?</dt>
+          <dd data-i18n="seo.a2">Non. La partie se lance directement dans le navigateur, sur
+            ordinateur, tablette ou téléphone.</dd>
+
+          <dt data-i18n="seo.q3">Qu’est-ce que le défi du jour ?</dt>
+          <dd data-i18n="seo.a3">Une grille unique, identique pour tous les joueurs, renouvelée
+            chaque jour. Terminez-la plusieurs jours d’affilée pour faire grimper votre série.</dd>
+
+          <dt data-i18n="seo.q4">Puis-je jouer hors connexion ?</dt>
+          <dd data-i18n="seo.a4">La version web nécessite une connexion pour charger la page. Les
+            applications iOS et Android fonctionnent hors ligne et ajoutent le mode histoire, les
+            statistiques et les succès.</dd>
+        </dl>
+
+        <p class="muted"><a href="../../apps/meliz.html" data-i18n="seo.more">En savoir plus sur
+          l’application Mêliz</a></p>
+      </section>
+    </main>
+
+    <!-- ---------------------------------------------------------- partie -->
+    <main id="board" hidden>
+      <div class="hud">
+        <span class="stat" id="timer">00:00</span>
+        <span class="stat" id="progress">0/0</span>
+        <span class="spacer"></span>
+        <button id="hint" type="button">
+          <span data-i18n="game.hint">Indice</span> <span id="hint-count"></span>
+        </button>
+        <button id="pause" type="button" data-i18n="game.pause">Pause</button>
+        <button id="quit" type="button" data-i18n="game.quit">Menu</button>
+      </div>
+
+      <h2 id="board-title" class="muted" style="margin-bottom:10px;"></h2>
+
+      <div class="grid-wrap">
+        <div id="grid"></div>
+        <svg id="selection-line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg>
+      </div>
+
+      <div id="words"></div>
+    </main>
+
+    <div id="pause-overlay" hidden><span data-i18n="game.paused">Partie en pause</span></div>
+
+    <!-- -------------------------------------------------------- victoire -->
+    <main id="victory" hidden>
+      <section class="card">
+        <h2 data-i18n="victory.title">Bravo !</h2>
+        <div class="result-grid">
+          <div>
+            <span class="label" data-i18n="victory.time">Temps</span>
+            <span class="value" id="victory-time">00:00</span>
+          </div>
+          <div>
+            <span class="label" data-i18n="victory.score">Score</span>
+            <span class="value" id="victory-score">0</span>
+          </div>
+          <div id="victory-streak-row" hidden>
+            <span class="label" data-i18n="victory.streak">Série</span>
+            <span class="value" id="victory-streak">0</span>
+          </div>
+        </div>
+        <button class="btn" id="victory-replay" type="button" data-i18n="victory.replay">Rejouer</button>
+        <button class="btn ghost" id="share" type="button" data-i18n="victory.share">Partager</button>
+        <button class="btn ghost" id="victory-menu" type="button" data-i18n="victory.menu">Menu</button>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="cta.title">Envie d’aller plus loin ?</h2>
+        <p class="muted" data-i18n="cta.sub"></p>
+        <div class="stores">
+          <a href="https://apps.apple.com/fr/app/m%C3%AAliz-mots-m%C3%AAl%C3%A9s-cach%C3%A9s/id6767558990" target="_blank" rel="noopener">App Store</a>
+          <a class="play" href="https://play.google.com/store/apps/details?id=com.appcraft31.meliz" target="_blank" rel="noopener">Google Play</a>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Données structurées : le jeu lui-même, le fil d'Ariane et la FAQ
+       affichée plus haut (les réponses doivent rester visibles sur la page). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["VideoGame", "WebApplication"],
+        "@id": "https://appcraft31.app/play/meliz/#game",
+        "name": "Mêliz — mots mêlés en ligne",
+        "alternateName": "Mêliz",
+        "url": "https://appcraft31.app/play/meliz/",
+        "description": "Jeu de mots mêlés gratuit jouable dans le navigateur : défi du jour, neuf thèmes et trois niveaux de difficulté, sans téléchargement ni inscription.",
+        "image": "https://appcraft31.app/assets/meliz-icon.png",
+        "inLanguage": ["fr", "en"],
+        "genre": ["Jeu de mots", "Puzzle", "Mots mêlés"],
+        "keywords": "mots mêlés, mots cachés, jeu de lettres, jeux en ligne, word search",
+        "playMode": "SinglePlayer",
+        "gamePlatform": ["Navigateur web", "iOS", "Android"],
+        "applicationCategory": "GameApplication",
+        "browserRequirements": "Navigateur moderne avec JavaScript activé",
+        "operatingSystem": "Tout système avec un navigateur web",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "author": { "@type": "Organization", "name": "AppCraft31", "url": "https://appcraft31.app/" },
+        "publisher": { "@type": "Organization", "name": "AppCraft31", "url": "https://appcraft31.app/" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "AppCraft31", "item": "https://appcraft31.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Mêliz", "item": "https://appcraft31.app/apps/meliz.html" },
+          { "@type": "ListItem", "position": 3, "name": "Jouer en ligne", "item": "https://appcraft31.app/play/meliz/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Le jeu de mots mêlés est-il gratuit ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Oui, entièrement gratuit et sans inscription. Aucune donnée n'est envoyée à un serveur : vos scores restent dans votre navigateur." }
+          },
+          {
+            "@type": "Question",
+            "name": "Faut-il télécharger quelque chose pour jouer ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Non. La partie se lance directement dans le navigateur, sur ordinateur, tablette ou téléphone." }
+          },
+          {
+            "@type": "Question",
+            "name": "Qu'est-ce que le défi du jour ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Une grille unique, identique pour tous les joueurs, renouvelée chaque jour. Terminez-la plusieurs jours d'affilée pour faire grimper votre série." }
+          },
+          {
+            "@type": "Question",
+            "name": "Peut-on jouer aux mots mêlés hors connexion ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "La version web nécessite une connexion pour charger la page. Les applications iOS et Android fonctionnent hors ligne et ajoutent le mode histoire, les statistiques et les succès." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
