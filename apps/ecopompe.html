@@ -3,179 +3,310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoPompe – Prix essence en temps réel · AppCraft31</title>
-    <meta name="description" content="Trouvez l'essence la moins chère près de chez vous. Données officielles pour les ~10 000 stations-service de France.">
-    <meta property="og:title" content="EcoPompe – Prix essence en temps réel">
-    <meta property="og:description" content="Trouvez l'essence la moins chère en France, en un coup d'oeil.">
+    <title>EcoPompe – Prix des carburants en temps réel · AppCraft31</title>
+    <meta name="description" content="Trouvez l'essence la moins chère près de chez vous. Prix officiels des ~10 000 stations-service de France, mis à jour plusieurs fois par jour. Gratuit, sans pub, sans tracking.">
+    <meta name="theme-color" content="#15181d">
+    <meta property="og:title" content="EcoPompe – Prix des carburants en temps réel">
+    <meta property="og:description" content="Le plein le moins cher sur votre route. ~10 000 stations, données officielles, zéro pub.">
     <meta property="og:type" content="website">
     <link rel="icon" href="../favicon.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/ecopompe.css">
 </head>
 <body>
 
-    <!-- Nav -->
-    <header class="site-header">
-        <div class="container header-inner">
-            <a href="../index.html" class="logo" aria-label="AppCraft31 – accueil">
-                <span class="logo-mark">AC</span>
-                <span class="logo-name">AppCraft<span class="logo-31">31</span></span>
-            </a>
-            <nav aria-label="Navigation principale">
-                <a href="../index.html#apps">Applications</a>
-                <a href="../index.html#about">À propos</a>
-            </nav>
-        </div>
-    </header>
+<!-- ===== Header ===== -->
+<header class="site-header">
+    <div class="wrap nav">
+        <a class="brand" href="../index.html">
+            <img src="../assets/logo_ecopompe.png" alt="">
+            EcoPompe
+            <span class="brand-sub">· AppCraft31</span>
+        </a>
+        <nav class="nav-links" aria-label="Navigation de la page">
+            <a href="#fonctionnalites">Fonctionnalités</a>
+            <a href="#comment">Comment ça marche</a>
+            <a href="#apercu">Aperçu</a>
+            <a href="#confidentialite">Confidentialité</a>
+        </nav>
+        <a class="btn-pill" href="#telecharger">Télécharger</a>
+    </div>
+</header>
 
-    <!-- Hero -->
-    <section class="ep-hero hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="badge ep-badge">Disponible sur iPhone</div>
-                    <h1>Le carburant le moins cher, <span class="ep-highlight">en un coup d'oeil</span></h1>
-                    <p class="subtitle">EcoPompe compare les prix des ~10 000 stations-service de France en temps réel. Trouvez, comparez, économisez.</p>
-                    <a href="https://apps.apple.com/fr/app/ecopompe-prix-carburant/id6761409265" class="app-store-btn" aria-label="Télécharger sur l'App Store" target="_blank" rel="noopener">
-                        <img src="../assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="54">
+<main>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <span class="eyebrow">Prix carburants · France entière</span>
+                <h1>Le plein le moins cher,<br><span class="hero-underline">sur votre route.</span></h1>
+                <p class="lede">EcoPompe compare en temps réel les prix des ~10 000 stations-service de France, à partir des données officielles. Vous roulez, l'app cherche.</p>
+
+                <div class="store-badges" id="telecharger">
+                    <a href="https://apps.apple.com/fr/app/ecopompe-prix-carburant/id6761409265" target="_blank" rel="noopener" aria-label="Télécharger EcoPompe sur l'App Store">
+                        <img src="../assets/app-store-badge.svg" alt="Télécharger sur l'App Store">
                     </a>
-                    <a href="https://play.google.com/store/apps/details?id=com.appcraft31.ecopompe" class="app-store-btn" aria-label="Télécharger sur Google Play" target="_blank" rel="noopener">
-                        <img src="../assets/google-play-badge.svg" alt="Disponible sur Google Play" height="54">
+                    <a href="https://play.google.com/store/apps/details?id=com.appcraft31.ecopompe" target="_blank" rel="noopener" aria-label="Télécharger EcoPompe sur Google Play">
+                        <img src="../assets/google-play-badge.svg" alt="Disponible sur Google Play">
                     </a>
-                    <p class="store-info">Gratuit · Aucune pub · Aucun tracking</p>
                 </div>
-                <div class="hero-image">
-                    <div class="phone-frame">
-                        <img src="../assets/Favoris.png" alt="Capture d'écran EcoPompe">
+
+                <p class="hero-note">
+                    <span>Gratuit</span>
+                    <span class="dot-sep" aria-hidden="true"></span>
+                    <span>Aucune publicité</span>
+                    <span class="dot-sep" aria-hidden="true"></span>
+                    <span>Aucun tracker</span>
+                    <span class="dot-sep" aria-hidden="true"></span>
+                    <span>iOS &amp; Android</span>
+                </p>
+            </div>
+
+            <!-- Afficheur de pompe -->
+            <div class="pump" aria-label="Exemple d'affichage des prix dans EcoPompe">
+                <div class="pump-top">
+                    <div>
+                        <div class="pump-station">Station Le Relais</div>
+                        <div class="pump-dist">Toulouse · à 2,4 km</div>
                     </div>
+                    <span class="pump-tag">Moins cher</span>
+                </div>
+
+                <div class="pump-screen">
+                    <div class="pump-row">
+                        <span class="fuel-name"><i class="fuel-chip fuel-chip--gazole"></i>Gazole</span>
+                        <span class="pump-price">1,624<small>€/L</small></span>
+                        <span class="pump-delta pump-delta--down">−0,03</span>
+                    </div>
+                    <div class="pump-row">
+                        <span class="fuel-name"><i class="fuel-chip fuel-chip--sp95"></i>SP95-E10</span>
+                        <span class="pump-price">1,719<small>€/L</small></span>
+                        <span class="pump-delta pump-delta--up">+0,02</span>
+                    </div>
+                    <div class="pump-row">
+                        <span class="fuel-name"><i class="fuel-chip fuel-chip--sp98"></i>SP98</span>
+                        <span class="pump-price">1,788<small>€/L</small></span>
+                        <span class="pump-delta pump-delta--flat">=</span>
+                    </div>
+                    <div class="pump-row">
+                        <span class="fuel-name"><i class="fuel-chip fuel-chip--e85"></i>E85</span>
+                        <span class="pump-price">0,849<small>€/L</small></span>
+                        <span class="pump-delta pump-delta--down">−0,01</span>
+                    </div>
+                </div>
+
+                <div class="pump-foot">
+                    <span class="live-dot">Données officielles</span>
+                    <span>Mise à jour il y a 12 min</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="ep-features features" id="fonctionnalites">
-        <div class="container">
-            <h2 class="section-title">Tout ce qu'il faut pour économiser</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon ep-icon-1">&#9981;</div>
+    <div class="roadline" aria-hidden="true"></div>
+
+    <!-- ===== Chiffres ===== -->
+    <section class="stats">
+        <div class="wrap">
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-num">~10 000</div>
+                    <div class="stat-label">stations couvertes</div>
+                </div>
+                <div>
+                    <div class="stat-num">6</div>
+                    <div class="stat-label">carburants suivis</div>
+                </div>
+                <div>
+                    <div class="stat-num">7 j</div>
+                    <div class="stat-label">d'historique de prix</div>
+                </div>
+                <div>
+                    <div class="stat-num">0</div>
+                    <div class="stat-label">pub, tracker, compte</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Fonctionnalités ===== -->
+    <section class="section" id="fonctionnalites">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">À bord</span>
+                <h2>Tout ce qu'il faut pour ne plus payer le plein trop cher</h2>
+                <p>Les prix officiels remontés par les stations, présentés simplement : le bon carburant, la bonne station, le bon moment.</p>
+            </div>
+
+            <div class="cards">
+                <div class="card card--gazole">
+                    <div class="card-ic" aria-hidden="true">⛽️</div>
                     <h3>Prix en temps réel</h3>
-                    <p>Données officielles du gouvernement, mises à jour plusieurs fois par jour pour toutes les stations de France.</p>
+                    <p>Les données ouvertes du gouvernement, rafraîchies plusieurs fois par jour pour l'ensemble des stations de France.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon ep-icon-2">&hearts;</div>
-                    <h3>Stations favorites</h3>
-                    <p>Enregistrez vos stations d'un simple geste. EcoPompe met en avant la moins chère automatiquement.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon ep-icon-3">&#8593;&#8595;</div>
-                    <h3>Variations de prix</h3>
-                    <p>Suivez l'évolution jour après jour. Voyez immédiatement si le prix a augmenté ou baissé depuis la veille.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon ep-icon-4">&#128269;</div>
-                    <h3>Recherche intelligente</h3>
-                    <p>Trouvez des stations par ville, code postal ou adresse. Résultats instantanés au fil de la frappe.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon ep-icon-5">&#128205;</div>
+                <div class="card card--amber">
+                    <div class="card-ic" aria-hidden="true">📍</div>
                     <h3>Moins cher à proximité</h3>
-                    <p>Géolocalisation intégrée pour identifier les stations les moins chères dans un rayon personnalisable.</p>
+                    <p>Un rayon de recherche personnalisable autour de vous, et le classement des stations les moins chères pour votre carburant.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon ep-icon-6">&#128736;</div>
-                    <h3>Widget intégré</h3>
-                    <p>Consultez le meilleur prix de vos favoris directement depuis votre écran d'accueil, sans ouvrir l'app.</p>
+                <div class="card card--sp95">
+                    <div class="card-ic" aria-hidden="true">↕️</div>
+                    <h3>Variations quotidiennes</h3>
+                    <p>Hausse ou baisse depuis la veille, d'un coup d'œil. Sept jours d'historique pour savoir s'il vaut mieux attendre demain.</p>
+                </div>
+                <div class="card card--e85">
+                    <div class="card-ic" aria-hidden="true">⭐️</div>
+                    <h3>Stations favorites</h3>
+                    <p>Vos stations habituelles épinglées d'un geste, avec la moins chère mise en avant automatiquement.</p>
+                </div>
+                <div class="card card--blue">
+                    <div class="card-ic" aria-hidden="true">🔎</div>
+                    <h3>Recherche instantanée</h3>
+                    <p>Par ville, code postal ou adresse — les résultats se filtrent au fil de la frappe, avant même votre départ.</p>
+                </div>
+                <div class="card card--gpl">
+                    <div class="card-ic" aria-hidden="true">📲</div>
+                    <h3>Widget écran d'accueil</h3>
+                    <p>Le meilleur prix de vos favoris directement sur votre écran d'accueil, sans même ouvrir l'application.</p>
+                </div>
+            </div>
+
+            <div class="fuel-legend" aria-label="Carburants suivis">
+                <span class="fuel-pill"><i class="fuel-chip fuel-chip--gazole"></i>Gazole</span>
+                <span class="fuel-pill"><i class="fuel-chip fuel-chip--sp95"></i>SP95</span>
+                <span class="fuel-pill"><i class="fuel-chip fuel-chip--sp95"></i>SP95-E10</span>
+                <span class="fuel-pill"><i class="fuel-chip fuel-chip--sp98"></i>SP98</span>
+                <span class="fuel-pill"><i class="fuel-chip fuel-chip--e85"></i>E85</span>
+                <span class="fuel-pill"><i class="fuel-chip fuel-chip--gpl"></i>GPLc</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Comment ça marche ===== -->
+    <section class="section" id="comment" style="background: var(--bg-alt);">
+        <div class="wrap">
+            <div class="section-head section-head--center">
+                <span class="eyebrow">Trois arrêts</span>
+                <h2>De l'ouverture de l'app au plein économisé</h2>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-n">01</div>
+                    <h3>Choisissez votre carburant</h3>
+                    <p>Gazole, SP95, SP95-E10, SP98, E85 ou GPLc : EcoPompe ne vous montre que les prix qui vous concernent.</p>
+                </div>
+                <div class="step">
+                    <div class="step-n">02</div>
+                    <h3>Comparez autour de vous</h3>
+                    <p>Les stations sont triées par prix et par distance. Vous voyez immédiatement ce que le détour vous fait gagner.</p>
+                </div>
+                <div class="step">
+                    <div class="step-n">03</div>
+                    <h3>Prenez la route</h3>
+                    <p>Un appui lance l'itinéraire vers la station. Ajoutez-la aux favoris pour la retrouver au prochain plein.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Screenshots -->
-    <section class="screenshots" id="apercu">
-        <div class="container">
-            <h2 class="section-title">Aperçu</h2>
-            <div class="screenshots-scroll">
-                <div class="screenshot-item">
-                    <img src="../assets/Favoris.png" alt="Favoris">
+    <!-- ===== Aperçu ===== -->
+    <section class="section" id="apercu">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="eyebrow">Aperçu</span>
+                <h2>Une interface qui va droit au but</h2>
+                <p>Pas de carte illisible ni de menus à tiroirs : le prix, la distance, la tendance.</p>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="shots">
+                <figure class="shot">
+                    <img src="../assets/Favoris.png" alt="Écran des stations favorites d'EcoPompe" loading="lazy">
                     <span>Favoris</span>
-                </div>
-                <div class="screenshot-item">
-                    <img src="../assets/Recherche.png" alt="Recherche">
+                </figure>
+                <figure class="shot">
+                    <img src="../assets/Recherche.png" alt="Écran de recherche de stations d'EcoPompe" loading="lazy">
                     <span>Recherche</span>
-                </div>
-                <div class="screenshot-item">
-                    <img src="../assets/Moins_cher.png" alt="Moins cher">
+                </figure>
+                <figure class="shot">
+                    <img src="../assets/Moins_cher.png" alt="Classement des stations les moins chères" loading="lazy">
                     <span>Moins cher</span>
+                </figure>
+                <figure class="shot">
+                    <img src="../assets/Detail.png" alt="Fiche détaillée d'une station-service" loading="lazy">
+                    <span>Détail station</span>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Confidentialité ===== -->
+    <section class="section section--tight" id="confidentialite">
+        <div class="wrap">
+            <div class="signboard">
+                <h2>Votre trajet ne regarde que vous</h2>
+                <p>EcoPompe fonctionne sans compte, sans profil publicitaire et sans SDK tiers. Vos réglages restent sur votre téléphone.</p>
+
+                <div class="sign-grid">
+                    <div class="sign-item">
+                        <span class="sign-ic" aria-hidden="true">🚫</span>
+                        <span><b>Aucune publicité</b><small>Pas de bannière, pas de régie, pas d'identifiant publicitaire.</small></span>
+                    </div>
+                    <div class="sign-item">
+                        <span class="sign-ic" aria-hidden="true">🚫</span>
+                        <span><b>Aucun tracker</b><small>Ni analytics, ni SDK réseau social, ni mesure d'audience.</small></span>
+                    </div>
+                    <div class="sign-item">
+                        <span class="sign-ic" aria-hidden="true">📍</span>
+                        <span><b>Localisation locale</b><small>Utilisée sur l'appareil pour trier les stations. Jamais transmise.</small></span>
+                    </div>
+                    <div class="sign-item">
+                        <span class="sign-ic" aria-hidden="true">📴</span>
+                        <span><b>Aucun compte</b><small>Pas d'inscription, pas d'e-mail, pas de données revendues.</small></span>
+                    </div>
                 </div>
-                <div class="screenshot-item">
-                    <img src="../assets/Detail.png" alt="Détail station">
-                    <span>Détail</span>
+
+                <a class="signboard-link" href="../privacy/ecopompe.html">Lire la politique de confidentialité →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="section section--tight">
+        <div class="wrap">
+            <div class="band">
+                <h2>Le prochain plein sera moins cher</h2>
+                <p>Gratuit, sans publicité, sans compte. Il ne vous reste plus qu'à faire le plein.</p>
+                <div class="store-badges">
+                    <a href="https://apps.apple.com/fr/app/ecopompe-prix-carburant/id6761409265" target="_blank" rel="noopener" aria-label="Télécharger EcoPompe sur l'App Store">
+                        <img src="../assets/app-store-badge.svg" alt="Télécharger sur l'App Store">
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.appcraft31.ecopompe" target="_blank" rel="noopener" aria-label="Télécharger EcoPompe sur Google Play">
+                        <img src="../assets/google-play-badge.svg" alt="Disponible sur Google Play">
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Privacy -->
-    <section class="privacy" id="confidentialite">
-        <div class="container">
-            <div class="privacy-card">
-                <h2>Votre vie privée, notre priorité</h2>
-                <div class="privacy-grid">
-                    <div class="privacy-item">
-                        <span class="privacy-icon">&#10060;</span>
-                        <p>Aucune publicité</p>
-                    </div>
-                    <div class="privacy-item">
-                        <span class="privacy-icon">&#10060;</span>
-                        <p>Aucun tracker</p>
-                    </div>
-                    <div class="privacy-item">
-                        <span class="privacy-icon">&#10060;</span>
-                        <p>Aucune donnée revendue</p>
-                    </div>
-                    <div class="privacy-item">
-                        <span class="privacy-icon">&#9989;</span>
-                        <p>Localisation utilisée uniquement pour trier les stations</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+</main>
 
-    <!-- CTA -->
-    <section class="cta">
-        <div class="container">
-            <h2>Prêt à économiser sur votre carburant ?</h2>
-            <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
-                <a href="https://apps.apple.com/fr/app/ecopompe-prix-carburant/id6761409265" class="app-store-btn" aria-label="Télécharger sur l'App Store" target="_blank" rel="noopener">
-                    <img src="../assets/app-store-badge.svg" alt="Télécharger sur l'App Store" height="54">
-                </a>
-                <a href="https://play.google.com/store/apps/details?id=com.appcraft31.ecopompe" class="app-store-btn" aria-label="Télécharger sur Google Play" target="_blank" rel="noopener">
-                    <img src="../assets/google-play-badge.svg" alt="Disponible sur Google Play" height="54">
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-inner">
-            <div class="footer-brand">
-                <span class="logo-mark logo-mark--sm">AC</span>
-                <span class="footer-copy">&copy; 2026 AppCraft31 · Nicolas Zanette</span>
-            </div>
-            <div class="footer-links">
-                <a href="../index.html">Accueil</a>
-                <a href="../privacy/index.html">Confidentialité</a>
-                <a href="https://github.com/truc001/EcoPompe-support/issues">Assistance</a>
-            </div>
-        </div>
-    </footer>
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+    <div class="wrap foot">
+        <div>© 2026 AppCraft31 · Nicolas Zanette</div>
+        <nav>
+            <a href="../index.html">Accueil</a>
+            <a href="../privacy/ecopompe.html">Confidentialité</a>
+            <a href="https://github.com/truc001/EcoPompe-support/issues">Assistance</a>
+        </nav>
+    </div>
+</footer>
 
 </body>
 </html>
