@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Politique de confidentialité — Talon</title>
-<meta name="description" content="Politique de confidentialité de l'application Talon (solitaire Klondike & Spider). Aucune donnée collectée, aucune connexion réseau, aucun composant tiers.">
+<meta name="description" content="Politique de confidentialité de l'application Talon (solitaire Klondike & Spider). Jeu hors ligne, sans publicité, sans compte : seules des statistiques d'usage anonymes sont mesurées, et elles se désactivent dans les réglages.">
 <link rel="canonical" href="https://appcraft31.app/privacy/talon.html">
 <link rel="icon" href="../favicon.png">
 <style>
@@ -78,38 +78,64 @@
   <div class="wrap">
 
     <div class="note">
-      En résumé : cette application ne collecte <strong>aucune donnée</strong>, n’ouvre
-      <strong>aucune connexion à Internet</strong> et n’intègre <strong>aucun composant
-      tiers</strong>. Le reste de cette page ne fait que détailler ce point.
+      En résumé : le jeu se joue <strong>entièrement hors ligne</strong> et ne demande
+      <strong>aucun compte</strong>. Une seule chose quitte l’appareil : des statistiques
+      d’usage <strong>anonymes</strong>, qui servent à savoir quelles parties sont jouées et
+      lesquelles sont abandonnées. Aucune publicité, aucun traceur publicitaire, et vous
+      pouvez couper cette mesure dans les réglages.
     </div>
 
     <h2>1. Responsable du traitement</h2>
     <p>AppCraft31 (Nicolas Zanette) — contact :
       <a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a>.</p>
 
-    <h2>2. Aucune donnée collectée</h2>
-    <p>L’application ne recueille, ne transmet et ne partage <strong>aucune information vous
-      concernant</strong>. Elle ne demande ni compte, ni adresse électronique, ni identifiant.
-      Aucun profil n’est constitué, ici ou ailleurs.</p>
+    <h2>2. Ce qui est mesuré</h2>
+    <p>L’application utilise <strong>Google Firebase Analytics</strong> pour comprendre comment le
+      jeu est utilisé. Concrètement, elle envoie :</p>
+    <ul>
+      <li>le déroulé des parties : partie commencée, gagnée ou abandonnée, avec le jeu choisi
+        (Klondike ou Spider), la difficulté, le nombre de coups, la durée et l’écart au par ;</li>
+      <li>l’origine de la partie : partie libre, donne du jour ou défi reçu par code ;</li>
+      <li>les réglages modifiés : thème, jeu à quatre couleurs, mode une main ;</li>
+      <li>les écrans affichés.</li>
+    </ul>
+    <p>S’y ajoutent les informations que Firebase relève automatiquement : première ouverture,
+      sessions, modèle d’appareil, version du système, version de l’application, langue et pays
+      approximatif déduit de l’adresse IP — cette adresse n’étant pas conservée.</p>
 
-    <h2>3. Aucune connexion réseau</h2>
-    <p>Le jeu fonctionne entièrement hors ligne et n’émet aucune requête vers Internet, y compris
-      au premier lancement. La donne du jour et les codes de défi ne transitent par aucun serveur :
-      la donne quotidienne est calculée à partir de la date, et un code de défi contient lui-même
-      la distribution des cartes.</p>
+    <h2>3. Ce qui n’est pas mesuré</h2>
+    <p>Aucune donnée ne permet de vous identifier. L’application ne demande ni compte, ni adresse
+      électronique, ni nom. Elle ne transmet ni votre position précise, ni vos contacts, ni vos
+      photos, ni le contenu de vos parties. Elle n’utilise pas non plus l’identifiant publicitaire
+      de votre appareil (IDFA), et ne suit pas votre activité dans d’autres applications ou sites
+      web : elle n’affiche donc <strong>aucune demande d’autorisation de suivi</strong>.</p>
+    <p>La mesure repose sur un identifiant technique propre à cette installation, généré par
+      Firebase. Il disparaît à la désinstallation et ne suit personne ailleurs.</p>
 
-    <h2>4. Aucun composant tiers</h2>
-    <p>L’application n’intègre <strong>aucune régie publicitaire</strong>, aucun outil de mesure
-      d’audience, aucun traceur, aucun réseau social, aucun service d’analyse de plantages et
-      aucun classement en ligne. Elle n’utilise ni Google AdMob, ni Game Center, ni aucun
-      équivalent.</p>
+    <h2>4. Comment refuser cette mesure</h2>
+    <p>Les réglages du jeu comportent l’option <strong>« Partager des statistiques d’usage »</strong>.
+      La désactiver arrête immédiatement tout envoi. Le jeu reste identique et complet : cette
+      mesure ne conditionne aucune fonctionnalité.</p>
 
-    <h2>5. Transparence du suivi des apps (ATT)</h2>
-    <p>L’application ne suit pas votre activité à travers d’autres applications ou sites web. Elle
-      n’affiche donc <strong>aucune demande d’autorisation de suivi</strong> et n’utilise pas
-      l’identifiant publicitaire de votre appareil (IDFA).</p>
+    <h2>5. Le jeu reste hors ligne</h2>
+    <p>Jouer ne nécessite jamais de réseau. La donne du jour est calculée à partir de la date et un
+      code de défi contient lui-même la distribution des cartes : ni l’un ni l’autre ne transite par
+      un serveur. Sans connexion, les statistiques d’usage sont simplement mises de côté par le
+      système, puis envoyées plus tard — ou jamais, sans que cela gêne le jeu.</p>
 
-    <h2>6. Ce qui est enregistré sur votre appareil</h2>
+    <h2>6. Aucune publicité</h2>
+    <p>L’application n’intègre <strong>aucune régie publicitaire</strong>, aucun traceur
+      publicitaire, aucun réseau social et aucun classement en ligne. Elle n’utilise ni Google
+      AdMob, ni Game Center, ni aucun équivalent.</p>
+
+    <h2>7. Base légale, conservation et transferts</h2>
+    <p>La base légale est l’intérêt légitime de l’éditeur à connaître l’usage réel du jeu pour
+      l’améliorer, tempéré par le droit d’opposition décrit au point 4. Les données d’usage sont
+      conservées quatorze mois par Firebase, puis supprimées. Elles sont traitées par Google, ce
+      qui peut impliquer un transfert hors de l’Union européenne, encadré par les clauses
+      contractuelles types de la Commission européenne.</p>
+
+    <h2>8. Ce qui est enregistré sur votre appareil</h2>
     <p>Quelques informations sont conservées localement pour que le jeu se comporte comme vous
       l’attendez. Elles ne quittent jamais l’appareil :</p>
     <ul>
@@ -121,31 +147,38 @@
       l’application. Aucune autre application n’y a accès, et ils disparaissent à la
       désinstallation.</p>
 
-    <h2>7. Autorisations</h2>
+    <h2>9. Autorisations</h2>
     <p>L’application ne demande aucune autorisation système. Elle n’accède ni à vos contacts, ni à
       votre position, ni à vos photos, ni à l’appareil photo, ni au microphone, ni au calendrier.</p>
 
-    <h2>8. Enfants</h2>
-    <p>Ne collectant aucune donnée et n’affichant aucune publicité, l’application convient à tous
-      les publics, y compris aux enfants de moins de treize ans.</p>
+    <h2>10. Enfants</h2>
+    <p>L’application n’affiche aucune publicité, ne demande aucune donnée personnelle et ne permet
+      aucun échange entre joueurs : elle convient à tous les publics. Les statistiques d’usage
+      décrites au point 2 ne servent qu’à mesurer l’audience du jeu, jamais à profiler qui que ce
+      soit ni à cibler de la publicité. Un parent qui préfère n’en envoyer aucune peut couper
+      l’option décrite au point 4.</p>
 
-    <h2>9. Sauvegardes du système</h2>
+    <h2>11. Sauvegardes du système</h2>
     <p>Si vous avez activé la sauvegarde iCloud ou la sauvegarde Android, le système peut inclure
       les données locales de l’application dans vos sauvegardes. Cette opération relève d’Apple ou
       de Google et de vos propres réglages ; l’éditeur n’y a aucun accès.</p>
 
-    <h2>10. Vos droits</h2>
+    <h2>12. Vos droits</h2>
     <p>Le RGPD vous ouvre des droits d’accès, de rectification, d’effacement, d’opposition et de
-      limitation. Comme aucune donnée personnelle n’est collectée, il n’existe rien à consulter,
-      corriger ou effacer côté éditeur : désinstaller l’application supprime l’intégralité des
-      données locales. Pour toute question, écrivez-nous.</p>
+      limitation. Les seules données transmises sont les statistiques d’usage du point 2, qui ne
+      sont rattachées à aucune identité : l’éditeur ne dispose d’aucun moyen de retrouver
+      <em>vos</em> parties parmi celles de tous les joueurs, et ne peut donc ni vous les
+      communiquer ni les corriger individuellement.</p>
+    <p>En revanche, votre droit d’opposition s’exerce immédiatement et sans démarche : il suffit de
+      couper l’option décrite au point 4. Désinstaller l’application supprime l’intégralité des
+      données locales et l’identifiant technique de mesure. Pour toute question, écrivez-nous.</p>
 
-    <h2>11. Modifications</h2>
+    <h2>13. Modifications</h2>
     <p>Cette politique peut être mise à jour. Toute modification importante sera publiée sur cette
-      page avec une nouvelle date. Si une version future venait à collecter la moindre donnée,
-      cela serait annoncé ici <strong>avant</strong> sa mise en ligne.</p>
+      page avec une nouvelle date. Si une version future venait à collecter une donnée qui ne
+      figure pas au point 2, cela serait annoncé ici <strong>avant</strong> sa mise en ligne.</p>
 
-    <h2>12. Contact</h2>
+    <h2>14. Contact</h2>
     <p>Pour toute question relative à la confidentialité :
       <a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a>.</p>
 
