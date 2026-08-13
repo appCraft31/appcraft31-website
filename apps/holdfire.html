@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hold Fire — Tower defense et tir manuel, en cent vagues</title>
+<meta name="description" content="Hold Fire : un tower defense où c'est vous qui tirez. Maintenez pour viser, posez vos tourelles entre les vagues, tenez cent vagues jusqu'au Léviathan. Hors ligne, sans compte.">
+<meta property="og:title" content="Hold Fire — Tower defense et tir manuel">
+<meta property="og:description" content="Maintenez pour viser, posez vos tourelles entre les vagues, tenez cent vagues. Hors ligne, sans compte.">
+<meta property="og:type" content="website">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@1,700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  /* Palette reprise telle quelle de lib/config/palette.dart : la page et le
+     jeu doivent donner la même impression avant même la première capture. */
+  :root{
+    --fond:#070B14; --fond-2:#0D1526; --grille:#16233D;
+    --texte:#E6F1FF; --texte-2:#7C93B5; --ligne:#1B2740;
+    --canon:#6FE3FF; --base:#3CE0C8; --or:#FFD24D;
+    --chaud:#FF6B3D; --ennemi:#FF5C7A; --faible:#FFF07A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Rajdhani',system-ui,sans-serif;color:var(--texte);background:var(--fond);
+    line-height:1.6;font-size:18px;-webkit-font-smoothing:antialiased;
+    background-image:linear-gradient(var(--fond-2) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--fond-2) 1px,transparent 1px);
+    background-size:44px 44px}
+  a{color:var(--canon)}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+  nav{border-bottom:1px solid var(--ligne);background:rgba(7,11,20,.82);backdrop-filter:blur(6px);
+    position:sticky;top:0;z-index:10}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  nav a{color:var(--texte-2);text-decoration:none;font-size:16px;letter-spacing:.04em}
+  nav a:hover{color:var(--texte)}
+  .brand{font-family:'Chakra Petch',sans-serif;font-style:italic;font-weight:700;
+    letter-spacing:.08em;color:var(--texte) !important}
+
+  header.hero{text-align:center;padding:72px 0 56px;border-bottom:1px solid var(--ligne);position:relative;overflow:hidden}
+  header.hero::after{content:"";position:absolute;inset:auto 0 -1px 0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--canon),transparent);opacity:.55}
+  .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--texte-2)}
+  h1{font-family:'Chakra Petch',sans-serif;font-style:italic;font-weight:700;
+    font-size:clamp(46px,9vw,86px);line-height:.98;letter-spacing:.02em;margin:16px 0 12px;
+    text-transform:uppercase;color:var(--texte);
+    text-shadow:0 0 18px rgba(111,227,255,.42),0 0 52px rgba(111,227,255,.18)}
+  .tagline{font-size:clamp(18px,2.6vw,23px);color:var(--texte-2)}
+  .badge-soon{display:inline-block;margin-top:24px;border:1px solid var(--or);color:var(--or);
+    font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:6px 16px}
+  .pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+  .pill{border:1px solid var(--ligne);background:rgba(13,21,38,.6);padding:6px 15px;
+    font-size:15px;color:var(--texte-2)}
+
+  .scene{margin:38px auto 0;max-width:660px;display:block}
+
+  section{padding:66px 0;border-bottom:1px solid var(--ligne)}
+  h2{font-family:'Chakra Petch',sans-serif;font-style:italic;font-size:15px;font-weight:700;
+    letter-spacing:.24em;text-transform:uppercase;color:var(--canon);
+    display:flex;align-items:center;gap:16px;margin-bottom:10px}
+  h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--ligne),transparent)}
+  .lead{color:var(--texte-2);max-width:64ch;margin-bottom:34px}
+
+  .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(252px,1fr));gap:1px;
+    background:var(--ligne);border:1px solid var(--ligne)}
+  .feat{background:var(--fond);padding:24px}
+  .feat b{font-family:'Chakra Petch',sans-serif;font-style:italic;display:block;font-weight:700;
+    font-size:16px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px;color:var(--texte)}
+  .feat p{color:var(--texte-2);font-size:16px}
+  .feat.c-canon b{color:var(--canon)}
+  .feat.c-or b{color:var(--or)}
+  .feat.c-base b{color:var(--base)}
+  .feat.c-ennemi b{color:var(--ennemi)}
+  .feat.c-chaud b{color:var(--chaud)}
+  .feat.c-faible b{color:var(--faible)}
+
+  .counts{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin-top:8px}
+  .count{border:1px solid var(--ligne);background:var(--fond-2);padding:18px 14px;text-align:center}
+  .count b{font-family:'Chakra Petch',sans-serif;font-style:italic;display:block;
+    font-size:34px;line-height:1;color:var(--canon)}
+  .count span{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--texte-2)}
+
+  .turrets{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+  .turret{border:1px solid var(--ligne);padding:8px 16px;font-size:15px;color:var(--texte-2);
+    background:var(--fond-2)}
+  .turret b{font-family:'Chakra Petch',sans-serif;font-style:italic;font-weight:700;
+    letter-spacing:.06em;color:var(--texte)}
+
+  .note{border:1px solid var(--ligne);background:var(--fond-2);padding:26px 30px;max-width:72ch}
+  .note b{color:var(--texte)}
+  .note p{margin-top:10px;color:var(--texte-2)}
+
+  .closing{text-align:center;border-bottom:none}
+  .cta{display:inline-block;margin-top:24px;background:var(--canon);color:var(--fond);
+    font-family:'Chakra Petch',sans-serif;font-style:italic;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;text-decoration:none;font-size:17px;padding:15px 34px}
+  .cta:hover{box-shadow:0 0 26px rgba(111,227,255,.45)}
+
+  footer{padding:28px 0 52px;color:var(--texte-2);font-size:15px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  @media (max-width:640px){section{padding:46px 0}body{font-size:17px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="brand">AppCraft31</a>
+    <a href="../index.html#jeux">← Tous nos jeux</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Tower defense &amp; tir manuel · iOS et Android</div>
+    <h1>Hold&nbsp;Fire</h1>
+    <p class="tagline">« Les tourelles tiennent le couloir. Le reste, c'est vous. »</p>
+    <span class="badge-soon">Bientôt sur l'App Store et Google Play</span>
+    <div class="pills">
+      <span class="pill">100 vagues</span>
+      <span class="pill">10 secteurs, 10 boss</span>
+      <span class="pill">22 ennemis</span>
+      <span class="pill">Hors ligne</span>
+      <span class="pill">Sans compte</span>
+    </div>
+
+    <!-- Le couloir, le canon et sa ligne de tir : la scène du jeu réduite à
+         l'essentiel, en vectoriel — aucune capture à charger. -->
+    <svg class="scene" viewBox="0 0 660 220" role="img" aria-label="Un couloir de jeu : le canon à la base, sa ligne de tir vers un ennemi et son point faible">
+      <defs>
+        <linearGradient id="tir" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#6FE3FF" stop-opacity="0"/>
+          <stop offset="1" stop-color="#BDF3FF" stop-opacity=".95"/>
+        </linearGradient>
+      </defs>
+      <path d="M40 172 H620" stroke="#1B2B4A" stroke-width="34" fill="none"/>
+      <path d="M40 172 H620" stroke="#2E4A7D" stroke-width="1" fill="none"/>
+      <path d="M40 118 H620" stroke="#16233D" stroke-width="1" stroke-dasharray="5 9" fill="none"/>
+      <!-- Emplacements de tourelles, dont deux occupés. -->
+      <rect x="150" y="86" width="26" height="26" fill="none" stroke="#2F4A6B"/>
+      <rect x="300" y="86" width="26" height="26" fill="#5CE08A" fill-opacity=".18" stroke="#5CE08A"/>
+      <rect x="450" y="86" width="26" height="26" fill="#FFA24D" fill-opacity=".18" stroke="#FFA24D"/>
+      <!-- La base, à gauche, et le canon du joueur. -->
+      <path d="M52 150 h30 v44 h-30 z" fill="#3CE0C8" fill-opacity=".16" stroke="#3CE0C8"/>
+      <circle cx="96" cy="172" r="13" fill="#070B14" stroke="#6FE3FF" stroke-width="2"/>
+      <path d="M96 172 L560 128" stroke="url(#tir)" stroke-width="2.5"/>
+      <!-- L'ennemi et son noyau jaune. -->
+      <path d="M560 110 l22 18 -22 18 -22 -18 z" fill="#FF5C7A" fill-opacity=".22" stroke="#FF5C7A" stroke-width="2"/>
+      <circle cx="560" cy="128" r="4.5" fill="#FFF07A"/>
+    </svg>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Le concept</h2>
+    <p class="lead">Un tower defense où l'on ne se contente pas de regarder. Maintenez votre doigt : le canon vise, chauffe et crache. Entre deux vagues, une fenêtre de construction s'ouvre et vous posez vos tourelles. Puis la vague suivante arrive, et il faut couvrir vous-même ce que les tourelles ne voient pas — le brouilleur qu'elles ignorent, le sprinteur trop rapide pour elles, le volant qu'aucun mortier n'accroche.</p>
+    <div class="counts">
+      <div class="count"><b>100</b><span>vagues</span></div>
+      <div class="count"><b>10</b><span>secteurs</span></div>
+      <div class="count"><b>22</b><span>ennemis</span></div>
+      <div class="count"><b>5</b><span>tourelles</span></div>
+      <div class="count"><b>12</b><span>pactes</span></div>
+      <div class="count"><b>17</b><span>modules</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Ce qui se joue</h2>
+    <div class="feats">
+      <div class="feat c-faible"><b>Les noyaux</b><p>Les points faibles jaunes encaissent trois fois plus. Un tir placé vaut dix tirs lâchés.</p></div>
+      <div class="feat c-chaud"><b>La surchauffe</b><p>Le canon chauffe tant que vous tirez. Savoir s'arrêter fait partie du tir.</p></div>
+      <div class="feat c-ennemi"><b>Dix boss</b><p>Un type d'ennemi inédit tous les dix niveaux, puis un boss qui pousse à l'extrême ce qu'il vient de vous apprendre. Au bout : le Léviathan.</p></div>
+      <div class="feat c-canon"><b>L'atelier</b><p>Calibre, cadence, refroidissement, optique, perforant, salve, second canon — chacun avec sa percée finale.</p></div>
+      <div class="feat c-or"><b>Un pacte par partie</b><p>Douze marchés, un seul choisi, tenu jusqu'au bout. Plus de dégâts contre moins de portée, de l'or contre des points de vie. Rien n'est gratuit.</p></div>
+      <div class="feat c-base"><b>Chaque partie compte</b><p>Les vagues atteintes rapportent des fragments, les fragments achètent des modules permanents. La partie suivante démarre plus haut.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Cinq tourelles</h2>
+    <p class="lead">Aucune ne couvre tout. C'est la ligne entière qui tient, ou personne.</p>
+    <div class="turrets">
+      <span class="turret"><b>Gatling</b> · sol + air, cadence rapide</span>
+      <span class="turret"><b>Mortier</b> · sol, dégâts de zone</span>
+      <span class="turret"><b>DCA</b> · air, ralentit la cible</span>
+      <span class="turret"><b>Tesla</b> · arc en chaîne, paquets serrés</span>
+      <span class="turret"><b>Missiles</b> · une cible, très loin, très fort</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Vie privée</h2>
+    <div class="note">
+      <b>Aucun compte à créer, rien à configurer.</b>
+      <p>Le jeu se joue hors ligne et votre progression — record, fragments, modules, réglages — reste sur votre appareil. Le jeu est gratuit : à la fin d'une partie seulement, vous pouvez choisir de regarder une vidéo pour doubler vos fragments ou reprendre la vague où vous êtes tombé. Aucune publicité pendant la partie, et aucune ne rend votre canon plus fort.</p>
+      <p>Les détails sont dans la <a href="../privacy/holdfire.html">politique de confidentialité</a>.</p>
+      <p>Une question, un problème, une idée ? Écrivez-nous : <a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <div class="eyebrow">Prochainement</div>
+    <p class="lead" style="margin:14px auto 0;max-width:52ch;text-align:center">Hold Fire arrive sur l'App Store et Google Play, en français, anglais, espagnol, japonais et coréen. En attendant la première vague, découvrez nos autres jeux.</p>
+    <a class="cta" href="../index.html#jeux">Voir tous nos jeux</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 AppCraft31 · Hold Fire</span>
+    <span><a href="../privacy/holdfire.html">Confidentialité</a> · <a href="mailto:nicolas.zanette.nz@gmail.com">Contact &amp; assistance</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

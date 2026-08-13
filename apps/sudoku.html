@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le Sudoku du jour — Une règle différente par jour</title>
+<meta name="description" content="Le Sudoku du jour : un défi quotidien dont la règle change chaque jour — classique, X, killer, irrégulier, thermomètre. Sans compte, jouable même hors connexion.">
+<meta property="og:title" content="Le Sudoku du jour — Une règle différente par jour">
+<meta property="og:description" content="Un défi quotidien dont la règle change chaque jour. Sans compte, jouable même hors connexion.">
+<meta property="og:type" content="website">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f2ecdd; --paper-2:#ece4d1; --encre:#2b2620; --encre-2:#6c6154;
+    --filet:rgba(43,38,32,.55); --filet-doux:rgba(43,38,32,.18);
+    --stylo:#2e4d7b; --brique:#9c3f2c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Newsreader',Georgia,serif;color:var(--encre);background:var(--paper);
+    line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(rgba(128,110,80,.06) 1px,transparent 1.2px),radial-gradient(rgba(128,110,80,.045) 1px,transparent 1.2px);
+    background-size:7px 9px,11px 13px;background-position:0 0,4px 6px}
+  a{color:var(--stylo)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+
+  nav{border-bottom:1px solid var(--filet)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  nav a{color:var(--encre-2);text-decoration:none;font-size:15px}
+  nav a:hover{color:var(--encre)}
+  .brand{font-weight:600;letter-spacing:.06em;color:var(--encre) !important}
+
+  header.masthead{text-align:center;padding:56px 0 40px;border-bottom:2px solid var(--filet);position:relative}
+  .eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--encre-2)}
+  h1{font-size:clamp(40px,7vw,68px);font-weight:600;line-height:1.02;margin:14px 0 10px;text-wrap:balance}
+  .tagline{font-size:clamp(18px,2.6vw,23px);color:var(--encre-2);font-style:italic}
+  .badge-soon{display:inline-block;margin-top:22px;border:2px solid var(--brique);color:var(--brique);
+    font-style:normal;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+    padding:5px 14px;transform:rotate(-2deg)}
+  .pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+  .pill{border:1px solid var(--filet);padding:5px 14px;font-size:14px;color:var(--encre-2)}
+
+  section{padding:64px 0}
+  h2{font-size:14px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+    display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+  h2::after{content:"";flex:1;height:1px;background:var(--filet)}
+  .lead{color:var(--encre-2);max-width:62ch;margin-bottom:34px}
+
+  .cycle{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+  .day{border:1px solid var(--filet);padding:18px 16px;background:var(--paper-2)}
+  .day b{display:block;font-size:19px;font-weight:600}
+  .day span{color:var(--encre-2);font-size:14px}
+  .day .n{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--encre-2);display:block;margin-bottom:8px}
+
+  .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:22px}
+  .shots figure{margin:0}
+  .shots img{width:100%;height:auto;border:1px solid var(--filet);display:block}
+  .shots figcaption{font-size:13.5px;color:var(--encre-2);margin-top:8px;line-height:1.4}
+
+  .feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--filet-doux);border:1px solid var(--filet-doux)}
+  .feat{background:var(--paper);padding:22px}
+  .feat b{display:block;font-weight:600;font-size:17px;margin-bottom:4px}
+  .feat p{color:var(--encre-2);font-size:15px}
+
+  .privacy-note{border:1px solid var(--filet);background:var(--paper-2);padding:26px 30px;max-width:70ch}
+  .privacy-note p{margin-top:8px;color:var(--encre-2)}
+  .privacy-note b{color:var(--encre)}
+
+  .closing{text-align:center;border-top:2px solid var(--filet)}
+  .cta{display:inline-flex;align-items:center;gap:10px;margin-top:26px;background:var(--encre);color:var(--paper);
+    text-decoration:none;font-weight:600;font-size:17px;padding:14px 28px}
+  .cta small{font-weight:400;opacity:.75;font-size:12px;display:block;line-height:1.1;text-align:left}
+  .cta.disabled{opacity:.55;pointer-events:none}
+
+  footer{border-top:1px solid var(--filet);padding:26px 0 48px;color:var(--encre-2);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  @media (max-width:640px){section{padding:44px 0}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="brand">AppCraft31</a>
+    <a href="../index.html#jeux">← Tous nos jeux</a>
+  </div>
+</nav>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="eyebrow">Un journal de grilles · iOS</div>
+    <h1>Le Sudoku du jour</h1>
+    <p class="tagline">« Chaque matin, une grille. Et chaque matin, une règle différente. »</p>
+    <span class="badge-soon">Bientôt sur l'App Store</span>
+    <div class="pills">
+      <span class="pill">5 variantes en rotation</span>
+      <span class="pill">Sans compte</span>
+      <span class="pill">Jouable hors connexion</span>
+      <span class="pill">Carnet de tampons</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Le concept</h2>
+    <p class="lead">Un défi quotidien numéroté comme une édition de journal — la même grille pour tous les joueurs, partout, le même jour. Cinq variantes se relaient au fil des éditions, et la difficulté suit le rythme de la semaine : accessible en début de semaine, corsée le week-end. Une carte de règle claire s'affiche avant chaque variante, pour que les règles exotiques restent accessibles à tous.</p>
+    <div class="cycle">
+      <div class="day"><span class="n">Édition 1</span><b>Classique</b><span>Le sudoku que vous connaissez.</span></div>
+      <div class="day"><span class="n">Édition 2</span><b>Sudoku X</b><span>Les diagonales comptent aussi.</span></div>
+      <div class="day"><span class="n">Édition 3</span><b>Killer</b><span>Des cages qui s'additionnent.</span></div>
+      <div class="day"><span class="n">Édition 4</span><b>Irrégulier</b><span>Des régions aux formes libres.</span></div>
+      <div class="day"><span class="n">Édition 5</span><b>Thermomètre</b><span>Des chiffres qui croissent.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>À la une</h2>
+    <div class="shots">
+      <figure><img src="../assets/sudoku-jeu.jpg" alt="Partie de Sudoku killer en cours, cages en pointillés" loading="lazy"><figcaption>Un killer en cours — cages lisibles, chrono, rappel de règle sous la grille.</figcaption></figure>
+      <figure><img src="../assets/sudoku-accueil.jpg" alt="Écran d'accueil du Sudoku du jour avec le carnet de tampons" loading="lazy"><figcaption>La manchette du jour, la partie libre et le carnet de tampons.</figcaption></figure>
+      <figure><img src="../assets/sudoku-regle.jpg" alt="Carte de règle affichée avant une partie" loading="lazy"><figcaption>La carte de règle, avant chaque variante.</figcaption></figure>
+      <figure><img src="../assets/sudoku-sombre.jpg" alt="Mode sombre papier de nuit" loading="lazy"><figcaption>Le « papier de nuit » — encre crème sur papier brun.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Ce qui fait revenir</h2>
+    <div class="feats">
+      <div class="feat"><b>Le carnet de tampons</b><p>Un cachet d'encre par défi résolu sur le calendrier du mois. Ce sont les trous qui donnent envie de revenir.</p></div>
+      <div class="feat"><b>Les rangs</b><p>D'Apprenti à Rédacteur en chef — ils ne redescendent jamais, même le jour où la série se brise.</p></div>
+      <div class="feat"><b>Les archives</b><p>Les 60 dernières éditions restent ouvertes. Un jour manqué n'est jamais perdu.</p></div>
+      <div class="feat"><b>Le partage en emojis</b><p>Un résumé de partie copié en un geste, à partager où bon vous semble — sans rien divulgâcher.</p></div>
+      <div class="feat"><b>La partie libre</b><p>Chaque variante en trois difficultés, avec records de temps, notes au crayon, annulation et indices comptés.</p></div>
+      <div class="feat"><b>Le confort</b><p>Sauvegarde automatique, mode sombre, clavier physique pris en charge, VoiceOver soigné case par case.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Vie privée</h2>
+    <div class="privacy-note">
+      <b>Aucun compte à créer, rien à configurer.</b>
+      <p>Les grilles se génèrent directement sur votre appareil et la partie se joue même sans connexion. Les détails sont dans la <a href="../privacy/sudoku.html">politique de confidentialité</a>.</p>
+      <p>Une question, un problème, une idée ? Écrivez-nous : <a href="mailto:nicolas.zanette.nz@gmail.com">nicolas.zanette.nz@gmail.com</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <div class="eyebrow">Prochainement</div>
+    <p class="lead" style="margin:14px auto 0;max-width:52ch;text-align:center">Le Sudoku du jour arrive sur l'App Store. En attendant la première édition, découvrez nos autres jeux de logique.</p>
+    <a class="cta" href="../index.html#jeux">Voir tous nos jeux</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 AppCraft31 · Le Sudoku du jour</span>
+    <span><a href="../privacy/sudoku.html">Confidentialité</a> · <a href="mailto:nicolas.zanette.nz@gmail.com">Contact &amp; assistance</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

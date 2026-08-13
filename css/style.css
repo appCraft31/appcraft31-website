@@ -452,6 +452,8 @@ body {
 .app-card--orbis     { --accent: var(--pastel-mint); }
 .app-card--meliz     { --accent: var(--pastel-rose); }
 .app-card--motfleche { --accent: var(--pastel-gold); }
+.app-card--remindo   { --accent: #8E7CF0; }
+.app-card--holdfire  { --accent: #6FE3FF; }
 
 .app-card-header { display: flex; align-items: flex-start; gap: 16px; position: relative; z-index: 1; }
 
@@ -496,6 +498,10 @@ body {
 .talon-icon { background: #FAF8F2; border: 1px solid rgba(28, 82, 56, 0.28); padding: 8px; }
 .talon-icon svg { width: 100%; height: 100%; }
 .contree-icon svg { width: 100%; height: 100%; }
+.sudoku-icon { background: #f2ecdd; border: 1px solid rgba(43, 38, 32, 0.28); }
+.sudoku-icon svg { width: 100%; height: 100%; }
+.holdfire-icon { background: #070B14; border: 1px solid rgba(111, 227, 255, 0.32); }
+.holdfire-icon svg { width: 100%; height: 100%; }
 
 .tengo-logo {
     display: inline-flex; align-items: center; gap: 3px;
