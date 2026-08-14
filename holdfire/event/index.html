@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hold Fire — Semaine de lancement</title>
+<meta name="description" content="Semaine de lancement de Hold Fire : pendant une semaine, chaque partie rapporte deux fois plus de fragments.">
+<meta name="theme-color" content="#161046">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@1,700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  /* Les couleurs de la marque, comme la page du jeu et l'écran d'accueil. */
+  :root{
+    --nuit:#161046; --violet:#3A1E6E; --rose:#F0338F; --rose-clair:#FF6BB5;
+    --bleu-clair:#BDEEFF; --texte:#F0EAFF; --texte-2:#B4A5DF;
+    --ligne:rgba(139,123,255,.26);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Rajdhani',system-ui,sans-serif;color:var(--texte);
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:32px;-webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(70rem 38rem at 50% 0%, rgba(255,107,181,.24), transparent 62%),
+      linear-gradient(155deg, var(--violet) 0%, var(--nuit) 58%, #0E0A2E 100%);
+    background-attachment:fixed;background-color:var(--nuit)}
+  .eyebrow{font-family:'Chakra Petch',sans-serif;font-style:italic;font-weight:700;
+    font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--texte-2)}
+  h1{font-family:'Chakra Petch',sans-serif;font-style:italic;font-weight:700;
+    text-transform:uppercase;font-size:clamp(30px,7vw,54px);line-height:1.04;margin:16px 0 0;
+    color:var(--rose-clair);text-shadow:0 0 24px rgba(255,61,174,.4)}
+  .filet{width:min(280px,60%);height:3px;background:var(--rose-clair);margin:22px auto;
+    box-shadow:0 0 18px rgba(255,61,174,.7);border-radius:2px}
+  p{color:var(--texte-2);font-size:19px;max-width:44ch;margin:0 auto}
+  .cta{display:inline-block;margin-top:32px;background:var(--rose);color:#FFF3F9;
+    font-family:'Chakra Petch',sans-serif;font-style:italic;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;text-decoration:none;font-size:17px;padding:15px 34px;
+    box-shadow:0 0 24px rgba(240,51,143,.35)}
+  .cta:hover{background:var(--rose-clair)}
+  .apres{margin-top:26px;font-size:15px;color:var(--texte-2)}
+  .apres a{color:var(--bleu-clair)}
+</style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Hold Fire · Événement</div>
+    <h1>Semaine<br>de lancement</h1>
+    <div class="filet"></div>
+    <p>Pendant une semaine, chaque partie rapporte <strong style="color:var(--texte)">deux fois plus de fragments</strong> — de quoi ouvrir l'arsenal bien plus vite.</p>
+    <!-- Cette page n'est vue que par ceux qui n'ont pas l'application : sur un
+         iPhone où Hold Fire est installé, iOS ouvre le jeu directement grâce au
+         fichier d'association du domaine, et cette page ne s'affiche jamais. -->
+    <a class="cta" href="../../apps/holdfire.html">Découvrir le jeu</a>
+    <p class="apres">Déjà installé ? <a href="../../apps/holdfire.html">Ouvrez Hold&nbsp;Fire</a> : l'événement s'affiche sur l'écran d'accueil.</p>
+  </main>
+</body>
+</html>
