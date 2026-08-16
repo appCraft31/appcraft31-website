@@ -1,0 +1,22 @@
+{
+  "fr": {
+    "tagline": "Ton second cerveau tout doux",
+    "desc": "Notes, rappels, routines et objectifs chiffrés dans une app toute douce. Cortex, le petit cerveau qui vit dedans, retient ce que vous lui confiez et le remet sous vos yeux au bon moment — sans compte, sans cloud, sans la moindre connexion.",
+    "c1": "📝 Notes formatées",
+    "c2": "⏰ Rappels datés",
+    "c3": "🔄 Routines quotidiennes",
+    "c4": "📈 Objectifs chiffrés",
+    "c5": "🛠 Widget & note express",
+    "c6": "🔒 100 % hors ligne"
+  },
+  "en": {
+    "tagline": "Your gentle second brain",
+    "desc": "Notes, reminders, routines and tracked goals in one soft little app. Cortex, the small brain living inside, keeps what you hand it and brings it back at the right moment — no account, no cloud, no connection at all.",
+    "c1": "📝 Rich notes",
+    "c2": "⏰ Dated reminders",
+    "c3": "🔄 Daily routines",
+    "c4": "📈 Tracked goals",
+    "c5": "🛠 Widget & quick note",
+    "c6": "🔒 Fully offline"
+  }
+}

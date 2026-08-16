@@ -1,0 +1,611 @@
+/* ============================================================================
+   Accueil — identité « atelier »
+   ----------------------------------------------------------------------------
+   Grandes capitales, filets de gabarit, numérotation en sommaire : la page se
+   lit comme la planche d'un atelier plutôt que comme une grille de cartes.
+   ============================================================================ */
+
+.anchor {
+  display: block;
+  position: relative;
+  top: -96px;
+  visibility: hidden;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(72px, 14vh, 140px) clamp(56px, 10vh, 110px);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-plan {
+  position: absolute;
+  inset: 0;
+  color: var(--accent);
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.hero-plan svg {
+  width: 100%;
+  height: 100%;
+}
+
+.plan-arc,
+.plan-rule {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+/* Les tracés se dessinent au chargement, comme un plan qu'on trace. */
+.plan-arc {
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+  animation: draw 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.plan-arc--2 {
+  animation-delay: 0.25s;
+  opacity: 0.6;
+}
+
+.plan-rule {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+}
+
+.plan-rule--2 {
+  animation-delay: 0.6s;
+  opacity: 0.5;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 22px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent);
+  animation: pulse 2.6s ease-out infinite;
+}
+
+@keyframes pulse {
+  70% {
+    box-shadow: 0 0 0 12px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.hero-title {
+  font-size: clamp(44px, 9.5vw, 116px);
+  font-weight: 800;
+  max-width: 15ch;
+}
+
+.hero-title-accent {
+  color: var(--accent);
+}
+
+.hero-sub {
+  margin: 26px 0 0;
+  max-width: 56ch;
+  font-size: clamp(17px, 2vw, 20px);
+  color: var(--text-soft);
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  padding-inline: 26px;
+  border-radius: 999px;
+  font-weight: 650;
+  font-size: 15.5px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--accent) 85%, #000);
+}
+
+.btn-ghost {
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+.btn-social {
+  gap: 9px;
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.hero-figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(28px, 6vw, 64px);
+  margin: 56px 0 0;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.hero-figures dt {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.hero-figures dd {
+  margin: 4px 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 46px);
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* ── Bandeau défilant ─────────────────────────────────────────────────── */
+
+.marquee {
+  display: flex;
+  overflow: hidden;
+  padding-block: 18px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-alt);
+  user-select: none;
+}
+
+.marquee-track {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0;
+  padding-inline-end: 0;
+  animation: scroll 48s linear infinite;
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  padding-inline-end: 22px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: var(--text-faint);
+}
+
+.marquee-sep {
+  color: var(--accent);
+  font-style: normal;
+  font-size: 11px;
+}
+
+/* ── Sections ─────────────────────────────────────────────────────────── */
+
+.section {
+  padding-block: clamp(72px, 11vw, 128px);
+  position: relative;
+}
+
+.section--about {
+  background: var(--bg-alt);
+  border-block: 1px solid var(--line);
+}
+
+.section-head {
+  max-width: 62ch;
+  margin-bottom: 36px;
+}
+
+.section-title {
+  font-size: clamp(32px, 5.4vw, 58px);
+  font-weight: 800;
+}
+
+.section-sub {
+  margin: 14px 0 0;
+  font-size: 17px;
+  color: var(--text-soft);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.filter-btn {
+  height: 38px;
+  padding-inline: 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--text-soft);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 550;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.filter-btn.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ── Grille de produits ───────────────────────────────────────────────── */
+
+.apps-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .apps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1060px) {
+  .apps-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.app-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 24px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  overflow: hidden;
+  transition:
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.28s,
+    box-shadow 0.28s;
+}
+
+/* La couleur du produit n'apparaît qu'au survol : la grille reste lisible,
+   mais chaque carte sait de quel univers elle vient. */
+.app-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(120% 90% at 100% 0%, var(--u-glow), transparent 62%);
+  opacity: 0;
+  transition: opacity 0.32s;
+  pointer-events: none;
+}
+
+.app-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--u-accent) 55%, transparent);
+  box-shadow: var(--shadow-lg);
+}
+
+.app-card:hover::before {
+  opacity: 1;
+}
+
+.app-card-rule {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--u-accent), var(--u-accent-2));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.app-card:hover .app-card-rule {
+  transform: scaleX(1);
+}
+
+.app-card-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    'num  num  badge'
+    'icon id   id';
+  align-items: center;
+  gap: 8px 14px;
+  /* Surtout pas de `position` ici : l'overlay du lien s'ancre sur le premier
+     ancêtre positionné, et se réduirait à cet en-tête au lieu de couvrir la
+     carte entière. */
+}
+
+.app-card-num {
+  grid-area: num;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-faint);
+}
+
+.app-card-icon {
+  grid-area: icon;
+  width: 62px;
+  height: 62px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--u-paper);
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.app-card-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app-card-id {
+  grid-area: id;
+  min-width: 0;
+}
+
+.app-card-id h3 {
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.app-card-link {
+  text-decoration: none;
+}
+
+/* Toute la carte est cliquable, mais le lien reste un vrai lien.
+   `inset: 0` se cale sur `.app-card`, seul ancêtre positionné : aucun bloc
+   intermédiaire ne doit prendre `position: relative`, sinon l'overlay se
+   réduit à ce bloc et le reste de la carte devient inerte. */
+.app-card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.app-card-tagline {
+  margin: 3px 0 0;
+  font-size: 13.5px;
+  color: var(--text-soft);
+}
+
+.badge {
+  grid-area: badge;
+  justify-self: end;
+  padding: 3px 11px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.badge--available {
+  background: color-mix(in srgb, var(--color-mint) 18%, transparent);
+  color: color-mix(in srgb, var(--color-mint) 75%, #06301f);
+}
+
+[data-theme='dark'] .badge--available {
+  color: var(--color-mint);
+}
+
+.badge--soon {
+  background: color-mix(in srgb, var(--color-safran) 22%, transparent);
+  color: color-mix(in srgb, var(--color-safran) 72%, #3a2600);
+}
+
+[data-theme='dark'] .badge--soon {
+  color: var(--color-safran);
+}
+
+.app-card-desc {
+  position: relative;
+  margin: 18px 0 0;
+  font-size: 14.5px;
+  color: var(--text-soft);
+  flex: 1;
+}
+
+.app-card-chips {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-card-chips li {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.app-card-foot {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+/* Les badges passent devant le lien qui recouvre la carte, sans quoi un clic
+   dessus ouvrirait la page produit au lieu du store. */
+.app-card-stores {
+  position: relative;
+  z-index: 3;
+  display: inline-flex;
+  gap: 8px;
+}
+
+.app-card-stores a {
+  display: inline-flex;
+  border-radius: 7px;
+  box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--u-accent) 55%, transparent);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.app-card-stores a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1.5px var(--u-accent), 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.app-card-stores img {
+  height: 34px;
+  width: auto;
+  border-radius: 7px;
+  display: block;
+}
+
+.app-card-more {
+  margin-inline-start: auto;
+  font-size: 14px;
+  font-weight: 600;
+  /* L'accent brut de certaines apps (bleu encre du Sudoku, vert tapis de Talon)
+     ne se lit pas sur fond sombre. On le ramène vers la couleur du texte juste
+     assez pour rester lisible dans les deux thèmes. */
+  color: color-mix(in srgb, var(--u-accent) 65%, var(--text));
+}
+
+.app-card:hover .app-card-more {
+  color: color-mix(in srgb, var(--u-accent) 85%, var(--text));
+}
+
+/* ── À propos ─────────────────────────────────────────────────────────── */
+
+.about-grid {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 860px) {
+  .about-grid {
+    grid-template-columns: 1.6fr 1fr;
+    gap: 72px;
+  }
+}
+
+.about-p {
+  margin: 20px 0 0;
+  font-size: 17px;
+  color: var(--text-soft);
+  max-width: 62ch;
+}
+
+.about-p strong {
+  color: var(--text);
+}
+
+.about-figures {
+  display: grid;
+  gap: 18px;
+}
+
+.about-figures p {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.about-figures strong {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+}

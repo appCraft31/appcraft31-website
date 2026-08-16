@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Vos podcasts, sans distraction",
+    "desc": "Recherchez, abonnez-vous et écoutez. PodDroid assemble votre journée d'écoute, vous suit au volant et respecte votre vie privée — sans pub ni pistage. Disponible sur Android.",
+    "c1": "File « Ma journée »",
+    "c2": "Flux immersif",
+    "c3": "Minuteur de sommeil",
+    "c4": "Écoute hors-ligne",
+    "c5": "Android Auto",
+    "c6": "Sans pub ni pistage"
+  },
+  "en": {
+    "tagline": "Your podcasts, distraction-free",
+    "desc": "Search, subscribe and listen. PodDroid builds your listening day, follows you on the road and respects your privacy — no ads, no tracking. Available on Android.",
+    "c1": "\"My day\" queue",
+    "c2": "Immersive feed",
+    "c3": "Sleep timer",
+    "c4": "Offline listening",
+    "c5": "Android Auto",
+    "c6": "No ads or tracking"
+  },
+  "ja": {
+    "tagline": "集中できるポッドキャスト",
+    "desc": "検索して、登録して、聴く。PodDroidはあなたの一日の再生リストを組み立て、運転中もサポートし、プライバシーを尊重します。広告なし、追跡なし。Androidで利用できます。",
+    "c1": "「マイデイ」キュー",
+    "c2": "没入型フィード",
+    "c3": "スリープタイマー",
+    "c4": "オフライン再生",
+    "c5": "Android Auto",
+    "c6": "広告・追跡なし"
+  },
+  "ko": {
+    "tagline": "방해 없는 팟캐스트",
+    "desc": "검색하고, 구독하고, 들으세요. PodDroid는 하루치 청취 목록을 구성하고, 운전 중에도 함께하며, 개인정보를 존중합니다 — 광고와 추적 없이. Android에서 이용할 수 있습니다.",
+    "c1": "'마이 데이' 대기열",
+    "c2": "몰입형 피드",
+    "c3": "취침 타이머",
+    "c4": "오프라인 청취",
+    "c5": "Android Auto",
+    "c6": "광고·추적 없음"
+  },
+  "es": {
+    "tagline": "Tus pódcasts, sin distracciones",
+    "desc": "Busca, suscríbete y escucha. PodDroid arma tu jornada de escucha, te acompaña al volante y respeta tu privacidad: sin anuncios ni rastreo. Disponible en Android.",
+    "c1": "Cola «Mi día»",
+    "c2": "Feed inmersivo",
+    "c3": "Temporizador de apagado",
+    "c4": "Escucha sin conexión",
+    "c5": "Android Auto",
+    "c6": "Sin anuncios ni rastreo"
+  },
+  "de": {
+    "tagline": "Deine Podcasts, ohne Ablenkung",
+    "desc": "Suchen, abonnieren und hören. PodDroid stellt deinen Hörtag zusammen, begleitet dich am Steuer und respektiert deine Privatsphäre – ohne Werbung, ohne Tracking. Verfügbar für Android.",
+    "c1": "„Mein Tag\"-Warteschlange",
+    "c2": "Immersiver Feed",
+    "c3": "Sleep-Timer",
+    "c4": "Offline hören",
+    "c5": "Android Auto",
+    "c6": "Ohne Werbung & Tracking"
+  }
+}

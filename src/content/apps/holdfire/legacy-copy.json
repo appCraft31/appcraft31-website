@@ -1,0 +1,22 @@
+{
+  "fr": {
+    "tagline": "Tower defense et tir manuel",
+    "desc": "Un tower defense où c'est vous qui tirez. Maintenez pour viser, posez vos tourelles entre les vagues et tenez cent vagues jusqu'au Léviathan. Les tourelles tiennent le couloir, mais elles ne verront jamais tout — le reste, c'est vous.",
+    "c1": "🎯 Visée au doigt",
+    "c2": "🏗 5 tourelles",
+    "c3": "🌊 100 vagues",
+    "c4": "💀 22 ennemis, 10 boss",
+    "c5": "✈ Jouable hors-ligne",
+    "c6": "🌐 5 langues"
+  },
+  "en": {
+    "tagline": "Tower defense, and you pull the trigger",
+    "desc": "A tower defense where you do the shooting. Hold to aim, place your turrets between waves and hold a hundred waves up to the Leviathan. Turrets cover the lane, but they will never see everything — the rest is on you.",
+    "c1": "🎯 Aim with your finger",
+    "c2": "🏗 5 turrets",
+    "c3": "🌊 100 waves",
+    "c4": "💀 22 enemies, 10 bosses",
+    "c5": "✈ Playable offline",
+    "c6": "🌐 5 languages"
+  }
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" aria-label="Icône Glyphe" role="img">
+                                <defs>
+                                    <linearGradient id="gl-gold" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0" stop-color="#F4D278"/><stop offset=".5" stop-color="#E4B549"/><stop offset="1" stop-color="#BF8C1B"/>
+                                    </linearGradient>
+                                    <linearGradient id="gl-gem" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0" stop-color="#6FCDBF"/><stop offset="1" stop-color="#3A958A"/>
+                                    </linearGradient>
+                                </defs>
+                                <polygon points="75,29 114.84,52 114.84,98 75,121 35.16,98 35.16,52" fill="none" stroke="url(#gl-gold)" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+                                <rect x="61.5" y="61.5" width="27" height="27" rx="7" transform="rotate(45 75 75)" fill="url(#gl-gem)"/>
+                                <circle cx="69" cy="67" r="3.6" fill="#fff" opacity=".34"/>
+                            </svg>

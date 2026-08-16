@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "La logique en noir et blanc",
+    "desc": "Le Binero (Takuzu / Binairo) : la détente du sudoku, en binaire. Remplissez la grille de 0 et de 1 par pure déduction — 50 niveaux du 6×6 au 14×14, une grille du jour et un classement mondial.",
+    "c1": "50 niveaux",
+    "c2": "Grille du jour",
+    "c3": "Difficulté adaptative",
+    "c4": "Classement mondial",
+    "c5": "100 % hors-ligne",
+    "c6": "Indices & aide"
+  },
+  "en": {
+    "tagline": "Logic in black and white",
+    "desc": "Binero (Takuzu / Binairo): the calm of sudoku, in binary. Fill the grid with 0s and 1s by pure deduction — 50 levels from 6×6 to 14×14, a daily puzzle and a global leaderboard.",
+    "c1": "50 levels",
+    "c2": "Daily puzzle",
+    "c3": "Adaptive difficulty",
+    "c4": "Global leaderboard",
+    "c5": "100% offline",
+    "c6": "Hints & help"
+  },
+  "ja": {
+    "tagline": "ロジックを白と黒で",
+    "desc": "Binero(Takuzu / Binairo)は、数独のような安らぎをバイナリで。0と1だけを純粋な推理で埋めていきます。6×6から14×14までの50レベル、デイリーパズル、そして世界ランキングを搭載。",
+    "c1": "50レベル",
+    "c2": "デイリーパズル",
+    "c3": "適応型の難易度",
+    "c4": "世界ランキング",
+    "c5": "100% オフライン",
+    "c6": "ヒント & ヘルプ"
+  },
+  "ko": {
+    "tagline": "흑백의 논리",
+    "desc": "Binero(Takuzu / Binairo)는 스도쿠의 편안함을 이진법으로 옮긴 게임. 순수한 추리로 0과 1만 채워 넣으세요. 6×6부터 14×14까지 50개 레벨, 데일리 퍼즐, 그리고 글로벌 순위표를 제공합니다.",
+    "c1": "50개 레벨",
+    "c2": "데일리 퍼즐",
+    "c3": "적응형 난이도",
+    "c4": "글로벌 순위표",
+    "c5": "100% 오프라인",
+    "c6": "힌트 & 도움말"
+  },
+  "es": {
+    "tagline": "La lógica en blanco y negro",
+    "desc": "Binero (Takuzu / Binairo): la calma del sudoku, en binario. Rellena la cuadrícula de 0 y 1 por pura deducción: 50 niveles del 6×6 al 14×14, un reto diario y un ranking mundial.",
+    "c1": "50 niveles",
+    "c2": "Reto diario",
+    "c3": "Dificultad adaptativa",
+    "c4": "Ranking mundial",
+    "c5": "100 % sin conexión",
+    "c6": "Pistas y ayuda"
+  },
+  "de": {
+    "tagline": "Logik in Schwarz und Weiß",
+    "desc": "Binero (Takuzu / Binairo): die Ruhe von Sudoku, in Binär. Füllen Sie das Gitter mit 0 und 1 durch reine Deduktion — 50 Level von 6×6 bis 14×14, ein tägliches Rätsel und eine weltweite Rangliste.",
+    "c1": "50 Level",
+    "c2": "Tägliches Rätsel",
+    "c3": "Adaptive Schwierigkeit",
+    "c4": "Weltweite Rangliste",
+    "c5": "100 % offline",
+    "c6": "Tipps & Hilfe"
+  }
+}

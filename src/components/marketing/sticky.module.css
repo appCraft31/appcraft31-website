@@ -1,0 +1,91 @@
+/* ============================================================================
+   Barre de téléchargement suivant le défilement.
+   ----------------------------------------------------------------------------
+   Aux couleurs du produit, posée au bas de l'écran. Elle n'existe que pour
+   rattraper le lecteur qui se décide en cours de lecture.
+   ============================================================================ */
+
+.bar {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 60;
+  padding: 10px clamp(14px, 4vw, 28px);
+  background: color-mix(in srgb, var(--u-paper) 92%, transparent);
+  backdrop-filter: saturate(160%) blur(14px);
+  border-top: 1px solid color-mix(in srgb, var(--u-accent) 35%, transparent);
+  box-shadow: 0 -12px 40px color-mix(in srgb, var(--u-ink) 22%, transparent);
+
+  /* Masquée par défaut : elle glisse depuis le bas quand le hero est passé. */
+  transform: translateY(105%);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.28s,
+    visibility 0.34s;
+}
+
+.shown {
+  transform: none;
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    transition: opacity 0.01ms, visibility 0.01ms;
+    transform: none;
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 1140px;
+  margin-inline: auto;
+}
+
+.icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid color-mix(in srgb, var(--u-ink) 14%, transparent);
+}
+
+.id {
+  display: none;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 0;
+}
+
+/* Sur un écran étroit, seuls l'icône et les badges tiennent. */
+@media (min-width: 620px) {
+  .id {
+    display: flex;
+  }
+}
+
+.id strong {
+  font-family: var(--u-font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--u-ink);
+}
+
+.id span {
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--u-ink) 58%, transparent);
+}
+
+.actions {
+  margin-inline-start: auto;
+  min-width: 0;
+}

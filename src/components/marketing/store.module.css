@@ -1,0 +1,114 @@
+/* ============================================================================
+   Liens de téléchargement.
+   ----------------------------------------------------------------------------
+   Les badges d'Apple et de Google sont des images fournies, qu'on ne redessine
+   pas. Tout le travail porte donc sur ce qui les entoure : une surface qui les
+   détache du fond, une taille franche, et un mouvement au survol.
+   ============================================================================ */
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.center {
+  justify-content: center;
+}
+
+.badge {
+  display: inline-flex;
+  border-radius: 10px;
+  /* Un liseré à la couleur du produit : sur un fond sombre, un badge noir
+     disparaît purement et simplement. */
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--u-accent) 55%, transparent),
+    0 12px 30px color-mix(in srgb, var(--u-ink) 30%, transparent);
+  transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.22s;
+}
+
+.badge:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 0 0 2px var(--u-accent),
+    0 18px 40px color-mix(in srgb, var(--u-accent) 35%, transparent);
+}
+
+.badge img {
+  height: var(--badge-h, 54px);
+  width: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Le lien « jouer en ligne » n'a pas de badge officiel : on lui en dessine un
+   qui tient la comparaison, aux couleurs du produit. */
+.web {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  height: var(--badge-h, 54px);
+  padding-inline: 24px;
+  border-radius: 10px;
+  background: var(--u-accent);
+  color: var(--u-paper);
+  font-weight: 700;
+  font-size: 15.5px;
+  text-decoration: none;
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--u-accent) 40%, transparent);
+  transition:
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.22s;
+}
+
+.web:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 44px color-mix(in srgb, var(--u-accent) 55%, transparent);
+}
+
+/* Les thèmes clairs ont un accent pâle : le texte du bouton doit rester lisible. */
+.web {
+  background: var(--u-accent-text);
+}
+
+.large {
+  gap: 18px;
+}
+
+.compact {
+  margin-top: 0;
+  gap: 10px;
+}
+
+.compact .badge {
+  box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--u-accent) 50%, transparent);
+}
+
+.compact .web {
+  padding-inline: 18px;
+  font-size: 14.5px;
+}
+
+/* ── App pas encore publiée ────────────────────────────────────────────── */
+
+.soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 30px 0 0;
+  padding: 14px 22px;
+  border: 2px dashed color-mix(in srgb, var(--u-accent) 55%, transparent);
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--u-accent-text) 80%, var(--u-ink));
+}
+
+.soon.center {
+  margin-inline: auto;
+}

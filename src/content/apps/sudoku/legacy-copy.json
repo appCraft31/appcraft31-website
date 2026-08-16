@@ -1,0 +1,22 @@
+{
+  "fr": {
+    "tagline": "Une règle différente par jour",
+    "desc": "Un défi quotidien dont la règle change chaque jour : classique, X, killer, irrégulier, thermomètre. La même grille pour tous, un carnet de tampons à remplir, des rangs à gravir — sans compte, jouable même hors connexion.",
+    "c1": "📅 Défi quotidien",
+    "c2": "🔄 5 variantes en rotation",
+    "c3": "📓 Carnet de tampons",
+    "c4": "🏆 Rangs & séries",
+    "c5": "✈ Jouable hors-ligne",
+    "c6": "🔒 Sans compte"
+  },
+  "en": {
+    "tagline": "A different rule every day",
+    "desc": "A daily challenge whose rule changes each day: classic, X, killer, irregular, thermometer. The same grid for everyone, a stamp book to fill, ranks to climb — no account, playable offline.",
+    "c1": "📅 Daily challenge",
+    "c2": "🔄 5 rotating variants",
+    "c3": "📓 Stamp book",
+    "c4": "🏆 Ranks & streaks",
+    "c5": "✈ Playable offline",
+    "c6": "🔒 No account"
+  }
+}

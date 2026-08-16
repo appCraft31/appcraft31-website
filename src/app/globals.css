@@ -1,0 +1,482 @@
+@import 'tailwindcss';
+
+/* ============================================================================
+   AppCraft31 — système de design
+   ----------------------------------------------------------------------------
+   L'ancien site reposait sur une palette pastel lavande/rose appliquée
+   uniformément : tout se ressemblait. La nouvelle identité est chaude et
+   contrastée — terre cuite et safran sur encre profonde, en écho à la brique
+   toulousaine du « 31 ». Elle appartient au site, jamais aux apps : chaque page
+   produit pose ensuite ses propres variables `--u-*` (voir src/lib/theme.ts).
+   ============================================================================ */
+
+@theme {
+  /* Marque */
+  --color-brick: #d95f3b;
+  --color-brick-deep: #b4442a;
+  --color-safran: #f2b33d;
+  --color-mint: #3ecfa5;
+  --color-ink: #0c0a10;
+  --color-paper: #fbf7f2;
+
+  --font-display: var(--font-bricolage), 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius-card: 20px;
+}
+
+/* ---------------------------------------------------------------------------
+   Thème du site — clair par défaut, sombre via [data-theme="dark"].
+   Les deux jeux sont définis en entier : jamais de couleur qui n'existerait
+   que dans une media query.
+   --------------------------------------------------------------------------- */
+:root {
+  --bg: #fbf7f2;
+  --bg-alt: #f3ece3;
+  --surface: #ffffff;
+  --text: #1a1520;
+  --text-soft: #5c5266;
+  --text-faint: #8f8599;
+  --line: rgba(26, 21, 32, 0.1);
+  --line-strong: rgba(26, 21, 32, 0.2);
+  --accent: var(--color-brick);
+  --accent-2: var(--color-safran);
+  --header-bg: rgba(251, 247, 242, 0.82);
+  --shadow: 0 12px 32px rgba(90, 50, 30, 0.1);
+  --shadow-lg: 0 28px 70px rgba(90, 50, 30, 0.18);
+  --grain-opacity: 0.035;
+}
+
+[data-theme='dark'] {
+  --bg: #0c0a10;
+  --bg-alt: #14111b;
+  --surface: #191524;
+  --text: #f6f1ea;
+  --text-soft: rgba(246, 241, 234, 0.66);
+  --text-faint: rgba(246, 241, 234, 0.42);
+  --line: rgba(246, 241, 234, 0.12);
+  --line-strong: rgba(246, 241, 234, 0.24);
+  --accent: #ff7a4d;
+  --accent-2: var(--color-safran);
+  --header-bg: rgba(12, 10, 16, 0.78);
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 32px 80px rgba(0, 0, 0, 0.6);
+  --grain-opacity: 0.05;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Compense la hauteur de l'en-tête collant sur les ancres. */
+    scroll-padding-top: 88px;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Une seule règle de focus, visible sur tous les fonds. */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #fff;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Mouvement — tout est coupé net si le système le demande.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 40px);
+  }
+
+  /* Apparition au défilement, posée par le composant Reveal. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Sans JS, rien ne doit rester invisible. */
+  html:not(.js) .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---------------------------------------------------------------------
+     En-tête
+     --------------------------------------------------------------------- */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--header-bg);
+    backdrop-filter: saturate(150%) blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 68px;
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 1px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.04em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .wordmark-num {
+    color: var(--accent);
+  }
+
+  .nav-main {
+    display: none;
+    gap: 22px;
+    margin-inline-start: auto;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  @media (min-width: 860px) {
+    .nav-main {
+      display: flex;
+    }
+  }
+
+  .nav-main a {
+    text-decoration: none;
+    color: var(--text-soft);
+    padding-block: 4px;
+    border-bottom: 2px solid transparent;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  .nav-main a:hover {
+    color: var(--text);
+    border-bottom-color: var(--accent);
+  }
+
+  .header-tools {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-inline-start: auto;
+  }
+
+  @media (min-width: 860px) {
+    .header-tools {
+      margin-inline-start: 0;
+    }
+  }
+
+  .icon-btn,
+  .lang-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 36px;
+    padding-inline: 10px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+  }
+
+  .icon-btn:hover,
+  .lang-trigger:hover {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+  }
+
+  .icon-btn {
+    width: 36px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .lang-select {
+    position: relative;
+  }
+
+  .lang-menu {
+    position: absolute;
+    inset-inline-end: 0;
+    top: calc(100% + 8px);
+    min-width: 178px;
+    padding: 6px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow-lg);
+    display: grid;
+    gap: 2px;
+  }
+
+  .lang-menu a {
+    padding: 8px 10px;
+    border-radius: 9px;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--text-soft);
+  }
+
+  .lang-menu a:hover {
+    background: var(--bg-alt);
+    color: var(--text);
+  }
+
+  .lang-menu a.is-current {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .chevron {
+    font-size: 10px;
+    opacity: 0.6;
+  }
+
+  /* ---------------------------------------------------------------------
+     Pied de page
+     --------------------------------------------------------------------- */
+  .site-footer {
+    padding-block: 64px 32px;
+    border-top: 1px solid var(--line);
+    background: var(--bg-alt);
+    font-size: 14px;
+  }
+
+  .footer-top {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 760px) {
+    .footer-top {
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+    }
+  }
+
+  .footer-brand p {
+    margin: 12px 0;
+    color: var(--text-soft);
+    max-width: 34ch;
+  }
+
+  .footer-mail {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .footer-mail:hover {
+    text-decoration: underline;
+  }
+
+  .footer-col h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    margin-bottom: 14px;
+    font-family: var(--font-body);
+    font-weight: 700;
+  }
+
+  /* Vingt produits en une colonne font une page de pied démesurée : on les
+     répartit sur deux colonnes dès qu'il y a la place. */
+  .footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 7px 20px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 480px) {
+    .footer-col ul {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .footer-col a {
+    color: var(--text-soft);
+    text-decoration: none;
+  }
+
+  .footer-col a:hover {
+    color: var(--accent);
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--text-faint);
+  }
+
+  .footer-bottom a {
+    color: var(--text-soft);
+    text-decoration: none;
+  }
+
+  .footer-bottom a:hover {
+    color: var(--accent);
+  }
+
+  /* Grain de papier, posé en superposition sur les grandes surfaces. */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+}
+
+@layer components {
+  /* ── Liens vers les comptes du studio ─────────────────────────────────── */
+
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .social-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    color: var(--text-soft);
+    font-size: 14px;
+    font-weight: 550;
+    text-decoration: none;
+    transition:
+      color 0.2s,
+      border-color 0.2s,
+      transform 0.2s;
+  }
+
+  .social-links a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+}
+
+@layer components {
+  /* Lu par les lecteurs d'écran, invisible à l'œil. Sert aux libellés dont le
+     logo tient déjà lieu de nom. */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+}

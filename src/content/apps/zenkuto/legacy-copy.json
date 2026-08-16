@@ -1,0 +1,22 @@
+{
+  "fr": {
+    "tagline": "Le kakuro, en douceur",
+    "desc": "Un jeu de kakuro pastel et zen. Des grilles infinies à solution unique garantie, une mascotte adorable qui t'accompagne, indices et mode crayon — en français comme en anglais.",
+    "c1": "Grilles infinies",
+    "c2": "Solution unique",
+    "c3": "Indices & mode crayon",
+    "c4": "Mascotte Momo",
+    "c5": "Chrono & records",
+    "c6": "100 % hors-ligne"
+  },
+  "en": {
+    "tagline": "Kakuro, made gentle",
+    "desc": "A pastel, zen kakuro game. Endless grids with a guaranteed unique solution, an adorable mascot by your side, hints and pencil mode — in both English and French.",
+    "c1": "Endless grids",
+    "c2": "Unique solution",
+    "c3": "Hints & pencil mode",
+    "c4": "Momo the mascot",
+    "c5": "Timer & records",
+    "c6": "100% offline"
+  }
+}

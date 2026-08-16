@@ -1,2 +1,19 @@
+# Dépendances
+/node_modules
+
+# Build Next.js
+/.next
+/out
+next-env.d.ts
+*.tsbuildinfo
+
+# Vercel
+/.vercel
+
+# macOS
 .DS_Store
-.vercel
+
+# Journaux
+npm-debug.log*
+yarn-error.log*
+.env*.local

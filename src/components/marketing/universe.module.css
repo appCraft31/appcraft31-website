@@ -1,0 +1,721 @@
+/* ============================================================================
+   Pages produits.
+   ----------------------------------------------------------------------------
+   Un seul jeu de blocs, vingt rendus différents : tout passe par les variables
+   --u-* posées par lib/theme.ts. Aucune règle ici ne nomme un produit.
+   Les sélecteurs [data-backdrop] servent aux ajustements qu'un univers impose
+   à tous ceux qui l'utilisent (un fond néon veut des angles vifs, un fond
+   papier veut de la place).
+   ============================================================================ */
+
+.universe {
+  position: relative;
+  isolation: isolate;
+  background: var(--u-paper);
+  color: var(--u-ink);
+  font-family: var(--u-font-body);
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 40px);
+}
+
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  padding-block: clamp(64px, 12vh, 132px) clamp(48px, 8vh, 96px);
+}
+
+/* Le nom du jeu en très grand, en creux, derrière tout le reste : le procédé
+   des affiches de jeu. Contour seul pour ne jamais gêner la lecture. */
+.ghostName {
+  position: absolute;
+  inset-block-start: clamp(-16px, -1vw, 0px);
+  inset-inline-start: -0.06em;
+  z-index: 0;
+  font-family: var(--u-font-display);
+  font-size: clamp(88px, 22vw, 300px);
+  font-weight: 800;
+  line-height: 0.78;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--u-accent) 34%, transparent);
+  opacity: 0.5;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 760px) {
+  .ghostName {
+    display: none;
+  }
+}
+
+.heroMotif {
+  position: relative;
+}
+
+.heroKicker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 24px;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: color-mix(in srgb, var(--u-ink) 62%, transparent);
+}
+
+.heroPill {
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: var(--u-border-w) solid var(--u-accent);
+  background: color-mix(in srgb, var(--u-accent) 14%, transparent);
+  color: color-mix(in srgb, var(--u-accent-text) 78%, var(--u-ink));
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 0;
+  font-family: var(--u-font-display);
+  font-size: clamp(38px, 7vw, 82px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+
+.heroAccent {
+  color: var(--u-accent-text);
+}
+
+.heroIntro {
+  margin: 26px 0 0;
+  max-width: 58ch;
+  font-size: clamp(16.5px, 1.7vw, 19px);
+  line-height: 1.66;
+  color: color-mix(in srgb, var(--u-ink) 78%, transparent);
+}
+
+.heroVisual {
+  position: relative;
+}
+
+.heroVisual :global(img),
+.heroVisual :global(svg) {
+  width: 100%;
+  height: auto;
+  border-radius: var(--u-radius);
+}
+
+/* Un logotype ou une scène dessinée : borné et centré, sinon il traverse
+   l'écran et écrase le titre qu'il est censé accompagner. */
+.heroVisual :global(img:not([data-shot])) {
+  max-width: 460px;
+  margin-inline: auto;
+}
+
+/* Une capture est un portrait de téléphone : à pleine largeur elle avale la
+   page. On la borne et on la cadre comme un appareil. */
+.heroVisual :global(img[data-shot]) {
+  max-width: 300px;
+  margin-inline: auto;
+  border-radius: 26px;
+  border: 8px solid color-mix(in srgb, var(--u-ink) 80%, transparent);
+  box-shadow: 0 26px 64px color-mix(in srgb, var(--u-ink) 28%, transparent);
+}
+
+/* Dans une composition décalée, elle se pose à droite du texte plutôt que
+   de s'étaler sous lui. */
+@media (min-width: 900px) {
+  .heroOffset .heroVisual :global(img[data-shot]) {
+    margin-inline: 8% 0;
+  }
+}
+
+/* hero-split : texte et visuel côte à côte. */
+.heroSplit .inner {
+  display: grid;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .heroSplit .inner {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
+
+/* hero-offset : titre décalé, visuel en pleine largeur dessous. */
+.heroOffset .heroText {
+  max-width: 46rem;
+}
+
+
+@media (min-width: 900px) {
+  .heroOffset .heroText {
+    margin-inline-start: 8%;
+  }
+  .heroOffset .heroVisual {
+    margin-top: 48px;
+  }
+}
+
+/* hero-full : le texte occupe l'écran, le visuel se pose dessous.
+   Hauteur volontairement modeste : quand une app n'a pas encore de capture, un
+   hero de 780 px se termine en grande zone vide. */
+.heroFull {
+  min-height: min(70vh, 620px);
+  display: flex;
+  align-items: center;
+}
+
+.heroFull .heroVisual {
+  margin-top: 56px;
+}
+
+/* ── Bandeau de chiffres ───────────────────────────────────────────────── */
+
+.statBand {
+  padding-block: clamp(28px, 4vw, 44px);
+  border-block: var(--u-border-w) solid color-mix(in srgb, var(--u-ink) 14%, transparent);
+  background: color-mix(in srgb, var(--u-surface) 55%, transparent);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 24px 16px;
+  margin: 0;
+}
+
+.stats dd {
+  margin: 0;
+  font-family: var(--u-font-display);
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--u-accent-text);
+}
+
+.stats dt {
+  margin-top: 6px;
+  font-size: 12.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--u-ink) 58%, transparent);
+}
+
+/* ── Sections de contenu ───────────────────────────────────────────────── */
+
+.section {
+  padding-block: clamp(56px, 9vw, 104px);
+}
+
+.sectionHead {
+  max-width: 60ch;
+  margin-bottom: 38px;
+}
+
+.kicker {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--u-accent-text);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--u-font-display);
+  font-size: clamp(28px, 4.2vw, 46px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.sectionBody {
+  margin: 16px 0 0;
+  max-width: 62ch;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--u-ink) 76%, transparent);
+}
+
+.items {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.items li {
+  padding: 24px 22px;
+  border: var(--u-border-w) solid color-mix(in srgb, var(--u-ink) 14%, transparent);
+  border-radius: var(--u-radius);
+  background: color-mix(in srgb, var(--u-surface) 70%, transparent);
+  transition:
+    border-color 0.25s,
+    transform 0.25s;
+}
+
+.items li:hover {
+  border-color: color-mix(in srgb, var(--u-accent) 60%, transparent);
+  transform: translateY(-3px);
+}
+
+.items h3 {
+  margin: 0 0 8px;
+  font-family: var(--u-font-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--u-accent-text);
+}
+
+.items p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.62;
+  color: color-mix(in srgb, var(--u-ink) 74%, transparent);
+}
+
+/* Les règles d'un jeu se lisent en colonne, pas en mosaïque. */
+.rules .items {
+  grid-template-columns: 1fr;
+  max-width: 46rem;
+}
+
+.rules .items li {
+  display: grid;
+  gap: 4px 24px;
+  align-items: baseline;
+}
+
+@media (min-width: 760px) {
+  .rules .items li {
+    grid-template-columns: 13rem 1fr;
+  }
+  .rules h3 {
+    margin: 0;
+  }
+}
+
+/* ── Galeries ──────────────────────────────────────────────────────────── */
+
+.shots {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-top: 34px;
+}
+
+.shots figure {
+  margin: 0;
+}
+
+.shots :global(img) {
+  width: 100%;
+  height: auto;
+  border-radius: var(--u-radius);
+  border: var(--u-border-w) solid color-mix(in srgb, var(--u-ink) 12%, transparent);
+}
+
+/* gallery-tilt : les captures s'inclinent en alternance, comme posées. */
+.galleryTilt .shots figure {
+  transform: rotate(calc((var(--i) - 1.5) * 1.6deg));
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.galleryTilt .shots figure:hover {
+  transform: rotate(0deg) translateY(-6px);
+}
+
+/* gallery-stack : une colonne large, lecture posée. */
+.galleryStack .shots {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+}
+
+/* gallery-device : les captures sont cadrées comme un écran de téléphone. */
+.galleryDevice .shots :global(img) {
+  border-radius: 28px;
+  border-width: 8px;
+  border-color: color-mix(in srgb, var(--u-ink) 82%, transparent);
+  box-shadow: 0 24px 60px color-mix(in srgb, var(--u-ink) 26%, transparent);
+}
+
+/* ── Vie privée ────────────────────────────────────────────────────────── */
+
+.privacyCard {
+  padding: clamp(28px, 4vw, 44px);
+  border: var(--u-border-w) solid color-mix(in srgb, var(--u-accent) 40%, transparent);
+  border-radius: var(--u-radius);
+  background: color-mix(in srgb, var(--u-surface) 80%, transparent);
+}
+
+.privacyLinks {
+  margin: 22px 0 0;
+  font-size: 15px;
+}
+
+.privacyLinks a {
+  color: var(--u-accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Appel final ───────────────────────────────────────────────────────── */
+
+.cta {
+  text-align: center;
+  border-top: var(--u-border-w) solid color-mix(in srgb, var(--u-ink) 14%, transparent);
+}
+
+.ctaTitle {
+  margin: 0 0 14px;
+  font-family: var(--u-font-display);
+  font-size: clamp(28px, 4.6vw, 50px);
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+.cta .sectionBody {
+  margin-inline: auto;
+}
+
+.cta .badges {
+  justify-content: center;
+}
+
+.ctaBack {
+  margin: 30px 0 0;
+  font-size: 15px;
+}
+
+.ctaBack a {
+  color: color-mix(in srgb, var(--u-ink) 66%, transparent);
+  text-decoration: none;
+}
+
+.ctaBack a:hover {
+  color: var(--u-accent);
+}
+
+/* ── Liens de téléchargement ───────────────────────────────────────────── */
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.badges :global(img) {
+  height: 47px;
+  width: auto;
+}
+
+.webPlay {
+  display: inline-flex;
+  align-items: center;
+  height: 47px;
+  padding-inline: 22px;
+  border-radius: var(--u-radius-sm);
+  border: var(--u-border-w) solid var(--u-accent);
+  color: var(--u-accent-text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.webPlay:hover {
+  background: color-mix(in srgb, var(--u-accent) 14%, transparent);
+}
+
+/* ── Ajustements imposés par certains univers ──────────────────────────── */
+
+/* Les fonds très typés ont besoin d'un fond de bloc plus opaque, sinon le
+   texte se lit par-dessus la grille ou les étoiles. */
+[data-backdrop='neon-grid'] .items li,
+[data-backdrop='starfield'] .items li,
+[data-backdrop='card-felt'] .items li,
+[data-backdrop='waveform'] .items li,
+[data-backdrop='neon-grid'] .privacyCard,
+[data-backdrop='starfield'] .privacyCard,
+[data-backdrop='card-felt'] .privacyCard,
+[data-backdrop='waveform'] .privacyCard {
+  background: color-mix(in srgb, var(--u-surface) 92%, transparent);
+  backdrop-filter: blur(3px);
+}
+
+/* Une fonte pixel comme Press Start 2P devient illisible en grand, et ses
+   glyphes sont larges : on la borne et on lui rend de l'interligne. */
+[data-display='press'] .heroTitle {
+  font-size: clamp(22px, 3.4vw, 40px);
+  line-height: 1.5;
+  letter-spacing: 0;
+  max-width: 22ch;
+}
+
+[data-display='press'] .sectionTitle,
+[data-display='press'] .ctaTitle {
+  font-size: clamp(18px, 2.4vw, 28px);
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+[data-display='press'] .items h3 {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+[data-display='press'] .stats dd {
+  font-size: clamp(20px, 2.6vw, 30px);
+}
+
+/* ============================================================================
+   Traitement réservé aux jeux — [data-category='game']
+   ----------------------------------------------------------------------------
+   Un jeu se vend autrement qu'un utilitaire : le titre prend toute la place,
+   les chiffres se lisent comme un tableau de score, les blocs sont numérotés
+   comme des niveaux, et les captures se déploient en éventail. Les
+   applications (EcoPompe, Keeply, PodDroid, Shizuku, Remindo) n'héritent de
+   rien de tout cela et restent sobres.
+   ============================================================================ */
+
+/* ── Le titre occupe l'écran ───────────────────────────────────────────── */
+
+[data-category='game'] .heroTitle {
+  font-size: clamp(42px, 7.4vw, 92px);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  /* Assez large pour que l'accroche tienne en trois lignes : à 15ch, un titre
+     de cette taille en occupait cinq et repoussait tout le reste. */
+  max-width: 20ch;
+  text-transform: none;
+}
+
+[data-category='game'] .heroAccent {
+  display: block;
+}
+
+[data-category='game'] .heroFull {
+  min-height: 0;
+}
+
+[data-category='game'] .hero {
+  padding-block-end: clamp(36px, 5vh, 64px);
+}
+
+[data-category='game'] .heroFull .heroVisual,
+[data-category='game'] .heroFull .heroMotif {
+  margin-top: 28px;
+}
+
+/* La pastille d'état devient une étiquette d'arcade. On la peint avec
+   --u-accent-text et non --u-accent : sur les thèmes pastel, un badge rose
+   clair sur fond beige ne se lit pas. */
+[data-category='game'] .heroPill {
+  border-radius: 3px;
+  border-width: 2px;
+  border-color: var(--u-accent-text);
+  letter-spacing: 0.18em;
+  background: var(--u-accent-text);
+  color: var(--u-paper);
+}
+
+[data-category='game'] .heroKicker {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ── Les chiffres, en tableau de score ─────────────────────────────────── */
+
+[data-category='game'] .statBand {
+  background: color-mix(in srgb, var(--u-ink) 92%, transparent);
+  color: var(--u-paper);
+  border-block-width: 0;
+}
+
+[data-category='game'] .stats {
+  gap: 0;
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+}
+
+[data-category='game'] .stats > div {
+  padding: 6px 18px;
+  border-inline-start: 1px solid color-mix(in srgb, var(--u-paper) 22%, transparent);
+}
+
+[data-category='game'] .stats > div:first-child {
+  border-inline-start: 0;
+  padding-inline-start: 0;
+}
+
+[data-category='game'] .stats dd {
+  font-size: clamp(34px, 4.6vw, 56px);
+  letter-spacing: -0.03em;
+  color: var(--u-accent);
+  font-variant-numeric: tabular-nums;
+  /* Une lueur discrète : sur un fond d'encre, un score doit briller un peu. */
+  text-shadow: 0 0 26px color-mix(in srgb, var(--u-accent) 45%, transparent);
+}
+
+[data-category='game'] .stats dt {
+  color: color-mix(in srgb, var(--u-paper) 62%, transparent);
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+}
+
+/* ── Les blocs, numérotés comme des niveaux ────────────────────────────── */
+
+[data-category='game'] .items li {
+  position: relative;
+  padding-block-start: 34px;
+  overflow: hidden;
+}
+
+/* Le numéro d'ordre, en gros, dans le coin de la carte. */
+[data-category='game'] .items li::before {
+  content: var(--n, '');
+  position: absolute;
+  inset-block-start: -12px;
+  inset-inline-end: 6px;
+  font-family: var(--u-font-display);
+  font-size: 74px;
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--u-accent) 30%, transparent);
+  pointer-events: none;
+  transition: color 0.3s;
+}
+
+[data-category='game'] .items li:hover::before {
+  color: color-mix(in srgb, var(--u-accent) 12%, transparent);
+}
+
+[data-category='game'] .items li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 44px color-mix(in srgb, var(--u-ink) 26%, transparent);
+}
+
+/* Un jeu de règles reste une liste lisible : pas de numéro géant dessus. */
+[data-category='game'] .rules .items li::before {
+  content: none;
+}
+
+[data-category='game'] .rules .items li {
+  padding-block-start: 24px;
+}
+
+/* ── Les titres de section, plus affirmés ──────────────────────────────── */
+
+[data-category='game'] .sectionTitle {
+  font-size: clamp(32px, 5.4vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+[data-category='game'] .kicker {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+}
+
+/* Un filet court sous l'accroche, comme un souligné tracé à la main. */
+[data-category='game'] .kicker::after {
+  content: '';
+  display: block;
+  width: 46px;
+  height: 3px;
+  margin-top: 10px;
+  background: var(--u-accent);
+}
+
+/* ── Les captures, en éventail ─────────────────────────────────────────── */
+
+[data-category='game'] .galleryTilt .shots figure {
+  transform: rotate(calc((var(--i) - 1.5) * 3.2deg)) translateY(calc(var(--i) * -6px));
+}
+
+[data-category='game'] .galleryTilt .shots figure:hover {
+  transform: rotate(0deg) translateY(-14px) scale(1.03);
+  z-index: 2;
+}
+
+[data-category='game'] .shots :global(img) {
+  box-shadow: 0 22px 50px color-mix(in srgb, var(--u-ink) 30%, transparent);
+}
+
+/* ── L'appel final, en pleine largeur ──────────────────────────────────── */
+
+[data-category='game'] .cta {
+  background: color-mix(in srgb, var(--u-accent) 10%, transparent);
+}
+
+[data-category='game'] .ctaTitle {
+  font-size: clamp(34px, 6vw, 74px);
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+/* ── Une police pixel ne supporte aucun de ces excès ───────────────────── */
+
+[data-display='press'] .ghostName {
+  display: none;
+}
+
+[data-display='press'][data-category='game'] .heroTitle {
+  font-size: clamp(22px, 3.4vw, 40px);
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+[data-display='press'][data-category='game'] .sectionTitle,
+[data-display='press'][data-category='game'] .ctaTitle {
+  font-size: clamp(18px, 2.4vw, 28px);
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+[data-display='press'][data-category='game'] .stats dd {
+  font-size: clamp(20px, 2.6vw, 30px);
+}
+
+[data-display='press'] .items li::before {
+  font-size: 30px;
+  inset-block-start: 4px;
+}
+
+/* Une scène dessinée occupe la largeur, sans cadre de téléphone ni rotation. */
+.shots figure[data-artwork] {
+  grid-column: 1 / -1;
+  transform: none !important;
+}
+
+.shots figure[data-artwork] :global(img) {
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+}

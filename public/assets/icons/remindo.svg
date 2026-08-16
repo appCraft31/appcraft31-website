@@ -1,0 +1,12 @@
+<svg viewBox="0 0 100 100" aria-label="Icône Remindo" role="img" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100" height="100" rx="20" fill="#FFF9F5"/>
+                                <path d="M50 22c5 0 9.4 2.5 11.9 6 5.1-.9 10.2 2.5 11 7.6.9 4.3-.8 7.7-3.4 10.2 3.4 2.5 5.1 6.8 4.3 11-.9 5.1-5.1 8.5-10.2 9.4-1.7 5.1-6.8 8.5-13.6 8.5s-11.9-3.4-13.6-8.5c-5.1-.9-9.4-4.3-10.2-9.4-.9-4.3.9-8.5 4.3-11-2.6-2.5-4.3-5.9-3.4-10.2.9-5.1 5.9-8.5 11-7.6C40.6 24.5 45 22 50 22z"
+                                      fill="#FF9EBC" stroke="#38202D" stroke-width="3" stroke-linejoin="round"/>
+                                <ellipse cx="41" cy="49" rx="4.2" ry="5.6" fill="#2C1E3A"/>
+                                <ellipse cx="59" cy="49" rx="4.2" ry="5.6" fill="#2C1E3A"/>
+                                <circle cx="39.6" cy="47" r="1.6" fill="#fff"/>
+                                <circle cx="57.6" cy="47" r="1.6" fill="#fff"/>
+                                <ellipse cx="34" cy="56" rx="4.4" ry="2.5" fill="#FF6295" opacity=".7"/>
+                                <ellipse cx="66" cy="56" rx="4.4" ry="2.5" fill="#FF6295" opacity=".7"/>
+                                <path d="M45 57q2.5 3.4 5 0 2.5 3.4 5 0" fill="none" stroke="#2C1E3A" stroke-width="2.8" stroke-linecap="round"/>
+                            </svg>

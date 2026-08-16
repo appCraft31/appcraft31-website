@@ -1,0 +1,157 @@
+/* ============================================================================
+   Politiques de confidentialité.
+   ----------------------------------------------------------------------------
+   Sobres par principe : la palette et la typographie du produit, rien d'autre.
+   Une colonne étroite, des titres nets, un sommaire. Aucun fond animé — on lit
+   ce document, on ne le contemple pas.
+   ============================================================================ */
+
+.page {
+  background: var(--u-paper);
+  color: var(--u-ink);
+  font-family: var(--u-font-body);
+  padding-block: clamp(48px, 8vh, 88px) clamp(56px, 9vh, 96px);
+}
+
+.inner {
+  width: 100%;
+  max-width: 46rem;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 40px);
+}
+
+.head {
+  padding-bottom: 30px;
+  margin-bottom: 34px;
+  border-bottom: var(--u-border-w) solid color-mix(in srgb, var(--u-ink) 18%, transparent);
+}
+
+.kicker {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--u-accent-text);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--u-font-display);
+  font-size: clamp(30px, 5vw, 46px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.updated {
+  margin: 14px 0 0;
+  font-size: 14.5px;
+  color: color-mix(in srgb, var(--u-ink) 62%, transparent);
+}
+
+/* ── Sommaire ──────────────────────────────────────────────────────────── */
+
+.toc {
+  margin-bottom: 44px;
+  padding: 20px 22px;
+  border: var(--u-border-w) solid color-mix(in srgb, var(--u-ink) 14%, transparent);
+  border-radius: var(--u-radius);
+  background: color-mix(in srgb, var(--u-surface) 70%, transparent);
+}
+
+.toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: toc;
+  display: grid;
+  gap: 6px 24px;
+}
+
+@media (min-width: 620px) {
+  .toc ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.toc li {
+  counter-increment: toc;
+  font-size: 14.5px;
+}
+
+.toc li::before {
+  content: counter(toc) '. ';
+  color: color-mix(in srgb, var(--u-ink) 45%, transparent);
+  font-variant-numeric: tabular-nums;
+}
+
+.toc a {
+  color: color-mix(in srgb, var(--u-ink) 82%, transparent);
+  text-decoration: none;
+}
+
+.toc a:hover {
+  color: var(--u-accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Corps du document ─────────────────────────────────────────────────── */
+
+.section {
+  margin-bottom: 40px;
+  /* L'en-tête collant du site ne doit pas recouvrir le titre visé par une
+     ancre du sommaire. */
+  scroll-margin-top: 88px;
+}
+
+.section h2 {
+  margin: 0 0 14px;
+  font-family: var(--u-font-display);
+  font-size: clamp(20px, 2.6vw, 26px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.section p {
+  margin: 0 0 14px;
+  font-size: 16px;
+  line-height: 1.72;
+  color: color-mix(in srgb, var(--u-ink) 84%, transparent);
+}
+
+.section ul {
+  margin: 0 0 14px;
+  padding-inline-start: 22px;
+  display: grid;
+  gap: 6px;
+}
+
+.section li {
+  font-size: 15.5px;
+  line-height: 1.62;
+  color: color-mix(in srgb, var(--u-ink) 84%, transparent);
+}
+
+.section li::marker {
+  color: var(--u-accent);
+}
+
+.back {
+  margin-top: 48px;
+  padding-top: 26px;
+  border-top: var(--u-border-w) solid color-mix(in srgb, var(--u-ink) 14%, transparent);
+  font-size: 15px;
+}
+
+.back a {
+  color: var(--u-accent-text);
+  text-decoration: none;
+}
+
+.back a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

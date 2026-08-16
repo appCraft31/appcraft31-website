@@ -1,0 +1,214 @@
+{
+  "remindo": {
+    "source": "rappel",
+    "hits": {
+      "ads": 0,
+      "purchases": 4,
+      "analytics": 5,
+      "network": 0,
+      "accounts": 0,
+      "consent": 0
+    }
+  },
+  "holdfire": {
+    "source": "tir_game",
+    "hits": {
+      "ads": 5,
+      "purchases": 0,
+      "analytics": 4,
+      "network": 0,
+      "accounts": 0,
+      "consent": 1
+    }
+  },
+  "sudoku": {
+    "source": "sudoku",
+    "hits": {
+      "ads": 4,
+      "purchases": 5,
+      "analytics": 4,
+      "network": 0,
+      "accounts": 0,
+      "consent": 1
+    }
+  },
+  "talon": {
+    "source": "solitaire",
+    "hits": {
+      "ads": 0,
+      "purchases": 0,
+      "analytics": 4,
+      "network": 0,
+      "accounts": 0,
+      "consent": 1
+    }
+  },
+  "tinta": {
+    "source": "Tinta",
+    "hits": {
+      "ads": 1,
+      "purchases": 5,
+      "analytics": 0,
+      "network": 0,
+      "accounts": 0,
+      "consent": 1
+    }
+  },
+  "binero": {
+    "source": "binero",
+    "hits": {
+      "ads": 10,
+      "purchases": 9,
+      "analytics": 74,
+      "network": 58,
+      "accounts": 359,
+      "consent": 1
+    }
+  },
+  "glyphe": {
+    "source": "glyphe",
+    "hits": {
+      "ads": 3,
+      "purchases": 2,
+      "analytics": 3,
+      "network": 0,
+      "accounts": 7,
+      "consent": 1
+    }
+  },
+  "zenkuto": {
+    "source": "zenkuro",
+    "hits": {
+      "ads": 1,
+      "purchases": 1,
+      "analytics": 0,
+      "network": 0,
+      "accounts": 0,
+      "consent": 1
+    }
+  },
+  "contree": {
+    "source": "contre",
+    "hits": {
+      "ads": 5,
+      "purchases": 0,
+      "analytics": 4,
+      "network": 0,
+      "accounts": 8,
+      "consent": 2
+    }
+  },
+  "keeply": {
+    "source": "Keeply",
+    "hits": {
+      "ads": 0,
+      "purchases": 9,
+      "analytics": 40,
+      "network": 42,
+      "accounts": 183,
+      "consent": 1
+    }
+  },
+  "combo": {
+    "source": "squareLink",
+    "hits": {
+      "ads": 4,
+      "purchases": 3,
+      "analytics": 5,
+      "network": 0,
+      "accounts": 6,
+      "consent": 1
+    }
+  },
+  "randompix": {
+    "source": "randompix",
+    "hits": {
+      "ads": 10,
+      "purchases": 6,
+      "analytics": 7,
+      "network": 0,
+      "accounts": 0,
+      "consent": 3
+    }
+  },
+  "graviwords": {
+    "source": "GraviWord",
+    "hits": {
+      "ads": 6,
+      "purchases": 5,
+      "analytics": 2,
+      "network": 0,
+      "accounts": 10,
+      "consent": 1
+    }
+  },
+  "orbis": {
+    "source": "Orbis",
+    "hits": {
+      "ads": 2,
+      "purchases": 1,
+      "analytics": 0,
+      "network": 0,
+      "accounts": 8,
+      "consent": 1
+    }
+  },
+  "tengo": {
+    "source": "tenGO",
+    "hits": {
+      "ads": 11,
+      "purchases": 11,
+      "analytics": 9,
+      "network": 0,
+      "accounts": 6,
+      "consent": 2
+    }
+  },
+  "meliz": {
+    "source": "meliz",
+    "hits": {
+      "ads": 8,
+      "purchases": 10,
+      "analytics": 4,
+      "network": 0,
+      "accounts": 0,
+      "consent": 2
+    }
+  },
+  "motfleche": {
+    "source": "mot_fleche",
+    "hits": {
+      "ads": 2,
+      "purchases": 4,
+      "analytics": 0,
+      "network": 0,
+      "accounts": 8,
+      "consent": 1
+    }
+  },
+  "shizuku": {
+    "error": "projet source non identifié"
+  },
+  "poddroid": {
+    "source": "podcast",
+    "hits": {
+      "ads": 0,
+      "purchases": 0,
+      "analytics": 0,
+      "network": 0,
+      "accounts": 0,
+      "consent": 0
+    }
+  },
+  "ecopompe": {
+    "source": "Ecopompe",
+    "hits": {
+      "ads": 0,
+      "purchases": 13,
+      "analytics": 1,
+      "network": 7,
+      "accounts": 0,
+      "consent": 0
+    }
+  }
+}

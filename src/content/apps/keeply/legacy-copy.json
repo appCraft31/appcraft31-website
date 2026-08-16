@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Le tri photo sans stress",
+    "desc": "Balayez, gardez, libérez. Keeply transforme des milliers de photos en missions courtes et rassurantes — doublons, similaires, captures d'écran, vidéos lourdes — vos photos restent 100 % sur l'appareil.",
+    "c1": "Missions guidées",
+    "c2": "Corbeille de sécurité",
+    "c3": "Doublons & similaires",
+    "c4": "Vidéos lourdes",
+    "c5": "100 % local",
+    "c6": "Export libre"
+  },
+  "en": {
+    "tagline": "Stress-free photo cleanup",
+    "desc": "Swipe, keep, free up space. Keeply turns thousands of photos into short, reassuring missions — duplicates, similar shots, screenshots, heavy videos — your photos stay 100% on-device.",
+    "c1": "Guided missions",
+    "c2": "Safety trash",
+    "c3": "Duplicates & similar",
+    "c4": "Heavy videos",
+    "c5": "100% on-device",
+    "c6": "Free export"
+  },
+  "ja": {
+    "tagline": "ストレスフリーな写真整理",
+    "desc": "スワイプして、残して、容量を解放。Keeplyは何千枚もの写真を短く安心できるミッションに変えます——重複、似た写真、スクリーンショット、重い動画。写真は100%デバイス上に残ります。",
+    "c1": "ガイド付きミッション",
+    "c2": "安全なゴミ箱",
+    "c3": "重複 & 類似写真",
+    "c4": "重い動画",
+    "c5": "100% オンデバイス",
+    "c6": "自由なエクスポート"
+  },
+  "ko": {
+    "tagline": "스트레스 없는 사진 정리",
+    "desc": "스와이프하고, 보관하고, 용량을 확보하세요. Keeply는 수천 장의 사진을 짧고 안심되는 미션으로 바꿔줍니다 — 중복 사진, 유사 사진, 스크린샷, 용량이 큰 동영상. 사진은 100% 기기에만 저장됩니다.",
+    "c1": "안내형 미션",
+    "c2": "안전한 휴지통",
+    "c3": "중복 & 유사 사진",
+    "c4": "용량 큰 동영상",
+    "c5": "100% 온디바이스",
+    "c6": "자유로운 내보내기"
+  },
+  "es": {
+    "tagline": "Ordena tus fotos sin estrés",
+    "desc": "Desliza, conserva, libera espacio. Keeply convierte miles de fotos en misiones cortas y tranquilizadoras: duplicados, similares, capturas de pantalla, vídeos pesados. Tus fotos permanecen al 100 % en tu dispositivo.",
+    "c1": "Misiones guiadas",
+    "c2": "Papelera de seguridad",
+    "c3": "Duplicados y similares",
+    "c4": "Vídeos pesados",
+    "c5": "100 % local",
+    "c6": "Exportación libre"
+  },
+  "de": {
+    "tagline": "Fotos aufräumen ohne Stress",
+    "desc": "Wischen, behalten, Platz freimachen. Keeply verwandelt Tausende Fotos in kurze, beruhigende Missionen — Duplikate, ähnliche Fotos, Screenshots, große Videos. Ihre Fotos bleiben zu 100 % auf dem Gerät.",
+    "c1": "Geführte Missionen",
+    "c2": "Sicherer Papierkorb",
+    "c3": "Duplikate & Ähnliche",
+    "c4": "Große Videos",
+    "c5": "100 % lokal",
+    "c6": "Freier Export"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Prix carburant en temps réel",
+    "desc": "Comparez les prix des ~10 000 stations-service de France. Trouvez la moins chère près de chez vous, suivez vos favorites et consultez l'historique des prix — le tout sans pub ni tracking.",
+    "c1": "Prix temps réel",
+    "c2": "Stations favorites",
+    "c3": "Géolocalisation",
+    "c4": "Widget écran d'accueil",
+    "c5": "Recherche intelligente",
+    "c6": "Variations de prix"
+  },
+  "en": {
+    "tagline": "Real-time fuel prices",
+    "desc": "Compare prices across France's ~10,000 gas stations. Find the cheapest one near you, track your favorites, and check price history — all with no ads or tracking.",
+    "c1": "Real-time prices",
+    "c2": "Favorite stations",
+    "c3": "Geolocation",
+    "c4": "Home screen widget",
+    "c5": "Smart search",
+    "c6": "Price changes"
+  },
+  "ja": {
+    "tagline": "ガソリン価格をリアルタイムで",
+    "desc": "フランス全土の約10,000カ所のガソリンスタンドの価格を比較。近くの最安スタンドを見つけ、お気に入りを登録し、価格の推移も確認できます。広告もトラッキングも一切ありません。",
+    "c1": "リアルタイム価格",
+    "c2": "お気に入りスタンド",
+    "c3": "位置情報検索",
+    "c4": "ホーム画面ウィジェット",
+    "c5": "スマート検索",
+    "c6": "価格変動"
+  },
+  "ko": {
+    "tagline": "실시간 주유 가격",
+    "desc": "프랑스 전역 약 10,000개 주유소의 가격을 비교하세요. 가까운 곳에서 가장 저렴한 주유소를 찾고, 즐겨찾기를 관리하며, 가격 변동 내역을 확인하세요 — 광고도 추적도 없이.",
+    "c1": "실시간 가격",
+    "c2": "즐겨찾는 주유소",
+    "c3": "위치 기반 검색",
+    "c4": "홈 화면 위젯",
+    "c5": "스마트 검색",
+    "c6": "가격 변동"
+  },
+  "es": {
+    "tagline": "Precios de carburante en tiempo real",
+    "desc": "Compara los precios de las ~10.000 gasolineras de Francia. Encuentra la más barata cerca de ti, sigue tus favoritas y consulta el historial de precios, todo sin anuncios ni rastreo.",
+    "c1": "Precios en tiempo real",
+    "c2": "Gasolineras favoritas",
+    "c3": "Geolocalización",
+    "c4": "Widget de inicio",
+    "c5": "Búsqueda inteligente",
+    "c6": "Variaciones de precio"
+  },
+  "de": {
+    "tagline": "Kraftstoffpreise in Echtzeit",
+    "desc": "Vergleichen Sie die Preise der ~10.000 Tankstellen in Frankreich. Finden Sie die günstigste in Ihrer Nähe, behalten Sie Ihre Favoriten im Blick und sehen Sie sich den Preisverlauf an — alles ohne Werbung und Tracking.",
+    "c1": "Echtzeitpreise",
+    "c2": "Lieblingstankstellen",
+    "c3": "Standortsuche",
+    "c4": "Homescreen-Widget",
+    "c5": "Intelligente Suche",
+    "c6": "Preisänderungen"
+  }
+}

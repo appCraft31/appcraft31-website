@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Solitaire Klondike & Spider, sans publicité",
+    "desc": "Un solitaire sans aucune publicité et entièrement hors ligne. Chaque donne a été résolue à l’avance : elle est toujours gagnable, et affiche son « par », le nombre de coups de la meilleure solution connue. À vous de faire mieux.",
+    "c1": "Zéro publicité",
+    "c2": "Donnes toujours gagnables",
+    "c3": "Un par à battre",
+    "c4": "Donne du jour",
+    "c5": "100 % hors-ligne",
+    "c6": "Jeu à quatre couleurs"
+  },
+  "en": {
+    "tagline": "Klondike & Spider solitaire, ad-free",
+    "desc": "A solitaire with no ads at all, fully offline. Every deal was solved in advance: it is always winnable, and it shows its par — the move count of the best known solution. Your turn to do better.",
+    "c1": "Zero ads",
+    "c2": "Always winnable deals",
+    "c3": "A par to beat",
+    "c4": "Daily deal",
+    "c5": "100% offline",
+    "c6": "Four-colour deck"
+  },
+  "ja": {
+    "tagline": "ソリティア：クロンダイク & スパイダー、広告なし",
+    "desc": "広告が一切なく、完全オフラインで遊べるソリティア。すべての配りはあらかじめ解かれており、必ずクリアできます。既知の最善手順の手数「パー」も表示。あなたはそれを超えられますか。",
+    "c1": "広告ゼロ",
+    "c2": "必ず解ける配り",
+    "c3": "パーに挑戦",
+    "c4": "デイリーの配り",
+    "c5": "100% オフライン",
+    "c6": "4色デッキ"
+  },
+  "ko": {
+    "tagline": "솔리테어 클론다이크 & 스파이더, 광고 없음",
+    "desc": "광고가 전혀 없고 완전히 오프라인으로 즐기는 솔리테어. 모든 딜은 미리 풀어 두어 항상 클리어할 수 있으며, 알려진 최선 해법의 수인 '파'를 함께 표시합니다. 그보다 더 잘해 보세요.",
+    "c1": "광고 제로",
+    "c2": "항상 풀리는 딜",
+    "c3": "넘어야 할 파",
+    "c4": "오늘의 딜",
+    "c5": "100% 오프라인",
+    "c6": "4색 카드"
+  },
+  "es": {
+    "tagline": "Solitario Klondike y Spider, sin anuncios",
+    "desc": "Un solitario sin ningún anuncio y totalmente sin conexión. Cada reparto se resolvió de antemano: siempre tiene solución y muestra su «par», el número de jugadas de la mejor solución conocida. Te toca superarlo.",
+    "c1": "Cero anuncios",
+    "c2": "Repartos siempre ganables",
+    "c3": "Un par que batir",
+    "c4": "Reparto diario",
+    "c5": "100 % sin conexión",
+    "c6": "Baraja de cuatro colores"
+  },
+  "de": {
+    "tagline": "Solitär Klondike & Spider, ohne Werbung",
+    "desc": "Ein Solitaire ganz ohne Werbung und vollständig offline. Jede Verteilung wurde vorab gelöst: Sie ist immer gewinnbar und zeigt ihr „Par“ — die Zugzahl der besten bekannten Lösung. Machen Sie es besser.",
+    "c1": "Null Werbung",
+    "c2": "Immer lösbare Verteilungen",
+    "c3": "Ein Par zum Schlagen",
+    "c4": "Tägliche Verteilung",
+    "c5": "100 % offline",
+    "c6": "Vierfarbiges Blatt"
+  }
+}

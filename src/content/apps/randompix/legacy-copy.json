@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Devine à qui est la photo",
+    "desc": "Le party game qui pioche dans VOS souvenirs. Chacun ajoute quelques photos au hasard de sa galerie, et tout le monde devine à qui elles appartiennent. De 2 à 10 joueurs, 5 minutes par partie, fous rires garantis.",
+    "c1": "Vos vraies photos",
+    "c2": "2 à 10 joueurs",
+    "c3": "10s pour deviner",
+    "c4": "Combos x2",
+    "c5": "Réactions emoji",
+    "c6": "Photos éphémères"
+  },
+  "en": {
+    "tagline": "Guess whose photo it is",
+    "desc": "The party game that digs into YOUR memories. Everyone adds a few random photos from their gallery, and the group guesses who they belong to. 2 to 10 players, 5 minutes per round, laughs guaranteed.",
+    "c1": "Your real photos",
+    "c2": "2 to 10 players",
+    "c3": "10s to guess",
+    "c4": "x2 combos",
+    "c5": "Emoji reactions",
+    "c6": "Ephemeral photos"
+  },
+  "ja": {
+    "tagline": "この写真は誰のもの?",
+    "desc": "みんなの思い出から出題するパーティーゲーム。各自がギャラリーから写真を数枚ランダムに追加し、それが誰のものかをみんなで当てます。2〜10人、1ゲーム5分、大笑い間違いなし。",
+    "c1": "あなたの実際の写真",
+    "c2": "2〜10人",
+    "c3": "回答は10秒",
+    "c4": "コンボ x2",
+    "c5": "絵文字リアクション",
+    "c6": "消える写真"
+  },
+  "ko": {
+    "tagline": "누구의 사진인지 맞혀 보세요",
+    "desc": "여러분의 추억에서 뽑아내는 파티 게임. 각자 갤러리에서 사진 몇 장을 무작위로 추가하면, 모두가 누구의 사진인지 맞힙니다. 2~10명, 한 판에 5분, 폭소 보장.",
+    "c1": "진짜 내 사진",
+    "c2": "2~10명",
+    "c3": "10초 추측",
+    "c4": "콤보 x2",
+    "c5": "이모지 반응",
+    "c6": "사라지는 사진"
+  },
+  "es": {
+    "tagline": "Adivina de quién es la foto",
+    "desc": "El party game que tira de TUS recuerdos. Cada uno añade unas fotos al azar de su galería y todos adivinan a quién pertenecen. De 2 a 10 jugadores, 5 minutos por partida y risas garantizadas.",
+    "c1": "Tus fotos reales",
+    "c2": "De 2 a 10 jugadores",
+    "c3": "10 s para adivinar",
+    "c4": "Combos x2",
+    "c5": "Reacciones emoji",
+    "c6": "Fotos efímeras"
+  },
+  "de": {
+    "tagline": "Errate, wessen Foto es ist",
+    "desc": "Das Partyspiel, das in EUREN Erinnerungen stöbert. Jeder fügt ein paar zufällige Fotos aus seiner Galerie hinzu, und alle raten, wem sie gehören. Von 2 bis 10 Spielern, 5 Minuten pro Runde, Lachanfälle garantiert.",
+    "c1": "Eure echten Fotos",
+    "c2": "2 bis 10 Spieler",
+    "c3": "10 Sek. zum Raten",
+    "c4": "Combos x2",
+    "c5": "Emoji-Reaktionen",
+    "c6": "Vergängliche Fotos"
+  }
+}

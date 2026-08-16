@@ -1,0 +1,47 @@
+# URLs du site historique (appcraft31.app avant refonte).
+# Déclarées dans les fiches App Store / Google Play : elles ne doivent jamais disparaître.
+# Contrôlées par scripts/check-urls.mjs après chaque build.
+apps/binero.html
+apps/combo.html
+apps/contree.html
+apps/ecopompe.html
+apps/glyphe.html
+apps/graviwords.html
+apps/holdfire.html
+apps/keeply.html
+apps/meliz.html
+apps/motfleche.html
+apps/orbis.html
+apps/poddroid.html
+apps/randompix.html
+apps/remindo.html
+apps/shizuku.html
+apps/sudoku.html
+apps/talon.html
+apps/tengo.html
+apps/tinta.html
+apps/zenkuto.html
+holdfire/event/index.html
+index.html
+play/meliz/index.html
+privacy/binero.html
+privacy/combo.html
+privacy/contree-privacy.html
+privacy/ecopompe.html
+privacy/glyphe.html
+privacy/graviwords.html
+privacy/holdfire.html
+privacy/index.html
+privacy/keeply.html
+privacy/meliz.html
+privacy/motfleche.html
+privacy/orbis.html
+privacy/poddroid.html
+privacy/randompix.html
+privacy/remindo.html
+privacy/shizuku.html
+privacy/sudoku.html
+privacy/talon.html
+privacy/tengo.html
+privacy/tinta.html
+privacy/zenkuto-privacy.html

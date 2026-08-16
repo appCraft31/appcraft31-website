@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Le code du jour, par pure déduction",
+    "desc": "Une énigme de déduction par jour. Percez le code de quatre glyphes en six essais, gardez votre série et grimpez au classement mondial. Gratuit, financé par la publicité ; l’achat « Glyphe+ » la retire.",
+    "c1": "Une partie par jour",
+    "c2": "Classement mondial",
+    "c3": "Clair & sombre",
+    "c4": "Mode daltonien",
+    "c5": "100 % hors-ligne",
+    "c6": "Gratuit avec pub"
+  },
+  "en": {
+    "tagline": "The daily code, by pure deduction",
+    "desc": "A deduction puzzle every day. Crack the code of four glyphs in six tries, keep your streak and climb the global leaderboard. Free and ad-funded; the “Glyphe+” purchase removes advertising.",
+    "c1": "One game a day",
+    "c2": "Global leaderboard",
+    "c3": "Light & dark",
+    "c4": "Colorblind mode",
+    "c5": "100% offline",
+    "c6": "Free with ads"
+  },
+  "ja": {
+    "tagline": "今日のコードを、純粋な推理で",
+    "desc": "毎日ひとつの推理パズル。4つのグリフからなるコードを6回以内で解き明かし、連勝記録を伸ばして世界ランキングを駆け上がりましょう。無料・広告付き（「Glyphe+」で広告を削除できます）。",
+    "c1": "1日1ゲーム",
+    "c2": "世界ランキング",
+    "c3": "ライト & ダーク",
+    "c4": "色覚サポートモード",
+    "c5": "100% オフライン",
+    "c6": "無料・広告付き"
+  },
+  "ko": {
+    "tagline": "오늘의 코드를, 순수한 추리로",
+    "desc": "매일 하나의 추리 퍼즐. 네 개의 글리프로 된 코드를 여섯 번 안에 풀고, 연승 기록을 이어가며 글로벌 순위표를 올라가세요. 무료이며 광고로 운영됩니다(‘Glyphe+’ 구매 시 광고 제거).",
+    "c1": "하루 한 판",
+    "c2": "글로벌 순위표",
+    "c3": "라이트 & 다크",
+    "c4": "색약 모드",
+    "c5": "100% 오프라인",
+    "c6": "무료·광고 포함"
+  },
+  "es": {
+    "tagline": "El código del día, por pura deducción",
+    "desc": "Un enigma de deducción cada día. Descifra el código de cuatro glifos en seis intentos, mantén tu racha y sube en el ranking mundial. Gratis con anuncios; la compra «Glyphe+» los elimina.",
+    "c1": "Una partida al día",
+    "c2": "Ranking mundial",
+    "c3": "Claro y oscuro",
+    "c4": "Modo daltónico",
+    "c5": "100 % sin conexión",
+    "c6": "Game Center"
+  },
+  "de": {
+    "tagline": "Der Code des Tages, durch reine Deduktion",
+    "desc": "Ein Deduktionsrätsel pro Tag. Knacke den Code aus vier Glyphen in sechs Versuchen, halte deine Serie und klettere in der weltweiten Rangliste. Kostenlos mit Werbung; der Kauf „Glyphe+“ entfernt sie.",
+    "c1": "Eine Partie pro Tag",
+    "c2": "Weltweite Rangliste",
+    "c3": "Hell & Dunkel",
+    "c4": "Farbsehmodus",
+    "c5": "100 % offline",
+    "c6": "Game Center"
+  }
+}

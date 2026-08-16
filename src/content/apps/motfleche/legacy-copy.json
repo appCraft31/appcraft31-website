@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Déchiffrez les mots interdits",
+    "desc": "Un jeu de mots fléchés au style vintage 1952. Des thèmes à débloquer avec des étoiles (Nature, Animaux, Cuisine, Espace…), des indices à la carte et une sauvegarde automatique.",
+    "c1": "Édition censurée",
+    "c2": "Boutique d'étoiles",
+    "c3": "Indices Lettre/Mot",
+    "c4": "Carnet de bord",
+    "c5": "Hors-ligne",
+    "c6": "Sauvegarde auto"
+  },
+  "en": {
+    "tagline": "Crack the forbidden words",
+    "desc": "A crossword game with a vintage 1952 style. Themes to unlock with stars (Nature, Animals, Cooking, Space…), à la carte hints, and automatic saving.",
+    "c1": "Censored edition",
+    "c2": "Star shop",
+    "c3": "Letter/Word hints",
+    "c4": "Logbook",
+    "c5": "Offline",
+    "c6": "Auto-save"
+  },
+  "ja": {
+    "tagline": "禁じられた言葉を解き明かせ",
+    "desc": "1952年風ヴィンテージスタイルのクロスワードゲーム。スターで解放するテーマ(自然、動物、料理、宇宙…)、お好みのヒント、そして自動セーブを搭載。",
+    "c1": "検閲版",
+    "c2": "スターショップ",
+    "c3": "文字/単語ヒント",
+    "c4": "プレイ記録",
+    "c5": "オフライン対応",
+    "c6": "自動セーブ"
+  },
+  "ko": {
+    "tagline": "금지된 단어를 풀어내세요",
+    "desc": "1952년 빈티지 스타일의 크로스워드 게임. 별로 잠금 해제하는 테마(자연, 동물, 요리, 우주…), 원하는 만큼 쓰는 힌트, 그리고 자동 저장.",
+    "c1": "검열판 에디션",
+    "c2": "별 상점",
+    "c3": "글자/단어 힌트",
+    "c4": "진행 기록",
+    "c5": "오프라인",
+    "c6": "자동 저장"
+  },
+  "es": {
+    "tagline": "Descifra las palabras prohibidas",
+    "desc": "Un juego de crucigramas con estilo vintage de 1952. Temas que desbloquear con estrellas (Naturaleza, Animales, Cocina, Espacio…), pistas a la carta y guardado automático.",
+    "c1": "Edición censurada",
+    "c2": "Tienda de estrellas",
+    "c3": "Pistas Letra/Palabra",
+    "c4": "Diario de a bordo",
+    "c5": "Sin conexión",
+    "c6": "Guardado automático"
+  },
+  "de": {
+    "tagline": "Entschlüssle die verbotenen Wörter",
+    "desc": "Ein Schwedenrätsel im Vintage-Stil von 1952. Themen, die sich mit Sternen freischalten lassen (Natur, Tiere, Küche, Weltraum…), Tipps nach Wahl und automatisches Speichern.",
+    "c1": "Zensierte Ausgabe",
+    "c2": "Sterne-Shop",
+    "c3": "Tipps Buchstabe/Wort",
+    "c4": "Logbuch",
+    "c5": "Offline",
+    "c6": "Auto-Speichern"
+  }
+}

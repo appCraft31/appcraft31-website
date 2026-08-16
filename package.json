@@ -1,0 +1,33 @@
+{
+  "name": "appcraft31-website",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Site vitrine AppCraft31 — applications et jeux mobiles",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "npx serve out --config ../serve.json --listen 4173",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "check:urls": "node scripts/check-urls.mjs",
+    "check:content": "node scripts/check-content.mjs",
+    "audit:sdk": "node scripts/audit-sdk.mjs",
+    "verify": "npm run build && npm run check:urls && npm run check:content && npm run check:claims",
+    "check:live": "node scripts/check-live.mjs",
+    "check:claims": "node scripts/check-claims.mjs",
+    "check:clickable": "node scripts/check-clickable.mjs"
+  },
+  "dependencies": {
+    "next": "16.3.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "24.13.3",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3"
+  }
+}

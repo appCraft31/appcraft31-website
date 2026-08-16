@@ -1,0 +1,22 @@
+{
+  "fr": {
+    "tagline": "Pose, encastre, enchaîne",
+    "desc": "Un puzzle de tuiles à quatre faces inspiré du triomino. Place chaque tuile pour que ses chiffres correspondent à ceux des voisines : plus tu connectes de côtés d'un seul coup, plus le combo monte et le multiplicateur s'enchaîne.",
+    "c1": "🎨 Design pastel",
+    "c2": "✨ Combos jusqu'à ×3",
+    "c3": "💡 Aide intelligente",
+    "c4": "📳 Haptiques fines",
+    "c5": "🏆 Game Center",
+    "c6": "🌙 Mode sombre"
+  },
+  "en": {
+    "tagline": "Place, fit, chain",
+    "desc": "A four-sided tile puzzle inspired by triominoes. Place each tile so its numbers match its neighbours: the more sides you connect in one move, the higher the combo and the longer the multiplier runs.",
+    "c1": "🎨 Pastel design",
+    "c2": "✨ Combos up to ×3",
+    "c3": "💡 Smart hints",
+    "c4": "📳 Fine haptics",
+    "c5": "🏆 Game Center",
+    "c6": "🌙 Dark mode"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "fr": {
+    "tagline": "Trouve les mots, retrouve le calme.",
+    "desc": "Un jeu de mots mêlés au design pastel apaisant. Six univers colorés (Animaux, Fruits, Pays, Sports, Couleurs, Métiers), trois niveaux de difficulté et un chrono pour défier tes meilleurs scores.",
+    "c1": "Design pastel",
+    "c2": "Chrono & score",
+    "c3": "Indices à la demande",
+    "c4": "Bilingue FR / EN",
+    "c5": "Haptiques fines",
+    "c6": "Données locales",
+    "play_online": "Jouer en ligne"
+  },
+  "en": {
+    "tagline": "Find the words, find your calm.",
+    "desc": "A word search game with a soothing pastel design. Six colorful worlds (Animals, Fruits, Countries, Sports, Colors, Jobs), three difficulty levels, and a timer to challenge your best scores.",
+    "c1": "Pastel design",
+    "c2": "Timer & score",
+    "c3": "Hints on demand",
+    "c4": "Bilingual FR / EN",
+    "c5": "Subtle haptics",
+    "c6": "Local data",
+    "play_online": "Play online"
+  },
+  "ja": {
+    "tagline": "言葉を見つけて、心を整える。",
+    "desc": "心安らぐパステルデザインのワードサーチゲーム。6つのカラフルなテーマ(動物、果物、国、スポーツ、色、職業)、3段階の難易度、そしてベストスコアに挑むタイマーを搭載。",
+    "c1": "パステルデザイン",
+    "c2": "タイマー & スコア",
+    "c3": "ヒントはいつでも",
+    "c4": "バイリンガル FR / EN",
+    "c5": "繊細な触覚",
+    "c6": "データはローカル保存",
+    "play_online": "オンラインでプレイ"
+  },
+  "ko": {
+    "tagline": "단어를 찾고, 마음을 가다듬으세요.",
+    "desc": "차분한 파스텔 디자인의 단어 찾기 게임. 여섯 가지 다채로운 테마(동물, 과일, 나라, 스포츠, 색깔, 직업), 세 가지 난이도, 그리고 최고 기록에 도전하는 타이머.",
+    "c1": "파스텔 디자인",
+    "c2": "타이머 & 점수",
+    "c3": "원할 때 힌트",
+    "c4": "이중 언어 FR / EN",
+    "c5": "섬세한 햅틱",
+    "c6": "로컬 데이터",
+    "play_online": "온라인으로 플레이"
+  },
+  "es": {
+    "tagline": "Encuentra las palabras, recupera la calma.",
+    "desc": "Una sopa de letras con un diseño pastel relajante. Seis universos llenos de color (Animales, Frutas, Países, Deportes, Colores, Profesiones), tres niveles de dificultad y un cronómetro para batir tus mejores marcas.",
+    "c1": "Diseño pastel",
+    "c2": "Cronómetro y puntos",
+    "c3": "Pistas a demanda",
+    "c4": "Bilingüe FR / EN",
+    "c5": "Háptica precisa",
+    "c6": "Datos locales",
+    "play_online": "Jugar en línea"
+  },
+  "de": {
+    "tagline": "Finde die Wörter, finde die Ruhe.",
+    "desc": "Ein Buchstabensalat-Spiel im beruhigenden Pastell-Design. Sechs bunte Welten (Tiere, Früchte, Länder, Sport, Farben, Berufe), drei Schwierigkeitsstufen und ein Timer, um deine Bestleistungen zu überbieten.",
+    "c1": "Pastell-Design",
+    "c2": "Timer & Punkte",
+    "c3": "Tipps auf Abruf",
+    "c4": "Zweisprachig FR / EN",
+    "c5": "Feine Haptik",
+    "c6": "Lokale Daten",
+    "play_online": "Online spielen"
+  }
+}

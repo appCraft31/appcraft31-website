@@ -1,0 +1,322 @@
+/* ============================================================================
+   Moteurs de fond des pages produits.
+   ----------------------------------------------------------------------------
+   Chacun ne connaît que --u-accent, --u-accent-2, --u-glow et --u-motion :
+   c'est ce qui leur permet de servir plusieurs apps sans être dupliqués.
+   Tout est en CSS, rien ne tourne en JavaScript.
+   ============================================================================ */
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Les fonds « scéniques » (grille en perspective, orbites, route) racontent
+   quelque chose : étirés sur quatre mille pixels de page ils ne racontent plus
+   rien. On les cantonne au haut de la page, avec une disparition douce.
+   Les textures répétitives (papier, feutre, plan) restent pleine hauteur. */
+.kindNeonGrid,
+.kindStarfield,
+.kindRoad,
+.kindWaveform,
+.kindZen,
+.kindSoftBubbles {
+  bottom: auto;
+  height: min(165vh, 1500px);
+  mask-image: linear-gradient(to bottom, #000 62%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent);
+}
+
+/* La durée d'une animation est divisée par --u-motion : plus le thème est
+   nerveux, plus c'est rapide. `calc` sur une durée exige une unité de temps. */
+@media (prefers-reduced-motion: reduce) {
+  .backdrop * {
+    animation: none !important;
+  }
+}
+
+/* ── neon-grid ─────────────────────────────────────────────────────────── */
+
+.grid {
+  position: absolute;
+  inset: -50% -50% 0;
+  background-image:
+    linear-gradient(var(--u-accent) 1px, transparent 1px),
+    linear-gradient(90deg, var(--u-accent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.14;
+  transform: perspective(420px) rotateX(62deg);
+  transform-origin: bottom;
+  animation: gridScroll calc(9s / var(--u-motion, 1)) linear infinite;
+}
+
+@keyframes gridScroll {
+  to {
+    background-position: 0 56px;
+  }
+}
+
+.scanline {
+  position: absolute;
+  inset-inline: 0;
+  height: 180px;
+  background: linear-gradient(180deg, transparent, var(--u-glow), transparent);
+  opacity: 0.55;
+  animation: sweep calc(7s / var(--u-motion, 1)) ease-in-out infinite;
+}
+
+@keyframes sweep {
+  0%,
+  100% {
+    transform: translateY(-20%);
+  }
+  50% {
+    transform: translateY(560%);
+  }
+}
+
+.halo {
+  position: absolute;
+  inset-block-start: -20%;
+  inset-inline-end: -10%;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--u-glow), transparent 62%);
+  filter: blur(20px);
+}
+
+/* ── paper-ink ─────────────────────────────────────────────────────────── */
+
+.rules {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0 39px,
+    color-mix(in srgb, var(--u-ink) 8%, transparent) 39px 40px
+  );
+  opacity: 0.5;
+}
+
+.blot {
+  position: absolute;
+  inset-block-start: 8%;
+  inset-inline-end: -8%;
+  width: 46vw;
+  height: 46vw;
+  animation: drift calc(26s / var(--u-motion, 1)) ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  to {
+    transform: translate(-4%, 5%) scale(1.08);
+  }
+}
+
+/* ── soft-bubbles ──────────────────────────────────────────────────────── */
+
+.bubble {
+  position: absolute;
+  bottom: -30%;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, var(--u-glow), transparent 68%);
+  animation: rise var(--dur) linear var(--delay) infinite;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-165vh) translateX(30px);
+  }
+}
+
+/* ── starfield ─────────────────────────────────────────────────────────── */
+
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.4px 1.4px at 12% 22%, var(--u-ink), transparent),
+    radial-gradient(1.2px 1.2px at 68% 14%, var(--u-ink), transparent),
+    radial-gradient(1.6px 1.6px at 34% 68%, var(--u-ink), transparent),
+    radial-gradient(1.2px 1.2px at 82% 56%, var(--u-ink), transparent),
+    radial-gradient(1.4px 1.4px at 52% 88%, var(--u-ink), transparent),
+    radial-gradient(1.2px 1.2px at 92% 82%, var(--u-ink), transparent);
+  opacity: 0.4;
+  animation: twinkle calc(6s / var(--u-motion, 1)) ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  to {
+    opacity: 0.18;
+  }
+}
+
+.orbit {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  width: 68vw;
+  height: 68vw;
+  margin: -34vw 0 0 -34vw;
+  border: 1px solid var(--u-accent);
+  border-radius: 50%;
+  opacity: 0.16;
+  animation: spin calc(80s / var(--u-motion, 1)) linear infinite;
+}
+
+.orbit2 {
+  width: 104vw;
+  height: 104vw;
+  margin: -52vw 0 0 -52vw;
+  border-color: var(--u-accent-2);
+  border-style: dashed;
+  opacity: 0.12;
+  animation-direction: reverse;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── card-felt ─────────────────────────────────────────────────────────── */
+
+.felt {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 6px, color-mix(in srgb, var(--u-ink) 5%, transparent) 6px 7px),
+    repeating-linear-gradient(-45deg, transparent 0 6px, color-mix(in srgb, var(--u-ink) 5%, transparent) 6px 7px);
+  opacity: 0.55;
+}
+
+.feltVignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% 0%, var(--u-glow), transparent 58%);
+}
+
+/* ── waveform ──────────────────────────────────────────────────────────── */
+
+.wave {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  height: 46%;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  padding-inline: 3vw;
+  opacity: 0.2;
+}
+
+.wave span {
+  flex: 1;
+  height: var(--h);
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(180deg, var(--u-accent), var(--u-accent-2));
+  transform-origin: bottom;
+  animation: pump calc(2.4s / var(--u-motion, 1)) ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * -0.08s);
+}
+
+@keyframes pump {
+  to {
+    transform: scaleY(0.42);
+  }
+}
+
+/* ── blueprint ─────────────────────────────────────────────────────────── */
+
+.blueprintGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--u-accent) 30%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--u-accent) 30%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.16;
+}
+
+.blueprintMarks {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--u-accent) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--u-accent) 55%, transparent) 1px, transparent 1px);
+  background-size: 160px 160px;
+  opacity: 0.14;
+}
+
+/* ── road ──────────────────────────────────────────────────────────────── */
+
+.road {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline: -10%;
+  height: 52%;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--u-ink) 8%, transparent));
+  transform: perspective(500px) rotateX(58deg);
+  transform-origin: bottom;
+}
+
+.roadDashes {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 50%;
+  width: 10px;
+  height: 52%;
+  margin-inline-start: -5px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--u-accent) 0 34px,
+    transparent 34px 74px
+  );
+  opacity: 0.28;
+  transform: perspective(500px) rotateX(58deg);
+  transform-origin: bottom;
+  animation: dash calc(1.6s / var(--u-motion, 1)) linear infinite;
+}
+
+@keyframes dash {
+  to {
+    background-position: 0 74px;
+  }
+}
+
+/* ── zen ───────────────────────────────────────────────────────────────── */
+
+.breath {
+  position: absolute;
+  inset-block-start: 22%;
+  inset-inline-start: 50%;
+  width: 44vw;
+  height: 44vw;
+  margin-inline-start: -22vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--u-glow), transparent 66%);
+  animation: breathe calc(11s / var(--u-motion, 1)) ease-in-out infinite alternate;
+}
+
+@keyframes breathe {
+  to {
+    transform: scale(1.16);
+    opacity: 0.62;
+  }
+}
+
+.horizon {
+  position: absolute;
+  inset-inline: 12%;
+  inset-block-start: 58%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--u-accent), transparent);
+  opacity: 0.34;
+}

@@ -1,0 +1,22 @@
+{
+  "fr": {
+    "tagline": "Puzzle logique couleur",
+    "desc": "Un puzzle de déduction pure : 300 grilles logiques vérifiées, des indices malins, zéro hasard. Chaque grille cache un coloriage secret à solution unique — on ne devine jamais, on déduit.",
+    "c1": "Zéro hasard",
+    "c2": "300 niveaux",
+    "c3": "Indices malins",
+    "c4": "Mode expert",
+    "c5": "Symboles accessibles",
+    "c6": "Clair & sombre"
+  },
+  "en": {
+    "tagline": "Colour logic puzzle",
+    "desc": "A pure-deduction puzzle: 300 verified logic grids, smart hints, zero guessing. Each grid hides a secret colouring with a unique solution — you never guess, you deduce.",
+    "c1": "Zero guessing",
+    "c2": "300 levels",
+    "c3": "Smart hints",
+    "c4": "Expert mode",
+    "c5": "Accessible symbols",
+    "c6": "Light & dark"
+  }
+}

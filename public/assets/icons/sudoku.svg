@@ -1,0 +1,14 @@
+<svg viewBox="0 0 100 100" aria-label="Icône Le Sudoku du jour" role="img" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="100" height="100" rx="20" fill="#f2ecdd"/>
+                                <g stroke="#2b2620" stroke-width="2.4" fill="none">
+                                    <rect x="17" y="17" width="66" height="66"/>
+                                    <path d="M39 17v66M61 17v66M17 39h66M17 61h66"/>
+                                </g>
+                                <g font-family="Georgia, 'Times New Roman', serif" font-size="17" text-anchor="middle">
+                                    <text x="28" y="34" fill="#2b2620">7</text>
+                                    <text x="72" y="34" fill="#2e4d7b">3</text>
+                                    <text x="50" y="56" fill="#2e4d7b">9</text>
+                                    <text x="28" y="78" fill="#2e4d7b">1</text>
+                                    <text x="72" y="78" fill="#2b2620">5</text>
+                                </g>
+                            </svg>

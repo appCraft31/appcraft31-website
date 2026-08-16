@@ -1,0 +1,184 @@
+/* ============================================================================
+   Schéma annoté.
+   ----------------------------------------------------------------------------
+   Un dessin seul ne se comprend pas : les repères numérotés du schéma
+   renvoient à une légende posée juste dessous, dans la langue de la page.
+   ============================================================================ */
+
+.section {
+  padding-block: clamp(56px, 9vw, 104px);
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1140px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 40px);
+}
+
+.head {
+  max-width: 60ch;
+  margin-bottom: 32px;
+}
+
+.kicker {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--u-accent-text);
+}
+
+.kicker::after {
+  content: '';
+  display: block;
+  width: 46px;
+  height: 3px;
+  margin-top: 10px;
+  background: var(--u-accent);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--u-font-display);
+  font-size: clamp(28px, 4.6vw, 52px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.body {
+  margin: 16px 0 0;
+  max-width: 62ch;
+  font-size: 16.5px;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--u-ink) 76%, transparent);
+}
+
+/* ── Le dessin ─────────────────────────────────────────────────────────── */
+
+.figure {
+  margin: 0;
+  padding: clamp(20px, 3vw, 36px);
+  border: var(--u-border-w) solid color-mix(in srgb, var(--u-accent) 34%, transparent);
+  border-radius: var(--u-radius);
+  background: color-mix(in srgb, var(--u-surface) 82%, transparent);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* La ligne de tir se trace, puis reste. */
+.beam {
+  stroke-dasharray: 460;
+  stroke-dashoffset: 460;
+  animation: beam 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+}
+
+@keyframes beam {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Le point faible bat, pour se signaler comme la cible à viser. */
+.core {
+  animation: core 1.8s ease-in-out infinite;
+}
+
+@keyframes core {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Les repères apparaissent l'un après l'autre, dans l'ordre de lecture. */
+.marker {
+  opacity: 0;
+  animation: marker 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 140ms + 700ms);
+}
+
+@keyframes marker {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beam,
+  .core,
+  .marker {
+    animation: none;
+    opacity: 1;
+    scale: none;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ── La légende ────────────────────────────────────────────────────────── */
+
+.legend {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid color-mix(in srgb, var(--u-ink) 14%, transparent);
+}
+
+.legend ol {
+  display: grid;
+  gap: 14px 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 720px) {
+  .legend ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.legend li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--u-ink) 76%, transparent);
+}
+
+.legend strong {
+  font-family: var(--u-font-display);
+  font-weight: 700;
+  color: var(--u-ink);
+}
+
+/* Le même pastillage que sur le dessin, pour que l'œil fasse le lien. */
+.num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid var(--u-accent);
+  background: var(--u-paper);
+  color: var(--u-accent-text);
+  font-family: var(--u-font-display);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}

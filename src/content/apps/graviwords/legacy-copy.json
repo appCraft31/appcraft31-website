@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Le puzzle de mots arcade rétro",
+    "desc": "Un mélange nerveux de jeu de mots et de puzzle de briques rétro. Les lettres tombent et s'empilent : trace des mots pour les faire exploser, déclenche 7 pouvoirs et empêche la pile de déborder.",
+    "c1": "Trace des mots",
+    "c2": "Physique des blocs",
+    "c3": "7 pouvoirs",
+    "c4": "Classement Game Center",
+    "c5": "Bilingue FR / EN",
+    "c6": "Boutique & pièces"
+  },
+  "en": {
+    "tagline": "The retro arcade word puzzle",
+    "desc": "A fast-paced blend of word game and retro brick puzzle. Letters fall and stack up: trace words to blow them up, trigger 7 power-ups, and keep the pile from overflowing.",
+    "c1": "Trace words",
+    "c2": "Block physics",
+    "c3": "7 power-ups",
+    "c4": "Game Center leaderboard",
+    "c5": "Bilingual FR / EN",
+    "c6": "Shop & coins"
+  },
+  "ja": {
+    "tagline": "レトロアーケードの単語パズル",
+    "desc": "単語ゲームとレトロなブロックパズルが融合した、スリリングな一作。落ちて積み上がる文字をなぞって単語をつくり、爆発させて消去。7種のパワーを発動し、積み上がりを防ぎましょう。",
+    "c1": "単語をなぞる",
+    "c2": "ブロック物理演算",
+    "c3": "7種のパワー",
+    "c4": "Game Centerランキング",
+    "c5": "バイリンガル FR / EN",
+    "c6": "ショップ & コイン"
+  },
+  "ko": {
+    "tagline": "레트로 아케이드 단어 퍼즐",
+    "desc": "단어 게임과 레트로 블록 퍼즐을 짜릿하게 결합했습니다. 글자가 떨어져 쌓이면, 단어를 그어 터뜨리고, 7가지 파워를 발동해 더미가 넘치지 않게 막으세요.",
+    "c1": "단어 긋기",
+    "c2": "블록 물리",
+    "c3": "7가지 파워",
+    "c4": "Game Center 순위",
+    "c5": "이중 언어 FR / EN",
+    "c6": "상점 & 코인"
+  },
+  "es": {
+    "tagline": "El puzle de palabras arcade retro",
+    "desc": "Una mezcla frenética de juego de palabras y puzle de ladrillos retro. Las letras caen y se apilan: traza palabras para hacerlas explotar, activa 7 poderes y evita que la pila se desborde.",
+    "c1": "Traza palabras",
+    "c2": "Física de bloques",
+    "c3": "7 poderes",
+    "c4": "Ranking Game Center",
+    "c5": "Bilingüe FR / EN",
+    "c6": "Tienda y monedas"
+  },
+  "de": {
+    "tagline": "Das Retro-Arcade-Wortpuzzle",
+    "desc": "Eine nervenaufreibende Mischung aus Wortspiel und Retro-Blockpuzzle. Die Buchstaben fallen und stapeln sich: Zeichne Wörter, um sie zum Explodieren zu bringen, löse 7 Power-ups aus und verhindere, dass der Stapel überläuft.",
+    "c1": "Wörter ziehen",
+    "c2": "Block-Physik",
+    "c3": "7 Power-ups",
+    "c4": "Game-Center-Rangliste",
+    "c5": "Zweisprachig FR / EN",
+    "c6": "Shop & Münzen"
+  }
+}

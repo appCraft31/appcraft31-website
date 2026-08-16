@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Un toucher. Un univers.",
+    "desc": "Appuie et maintiens pour déployer un cercle de lumière. Relâche pour l'ancrer. Couvre 75 % de l'arène sans frôler les ennemis. Un puzzle zen à un seul geste.",
+    "c1": "Un geste unique",
+    "c2": "Niveaux infinis",
+    "c3": "Son synthétisé",
+    "c4": "Game Center",
+    "c5": "Design zen",
+    "c6": "Une main suffit"
+  },
+  "en": {
+    "tagline": "One touch. One universe.",
+    "desc": "Tap and hold to grow a circle of light. Release to anchor it. Cover 75% of the arena without grazing the enemies. A zen single-gesture puzzle.",
+    "c1": "A single gesture",
+    "c2": "Endless levels",
+    "c3": "Synthesized sound",
+    "c4": "Game Center",
+    "c5": "Zen design",
+    "c6": "One-handed play"
+  },
+  "ja": {
+    "tagline": "ひと触れで、ひとつの世界。",
+    "desc": "押し続けて光の円を広げ、離して固定。敵に触れずにアリーナの75%を覆いましょう。ひとつの操作だけで楽しめる、心安らぐパズルです。",
+    "c1": "操作はひとつだけ",
+    "c2": "無限のステージ",
+    "c3": "シンセサウンド",
+    "c4": "Game Center",
+    "c5": "ゼンなデザイン",
+    "c6": "片手でプレイ"
+  },
+  "ko": {
+    "tagline": "한 번의 터치, 하나의 세계.",
+    "desc": "누르고 있으면 빛의 원이 퍼져 나갑니다. 손을 떼면 고정됩니다. 적과 닿지 않고 아레나의 75%를 덮으세요. 단 하나의 동작으로 즐기는 편안한 퍼즐.",
+    "c1": "단 하나의 동작",
+    "c2": "무한 레벨",
+    "c3": "합성 사운드",
+    "c4": "Game Center",
+    "c5": "젠 디자인",
+    "c6": "한 손으로 충분"
+  },
+  "es": {
+    "tagline": "Un toque. Un universo.",
+    "desc": "Mantén pulsado para desplegar un círculo de luz. Suelta para fijarlo. Cubre el 75 % de la arena sin rozar a los enemigos. Un puzle zen de un solo gesto.",
+    "c1": "Un solo gesto",
+    "c2": "Niveles infinitos",
+    "c3": "Sonido sintetizado",
+    "c4": "Game Center",
+    "c5": "Diseño zen",
+    "c6": "Con una mano"
+  },
+  "de": {
+    "tagline": "Eine Berührung. Ein Universum.",
+    "desc": "Tippe und halte, um einen Lichtkreis auszubreiten. Lass los, um ihn zu verankern. Bedecke 75 % der Arena, ohne die Gegner zu berühren. Ein Zen-Puzzle mit nur einer Geste.",
+    "c1": "Eine einzige Geste",
+    "c2": "Endlose Level",
+    "c3": "Synthetischer Sound",
+    "c4": "Game Center",
+    "c5": "Zen-Design",
+    "c6": "Einhandbedienung"
+  }
+}

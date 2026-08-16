@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Minuteur café filtre · Pour Over",
+    "desc": "Le minuteur mains libres pour réussir votre café filtre. Suivez chaque étape de versement au rythme parfait, pilotez à la voix ou depuis votre Apple Watch, et ajustez vos recettes grâce au calculateur de ratio — sans toucher l'écran.",
+    "c1": "Commandes vocales",
+    "c2": "Mains libres",
+    "c3": "Minuteur par étape",
+    "c4": "Apple Watch",
+    "c5": "Calculateur de ratio",
+    "c6": "Recettes personnalisées"
+  },
+  "en": {
+    "tagline": "Pour Over coffee timer",
+    "desc": "The hands-free timer for brewing the perfect pour over. Follow every pour step at just the right pace, control it by voice or from your Apple Watch, and fine-tune your recipes with the ratio calculator — without ever touching the screen.",
+    "c1": "Voice control",
+    "c2": "Hands-free",
+    "c3": "Step-by-step timer",
+    "c4": "Apple Watch",
+    "c5": "Ratio calculator",
+    "c6": "Custom recipes"
+  },
+  "ja": {
+    "tagline": "ハンドドリップ用タイマー · Pour Over",
+    "desc": "ハンドドリップを成功させる、手を使わないタイマー。最適なリズムで注湯の各ステップをガイドし、音声やApple Watchで操作。比率計算機でレシピも調整できます。画面に触れる必要はありません。",
+    "c1": "音声コマンド",
+    "c2": "ハンズフリー",
+    "c3": "ステップ別タイマー",
+    "c4": "Apple Watch",
+    "c5": "比率計算機",
+    "c6": "カスタムレシピ"
+  },
+  "ko": {
+    "tagline": "핸드드립 타이머 · Pour Over",
+    "desc": "완벽한 핸드드립 커피를 위한 핸즈프리 타이머. 정확한 리듬으로 모든 추출 단계를 따라가고, 음성이나 Apple Watch로 조작하며, 비율 계산기로 레시피를 조정하세요 — 화면을 만지지 않고.",
+    "c1": "음성 명령",
+    "c2": "핸즈프리",
+    "c3": "단계별 타이머",
+    "c4": "Apple Watch",
+    "c5": "비율 계산기",
+    "c6": "맞춤 레시피"
+  },
+  "es": {
+    "tagline": "Temporizador de café filtrado · Pour Over",
+    "desc": "El temporizador manos libres para clavar tu café filtrado. Sigue cada fase de vertido al ritmo perfecto, contrólalo por voz o desde tu Apple Watch y ajusta tus recetas con la calculadora de ratio, sin tocar la pantalla.",
+    "c1": "Control por voz",
+    "c2": "Manos libres",
+    "c3": "Temporizador por fases",
+    "c4": "Apple Watch",
+    "c5": "Calculadora de ratio",
+    "c6": "Recetas personalizadas"
+  },
+  "de": {
+    "tagline": "Timer für Filterkaffee · Pour Over",
+    "desc": "Der freihändige Timer für den perfekten Filterkaffee. Begleiten Sie jeden Aufgussschritt im idealen Rhythmus, steuern Sie per Stimme oder über Ihre Apple Watch und passen Sie Ihre Rezepte mit dem Ratio-Rechner an — ganz ohne den Bildschirm zu berühren.",
+    "c1": "Sprachbefehle",
+    "c2": "Freihändig",
+    "c3": "Timer pro Schritt",
+    "c4": "Apple Watch",
+    "c5": "Ratio-Rechner",
+    "c6": "Eigene Rezepte"
+  }
+}
