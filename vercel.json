@@ -1,8 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
 
-  "framework": "nextjs",
+  "// framework": "Volontairement null, et non 'nextjs'. Avec le préréglage Next, Vercel applique le routage du manifeste : il sert /apps/tengo et répond 404 sur /apps/tengo.html — l'adresse qui figure dans les fiches App Store et Google Play. En site statique, il sert le contenu de out/ tel quel, comme n'importe quel serveur de fichiers.",
+  "framework": null,
+  "buildCommand": "next build",
+  "outputDirectory": "out",
 
+  "// cleanUrls": "Faux : activé, il redirigerait chaque .html vers sa version sans extension.",
   "cleanUrls": false,
 
   "headers": [
