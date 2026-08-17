@@ -30,7 +30,7 @@ const adFunded = (removedBy?: string): PrivacyFacts['ads'] => ({
 
 export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
   holdfire: {
-    platforms: ['iOS', 'Android'],
+    platforms: ['iOS'],
     localData: ['record', 'fragments', 'modules débloqués', 'réglages'],
     ads: {
       network: 'Google AdMob',

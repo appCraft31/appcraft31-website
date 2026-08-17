@@ -6,7 +6,7 @@ import type { AppCopy, Lang } from '@/lib/types';
  * (`~/StudioProjects/tir_game`) et sont repris tels quels.
  */
 const fr: AppCopy = {
-  tagline: 'Tower defense & tir manuel · iOS et Android',
+  tagline: 'Tower defense & tir manuel · iOS',
 
   headline: {
     lead: 'Les tourelles tiennent le couloir.',
@@ -95,8 +95,8 @@ const fr: AppCopy = {
   ],
 
   cta: {
-    title: 'Prochainement',
-    body: 'Hold Fire arrive sur l’App Store et Google Play, en français, anglais, espagnol, japonais et coréen. En attendant la première vague, découvrez nos autres jeux.',
+    title: 'La première vague vous attend',
+    body: 'Hold Fire est disponible sur l’App Store, en français, anglais, espagnol, japonais et coréen.',
   },
 
   meta: {
@@ -109,7 +109,7 @@ const fr: AppCopy = {
 };
 
 const en: AppCopy = {
-  tagline: 'Tower defense & manual fire · iOS and Android',
+  tagline: 'Tower defense & manual fire · iOS',
 
   headline: {
     lead: 'The turrets hold the lane.',
@@ -198,8 +198,8 @@ const en: AppCopy = {
   ],
 
   cta: {
-    title: 'Coming soon',
-    body: 'Hold Fire is coming to the App Store and Google Play in French, English, Spanish, Japanese and Korean. While you wait for the first wave, have a look at our other games.',
+    title: 'The first wave is waiting',
+    body: 'Hold Fire is available on the App Store, in French, English, Spanish, Japanese and Korean.',
   },
 
   meta: {
