@@ -1,10 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "next build",
-  "outputDirectory": "out",
+
   "framework": "nextjs",
+
   "cleanUrls": false,
-  "trailingSlash": false,
+
   "headers": [
     {
       "source": "/.well-known/apple-app-site-association",
