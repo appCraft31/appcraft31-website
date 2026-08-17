@@ -1,12 +1,17 @@
 import type { AppCopy, Lang } from '@/lib/types';
 
 /**
- * Textes repris de l'ancienne page `apps/talon.html`.
- * L'audit des SDK confirme l'absence de régie publicitaire dans le projet
- * `~/StudioProjects/solitaire` : l'argument « zéro publicité » est exact.
+ * Textes de la page `apps/talon.html`.
+ *
+ * Réécrits le 17 août 2026 : Talon était vendue 1,99 € et la page promettait
+ * « zéro publicité ». Le jeu est désormais gratuit et financé par AdMob, avec un
+ * achat qui retire les annonces. L'audit des SDK
+ * (`~/StudioProjects/solitaire/pubspec.yaml`) fait foi, et il liste maintenant
+ * `google_mobile_ads` et `in_app_purchase` : la page devait suivre, sous peine
+ * de mentir à l'endroit exact où les stores exigent la vérité.
  */
 const fr: AppCopy = {
-  tagline: 'Solitaire Klondike & Spider · sans publicité',
+  tagline: 'Solitaire Klondike & Spider · gratuit',
 
   headline: {
     lead: 'Le solitaire qui ne vous prend',
@@ -14,10 +19,10 @@ const fr: AppCopy = {
   },
 
   intro:
-    'La plupart des solitaires du marché coupent chaque partie par trente secondes de publicité. Celui-ci n’en contient aucune — pas « peu » : aucune. Aucun compte, aucun réseau, et chaque donne a été résolue avant vous.',
+    'La plupart des solitaires du marché coupent chaque partie par trente secondes de publicité. Celui-ci ne coupe jamais une partie : une annonce entre deux, jamais pendant, jamais sur la donne du jour, et aucune bannière sur le plateau. Le jeu est gratuit et entier, et chaque donne a été résolue avant vous.',
 
   stats: [
-    { value: '0', label: 'publicité' },
+    { value: '0', label: 'bannière' },
     { value: '2', label: 'jeux : Klondike & Spider' },
     { value: '100 %', label: 'donnes gagnables' },
     { value: '1', label: 'donne du jour' },
@@ -30,12 +35,16 @@ const fr: AppCopy = {
       title: 'Un jeu de cartes qui respecte votre temps',
       items: [
         {
-          title: 'Zéro publicité',
-          body: 'Ni bannière, ni interstitiel, ni vidéo qui démarre avec le son alors que le téléphone est en silencieux. Aucune régie publicitaire n’est intégrée à l’application.',
+          title: 'Gratuit, et entier',
+          body: 'Les deux jeux, les cinq niveaux, la donne du jour et les trois thèmes dès le premier lancement. Aucune vie à attendre, aucun niveau à débloquer, aucune monnaie à collectionner.',
         },
         {
-          title: 'Entièrement hors ligne',
-          body: 'Dans le métro, en avion, à la campagne. Le jeu n’a jamais besoin de réseau, parce qu’il n’envoie rien nulle part.',
+          title: 'Une publicité qui se tient',
+          body: 'Une annonce entre deux parties, jamais pendant, jamais sur la donne du jour, et aucune bannière sur le plateau. Un achat unique les retire définitivement.',
+        },
+        {
+          title: 'Le jeu reste hors ligne',
+          body: 'Dans le métro, en avion, à la campagne. Les donnes, la donne du jour et les codes de défi sont calculés sur l’appareil : seule la publicité a besoin du réseau, et son absence n’empêche jamais de jouer.',
         },
         {
           title: 'Toujours gagnable',
@@ -73,8 +82,8 @@ const fr: AppCopy = {
     {
       id: 'privacy',
       kicker: 'Vie privée',
-      title: 'Rien à envoyer, donc rien d’envoyé',
-      body: 'Talon fonctionne intégralement hors ligne : pas de compte, pas de serveur, pas de régie publicitaire. Vos parties et vos statistiques restent sur l’appareil.',
+      title: 'Le jeu ne demande rien, la régie se déclare',
+      body: 'Pas de compte, pas de serveur de jeu : vos parties et vos statistiques restent sur l’appareil. Seule la publicité communique, et vous en décidez au premier lancement — l’achat « Sans publicité » y met fin pour de bon.',
     },
   ],
 
@@ -84,16 +93,16 @@ const fr: AppCopy = {
   },
 
   meta: {
-    title: 'Talon — solitaire Klondike & Spider, sans publicité',
+    title: 'Talon — solitaire Klondike & Spider, gratuit',
     description:
-      'Un solitaire sans aucune publicité et entièrement hors ligne. Chaque donne est gagnable et affiche son « par », le nombre de coups de la meilleure solution connue.',
+      'Un solitaire gratuit qui se joue hors ligne, sans bannière et sans coupure en pleine partie. Chaque donne est gagnable et affiche son « par », le nombre de coups de la meilleure solution connue.',
   },
 
   chips: [],
 };
 
 const en: AppCopy = {
-  tagline: 'Klondike & Spider solitaire · no ads',
+  tagline: 'Klondike & Spider solitaire · free',
 
   headline: {
     lead: 'The solitaire that never',
@@ -101,10 +110,10 @@ const en: AppCopy = {
   },
 
   intro:
-    'Most solitaire apps interrupt every game with thirty seconds of advertising. This one contains none — not “few”: none. No account, no network, and every deal has been solved before you get it.',
+    'Most solitaire apps interrupt every game with thirty seconds of advertising. This one never interrupts a game: one ad between two, never during, never on the daily deal, and no banner on the table. The game is free and complete, and every deal has been solved before you get it.',
 
   stats: [
-    { value: '0', label: 'ads' },
+    { value: '0', label: 'banners' },
     { value: '2', label: 'games: Klondike & Spider' },
     { value: '100%', label: 'winnable deals' },
     { value: '1', label: 'daily deal' },
@@ -117,12 +126,16 @@ const en: AppCopy = {
       title: 'A card game that respects your time',
       items: [
         {
-          title: 'Zero ads',
-          body: 'No banner, no interstitial, no video that starts with sound while the phone is on silent. No ad network is built into the app at all.',
+          title: 'Free, and complete',
+          body: 'Both games, all five levels, the daily deal and the three themes from the first launch. No lives to wait for, no levels to unlock, no currency to collect.',
         },
         {
-          title: 'Fully offline',
-          body: 'On the underground, on a plane, in the countryside. The game never needs a network, because it never sends anything anywhere.',
+          title: 'Advertising that behaves',
+          body: 'One ad between two games, never during play, never on the daily deal, and no banner on the table. A single purchase removes them for good.',
+        },
+        {
+          title: 'The game stays offline',
+          body: 'On the underground, on a plane, in the countryside. Deals, the daily deal and challenge codes are computed on the device: only advertising needs a network, and its absence never stops you playing.',
         },
         {
           title: 'Always winnable',
@@ -160,8 +173,8 @@ const en: AppCopy = {
     {
       id: 'privacy',
       kicker: 'Privacy',
-      title: 'Nothing to send, so nothing is sent',
-      body: 'Talon runs entirely offline: no account, no server, no ad network. Your games and statistics stay on the device.',
+      title: 'The game asks for nothing, the ad network declares itself',
+      body: 'No account, no game server: your games and statistics stay on the device. Only advertising communicates, and you decide about it on first launch — the “Remove ads” purchase ends it for good.',
     },
   ],
 
@@ -171,9 +184,9 @@ const en: AppCopy = {
   },
 
   meta: {
-    title: 'Talon — Klondike & Spider solitaire, without ads',
+    title: 'Talon — Klondike & Spider solitaire, free',
     description:
-      'A solitaire with no advertising at all, fully offline. Every deal is winnable and shows its “par”: the move count of the best known solution.',
+      'A free solitaire that plays offline, with no banners and no interruption mid-game. Every deal is winnable and shows its “par”: the move count of the best known solution.',
   },
 
   chips: [],

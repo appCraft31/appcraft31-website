@@ -261,17 +261,40 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
   talon: {
     platforms: ['iOS', 'Android'],
     localData: ['parties en cours', 'statistiques', 'donne du jour', 'réglages'],
-    ads: null,
-    purchases: [],
-    analytics: null,
-    network: null,
+    // Pas d'`adFunded()` ici : l'aide déclare les trois formats, or Talon
+    // n'affiche aucune bannière — c'est une promesse tenue par le code
+    // (`lib/services/ads_service.dart`), pas une intention.
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      removedBy: 'Sans publicité',
+    },
+    purchases: [
+      { kind: 'non-consumable', what: 'le retrait de la publicité', productId: 'com.appcraft31.talon.noads' },
+    ],
+    // `analytics` et `network` étaient à `null` : la politique affirmait donc
+    // que l'application n'embarquait aucune mesure d'audience et ne se
+    // connectait à rien. C'était faux avant même la publicité — `pubspec.yaml`
+    // dépend de `firebase_analytics` depuis la première version, et
+    // `docs/store-checklist.md` la déclarait bien aux deux stores. Corrigé le
+    // 17 août 2026.
+    analytics: {
+      vendors: ['Firebase Analytics (statistiques d’usage anonymes)'],
+      optOut: true,
+    },
+    network: {
+      purpose:
+        'afficher les annonces publicitaires, recueillir le consentement correspondant et envoyer les statistiques d’usage anonymes',
+    },
     accounts: null,
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-08-17',
     notes: [
       {
-        fr: 'Aucune régie publicitaire n’est intégrée à l’application, et le jeu fonctionne intégralement hors ligne : il n’envoie rien, nulle part.',
-        en: 'No ad network is built into the app, and the game runs entirely offline: it sends nothing, anywhere.',
+        fr: 'Le jeu lui-même reste hors ligne : les donnes, la donne du jour et les codes de défi sont calculés sur l’appareil, et une partie se joue entièrement sans réseau. Seules la publicité et la mesure d’audience communiquent — une annonce entre deux parties, jamais pendant, jamais sur la donne du jour, et aucune bannière. L’achat « Sans publicité » retire définitivement la publicité, et un interrupteur des réglages coupe la mesure.',
+        en: 'The game itself stays offline: deals, the daily deal and challenge codes are computed on the device, and a game is played entirely without a network. Only advertising and analytics communicate — one ad between two games, never during play, never on the daily deal, and no banners. The “Remove ads” purchase permanently removes advertising, and a switch in the settings turns analytics off.',
       },
     ],
   },

@@ -35,12 +35,12 @@
   "talon": {
     "source": "solitaire",
     "hits": {
-      "ads": 0,
-      "purchases": 0,
+      "ads": 4,
+      "purchases": 4,
       "analytics": 4,
       "network": 0,
       "accounts": 0,
-      "consent": 1
+      "consent": 2
     }
   },
   "tinta": {
@@ -69,7 +69,7 @@
     "source": "glyphe",
     "hits": {
       "ads": 3,
-      "purchases": 2,
+      "purchases": 3,
       "analytics": 3,
       "network": 0,
       "accounts": 7,
