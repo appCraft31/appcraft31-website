@@ -8,6 +8,21 @@ import type { AppData } from './types';
 
 export const APPS: AppData[] = [
   {
+    slug: 'pixelcraft',
+    name: 'PixelCraft',
+    category: 'game',
+    status: 'soon',
+    store: {},
+    icon: '/assets/icons/pixelcraft.svg',
+    screenshots: [
+      { src: '/assets/pixelcraft-screen-coloriage.webp', alt: 'Un renard à moitié colorié, numéros encore visibles' },
+      { src: '/assets/pixelcraft-screen-timelapse.webp', alt: 'Le timelapse rejoue la création case par case' },
+      { src: '/assets/pixelcraft-screen-libre.webp', alt: 'Le mode libre, en ambiance pastel' },
+    ],
+    sdk: { ads: false, purchases: false, analytics: false, network: false, accounts: false },
+    privacyUpdated: '2026-08-27',
+  },
+  {
     slug: 'remindo',
     name: 'Remindo',
     category: 'app',

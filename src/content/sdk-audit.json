@@ -1,10 +1,21 @@
 {
+  "pixelcraft": {
+    "source": "pixel_art",
+    "hits": {
+      "ads": 0,
+      "purchases": 0,
+      "analytics": 0,
+      "network": 0,
+      "accounts": 0,
+      "consent": 0
+    }
+  },
   "remindo": {
     "source": "rappel",
     "hits": {
       "ads": 0,
       "purchases": 4,
-      "analytics": 5,
+      "analytics": 6,
       "network": 0,
       "accounts": 0,
       "consent": 0
@@ -46,7 +57,7 @@
   "tinta": {
     "source": "Tinta",
     "hits": {
-      "ads": 1,
+      "ads": 2,
       "purchases": 5,
       "analytics": 0,
       "network": 0,
@@ -57,7 +68,7 @@
   "binero": {
     "source": "binero",
     "hits": {
-      "ads": 10,
+      "ads": 12,
       "purchases": 9,
       "analytics": 74,
       "network": 58,
@@ -68,7 +79,7 @@
   "glyphe": {
     "source": "glyphe",
     "hits": {
-      "ads": 3,
+      "ads": 4,
       "purchases": 3,
       "analytics": 3,
       "network": 0,
@@ -79,7 +90,7 @@
   "zenkuto": {
     "source": "zenkuro",
     "hits": {
-      "ads": 1,
+      "ads": 2,
       "purchases": 1,
       "analytics": 0,
       "network": 0,
@@ -90,7 +101,7 @@
   "contree": {
     "source": "contre",
     "hits": {
-      "ads": 5,
+      "ads": 6,
       "purchases": 0,
       "analytics": 4,
       "network": 0,
@@ -112,7 +123,7 @@
   "combo": {
     "source": "squareLink",
     "hits": {
-      "ads": 4,
+      "ads": 5,
       "purchases": 3,
       "analytics": 5,
       "network": 0,
@@ -123,7 +134,7 @@
   "randompix": {
     "source": "randompix",
     "hits": {
-      "ads": 10,
+      "ads": 9,
       "purchases": 6,
       "analytics": 7,
       "network": 0,
@@ -145,7 +156,7 @@
   "orbis": {
     "source": "Orbis",
     "hits": {
-      "ads": 2,
+      "ads": 3,
       "purchases": 1,
       "analytics": 0,
       "network": 0,
@@ -156,7 +167,7 @@
   "tengo": {
     "source": "tenGO",
     "hits": {
-      "ads": 11,
+      "ads": 9,
       "purchases": 11,
       "analytics": 9,
       "network": 0,
@@ -167,7 +178,7 @@
   "meliz": {
     "source": "meliz",
     "hits": {
-      "ads": 8,
+      "ads": 10,
       "purchases": 10,
       "analytics": 4,
       "network": 0,
@@ -178,7 +189,7 @@
   "motfleche": {
     "source": "mot_fleche",
     "hits": {
-      "ads": 2,
+      "ads": 3,
       "purchases": 4,
       "analytics": 0,
       "network": 0,

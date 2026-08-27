@@ -33,6 +33,23 @@ const F = {
 } as const;
 
 export const THEMES: Record<string, AppTheme> = {
+  /* ── Coloriage pixel : la palette « Candy Pop » de lib/theme/candy_theme.dart ── */
+  pixelcraft: {
+    palette: {
+      ink: '#3B2A4A',
+      paper: '#FFF6F2',
+      surface: '#FFFFFF',
+      accent: '#FF5C8A',
+      accentAlt: '#FFB703',
+      glow: 'rgba(255, 92, 138, 0.28)',
+    },
+    fonts: { display: F.rounded, body: F.roundedBody },
+    // Les bulles reprennent celles que l'app pose derrière ses écrans.
+    backdrop: 'soft-bubbles',
+    shape: { radius: 22, border: 'soft' },
+    motion: 'calm',
+    layout: ['hero-offset', 'stat-band', 'how-it-plays', 'gallery-stack', 'features', 'privacy', 'cta'],
+  },
   /* ── Tower defense néon : la palette vient de lib/config/palette.dart ───── */
   holdfire: {
     palette: {

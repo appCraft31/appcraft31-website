@@ -19,6 +19,7 @@ const PROJECTS = join(homedir(), 'StudioProjects');
 
 /** slug du site → dossier du projet. */
 const SOURCES = {
+  pixelcraft: 'pixel_art',
   remindo: 'rappel',
   holdfire: 'tir_game',
   sudoku: 'sudoku',
@@ -43,7 +44,10 @@ const SOURCES = {
 
 /** Marqueurs recherchés dans le code, par catégorie. */
 const MARKERS = {
-  ads: 'AdMob|GADMobileAds|RewardedAd|InterstitialAd|google_mobile_ads|AppLovin|admob',
+  // `RewardedAd` et `InterstitialAd` seuls ne prouvent rien : ce sont aussi
+  // les noms qu'une app donne à sa propre abstraction quand elle prépare une
+  // régie sans en intégrer aucune. Un SDK réellement lié se nomme, lui.
+  ads: 'AdMob|GADMobileAds|google_mobile_ads|GoogleMobileAds|AppLovin|applovin|admob',
   purchases: 'in_app_purchase|StoreKit|SKProduct|Purchases\\.|RevenueCat|purchaseProduct',
   analytics: 'FirebaseAnalytics|Crashlytics|Sentry|firebase_analytics|Amplitude|Mixpanel',
   network: 'URLSession|http\\.get|Dio\\(|dart:io.*HttpClient|fetch\\(|Alamofire',

@@ -21,6 +21,21 @@ export interface AdsFacts {
   att: boolean;
   /** Un achat retire-t-il la publicité ? Nom du produit, le cas échéant. */
   removedBy?: string;
+  /**
+   * Réseaux tiers dont le SDK est réellement embarqué et servi par la médiation
+   * AdMob. Chacun reçoit à ce titre des données de l'appareil : le RGPD impose
+   * de les nommer, une mention générique « et nos partenaires » ne suffit pas.
+   * On y écrit le nom commercial suivi du SDK, tel qu'il apparaît dans le
+   * projet : `Liftoff Monetize (VungleAdsSDK)`.
+   */
+  mediation?: MediationPartner[];
+}
+
+/** Un réseau de médiation, avec le lien vers sa propre politique. */
+export interface MediationPartner {
+  name: string;
+  /** URL de la politique de confidentialité du réseau. */
+  privacyUrl: string;
 }
 
 export interface PurchaseFacts {
@@ -40,6 +55,13 @@ export interface AnalyticsFacts {
   vendors: string[];
   /** L'utilisateur peut-il les couper depuis les réglages de l'app ? */
   optOut: boolean;
+  /**
+   * Finalité réelle de la remontée, quand elle dépasse la correction des
+   * défauts — par exemple mesurer les revenus publicitaires ou alimenter des
+   * campagnes d'acquisition. Écrire ici ce que le code fait, pas la formule la
+   * plus rassurante : c'est une information que le RGPD impose de donner.
+   */
+  purpose?: { fr: string; en: string };
 }
 
 export interface NetworkFacts {

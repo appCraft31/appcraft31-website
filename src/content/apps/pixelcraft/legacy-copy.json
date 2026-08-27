@@ -1,0 +1,22 @@
+{
+  "fr": {
+    "tagline": "Coloriage pixel art par numéros",
+    "desc": "120 dessins pixel art à colorier case par case, sans chrono ni pénalité : la couleur ne se pose que là où elle doit aller. Chaque dessin terminé garde son timelapse et se rouvre en mode libre, avec cinq ambiances de couleurs. Tout fonctionne hors ligne.",
+    "c1": "120 dessins, 8 thèmes",
+    "c2": "Ni chrono ni pénalité",
+    "c3": "Timelapse de chaque dessin",
+    "c4": "Mode libre, 5 ambiances",
+    "c5": "100 % hors ligne",
+    "c6": "Sans compte à créer"
+  },
+  "en": {
+    "tagline": "Pixel art colour by number",
+    "desc": "120 pixel art pictures to colour cell by cell, with no timer and no penalty: a colour only lands where it belongs. Every finished picture keeps its timelapse and reopens in free mode, with five colour moods. Everything works offline.",
+    "c1": "120 pictures, 8 themes",
+    "c2": "No timer, no penalty",
+    "c3": "Timelapse of every picture",
+    "c4": "Free mode, 5 moods",
+    "c5": "100% offline",
+    "c6": "No account to create"
+  }
+}

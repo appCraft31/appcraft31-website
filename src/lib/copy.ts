@@ -17,6 +17,7 @@ import keeply from '@/content/apps/keeply/legacy-copy.json';
 import meliz from '@/content/apps/meliz/legacy-copy.json';
 import motfleche from '@/content/apps/motfleche/legacy-copy.json';
 import orbis from '@/content/apps/orbis/legacy-copy.json';
+import pixelcraft from '@/content/apps/pixelcraft/legacy-copy.json';
 import poddroid from '@/content/apps/poddroid/legacy-copy.json';
 import randompix from '@/content/apps/randompix/legacy-copy.json';
 import remindo from '@/content/apps/remindo/legacy-copy.json';
@@ -51,6 +52,7 @@ const SHORT: Record<string, Partial<Record<Lang, ShortCopy>>> = {
   meliz,
   motfleche,
   orbis,
+  pixelcraft,
   poddroid,
   randompix,
   remindo,

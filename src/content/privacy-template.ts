@@ -113,6 +113,20 @@ export function privacySections(
         : 'In that context, Google may process the device advertising identifier, app-related identifiers and ad interaction data (impressions, clicks).',
     ];
 
+    if (facts.ads.mediation?.length) {
+      const partners = facts.ads.mediation.map((m) => `${m.name} (${m.privacyUrl})`);
+      body.push(
+        fr
+          ? `La demande publicitaire est arbitrée par la médiation AdMob, qui peut la confier à d'autres régies dont le SDK est embarqué dans l'application : ${list('fr', partners)}. Lorsqu'une annonce leur est attribuée, ces régies traitent à leur tour l'identifiant publicitaire, des identifiants liés à l'application et les données d'interaction avec l'annonce, selon leur propre politique de confidentialité.`
+          : `Ad requests are arbitrated by AdMob mediation, which may hand them to other networks whose SDK is embedded in the app: ${list('en', partners)}. When an ad is awarded to them, those networks in turn process the advertising identifier, app-related identifiers and ad interaction data, under their own privacy policy.`,
+      );
+      body.push(
+        fr
+          ? "Le choix que vous exprimez dans l'écran de consentement s'applique à ces régies comme à Google : il leur est transmis avec chaque demande d'annonce."
+          : 'The choice you make in the consent screen applies to those networks just as it does to Google: it is passed along with every ad request.',
+      );
+    }
+
     if (facts.ads.att) {
       body.push(
         fr
@@ -180,9 +194,13 @@ export function privacySections(
     title: fr ? 'Mesure d’audience' : 'Analytics',
     body: facts.analytics
       ? [
-          fr
-            ? `${appName} remonte ${list('fr', facts.analytics.vendors)}, dans le seul but de corriger les défauts de l'application.`
-            : `${appName} sends ${list('en', facts.analytics.vendors)}, for the sole purpose of fixing defects in the app.`,
+          facts.analytics.purpose
+            ? fr
+              ? `${appName} remonte ${list('fr', facts.analytics.vendors)}, pour ${facts.analytics.purpose.fr}.`
+              : `${appName} sends ${list('en', facts.analytics.vendors)}, to ${facts.analytics.purpose.en}.`
+            : fr
+              ? `${appName} remonte ${list('fr', facts.analytics.vendors)}, dans le seul but de corriger les défauts de l'application.`
+              : `${appName} sends ${list('en', facts.analytics.vendors)}, for the sole purpose of fixing defects in the app.`,
           facts.analytics.optOut
             ? fr
               ? "Vous pouvez couper cette remontée à tout moment depuis les réglages de l'application."
@@ -271,6 +289,19 @@ export function privacySections(
       fr
         ? `Le règlement général sur la protection des données vous ouvre par ailleurs un droit d'accès, de rectification, d'effacement, de limitation et d'opposition. Pour l'exercer, écrivez à ${contactEmail}.`
         : `The General Data Protection Regulation further grants you rights of access, rectification, erasure, restriction and objection. To exercise them, write to ${contactEmail}.`,
+      ...(facts.ads
+        ? [
+            fr
+              ? `Pour les données traitées par les régies publicitaires, ces droits s'exercent auprès de chacune d'elles : ${list(
+                  'fr',
+                  ['Google', ...(facts.ads.mediation ?? []).map((m) => m.name)],
+                )}. Vos choix publicitaires restent par ailleurs modifiables à tout moment depuis les réglages de l'application et ceux de votre appareil.`
+              : `For data processed by the ad networks, those rights are exercised with each of them: ${list(
+                  'en',
+                  ['Google', ...(facts.ads.mediation ?? []).map((m) => m.name)],
+                )}. Your advertising choices also remain changeable at any time from the app settings and your device settings.`,
+          ]
+        : []),
     ],
   });
 

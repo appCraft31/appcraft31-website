@@ -29,6 +29,32 @@ const adFunded = (removedBy?: string): PrivacyFacts['ads'] => ({
 });
 
 export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
+  pixelcraft: {
+    platforms: ['iOS', 'Android'],
+    localData: [
+      'dessins coloriés',
+      'pièces, indices et boosters',
+      'trophées et statistiques',
+      'réglages (sons, musique, thème, rappel)',
+    ],
+    ads: null,
+    purchases: [],
+    analytics: null,
+    network: null,
+    accounts: null,
+    forChildren: false,
+    updated: '2026-08-27',
+    notes: [
+      {
+        fr: "Le rappel quotidien est une notification locale : elle est programmée par l'appareil, sans serveur, et se coupe depuis les réglages du jeu.",
+        en: 'The daily reminder is a local notification: it is scheduled by the device itself, with no server involved, and can be turned off in the game settings.',
+      },
+      {
+        fr: "Le partage d'un dessin terminé passe par la feuille de partage du système : c'est vous qui choisissez le destinataire, l'image ne transite par aucun serveur du studio.",
+        en: 'Sharing a finished drawing goes through the system share sheet: you pick the recipient, and the image never passes through a studio server.',
+      },
+    ],
+  },
   holdfire: {
     platforms: ['iOS'],
     localData: ['record', 'fragments', 'modules débloqués', 'réglages'],
@@ -104,15 +130,36 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
   binero: {
     platforms: ['iOS'],
     localData: ['progression des 50 niveaux', 'meilleurs temps', 'réglages'],
-    ads: adFunded(),
+    // Binero n'affiche pas de bannière : AdManager ne charge qu'un interstitiel
+    // et une vidéo récompensée. Depuis la 1.4.4, la médiation AdMob peut confier
+    // l'annonce à Liftoff Monetize, dont le SDK est embarqué dans l'app.
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      mediation: [
+        { name: 'Liftoff Monetize (VungleAdsSDK)', privacyUrl: 'https://liftoff.ai/privacy-policy/' },
+      ],
+    },
     purchases: [
       { kind: 'non-consumable', what: 'le mode libre', productId: 'com.appcraft31.binero.freemode' },
     ],
-    analytics: null,
+    // Firebase Analytics est lié à l'app (AppAnalytics) : événements de partie et
+    // d'affichage publicitaire. Aucun réglage de l'app ne permet de les couper.
+    analytics: {
+      vendors: ['Firebase Analytics'],
+      optOut: false,
+      purpose: {
+        fr: "mesurer l'usage du jeu et les revenus publicitaires, et évaluer l'efficacité des campagnes d'acquisition",
+        en: 'measure game usage and advertising revenue, and assess the effectiveness of acquisition campaigns',
+      },
+    },
     network: null,
     accounts: { service: 'Game Center', what: 'le classement mondial des meilleurs temps' },
     forChildren: false,
-    updated: REVIEWED,
+    // Revu à l'ajout de la médiation Liftoff Monetize (app 1.4.4).
+    updated: '2026-08-18',
   },
 
   zenkuto: {
