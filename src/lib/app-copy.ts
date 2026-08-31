@@ -32,6 +32,7 @@ import { pageCopy as tinta } from '@/content/apps/tinta/page-copy';
 import { pageCopy as zenkuto } from '@/content/apps/zenkuto/page-copy';
 import { shortCopy } from './copy';
 import { DEFAULT_LANG, type AppCopy, type AppData, type Lang } from './types';
+import { pageCopy as zellige } from '@/content/apps/zellige/page-copy';
 
 type PerLang = Partial<Record<Lang, AppCopy>>;
 
@@ -56,6 +57,7 @@ const FULL: Record<string, PerLang> = {
   talon,
   tengo,
   tinta,
+  zellige,
   zenkuto,
 };
 

@@ -29,6 +29,64 @@ const adFunded = (removedBy?: string): PrivacyFacts['ads'] => ({
 });
 
 export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
+  // Zellige (projet `Tectonic`) : `pubspec.yaml` lie google_mobile_ads,
+  // app_tracking_transparency, firebase_analytics et games_services ; aucun
+  // achat intégré. `ad_service.dart` ne charge qu'un interstitiel (une grille
+  // sur deux, `AdConfig.showEveryNLevels`) et une vidéo récompensée (50 pièces).
+  // `mobile_ads_init.dart` bloque l'app sur `ConsentRequiredView` en cas de
+  // refus explicite du consentement UMP : la politique doit le dire.
+  zellige: {
+    platforms: ['iOS', 'Android'],
+    localData: [
+      'progression du mode histoire et niveau atteint',
+      'pièces',
+      'grille du jour terminée, série et meilleur temps',
+      'partie en cours (histoire et grille du jour)',
+      'réglages (sons, vibrations, signalement des conflits, thème)',
+      'succès Game Center gagnés et déjà transmis',
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+    },
+    purchases: [],
+    // `conversion_tracker.dart` : événements de partie (level_start, level_end,
+    // daily_end, hint_used, onboarding_end) et de rétention (retention_day),
+    // explicitement « à des fins de mesure publicitaire ». Aucun réglage de
+    // l'app ne permet de les couper.
+    analytics: {
+      vendors: ['Firebase Analytics'],
+      optOut: false,
+      purpose: {
+        fr: "mesurer l'usage du jeu (grilles commencées et terminées, indices utilisés, retour au fil des jours) et évaluer l'efficacité des campagnes d'acquisition",
+        en: 'measure game usage (grids started and finished, hints used, return over the following days) and assess the effectiveness of acquisition campaigns',
+      },
+    },
+    network: null,
+    accounts: { service: 'Game Center', what: 'les classements (niveau atteint, série et temps de la grille du jour) et les succès' },
+    forChildren: false,
+    updated: '2026-08-31',
+    notes: [
+      {
+        fr: "Les grilles sont engendrées et vérifiées sur votre appareil : ni le mode histoire ni la grille du jour n'échangent avec un serveur du studio.",
+        en: 'Grids are generated and verified on your device: neither the story mode nor the daily grid exchanges anything with a studio server.',
+      },
+      {
+        fr: "Zellige est gratuit grâce à la publicité. Si vous refusez explicitement le consentement publicitaire dans l'écran prévu à cet effet, l'application affiche un écran « Consentement requis » et vous propose de revoir votre choix : elle n'est pas jouable sans consentement. En cas de simple indisponibilité du formulaire (réseau coupé), elle reste jouable.",
+        en: 'Zellige is free thanks to advertising. If you explicitly decline advertising consent in the consent screen, the app shows a “Consent required” screen and offers to revisit your choice: it cannot be played without consent. If the form is merely unavailable (no network), the app remains playable.',
+      },
+      {
+        fr: "La vidéo récompensée ne se lance que si vous appuyez sur le bouton « +50 pièces » ; l'interstitiel s'affiche au plus une grille sur deux, après la fin de la grille.",
+        en: 'The rewarded video only starts if you tap the “+50 coins” button; the interstitial shows at most once every two grids, after the grid is finished.',
+      },
+      {
+        fr: "Sur Android, les classements et succès Play Jeux ne sont pas encore actifs : rien n'est transmis tant qu'ils ne le sont pas.",
+        en: 'On Android, Play Games leaderboards and achievements are not active yet: nothing is transmitted until they are.',
+      },
+    ],
+  },
   pixelcraft: {
     platforms: ['iOS', 'Android'],
     localData: [

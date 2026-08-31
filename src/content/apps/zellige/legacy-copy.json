@@ -1,0 +1,22 @@
+{
+  "fr": {
+    "tagline": "Tectonic & Suguru en carreaux de faïence",
+    "desc": "Des grilles de Tectonic (Suguru) engendrées sur votre appareil, chacune vérifiée à solution unique. Du 5×5 d'initiation au 12×12 expert, une grille du jour commune à tous, des annotations, l'annulation, et un thème sombre dessiné comme le clair. Sans compte.",
+    "c1": "Solution unique garantie",
+    "c2": "Du 5×5 au 12×12",
+    "c3": "Grille du jour",
+    "c4": "Notes et annulation",
+    "c5": "Thème clair et sombre",
+    "c6": "Sans compte"
+  },
+  "en": {
+    "tagline": "Tectonic & Suguru on glazed tiles",
+    "desc": "Tectonic (Suguru) grids generated on your device, each verified to have a single solution. From a 5×5 warm-up to a 12×12 expert grid, a daily grid shared by everyone, notes, undo, and a dark theme designed as carefully as the light one. No account.",
+    "c1": "Single solution, guaranteed",
+    "c2": "From 5×5 to 12×12",
+    "c3": "Daily grid",
+    "c4": "Notes and undo",
+    "c5": "Light and dark themes",
+    "c6": "No account"
+  }
+}

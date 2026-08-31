@@ -19,6 +19,7 @@ const PROJECTS = join(homedir(), 'StudioProjects');
 
 /** slug du site → dossier du projet. */
 const SOURCES = {
+  zellige: 'Tectonic',
   pixelcraft: 'pixel_art',
   remindo: 'rappel',
   holdfire: 'tir_game',

@@ -1,4 +1,15 @@
 {
+  "zellige": {
+    "source": "Tectonic",
+    "hits": {
+      "ads": 7,
+      "purchases": 0,
+      "analytics": 4,
+      "network": 0,
+      "accounts": 8,
+      "consent": 2
+    }
+  },
   "pixelcraft": {
     "source": "pixel_art",
     "hits": {
@@ -135,7 +146,7 @@
     "source": "randompix",
     "hits": {
       "ads": 9,
-      "purchases": 6,
+      "purchases": 7,
       "analytics": 7,
       "network": 0,
       "accounts": 0,

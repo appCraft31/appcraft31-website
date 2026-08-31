@@ -8,6 +8,22 @@ import type { AppData } from './types';
 
 export const APPS: AppData[] = [
   {
+    slug: 'zellige',
+    name: 'Zellige',
+    category: 'game',
+    status: 'soon',
+    store: {},
+    icon: '/assets/icons/zellige.svg',
+    screenshots: [
+      { src: '/assets/zellige-screen-accueil.webp', alt: "L'accueil est lui-même une grille de Tectonic : Continuer, Grille du jour et Comment jouer sont des blocs" },
+      { src: '/assets/zellige-screen-partie.webp', alt: 'Une grille 7×8 en cours, niveau 15, avec des annotations et le bloc sélectionné cerné de bleu' },
+      { src: '/assets/zellige-screen-sombre.webp', alt: 'La même grille en thème sombre : le joint devient l’ombre entre les carreaux' },
+      { src: '/assets/zellige-screen-jour.webp', alt: 'La grille du jour, une 12×12 experte' },
+    ],
+    sdk: { ads: true, purchases: false, analytics: true, network: false, accounts: true },
+    privacyUpdated: '2026-08-31',
+  },
+  {
     slug: 'pixelcraft',
     name: 'PixelCraft',
     category: 'game',

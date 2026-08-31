@@ -18,6 +18,7 @@ import {
   JetBrains_Mono,
   Newsreader,
   Nunito,
+  Outfit,
   Playfair_Display,
   Press_Start_2P,
   Rajdhani,
@@ -80,6 +81,12 @@ const pressStart = Press_Start_2P({
   weight: '400',
   variable: '--font-press',
 });
+const outfit = Outfit({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-outfit',
+});
 const playfair = Playfair_Display({
   subsets: ['latin'],
   display: 'swap',
@@ -102,6 +109,7 @@ const BY_VAR: Record<string, string> = {
   '--font-space': spaceGrotesk.variable,
   '--font-baloo': baloo2.variable,
   '--font-nunito': nunito.variable,
+  '--font-outfit': outfit.variable,
   '--font-press': pressStart.variable,
   '--font-playfair': playfair.variable,
   '--font-jetbrains': jetbrainsMono.variable,

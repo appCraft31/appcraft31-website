@@ -30,9 +30,27 @@ const F = {
   editorial: 'var(--font-playfair), Georgia, serif',
   mono: 'var(--font-jetbrains), ui-monospace, monospace',
   inter: 'var(--font-inter), Inter, system-ui, sans-serif',
+  geometric: 'var(--font-outfit), system-ui, sans-serif',
 } as const;
 
 export const THEMES: Record<string, AppTheme> = {
+  /* ── Tectonic en faïence : la palette claire de lib/ui/theme/tectonic_theme.dart ── */
+  zellige: {
+    palette: {
+      ink: '#1E2F44',
+      paper: '#F1EDE6',
+      surface: '#FBF9F5',
+      accent: '#1B4A7A',
+      accentAlt: '#F2C97D',
+      glow: 'rgba(27, 74, 122, 0.16)',
+    },
+    // Outfit, la géométrique de l'app : la faïence n'a pas de rondeurs.
+    fonts: { display: F.geometric, body: F.geometric },
+    backdrop: 'paper-ink',
+    shape: { radius: 6, border: 'soft' },
+    motion: 'calm',
+    layout: ['hero-split', 'rules', 'stat-band', 'gallery-stack', 'features', 'privacy', 'cta'],
+  },
   /* ── Coloriage pixel : la palette « Candy Pop » de lib/theme/candy_theme.dart ── */
   pixelcraft: {
     palette: {
