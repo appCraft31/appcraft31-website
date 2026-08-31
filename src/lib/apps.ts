@@ -19,7 +19,7 @@ export const APPS: AppData[] = [
       { src: '/assets/pixelcraft-screen-timelapse.webp', alt: 'Le timelapse rejoue la création case par case' },
       { src: '/assets/pixelcraft-screen-libre.webp', alt: 'Le mode libre, en ambiance pastel' },
     ],
-    sdk: { ads: false, purchases: false, analytics: false, network: false, accounts: false },
+    sdk: { ads: false, purchases: false, analytics: true, network: true, accounts: false },
     privacyUpdated: '2026-08-27',
   },
   {

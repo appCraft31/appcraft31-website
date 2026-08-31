@@ -39,8 +39,20 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     ],
     ads: null,
     purchases: [],
-    analytics: null,
-    network: null,
+    analytics: {
+      vendors: ['Firebase Analytics', 'Firebase Crashlytics'],
+      // Consentement préalable : rien n'est envoyé tant que le joueur n'a pas
+      // répondu au bandeau de l'accueil, et le refus est la valeur de départ.
+      optOut: true,
+      purpose: {
+        fr: "savoir quels dessins sont terminés ou abandonnés, et recevoir les rapports de plantage pour corriger ce qui casse. Rien n'est envoyé avant votre accord, et le réglage « Statistiques anonymes » le retire à tout moment",
+        en: 'to learn which pictures get finished or abandoned, and to receive crash reports so that what breaks can be fixed. Nothing is sent before you agree, and the « Statistiques anonymes » setting withdraws that agreement at any time',
+      },
+    },
+    network: {
+      purpose:
+        "l'envoi des statistiques d'usage et des rapports de plantage à Firebase, et rien d'autre : le jeu lui-même se joue hors ligne",
+    },
     accounts: null,
     forChildren: false,
     updated: '2026-08-27',

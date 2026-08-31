@@ -7,9 +7,11 @@ import type { AppCopy, Lang } from '@/lib/types';
  * (`~/StudioProjects/pixel_art`) : 120 dessins dans `lib/data/artworks/`,
  * 8 thèmes et 4 difficultés dans `lib/data/artworks.dart`, 13 trophées dans
  * `lib/data/badges.dart`, 5 ambiances dans `lib/data/palettes.dart`. Le
- * `pubspec.yaml` ne liste ni achat intégré, ni outil de mesure d'audience.
- * La page ne promet en revanche rien sur la publicité : une régie est prévue,
- * et une promesse d'aujourd'hui deviendrait un mensonge à la mise à jour.
+ * `pubspec.yaml` ne liste aucun achat intégré. Firebase Analytics et
+ * Crashlytics y sont en revanche présents depuis le 27 août 2026 : la page ne
+ * peut plus dire « pas de mesure d'audience », elle dit ce qui est mesuré et
+ * comment le couper. Elle ne promet rien non plus sur la publicité : une régie
+ * est prévue, et une promesse d'aujourd'hui deviendrait un mensonge demain.
  */
 const fr: AppCopy = {
   tagline: 'Coloriage pixel art par numéros',
@@ -83,8 +85,8 @@ const fr: AppCopy = {
     {
       id: 'privacy',
       kicker: 'Vie privée',
-      title: 'Le jeu ne demande rien, et ne raconte rien',
-      body: "Pas de compte, pas de serveur, pas de mesure d'audience. Vos dessins, vos pièces et vos réglages restent sur l'appareil, dans son stockage local. PixelCraft se joue dans le métro comme en avion, sans jamais réclamer de connexion.",
+      title: 'Le jeu ne demande rien, et vous laissez le dernier mot',
+      body: "Pas de compte, pas de serveur de jeu : vos dessins, vos pièces et vos réglages restent sur l'appareil, et PixelCraft se joue hors ligne de bout en bout. Des statistiques d'usage anonymes et les rapports de plantage sont envoyés à Firebase pour corriger ce qui casse ; un réglage les coupe en un geste.",
     },
   ],
 
@@ -174,8 +176,8 @@ const en: AppCopy = {
     {
       id: 'privacy',
       kicker: 'Privacy',
-      title: 'The game asks for nothing, and tells no one',
-      body: 'No account, no server, no analytics. Your pictures, coins and settings stay on the device, in its local storage. PixelCraft plays on the underground as well as on a plane, without ever asking for a connection.',
+      title: 'The game asks for nothing, and leaves you the last word',
+      body: 'No account, no game server: your pictures, coins and settings stay on the device, and PixelCraft plays offline from start to finish. Anonymous usage statistics and crash reports go to Firebase so that what breaks can be fixed; one setting turns them off.',
     },
   ],
 

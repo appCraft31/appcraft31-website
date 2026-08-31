@@ -2,11 +2,24 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["JDKABK93UH.com.appcraft31.holdfire"],
+        "appIDs": [
+          "JDKABK93UH.com.appcraft31.holdfire"
+        ],
         "components": [
           {
             "/": "/holdfire/*",
             "comment": "Hold Fire — liens d'application, dont l'événement de lancement"
+          }
+        ]
+      },
+      {
+        "appIDs": [
+          "JDKABK93UH.com.appcraft31.pixelcraft"
+        ],
+        "components": [
+          {
+            "/": "/pixelcraft/*",
+            "comment": "PixelCraft — liens d'application, dont l'événement de lancement"
           }
         ]
       }

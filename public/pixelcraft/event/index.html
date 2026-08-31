@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PixelCraft — Lancement</title>
+<meta name="description" content="Lancement de PixelCraft : 120 dessins pixel art à colorier par numéros, hors ligne et sans compte.">
+<meta name="theme-color" content="#F7C8DC">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --framboise:#E8447F; --framboise-fonce:#D22F6B; --mangue:#FFB703;
+    --raisin:#8B4BD1; --encre:#3B2A4A; --encre-douce:#6B5B7B;
+    --carte:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Fredoka',system-ui,sans-serif;color:var(--encre);
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    text-align:center;padding:32px;-webkit-font-smoothing:antialiased;
+    background:linear-gradient(160deg,#FFE0C2 0%,#FFC9DE 38%,#E4C8F5 70%,#C9DFF8 100%);
+    background-attachment:fixed;background-color:#FFC9DE}
+  .eyebrow{font-weight:600;font-size:12px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--encre-douce)}
+  h1{font-weight:700;font-size:clamp(32px,7vw,56px);line-height:1.04;
+    margin:14px 0 0;color:#FFFFFF;
+    text-shadow:0 3px 0 var(--framboise-fonce),0 6px 18px rgba(210,47,107,.35)}
+  .filet{width:min(260px,58%);height:6px;background:var(--mangue);
+    margin:24px auto;border-radius:999px;
+    box-shadow:0 3px 0 rgba(198,138,0,.6)}
+  p{color:var(--encre-douce);font-size:19px;max-width:44ch;margin:0 auto;
+    font-weight:500}
+  .grille{display:flex;gap:10px;justify-content:center;margin:26px 0 0}
+  .case{width:26px;height:26px;border-radius:7px;
+    box-shadow:0 3px 0 rgba(0,0,0,.12)}
+  .cta{display:inline-block;margin-top:30px;background:var(--mangue);
+    color:#5A3A00;font-weight:700;letter-spacing:.02em;text-decoration:none;
+    font-size:18px;padding:15px 34px;border-radius:999px;
+    box-shadow:0 6px 0 #C68A00}
+  .cta:hover{background:#FFC93C}
+  .apres{margin-top:24px;font-size:15px}
+  .apres a{color:var(--framboise-fonce);font-weight:600}
+</style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">PixelCraft · Événement</div>
+    <h1>Lancement<br>de PixelCraft</h1>
+    <div class="filet"></div>
+    <p>120 dessins pixel art à révéler case par case, <strong style="color:var(--encre)">hors ligne et sans compte</strong>. Un dessin offert chaque jour.</p>
+    <div class="grille" aria-hidden="true">
+      <span class="case" style="background:#FF5C8A"></span>
+      <span class="case" style="background:#FFB703"></span>
+      <span class="case" style="background:#3CCF7A"></span>
+      <span class="case" style="background:#42A5F5"></span>
+      <span class="case" style="background:#8B4BD1"></span>
+    </div>
+    <!-- Cette page n'est vue que par ceux qui n'ont pas l'application : sur un
+         iPhone où PixelCraft est installé, iOS ouvre le jeu directement grâce
+         au fichier d'association du domaine, et cette page ne s'affiche
+         jamais. -->
+    <a class="cta" href="../../apps/pixelcraft.html">Découvrir le jeu</a>
+    <p class="apres">Déjà installé ? <a href="../../apps/pixelcraft.html">Ouvrez PixelCraft</a> : le dessin du jour vous attend sur l'écran d'accueil.</p>
+  </main>
+</body>
+</html>
