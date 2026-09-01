@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.appcraft31.randompix",
+      "sha256_cert_fingerprints": [
+        "CF:F2:6E:11:EC:AB:FB:6C:F3:93:BE:15:98:C3:44:1A:1E:C3:B9:77:30:63:BC:CC:15:14:BB:86:EA:0F:7B:49"
+      ]
+    }
+  }
+]

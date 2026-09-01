@@ -22,6 +22,17 @@
             "comment": "PixelCraft — liens d'application, dont l'événement de lancement"
           }
         ]
+      },
+      {
+        "appIDs": [
+          "JDKABK93UH.com.appcraft31.randompix"
+        ],
+        "components": [
+          {
+            "/": "/randompix/*",
+            "comment": "randompix — liens d'application, dont l'événement 2.0"
+          }
+        ]
       }
     ]
   }
