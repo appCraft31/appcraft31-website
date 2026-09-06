@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tenGO 3.0 — Duel, Rush et Puzzles</title>
+<meta name="description" content="tenGO 3.0 : défiez un ami sur la même grille, jouez contre le chrono en Rush et résolvez vingt puzzles garantis solubles.">
+<meta name="theme-color" content="#F2EEE4">
+<link rel="icon" href="../../favicon.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* Les couleurs de l'app : papier crème, bulles rose et bleu pastel. */
+  :root{
+    --encre:#1D1D1F; --encre-2:#5A5A61; --papier:#F2EEE4; --papier-clair:#FBF9F4;
+    --surface:#FFFFFF; --rose:#F5A8B8; --rose-texte:#D4667F; --bleu:#7FBEF0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--encre);
+    min-height:100vh;display:flex;flex-direction:column;
+    -webkit-font-smoothing:antialiased;
+    background:
+      radial-gradient(52rem 30rem at 22% 0%, rgba(245,168,184,.34), transparent 62%),
+      radial-gradient(46rem 28rem at 84% 12%, rgba(127,190,240,.30), transparent 64%),
+      linear-gradient(168deg, var(--papier-clair) 0%, var(--papier) 62%, #EAE3D6 100%);
+    background-attachment:fixed;background-color:var(--papier)}
+  main{flex:1;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;text-align:center;padding:40px 32px 64px}
+  .eyebrow{font-weight:600;font-size:12px;letter-spacing:.26em;
+    text-transform:uppercase;color:var(--encre-2)}
+  h1{font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;
+    font-size:clamp(32px,7.5vw,58px);line-height:1.06;margin:14px 0 0}
+  h1 em{font-style:normal;color:var(--rose-texte)}
+  .filet{width:min(280px,60%);height:4px;background:var(--bleu);margin:24px auto;
+    border-radius:3px}
+  p{color:var(--encre-2);font-size:19px;max-width:46ch;margin:0 auto;line-height:1.55}
+  .modes{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:28px}
+  .mode{background:var(--surface);border:1px solid rgba(29,29,31,.08);
+    border-radius:999px;padding:9px 18px;font-weight:600;font-size:15px;
+    box-shadow:0 2px 10px rgba(29,29,31,.05)}
+  .cta{display:inline-block;margin-top:34px;background:var(--rose);color:var(--encre);
+    font-family:'Baloo 2',system-ui,sans-serif;font-weight:800;letter-spacing:.02em;
+    text-decoration:none;font-size:18px;padding:16px 36px;border-radius:26px;
+    box-shadow:0 6px 20px rgba(245,168,184,.55)}
+  .cta:hover{background:var(--bleu);box-shadow:0 6px 20px rgba(127,190,240,.55)}
+  .apres{margin-top:26px;font-size:15px}
+  .apres a{color:var(--rose-texte);font-weight:600}
+</style>
+</head>
+<body>
+<!-- Bandeau AppCraft31 (ac31-gamebar) — même gabarit que les autres pages de jeu -->
+<style>
+  .ac31-gamebar{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:14px;
+    padding:8px clamp(14px,4vw,28px);background:#0c0a10;color:#f6f1ea;
+    font:500 14px/1.4 Inter,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    border-bottom:1px solid rgba(246,241,234,.14)}
+  .ac31-gamebar a{color:inherit;text-decoration:none}
+  .ac31-gamebar a:hover{color:#3BE8FF}
+  .ac31-gamebar-brand{font-weight:800;letter-spacing:-.03em}
+  .ac31-gamebar-brand i{font-style:normal;color:#ff7a4d}
+  .ac31-gamebar-sep{opacity:.35}
+  .ac31-gamebar-back{margin-inline-start:auto;color:#3BE8FF}
+</style>
+<nav class="ac31-gamebar" aria-label="AppCraft31">
+  <a class="ac31-gamebar-brand" href="/">AppCraft<i>31</i></a>
+  <span class="ac31-gamebar-sep" aria-hidden="true">/</span>
+  <span>tenGO</span>
+  <a class="ac31-gamebar-back" href="/apps/tengo.html">À propos du jeu →</a>
+</nav>
+
+  <main>
+    <div class="eyebrow">tenGO · Événement</div>
+    <h1>La mise à jour<br><em>3.0</em></h1>
+    <div class="filet"></div>
+    <p>Tracez des chemins de bulles dont la somme fait dix. La 3.0 ajoute le duel sur une grille identique, un mode contre la montre et vingt puzzles garantis solubles — <strong style="color:var(--encre)">plus cent niveaux d'expérience, des missions et vingt-six succès</strong>.</p>
+    <div class="modes">
+      <span class="mode">Duel</span>
+      <span class="mode">Rush 60 s</span>
+      <span class="mode">Puzzles</span>
+      <span class="mode">Défi du jour</span>
+    </div>
+    <!-- Cette page n'est vue que par ceux qui n'ont pas l'application : sur un
+         iPhone où tenGO est installé, iOS ouvre l'app directement grâce au
+         fichier d'association du domaine, et cette page ne s'affiche jamais. -->
+    <a class="cta" href="../../apps/tengo.html">Découvrir le jeu</a>
+    <p class="apres">Déjà installé ? <a href="../../apps/tengo.html">Ouvre tenGO</a> : les nouveautés t'attendent sur l'onglet Progression.</p>
+  </main>
+</body>
+</html>
