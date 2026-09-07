@@ -319,7 +319,7 @@ const MOTIFS: Record<string, React.ReactNode> = {
   ),
 
   /* Zenkuro — les sommes du kakuro, en diagonale. */
-  zenkuto: (
+  zenkuro: (
     <svg viewBox="0 0 260 180" className={styles.svg}>
       {Array.from({ length: 12 }, (_, i) => {
         const c = i % 4;

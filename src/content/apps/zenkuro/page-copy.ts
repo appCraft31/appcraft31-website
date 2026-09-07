@@ -2,8 +2,9 @@ import type { AppCopy, Lang } from '@/lib/types';
 
 /**
  * Textes repris de l'ancienne page `apps/zenkuto.html`.
- * Le produit s'appelle Zenkuro ; son slug d'URL, `zenkuto`, est une coquille
- * historique figée par les fiches store. On ne touche pas à l'URL.
+ * Ce slug portait une coquille : l'adresse canonique est désormais
+ * `apps/zenkuro.html`. L'ancienne reste servie (voir `legacySlugs`), car elle
+ * figure dans une fiche store validée.
  */
 const fr: AppCopy = {
   tagline: 'Kakuro · pastel · zen · iPhone',

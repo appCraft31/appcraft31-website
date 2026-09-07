@@ -49,9 +49,9 @@ if (end === -1) throw new Error('Fin de l\'objet I18N introuvable');
 const I18N = new Function(`return ${after.slice(0, end)}`)();
 const LANGS = Object.keys(I18N);
 
-// L'ancien dictionnaire utilise `zenkuro` alors que l'URL publique dit `zenkuto`.
-// C'est l'URL qui fait foi : elle est dans une fiche store validée.
-const SLUG_ALIASES = { zenkuro: 'zenkuto' };
+// L'URL publique de Zenkuro portait la coquille `zenkuto` ; elle a été corrigée
+// et le slug coïncide désormais avec le dictionnaire. Plus aucun alias requis.
+const SLUG_ALIASES = {};
 
 // Les clés produit sont celles dont le préfixe est un slug connu.
 const SLUGS = [

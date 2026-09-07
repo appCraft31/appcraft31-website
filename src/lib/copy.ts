@@ -26,7 +26,7 @@ import sudoku from '@/content/apps/sudoku/legacy-copy.json';
 import talon from '@/content/apps/talon/legacy-copy.json';
 import tengo from '@/content/apps/tengo/legacy-copy.json';
 import tinta from '@/content/apps/tinta/legacy-copy.json';
-import zenkuto from '@/content/apps/zenkuto/legacy-copy.json';
+import zenkuro from '@/content/apps/zenkuro/legacy-copy.json';
 import { DEFAULT_LANG, type Lang } from './types';
 import zellige from '@/content/apps/zellige/legacy-copy.json';
 
@@ -63,7 +63,7 @@ const SHORT: Record<string, Partial<Record<Lang, ShortCopy>>> = {
   tengo,
   tinta,
   zellige,
-  zenkuto,
+  zenkuro,
 };
 
 /**

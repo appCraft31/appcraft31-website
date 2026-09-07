@@ -30,7 +30,7 @@ import { pageCopy as sudoku } from '@/content/apps/sudoku/page-copy';
 import { pageCopy as talon } from '@/content/apps/talon/page-copy';
 import { pageCopy as tengo } from '@/content/apps/tengo/page-copy';
 import { pageCopy as tinta } from '@/content/apps/tinta/page-copy';
-import { pageCopy as zenkuto } from '@/content/apps/zenkuto/page-copy';
+import { pageCopy as zenkuro } from '@/content/apps/zenkuro/page-copy';
 import { shortCopy } from './copy';
 import { DEFAULT_LANG, type AppCopy, type AppData, type Lang } from './types';
 import { pageCopy as zellige } from '@/content/apps/zellige/page-copy';
@@ -60,7 +60,7 @@ const FULL: Record<string, PerLang> = {
   tengo,
   tinta,
   zellige,
-  zenkuto,
+  zenkuro,
 };
 
 /** Une app dispose-t-elle d'une page rédigée ? */

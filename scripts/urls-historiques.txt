@@ -21,6 +21,7 @@ apps/talon.html
 apps/tengo.html
 apps/tinta.html
 apps/zenkuto.html
+apps/zenkuro.html
 holdfire/event/index.html
 index.html
 play/meliz/index.html
@@ -45,3 +46,4 @@ privacy/talon.html
 privacy/tengo.html
 privacy/tinta.html
 privacy/zenkuto-privacy.html
+privacy/zenkuro-privacy.html

@@ -291,7 +291,7 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     updated: '2026-08-18',
   },
 
-  zenkuto: {
+  zenkuro: {
     platforms: ['iOS'],
     localData: ['records par difficulté', 'grille en cours', 'réglages'],
     ads: adFunded(),

@@ -148,16 +148,18 @@ export const APPS: AppData[] = [
     privacyUpdated: '2026-08-16',
   },
   {
-    slug: 'zenkuto',
+    slug: 'zenkuro',
     name: 'Zenkuro',
     category: 'game',
     status: 'available',
     store: { ios: 'https://apps.apple.com/app/id6787019507' },
-    icon: '/assets/icons/zenkuto.svg',
+    icon: '/assets/icons/zenkuro.svg',
     screenshots: [],
     sdk: { ads: true, purchases: true, analytics: false, network: false, accounts: false },
     privacyUpdated: '2026-08-16',
-    privacySlug: 'zenkuto-privacy',
+    privacySlug: 'zenkuro-privacy',
+    legacySlugs: ['zenkuto'],
+    legacyPrivacySlugs: ['zenkuto-privacy'],
   },
   {
     slug: 'contree',
@@ -371,7 +373,7 @@ export const APPS: AppData[] = [
   },
 ];
 
-export const APP_SLUGS = APPS.map((a) => a.slug);
+export const APP_SLUGS = APPS.flatMap((a) => [a.slug, ...(a.legacySlugs ?? [])]);
 
 /**
  * Les produits qui se montrent : accueil, pied de page, sitemap.
@@ -383,7 +385,7 @@ export const APP_SLUGS = APPS.map((a) => a.slug);
 export const VISIBLE_APPS = APPS.filter((a) => !a.unlisted);
 
 export function getApp(slug: string): AppData | undefined {
-  return APPS.find((a) => a.slug === slug);
+  return APPS.find((a) => a.slug === slug || a.legacySlugs?.includes(slug));
 }
 
 /**
@@ -396,11 +398,16 @@ export function privacyFileSlug(app: AppData): string {
 
 /** Retrouve une app depuis le nom de fichier de sa politique. */
 export function getAppByPrivacySlug(fileSlug: string): AppData | undefined {
-  return APPS.find((a) => privacyFileSlug(a) === fileSlug);
+  return APPS.find(
+    (a) => privacyFileSlug(a) === fileSlug || a.legacyPrivacySlugs?.includes(fileSlug),
+  );
 }
 
-/** Tous les noms de fichiers de politiques, y compris les deux exceptions. */
-export const PRIVACY_SLUGS = APPS.map(privacyFileSlug);
+/** Tous les noms de fichiers de politiques, y compris les exceptions et les anciennes URL. */
+export const PRIVACY_SLUGS = APPS.flatMap((a) => [
+  privacyFileSlug(a),
+  ...(a.legacyPrivacySlugs ?? []),
+]);
 
 export function privacyPath(app: AppData): string {
   return `/privacy/${privacyFileSlug(app)}.html`;

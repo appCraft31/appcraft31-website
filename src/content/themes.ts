@@ -204,7 +204,7 @@ export const THEMES: Record<string, AppTheme> = {
     layout: ['hero-full', 'rules', 'stat-band', 'gallery-tilt', 'privacy', 'cta'],
   },
 
-  zenkuto: {
+  zenkuro: {
     palette: {
       ink: '#2C3327',
       paper: '#F6F1E5',

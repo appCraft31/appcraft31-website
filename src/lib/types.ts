@@ -145,10 +145,19 @@ export interface AppData {
   unlisted?: boolean;
   /**
    * Nom de fichier de la politique quand il s'écarte du slug.
-   * Deux pages historiques sont dans ce cas (`contree-privacy`, `zenkuto-privacy`) :
-   * leurs URLs figurent dans des fiches store validées et ne doivent pas bouger.
+   * Deux pages sont dans ce cas (`contree-privacy`, `zenkuro-privacy`) : leurs
+   * URLs figurent dans des fiches store validées et ne doivent pas bouger.
    */
   privacySlug?: string;
+  /**
+   * Anciens slugs marketing dont l'URL doit rester servie.
+   * Le slug de Zenkuro portait une coquille (`zenkuto`) ; elle est corrigee,
+   * mais `apps/zenkuto.html` figure dans une fiche App Store validee et
+   * continue donc d'etre generee, avec un canonique vers la nouvelle adresse.
+   */
+  legacySlugs?: string[];
+  /** Idem pour le nom de fichier de la politique de confidentialite. */
+  legacyPrivacySlugs?: string[];
 }
 
 export interface AppCopy {

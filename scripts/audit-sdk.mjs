@@ -28,7 +28,7 @@ const SOURCES = {
   tinta: 'Tinta',
   binero: 'binero',
   glyphe: 'glyphe',
-  zenkuto: 'zenkuro',
+  zenkuro: 'zenkuro',
   contree: 'contre',
   keeply: 'Keeply',
   combo: 'squareLink',
