@@ -109,6 +109,108 @@ for (const slug of readdirSync(contentDir)) {
   }
 }
 
+/**
+ * Les affirmations qui parlent du studio, pas d'une app.
+ *
+ * « Des applications et des jeux soignés, sans publicité ni pistage » vivait
+ * dans la description du site, hors du périmètre balayé plus haut — et c'est
+ * pourtant le texte que Google affiche sous le lien. Une négation de publicité
+ * portant sur le catalogue entier est fausse dès qu'une seule app visible
+ * charge AdMob.
+ */
+const GLOBAL_FILES = [
+  'src/app/(fr)/layout.tsx',
+  'src/app/(intl)/[lang]/layout.tsx',
+  'src/content/site/fr.ts',
+  'src/content/site/en.ts',
+  'src/content/site/ja.ts',
+  'src/content/site/ko.ts',
+  'src/content/site/es.ts',
+  'src/content/site/de.ts',
+];
+
+/**
+ * La portée d'une affirmation se lit dans la clé qui la porte.
+ *
+ * « Utiles, rapides, sans pub ni tracking » est la légende de la section
+ * *Applications* : elle ne parle pas des jeux, et elle est vraie — les six
+ * produits de cette catégorie n'embarquent aucune régie. La confronter au
+ * catalogue entier la ferait passer pour un mensonge. On confronte donc chaque
+ * phrase aux seules apps dont elle parle.
+ */
+const CATEGORY_OF_KEY = [
+  [/^apps\./, 'app'],
+  [/^games\./, 'game'],
+];
+
+const registry = readFileSync(join(ROOT, 'src/lib/apps.ts'), 'utf8');
+const categoryOf = new Map(
+  [...registry.matchAll(/slug: '([^']+)',\n\s*name: '[^']*',\n\s*category: '([^']+)'/g)].map(
+    (m) => [m[1], m[2]],
+  ),
+);
+
+/** Les apps à publicité d'une catégorie donnée — ou de tout le catalogue. */
+function adFunded(category) {
+  return Object.entries(audit)
+    .filter(([slug, entry]) => entry.hits?.ads > 0)
+    .filter(([slug]) => !category || categoryOf.get(slug) === category)
+    .map(([slug]) => slug);
+}
+
+for (const relative of GLOBAL_FILES) {
+  const file = join(ROOT, relative);
+  if (!existsSync(file)) continue;
+
+  // Les fichiers de dictionnaire sont du TypeScript : `stripComments` s'y
+  // applique, comme pour les pages produit.
+  const text = stripComments(readFileSync(file, 'utf8'), file);
+  const scan = new RegExp(NO_ADS.source, NO_ADS.flags + 'g');
+
+  for (const match of text.matchAll(scan)) {
+    const line = text.slice(
+      text.lastIndexOf('\n', match.index) + 1,
+      text.indexOf('\n', match.index) + 1 || undefined,
+    );
+    if (QUALIFIED.test(line)) continue;
+
+    const key = line.match(/["']([a-z0-9_.]+)["']\s*:/)?.[1] ?? '';
+    const scope = CATEGORY_OF_KEY.find(([re]) => re.test(key))?.[1] ?? null;
+    const guilty = adFunded(scope);
+    if (guilty.length === 0) continue;
+
+    const about = scope ? `les ${scope === 'app' ? 'applications' : 'jeux'}` : 'le site';
+    console.error(
+      `✗ ${relative}${key ? ` (${key})` : ''} — « sans publicité » pour ${about}, alors que ${guilty.length} chargent AdMob : ${guilty.slice(0, 3).join(', ')}${guilty.length > 3 ? '…' : ''}`,
+    );
+    problems++;
+  }
+}
+
+/**
+ * Le registre lui-même doit coller au code des apps.
+ *
+ * `AppData.sdk` se veut « source de vérité de la politique de confidentialité ».
+ * Deux fois le 7 septembre 2026, il avait pris du retard sur la réalité : Talon
+ * et PixelCraft s'y déclaraient sans publicité alors que leur code chargeait
+ * AdMob. Personne ne le voyait, parce qu'aucun texte visible ne mentait — le
+ * mensonge était dans la fiche technique, en amont de tout ce qui en dérive.
+ */
+for (const [slug, entry] of Object.entries(audit)) {
+  const declared = registry.match(
+    new RegExp(`slug: '${slug}',(?:.|\n)*?sdk: \{ ads: (\\w+)`),
+  )?.[1];
+  if (declared === undefined) continue;
+
+  const real = entry.hits?.ads > 0;
+  if (real !== (declared === 'true')) {
+    console.error(
+      `✗ ${slug} — le registre déclare ads: ${declared}, l'audit du code compte ${entry.hits?.ads ?? 0} occurrence(s) AdMob (src/lib/apps.ts)`,
+    );
+    problems++;
+  }
+}
+
 // Les faits de confidentialité doivent eux aussi coller à l'audit.
 const facts = readFileSync(join(ROOT, 'src/content/privacy-facts.ts'), 'utf8');
 for (const [slug, entry] of Object.entries(audit)) {

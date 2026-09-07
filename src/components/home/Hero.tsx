@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { APPS } from '@/lib/apps';
+import { VISIBLE_APPS } from '@/lib/apps';
 import { translator } from '@/lib/i18n';
 import { LANGS, type Lang } from '@/lib/types';
 import { SOCIAL } from '@/components/site/social';
@@ -14,8 +14,10 @@ import { ICONS } from '@/components/site/SocialLinks';
  */
 export function Hero({ lang }: { lang: Lang }) {
   const t = translator(lang);
-  const games = APPS.filter((a) => a.category === 'game').length;
-  const apps = APPS.length - games;
+  // Les compteurs disent ce que la page montre : `VISIBLE_APPS` exclut les
+  // outils internes, qui ont une URL mais pas de carte.
+  const games = VISIBLE_APPS.filter((a) => a.category === 'game').length;
+  const apps = VISIBLE_APPS.length - games;
 
   return (
     <section className="hero grain">
@@ -42,10 +44,15 @@ export function Hero({ lang }: { lang: Lang }) {
           Studio indépendant · Toulouse
         </p>
 
+        {/* Le nombre vient du registre : écrit à la main, il annonçait encore
+            « Vingt » à vingt-deux produits — et il le disait en français sur
+            les pages japonaises. */}
         <h1 className="hero-title">
-          Un studio.
+          {t('hero.title_lead')}
           <br />
-          <span className="hero-title-accent">Vingt objets numériques.</span>
+          <span className="hero-title-accent">
+            {t('hero.title_accent').replace('{count}', String(VISIBLE_APPS.length))}
+          </span>
         </h1>
 
         <p className="hero-sub">{t('hero.sub')}</p>
@@ -85,7 +92,7 @@ export function Hero({ lang }: { lang: Lang }) {
           {/* Un chiffre vérifiable plutôt qu'une promesse : plusieurs jeux
               affichent de la publicité, le dire autrement serait faux. */}
           <div>
-            <dt>Langues</dt>
+            <dt>{t('about.stat_langs_label')}</dt>
             <dd>{LANGS.length}</dd>
           </div>
         </dl>

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: '%s · AppCraft31',
   },
   description:
-    'Studio indépendant toulousain. Des applications et des jeux soignés, sans publicité ni pistage.',
+    'Studio indépendant toulousain. Des applications et des jeux soignés pour iPhone et Android, qui disent franchement ce qu’ils font de vos données.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '16x16 32x32 48x48' },
@@ -25,6 +25,9 @@ export const metadata: Metadata = {
     type: 'website',
     images: [{ url: '/assets/logo.webp', width: 2816, height: 1536, alt: 'AppCraft31' }],
   },
+  // Déclarée ici et nulle part ailleurs : au niveau d'une page, elle
+  // remplacerait ce bloc au lieu de le compléter.
+  twitter: { card: 'summary_large_image' },
 };
 
 export default function FrenchRootLayout({ children }: { children: React.ReactNode }) {
