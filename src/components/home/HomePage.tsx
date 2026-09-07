@@ -1,4 +1,4 @@
-import { APPS } from '@/lib/apps';
+import { VISIBLE_APPS } from '@/lib/apps';
 import { shortCopy } from '@/lib/copy';
 import { translator } from '@/lib/i18n';
 import { getTheme } from '@/content/themes';
@@ -43,7 +43,7 @@ export function HomePage({ lang }: { lang: Lang }) {
             />
 
             <div className="apps-grid" id="apps-grid">
-              {APPS.map((app, i) => {
+              {VISIBLE_APPS.map((app, i) => {
                 const copy = shortCopy(app.slug, lang);
                 return (
                   <AppCard
@@ -72,11 +72,11 @@ export function HomePage({ lang }: { lang: Lang }) {
             </div>
             <aside className="about-figures reveal">
               <p>
-                <strong>{APPS.filter((a) => a.category === 'app').length}</strong>
+                <strong>{VISIBLE_APPS.filter((a) => a.category === 'app').length}</strong>
                 {t('about.stat_app_label')}
               </p>
               <p>
-                <strong>{APPS.filter((a) => a.category === 'game').length}</strong>
+                <strong>{VISIBLE_APPS.filter((a) => a.category === 'game').length}</strong>
                 {t('about.stat_games_label')}
               </p>
             </aside>

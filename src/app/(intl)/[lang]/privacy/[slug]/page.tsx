@@ -25,6 +25,9 @@ export async function generateMetadata({
     title: `Privacy policy — ${app.name}`,
     description: `What ${app.name} does — and does not do — with your data: local storage, advertising, in-app purchases, analytics and your rights.`,
     alternates: { canonical: localizedUrl(lang, path), languages: alternates(path) },
+    // Une page non listée reste publique — Google doit pouvoir l'ouvrir depuis
+    // l'écran de consentement — mais n'a rien à faire dans un index.
+    ...(app.unlisted ? { robots: { index: false, follow: false } } : {}),
   };
 }
 

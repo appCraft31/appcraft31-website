@@ -11,7 +11,7 @@
  * enfants, droits, modifications, contact.
  */
 
-import type { AdFormat, PrivacyFacts } from '@/lib/privacy-types';
+import type { AdFormat, Localized, PrivacyFacts } from '@/lib/privacy-types';
 import type { Lang } from '@/lib/types';
 
 export interface PrivacySection {
@@ -47,6 +47,11 @@ const KIND_LABEL: Record<PrivacyLang, Record<string, string>> = {
     subscription: 'subscription',
   },
 };
+
+/** Fragment bilingue ramené à la langue rendue. */
+function loc(lang: PrivacyLang, value: Localized): string {
+  return typeof value === 'string' ? value : value[lang];
+}
 
 function list(lang: PrivacyLang, values: string[]): string {
   if (values.length <= 1) return values[0] ?? '';
@@ -98,7 +103,7 @@ export function privacySections(
         : `${appName} stores the following in your device's own storage. None of it is sent to any server, and all of it disappears if you uninstall the app.`,
       ...(facts.notes ?? []).map((n) => n[lang]),
     ],
-    items: facts.localData,
+    items: facts.localData.map((d) => loc(lang, d)),
   });
 
   /* 3 — Publicité --------------------------------------------------------- */
@@ -137,8 +142,20 @@ export function privacySections(
     if (facts.ads.ump) {
       body.push(
         fr
-          ? "Dans l'Espace économique européen, au Royaume-Uni et en Suisse, un écran de consentement conforme au RGPD est affiché via Google User Messaging Platform. Vous pouvez accepter, refuser ou personnaliser l'usage de vos données à des fins publicitaires, et revenir sur ce choix depuis les réglages de l'application."
-          : 'In the European Economic Area, the United Kingdom and Switzerland, a GDPR-compliant consent screen is shown through the Google User Messaging Platform. You can accept, decline or customise the use of your data for advertising, and change that choice from the app settings.',
+          ? "Dans l'Espace économique européen, au Royaume-Uni et en Suisse, un écran de consentement conforme au RGPD est affiché via Google User Messaging Platform. Vous pouvez accepter, refuser ou personnaliser l'usage de vos données à des fins publicitaires."
+          : 'In the European Economic Area, the United Kingdom and Switzerland, a GDPR-compliant consent screen is shown through the Google User Messaging Platform. You can accept, decline or customise the use of your data for advertising.',
+      );
+      // `umpReopen` non renseigné = l'app propose bien un accès au formulaire.
+      // Le dire quand c'est faux serait une clause inexacte dans un document
+      // juridique : PixelCraft n'a pas encore cet écran.
+      body.push(
+        facts.ads.umpReopen === false
+          ? fr
+            ? "Ce choix est conservé par le SDK Google. L'application ne propose pas encore d'écran pour rouvrir ce formulaire : désinstaller puis réinstaller l'application le réaffiche."
+            : 'That choice is kept by the Google SDK. The app does not yet offer a screen to reopen the form: uninstalling and reinstalling the app shows it again.'
+          : fr
+            ? 'Vous pouvez revenir sur ce choix depuis les réglages de l\'application.'
+            : 'You can change that choice from the app settings.',
       );
     }
     if (facts.ads.removedBy) {
@@ -223,8 +240,8 @@ export function privacySections(
     body: facts.network
       ? [
           fr
-            ? `L'application utilise votre connexion pour ${facts.network.purpose}.`
-            : `The app uses your connection for ${facts.network.purpose}.`,
+            ? `L'application utilise votre connexion pour ${loc('fr', facts.network.purpose)}.`
+            : `The app uses your connection for ${loc('en', facts.network.purpose)}.`,
         ]
       : [
           fr
@@ -237,12 +254,20 @@ export function privacySections(
   if (facts.accounts) {
     sections.push({
       id: 'comptes',
-      title: fr ? 'Comptes et services de jeu' : 'Accounts and game services',
-      body: [
-        fr
-          ? `${appName} ne vous demande jamais de créer un compte. ${facts.accounts.service} est utilisé pour ${facts.accounts.what} : dans ce cadre, seul votre pseudonyme ${facts.accounts.service} et vos scores sont transmis, par le service d'Apple.`
-          : `${appName} never asks you to create an account. ${facts.accounts.service} is used for ${facts.accounts.what}: in that context, only your ${facts.accounts.service} nickname and your scores are transmitted, through Apple's service.`,
-      ],
+      title: facts.accounts.body
+        ? fr
+          ? 'Connexion à votre compte'
+          : 'Signing in to your account'
+        : fr
+          ? 'Comptes et services de jeu'
+          : 'Accounts and game services',
+      body: facts.accounts.body
+        ? facts.accounts.body.map((b) => loc(lang, b))
+        : [
+            fr
+              ? `${appName} ne vous demande jamais de créer un compte. ${facts.accounts.service} est utilisé pour ${facts.accounts.what} : dans ce cadre, seul votre pseudonyme ${facts.accounts.service} et vos scores sont transmis, par le service d'Apple.`
+              : `${appName} never asks you to create an account. ${facts.accounts.service} is used for ${facts.accounts.what}: in that context, only your ${facts.accounts.service} nickname and your scores are transmitted, through Apple's service.`,
+          ],
     });
   } else {
     sections.push({

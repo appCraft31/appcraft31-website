@@ -29,6 +29,18 @@ export function StoreLinks({
   const { ios, android, web } = app.store;
   const fr = lang === 'fr';
 
+  // Un outil interne n'ira sur aucun store : annoncer « bientôt » y serait une
+  // promesse fausse, sur une page qui sert justement de preuve d'existence.
+  if (app.unlisted) {
+    return (
+      <p className={`${styles.soon} ${styles[align]}`}>
+        {fr
+          ? 'Outil interne du studio — non distribué sur les stores'
+          : 'Internal studio tool — not distributed on the stores'}
+      </p>
+    );
+  }
+
   // Une app pas encore publiée n'a pas de lien : le dire vaut mieux que de
   // laisser un vide là où le lecteur cherche le bouton.
   if (!ios && !android && !web) {

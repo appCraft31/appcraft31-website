@@ -42,14 +42,45 @@ function stripComments(source, file) {
   return source.replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/^\s*\/\/.*$/gm, ' ');
 }
 
+/**
+ * Le nom d'un achat n'est pas une affirmation.
+ *
+ * L'achat de Talon s'appelle « Sans publicité » — c'est son libellé dans
+ * l'app (`lib/l10n/app_fr.arb`). Écrire « l'achat "Sans publicité" retire les
+ * annonces » dit exactement le contraire de « cette app est sans publicité ».
+ * On ne reconnaît comme nom propre qu'une expression courte serrée entre
+ * guillemets typographiques : une phrase entière citée reste une affirmation.
+ */
+function isProductName(text, match) {
+  const before = text.slice(Math.max(0, match.index - 2), match.index);
+  if (!/[«“„]\s?$/.test(before)) return false;
+  const after = text.slice(match.index + match[0].length);
+  const close = after.search(/[»”“]/);
+  if (close === -1) return false;
+  // Entre la négation et le guillemet fermant, un nom de produit n'a plus que
+  // la fin de son mot : « Sans publicité ». Dès qu'il y a une virgule ou un
+  // mot de plus — « aucune publicité, jamais » — c'est une phrase, et une
+  // phrase citée affirme tout autant qu'une phrase nue.
+  return /^\p{L}*\s?$/u.test(after.slice(0, close));
+}
+
 /** La phrase fautive est-elle présente, hors commentaire et sans nuance ? */
 function claims(pattern, source, file) {
   const text = stripComments(source, file);
-  const match = pattern.exec(text);
-  if (!match) return false;
-  // On regarde la fin de la phrase où la négation apparaît.
-  const sentence = text.slice(match.index, text.indexOf('.', match.index) + 1 || match.index + 160);
-  return !QUALIFIED.test(sentence);
+  // Le motif est global le temps du balayage : une page peut nommer l'achat
+  // au détour d'une phrase *et* mentir dans la suivante.
+  const scan = new RegExp(pattern.source, pattern.flags.includes('g') ? pattern.flags : pattern.flags + 'g');
+  for (const match of text.matchAll(scan)) {
+    if (isProductName(text, match)) continue;
+    // On regarde la fin de la phrase où la négation apparaît — bornée à sa
+    // ligne : au-delà, c'est le texte d'à côté, et sa nuance à lui ne dit rien
+    // de cette affirmation-ci.
+    const line = text.slice(match.index, text.indexOf('\n', match.index) + 1 || undefined);
+    const stop = line.indexOf('.');
+    const sentence = line.slice(0, stop === -1 ? 160 : stop + 1);
+    if (!QUALIFIED.test(sentence)) return true;
+  }
+  return false;
 }
 
 const contentDir = join(ROOT, 'src/content/apps');

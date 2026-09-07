@@ -29,7 +29,15 @@ export function Hero({
   const badge = (
     <p className={styles.heroKicker}>
       <span className={styles.heroPill}>
-        {app.status === 'available' ? 'Disponible' : 'Bientôt'}
+        {/* Les deux libellés d'origine ne sont pas encore traduits ; celui des
+            outils internes l'est, au moins en anglais. */}
+        {app.unlisted
+          ? lang === 'fr'
+            ? 'Usage interne'
+            : 'Internal tool'
+          : app.status === 'available'
+            ? 'Disponible'
+            : 'Bientôt'}
       </span>
       {copy.tagline}
     </p>

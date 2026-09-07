@@ -11,6 +11,16 @@
 
 export type AdFormat = 'banner' | 'interstitial' | 'rewarded';
 
+/**
+ * Fragment de politique rédigé pour le lecteur.
+ *
+ * Une chaîne simple est reprise telle quelle dans les deux langues — c'est
+ * suffisant pour « réglages » ou « stations favorites ». Dès que la phrase
+ * porte du sens, on écrit les deux versions : une politique lue par un
+ * réviseur anglophone ne peut pas se permettre une clause en français.
+ */
+export type Localized = string | { fr: string; en: string };
+
 export interface AdsFacts {
   /** Régie publicitaire réellement intégrée. */
   network: 'Google AdMob';
@@ -19,6 +29,14 @@ export interface AdsFacts {
   ump: boolean;
   /** Demande App Tracking Transparency réellement implémentée. */
   att: boolean;
+  /**
+   * L'app propose-t-elle un accès pour rouvrir le formulaire de consentement ?
+   * Non renseigné vaut oui. À mettre à `false` quand le code n'appelle nulle
+   * part `showPrivacyOptionsForm` : promettre un réglage qui n'existe pas est
+   * une clause fausse, et le RGPD porte précisément sur le retrait du
+   * consentement.
+   */
+  umpReopen?: boolean;
   /** Un achat retire-t-il la publicité ? Nom du produit, le cas échéant. */
   removedBy?: string;
   /**
@@ -66,19 +84,27 @@ export interface AnalyticsFacts {
 
 export interface NetworkFacts {
   /** À quoi sert la connexion, et ce qui est envoyé. */
-  purpose: string;
+  purpose: Localized;
 }
 
 export interface AccountFacts {
-  service: 'Game Center' | 'Apple' | 'Google Play Jeux';
+  service: 'Game Center' | 'Apple' | 'Google Play Jeux' | 'compte Google';
   what: string;
+  /**
+   * Rubrique rédigée en entier, quand la phrase type ne convient pas.
+   *
+   * Elle décrit un classement de scores passé par Apple : elle serait fausse
+   * pour une app dont le compte est la porte d'entrée vers les données de son
+   * propriétaire.
+   */
+  body?: Localized[];
 }
 
 export interface PrivacyFacts {
   /** Systèmes sur lesquels l'app est distribuée. */
   platforms: string[];
   /** Ce qui est écrit sur l'appareil, et jamais ailleurs. */
-  localData: string[];
+  localData: Localized[];
   /** `null` quand l'app n'intègre aucune régie publicitaire. */
   ads: AdsFacts | null;
   /** Tableau vide quand l'app ne propose aucun achat intégré. */

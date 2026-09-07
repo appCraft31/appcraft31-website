@@ -10,8 +10,10 @@ import type { AppCopy, Lang } from '@/lib/types';
  * `pubspec.yaml` ne liste aucun achat intégré. Firebase Analytics et
  * Crashlytics y sont en revanche présents depuis le 27 août 2026 : la page ne
  * peut plus dire « pas de mesure d'audience », elle dit ce qui est mesuré et
- * comment le couper. Elle ne promet rien non plus sur la publicité : une régie
- * est prévue, et une promesse d'aujourd'hui deviendrait un mensonge demain.
+ * comment le couper. Elle ne promet rien non plus sur la publicité : depuis le
+ * 7 septembre 2026, `lib/data/ad_units.dart` déclare des unités AdMob de
+ * production (interstitiel entre deux dessins, vidéo récompensée sur appui du
+ * joueur) — voir la politique de confidentialité, qui les décrit.
  */
 const fr: AppCopy = {
   tagline: 'Coloriage pixel art par numéros',

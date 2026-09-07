@@ -399,6 +399,29 @@ export const THEMES: Record<string, AppTheme> = {
     motion: 'medium',
     layout: ['hero-split', 'features', 'stat-band', 'gallery-device', 'privacy', 'cta'],
   },
+
+  /* ── Tableau de bord AdMob : la palette de ui/theme/Theme.kt, telle quelle ─ */
+  'admob-companion': {
+    palette: {
+      // Les quatre premières valeurs sont `LightColors` : onBackground,
+      // background, surface, primary. L'ambre est le `tertiary` de l'app,
+      // réservé aux accents — sur le web comme dans l'application.
+      ink: '#1A1C1E',
+      paper: '#F7F8FA',
+      surface: '#FFFFFF',
+      accent: '#3B6FB6',
+      accentAlt: '#B45309',
+      glow: 'rgba(59, 111, 182, 0.22)',
+    },
+    // Material 3 sans police embarquée : une grotesque pour les titres, une
+    // linéale très lisible pour le corps — l'app ne prétend pas à autre chose.
+    fonts: { display: F.grotesk, body: F.inter },
+    // La grille du plan : c'est un tableau de bord, pas une affiche.
+    backdrop: 'blueprint',
+    shape: { radius: 12, border: 'soft' },
+    motion: 'calm',
+    layout: ['hero-split', 'stat-band', 'features', 'how-it-plays', 'privacy', 'cta'],
+  },
 };
 
 export function getTheme(slug: string): AppTheme {

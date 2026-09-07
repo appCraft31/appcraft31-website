@@ -11,8 +11,11 @@ export const APPS: AppData[] = [
     slug: 'zellige',
     name: 'Zellige',
     category: 'game',
-    status: 'soon',
-    store: {},
+    status: 'available',
+    store: {
+      ios: 'https://apps.apple.com/fr/app/zellige-tectonic-suguru/id6806969470',
+      android: 'https://play.google.com/store/apps/details?id=com.appcraft31.zellige',
+    },
     icon: '/assets/icons/zellige.svg',
     screenshots: [
       { src: '/assets/zellige-screen-accueil.webp', alt: "L'accueil est lui-même une grille de Tectonic : Continuer, Grille du jour et Comment jouer sont des blocs" },
@@ -27,8 +30,8 @@ export const APPS: AppData[] = [
     slug: 'pixelcraft',
     name: 'PixelCraft',
     category: 'game',
-    status: 'soon',
-    store: {},
+    status: 'available',
+    store: { ios: 'https://apps.apple.com/fr/app/pixelcraft-coloriage-pixel/id6805811711' },
     icon: '/assets/icons/pixelcraft.svg',
     screenshots: [
       { src: '/assets/pixelcraft-screen-coloriage.webp', alt: 'Un renard à moitié colorié, numéros encore visibles' },
@@ -42,8 +45,11 @@ export const APPS: AppData[] = [
     slug: 'remindo',
     name: 'Remindo',
     category: 'app',
-    status: 'soon',
-    store: {},
+    status: 'available',
+    store: {
+      ios: 'https://apps.apple.com/fr/app/remindo/id6800648765',
+      android: 'https://play.google.com/store/apps/details?id=com.appcraft31.remindo',
+    },
     icon: '/assets/icons/remindo.svg',
     screenshots: [
       { src: '/assets/remindo-accueil.jpg', alt: "L'accueil de Remindo, avec Cortex" },
@@ -69,8 +75,11 @@ export const APPS: AppData[] = [
     slug: 'sudoku',
     name: 'Le Sudoku du jour',
     category: 'game',
-    status: 'soon',
-    store: {},
+    status: 'available',
+    store: {
+      ios: 'https://apps.apple.com/fr/app/le-sudoku-du-jour/id6799910748',
+      android: 'https://play.google.com/store/apps/details?id=com.appcraft31.dailysudoku',
+    },
     icon: '/assets/icons/sudoku.svg',
     screenshots: [
       { src: '/assets/sudoku-jeu.jpg', alt: "Un killer en cours : cages lisibles, chrono et rappel de règle sous la grille" },
@@ -85,16 +94,19 @@ export const APPS: AppData[] = [
     slug: 'talon',
     name: 'Talon',
     category: 'game',
-    status: 'soon',
-    store: {},
+    status: 'available',
+    store: {
+      ios: 'https://apps.apple.com/fr/app/talon-solitaire-spider/id6796341428',
+      android: 'https://play.google.com/store/apps/details?id=com.appcraft31.talon',
+    },
     icon: '/assets/icons/talon.svg',
     screenshots: [
       { src: '/assets/talon-screen-accueil.webp', alt: "L'accueil de Talon" },
       { src: '/assets/talon-screen-par.webp', alt: "Une donne en cours, avec le par affiché" },
       { src: '/assets/talon-screen-victoire.webp', alt: "L'écran de victoire" },
     ],
-    sdk: { ads: false, purchases: false, analytics: true, network: false, accounts: false },
-    privacyUpdated: '2026-08-16',
+    sdk: { ads: true, purchases: true, analytics: true, network: true, accounts: false },
+    privacyUpdated: '2026-08-17',
   },
   {
     slug: 'tinta',
@@ -321,9 +333,42 @@ export const APPS: AppData[] = [
     sdk: { ads: false, purchases: true, analytics: true, network: true, accounts: false },
     privacyUpdated: '2026-08-16',
   },
+  /*
+   * Outil interne du studio, non listé (`unlisted`). Sa page existe parce que
+   * l'écran de consentement OAuth de Google réclame une page d'accueil et une
+   * politique de confidentialité publiques avant de laisser publier un client
+   * demandant le périmètre `admob.readonly`.
+   *
+   * `ads: false` n'est pas une inattention : l'application *lit* les revenus
+   * AdMob d'un compte, elle n'affiche aucune annonce et n'embarque aucune
+   * régie. Le mot « AdMob » y est partout, le SDK publicitaire nulle part.
+   * Son projet (`~/essaies_dev/Admob`) est d'ailleurs hors du périmètre de
+   * `npm run audit:sdk`, qui ne parcourt que `~/StudioProjects`.
+   */
+  {
+    slug: 'admob-companion',
+    name: 'AdMob Companion',
+    category: 'app',
+    status: 'soon',
+    store: {},
+    icon: '/assets/icons/admob-companion.svg',
+    screenshots: [],
+    sdk: { ads: false, purchases: false, analytics: false, network: true, accounts: true },
+    privacyUpdated: '2026-09-06',
+    unlisted: true,
+  },
 ];
 
 export const APP_SLUGS = APPS.map((a) => a.slug);
+
+/**
+ * Les produits qui se montrent : accueil, pied de page, sitemap.
+ *
+ * `APPS` reste la liste complète — c'est elle qui engendre les pages, y
+ * compris celles des outils internes. Toute liste destinée à un lecteur passe
+ * par ici, sans quoi un outil interne réapparaîtrait dans le portfolio.
+ */
+export const VISIBLE_APPS = APPS.filter((a) => !a.unlisted);
 
 export function getApp(slug: string): AppData | undefined {
   return APPS.find((a) => a.slug === slug);

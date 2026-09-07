@@ -130,6 +130,17 @@ export interface AppData {
   /** Date de dernière mise à jour de la politique, format ISO. */
   privacyUpdated: string;
   /**
+   * Produit non listé : ses deux pages sont bien engendrées et servies, mais
+   * il n'apparaît ni sur l'accueil, ni dans le pied de page, ni dans le
+   * sitemap, et ses pages portent un `noindex`.
+   *
+   * Sert aux outils internes du studio, qui ont besoin d'URL publiques —
+   * l'écran de consentement OAuth de Google exige une page d'accueil et une
+   * politique de confidentialité accessibles — sans pour autant avoir leur
+   * place dans le portfolio.
+   */
+  unlisted?: boolean;
+  /**
    * Nom de fichier de la politique quand il s'écarte du slug.
    * Deux pages historiques sont dans ce cas (`contree-privacy`, `zenkuto-privacy`) :
    * leurs URLs figurent dans des fiches store validées et ne doivent pas bouger.

@@ -88,8 +88,8 @@ const fr: AppCopy = {
   ],
 
   cta: {
-    title: 'Bientôt sur l’App Store et Google Play',
-    body: 'Talon arrive prochainement. En attendant, découvrez nos autres jeux de cartes et de logique.',
+    title: 'Disponible sur l’App Store et Google Play',
+    body: 'Talon se télécharge gratuitement. Découvrez aussi nos autres jeux de cartes et de logique.',
   },
 
   meta: {
@@ -179,8 +179,8 @@ const en: AppCopy = {
   ],
 
   cta: {
-    title: 'Coming soon to the App Store and Google Play',
-    body: 'Talon arrives shortly. In the meantime, have a look at our other card and logic games.',
+    title: 'Available on the App Store and Google Play',
+    body: 'Talon is a free download. Have a look at our other card and logic games too.',
   },
 
   meta: {

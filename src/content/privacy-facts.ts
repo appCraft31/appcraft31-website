@@ -87,15 +87,33 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
       },
     ],
   },
+  // PixelCraft (projet `pixel_art`) : `pubspec.yaml` lie google_mobile_ads,
+  // app_tracking_transparency, firebase_analytics, firebase_crashlytics,
+  // image_picker, share_plus et flutter_local_notifications ; aucun achat
+  // intégré (ni `in_app_purchase`, ni RevenueCat). `lib/data/ad_units.dart`
+  // déclare des unités AdMob de production (interstitiel et récompensée) hors
+  // mode debug, `ads_admob.dart` les charge, `ads_consent.dart` demande le
+  // consentement UMP puis l'ATT sur iOS. Aucun SDK de médiation tiers.
   pixelcraft: {
     platforms: ['iOS', 'Android'],
     localData: [
-      'dessins coloriés',
+      'dessins coloriés et cases peintes',
+      'toiles du mode libre et timelapses des dessins terminés',
+      'dessins importés depuis vos photos',
       'pièces, indices et boosters',
+      'série de jours, dessin du jour, défis et primes déjà réclamés',
       'trophées et statistiques',
       'réglages (sons, musique, thème, rappel)',
     ],
-    ads: null,
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      // Aucun `showPrivacyOptionsForm` dans le code : pas d'écran pour rouvrir
+      // le formulaire de consentement.
+      umpReopen: false,
+    },
     purchases: [],
     analytics: {
       vendors: ['Firebase Analytics', 'Firebase Crashlytics'],
@@ -108,13 +126,27 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
       },
     },
     network: {
-      purpose:
-        "l'envoi des statistiques d'usage et des rapports de plantage à Firebase, et rien d'autre : le jeu lui-même se joue hors ligne",
+      purpose: {
+        fr: "le chargement des publicités et de leur écran de consentement, puis l'envoi des statistiques d'usage et des rapports de plantage à Firebase. Le coloriage lui-même se joue hors ligne",
+        en: 'loading advertising and its consent form, then sending usage statistics and crash reports to Firebase. Colouring itself works offline',
+      },
     },
     accounts: null,
     forChildren: false,
-    updated: '2026-08-27',
+    updated: '2026-09-07',
     notes: [
+      {
+        fr: "PixelCraft est gratuit grâce à la publicité, et le reste : aucun achat intégré ne la retire. L'interstitiel n'apparaît qu'entre deux dessins — jamais pendant un coloriage — au plus une fois toutes les quatre minutes et après trois dessins terminés. La vidéo récompensée ne se lance que si vous appuyez vous-même sur le bouton qui la propose (recharge d'indices, pièces doublées, booster supplémentaire).",
+        en: 'PixelCraft is free thanks to advertising, and stays that way: no in-app purchase removes it. The interstitial only appears between two pictures — never while you are colouring — at most once every four minutes and after three finished pictures. The rewarded video only starts if you tap the button offering it yourself (hint refill, doubled coins, extra booster).',
+      },
+      {
+        fr: "L'écran de consentement publicitaire (UMP) et, sur iOS, la demande de suivi (ATT) sont présentés au lancement. Un refus ne bloque jamais le jeu : les publicités restent affichées, simplement sans personnalisation.",
+        en: 'The advertising consent form (UMP) and, on iOS, the tracking request (ATT) are shown at launch. Declining never blocks the game: ads are still shown, simply without personalisation.',
+      },
+      {
+        fr: "L'import d'une photo passe par le sélecteur d'images du système : vous choisissez le fichier, la conversion en pixel art est faite sur votre appareil, et l'image obtenue est gardée localement. Ni la photo d'origine ni le dessin ne sont envoyés à un serveur du studio.",
+        en: 'Importing a photo goes through the system image picker: you pick the file, the conversion to pixel art happens on your device, and the resulting picture is kept locally. Neither the original photo nor the drawing is sent to a studio server.',
+      },
       {
         fr: "Le rappel quotidien est une notification locale : elle est programmée par l'appareil, sans serveur, et se coupe depuis les réglages du jeu.",
         en: 'The daily reminder is a local notification: it is scheduled by the device itself, with no server involved, and can be turned off in the game settings.',
@@ -513,6 +545,84 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
       {
         fr: 'Votre position sert uniquement, sur votre appareil, à trier les stations par distance. Elle n’est envoyée à aucun serveur.',
         en: 'Your location is used only, on your device, to sort stations by distance. It is never sent to any server.',
+      },
+    ],
+  },
+
+  /*
+   * AdMob Companion (projet `~/essaies_dev/Admob`, hors du périmètre de
+   * `audit-sdk.mjs`, qui ne parcourt que `~/StudioProjects`). Faits relevés
+   * dans le code :
+   *
+   * - `app/build.gradle.kts` ne déclare aucun SDK de régie, aucun moteur
+   *   d'achat intégré, aucun outil de mesure : OkHttp, Room, DataStore,
+   *   WorkManager, Compose et Glance, rien d'autre. D'où `ads: null`,
+   *   `purchases: []` et `analytics: null` — malgré le nom de l'app, qui
+   *   *lit* les revenus AdMob d'un compte sans jamais afficher d'annonce.
+   * - `auth/OAuthManager.kt` : OAuth 2.0 PKCE dans un Custom Tab, périmètre
+   *   `admob.readonly` et `email`.
+   * - `auth/TokenStore.kt` : jeton de rafraîchissement chiffré en AES/GCM par
+   *   une clé du Keystore Android.
+   * - `AndroidManifest.xml` : INTERNET, ACCESS_NETWORK_STATE, POST_NOTIFICATIONS.
+   *   Aucune permission de localisation, de contacts, de stockage ou de caméra.
+   */
+  'admob-companion': {
+    platforms: ['Android'],
+    localData: [
+      {
+        fr: 'les métriques AdMob synchronisées (revenus, impressions, clics, eCPM, taux de correspondance), par jour et par dimension',
+        en: 'the synced AdMob metrics (earnings, impressions, clicks, eCPM, match rate), by day and by dimension',
+      },
+      {
+        fr: 'la liste des applications et des blocs d’annonces du compte',
+        en: 'the list of the account’s apps and ad units',
+      },
+      {
+        fr: 'vos règles d’alerte et l’historique des alertes déclenchées',
+        en: 'your alert rules and the history of triggered alerts',
+      },
+      {
+        fr: 'vos réglages : devise d’affichage, fréquence de synchronisation, profondeur d’historique, notifications',
+        en: 'your settings: display currency, sync frequency, history depth, notifications',
+      },
+    ],
+    ads: null,
+    purchases: [],
+    analytics: null,
+    network: {
+      purpose: {
+        fr: 'vous connecter à votre compte Google (accounts.google.com, oauth2.googleapis.com) puis lire les rapports de votre compte AdMob (admob.googleapis.com). L’application ne contacte aucun autre serveur, et notamment aucun serveur d’AppCraft31 : les chiffres vont de Google à votre appareil, sans intermédiaire',
+        en: 'signing you in to your Google account (accounts.google.com, oauth2.googleapis.com) and then reading your AdMob account’s reports (admob.googleapis.com). The app contacts no other server, and in particular no AppCraft31 server: the figures go from Google to your device, with nothing in between',
+      },
+    },
+    accounts: {
+      service: 'compte Google',
+      what: 'lire les rapports de votre propre compte AdMob',
+      body: [
+        {
+          fr: 'AdMob Companion ne crée aucun compte et n’a pas de serveur. Pour lire vos rapports, vous vous connectez à votre compte Google selon le protocole OAuth 2.0 avec PKCE, dans un onglet du navigateur du système : l’application ne voit jamais votre mot de passe, et ne reçoit qu’un jeton d’accès.',
+          en: 'AdMob Companion creates no account and has no server. To read your reports, you sign in to your Google account using OAuth 2.0 with PKCE, in a system browser tab: the app never sees your password, and only ever receives a token.',
+        },
+        {
+          fr: 'L’autorisation demandée est « https://www.googleapis.com/auth/admob.readonly », en lecture seule : l’application peut consulter les rapports et l’inventaire de votre compte AdMob, jamais les modifier. S’y ajoute « email », qui sert uniquement à afficher l’adresse du compte connecté dans les réglages.',
+          en: 'The scope requested is “https://www.googleapis.com/auth/admob.readonly”, read-only: the app can view your AdMob account’s reports and inventory, never change them. Alongside it, “email” is used solely to show the signed-in account’s address in the settings.',
+        },
+        {
+          fr: 'Les jetons délivrés par Google sont conservés sur l’appareil, chiffrés en AES/GCM par une clé qui ne quitte jamais le Keystore Android. Ils ne sont transmis qu’à Google, pour renouveler l’accès. Se déconnecter depuis les réglages les efface ; vous pouvez également retirer l’accès à tout moment depuis la page « Applications tierces » de votre compte Google.',
+          en: 'The tokens issued by Google are kept on the device, encrypted with AES/GCM by a key that never leaves the Android Keystore. They are sent to Google only, to renew access. Signing out from the settings erases them; you can also revoke access at any time from the “Third-party apps” page of your Google account.',
+        },
+      ],
+    },
+    forChildren: false,
+    updated: '2026-09-06',
+    notes: [
+      {
+        fr: 'Ces éléments sont écrits dans une base de données locale, sur votre appareil, pour que l’application reste consultable hors ligne. Ils y restent jusqu’à la désinstallation.',
+        en: 'These are written to a local database on your device, so the app stays readable offline. They remain there until you uninstall it.',
+      },
+      {
+        fr: 'Les notifications d’alerte sont calculées sur l’appareil, à partir de cette base : aucun service de notification distant n’est utilisé, et rien n’est envoyé pour les produire.',
+        en: 'Alert notifications are computed on the device from that database: no remote notification service is involved, and nothing is sent out to produce them.',
       },
     ],
   },

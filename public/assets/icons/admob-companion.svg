@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="AdMob Companion">
+  <defs>
+    <linearGradient id="admob-companion-bg" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#2A4E80"/>
+      <stop offset="1" stop-color="#16233A"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="20" fill="url(#admob-companion-bg)"/>
+  <rect x="0.5" y="0.5" width="99" height="99" rx="19.5" fill="none" stroke="rgba(138,180,248,0.35)"/>
+  <!-- Le tableau de bord : trois barres montantes, la ligne du jour par-dessus. -->
+  <g fill="#8AB4F8">
+    <rect x="26" y="58" width="10" height="18" rx="3"/>
+    <rect x="45" y="46" width="10" height="30" rx="3"/>
+    <rect x="64" y="34" width="10" height="42" rx="3"/>
+  </g>
+  <!-- L'ambre est la couleur d'accent de l'app : ici, la courbe de tendance. -->
+  <path d="M24 52 L40 44 L54 48 L76 24" fill="none" stroke="#FBBF24" stroke-width="4"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="76" cy="24" r="5" fill="#FBBF24"/>
+</svg>

@@ -9,6 +9,7 @@
  * dictionnaire de l'ancien site — jamais un texte inventé.
  */
 
+import { pageCopy as admobCompanion } from '@/content/apps/admob-companion/page-copy';
 import { pageCopy as binero } from '@/content/apps/binero/page-copy';
 import { pageCopy as combo } from '@/content/apps/combo/page-copy';
 import { pageCopy as contree } from '@/content/apps/contree/page-copy';
@@ -37,6 +38,7 @@ import { pageCopy as zellige } from '@/content/apps/zellige/page-copy';
 type PerLang = Partial<Record<Lang, AppCopy>>;
 
 const FULL: Record<string, PerLang> = {
+  'admob-companion': admobCompanion,
   binero,
   combo,
   contree,

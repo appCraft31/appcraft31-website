@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { APPS, appPath, privacyPath } from '@/lib/apps';
+import { VISIBLE_APPS, appPath, privacyPath } from '@/lib/apps';
 import { translator, localizedUrl } from '@/lib/i18n';
 import type { Lang } from '@/lib/types';
 import { SocialLinks } from './SocialLinks';
@@ -37,7 +37,7 @@ export function Footer({ lang }: { lang: Lang }) {
           <nav className="footer-col" aria-label={t('portfolio.title')}>
             <h2>{t('portfolio.title')}</h2>
             <ul>
-              {APPS.map((app) => (
+              {VISIBLE_APPS.map((app) => (
                 <li key={app.slug}>
                   <Link href={localizedUrl(lang, appPath(app))}>{app.name}</Link>
                 </li>
@@ -48,7 +48,7 @@ export function Footer({ lang }: { lang: Lang }) {
           <nav className="footer-col" aria-label={t('footer.privacy')}>
             <h2>{t('footer.privacy')}</h2>
             <ul>
-              {APPS.map((app) => (
+              {VISIBLE_APPS.map((app) => (
                 <li key={app.slug}>
                   <Link href={localizedUrl(lang, privacyPath(app))}>{app.name}</Link>
                 </li>

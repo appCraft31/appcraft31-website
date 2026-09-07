@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { APPS, appPath, privacyPath } from '@/lib/apps';
+import { VISIBLE_APPS, appPath, privacyPath } from '@/lib/apps';
 import { alternates, localizedUrl } from '@/lib/i18n';
 import { DEFAULT_LANG } from '@/lib/types';
 
@@ -46,7 +46,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
 
-    ...APPS.map((app) => withAlternates(appPath(app), 0.8, 'monthly')),
-    ...APPS.map((app) => withAlternates(privacyPath(app), 0.3, 'yearly')),
+    // Les outils internes (`unlisted`) sont volontairement absents : leurs
+    // pages existent pour Google OAuth, pas pour la recherche.
+    ...VISIBLE_APPS.map((app) => withAlternates(appPath(app), 0.8, 'monthly')),
+    ...VISIBLE_APPS.map((app) => withAlternates(privacyPath(app), 0.3, 'yearly')),
   ];
 }

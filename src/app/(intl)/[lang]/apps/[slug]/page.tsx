@@ -27,6 +27,9 @@ export async function generateMetadata({
     title: copy.meta.title,
     description: copy.meta.description,
     alternates: { canonical: localizedUrl(lang, path), languages: alternates(path) },
+    // Une page non listée reste publique — Google doit pouvoir l'ouvrir depuis
+    // l'écran de consentement — mais n'a rien à faire dans un index.
+    ...(app.unlisted ? { robots: { index: false, follow: false } } : {}),
     openGraph: {
       title: copy.meta.title,
       description: copy.meta.description,

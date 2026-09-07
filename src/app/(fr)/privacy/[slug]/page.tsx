@@ -23,8 +23,9 @@ export async function generateMetadata({
     description: `Ce que ${app.name} fait — et ne fait pas — de vos données : stockage local, publicité, achats intégrés, mesure d'audience et vos droits.`,
     alternates: { canonical: path, languages: alternates(path) },
     // Ces pages n'ont pas vocation à être trouvées par une recherche : elles
-    // sont là pour être lues depuis la fiche store et depuis l'app.
-    robots: { index: true, follow: true },
+    // sont là pour être lues depuis la fiche store et depuis l'app. Celles des
+    // outils non listés vont plus loin et sortent carrément des index.
+    robots: app.unlisted ? { index: false, follow: false } : { index: true, follow: true },
   };
 }
 
