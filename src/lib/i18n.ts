@@ -35,10 +35,28 @@ export function langPrefix(lang: Lang): string {
   return lang === DEFAULT_LANG ? '' : `/${lang}`;
 }
 
-/** URL absolue d'une page, dans une langue donnée. */
+/**
+ * URL d'une page, dans une langue donnée.
+ *
+ * L'accueil d'une langue est un **fichier**, pas un dossier : en export
+ * statique sans `trailingSlash`, la route `/en` produit `out/en.html` et
+ * jamais `out/en/index.html`. Écrire `/en` — ou pire `/en/` — donnait donc une
+ * adresse qui n'existe pas : 404 en production, aussi bien pour le lien du
+ * logo et la navigation de toutes les pages anglaises que pour les `hreflang`
+ * et le sitemap, qui dérivent tous d'ici.
+ *
+ * Les autres chemins portent déjà leur `.html` (`/apps/talon.html`) et se
+ * préfixent sans façon.
+ */
 export function localizedUrl(lang: Lang, path: string): string {
   const clean = path.startsWith('/') ? path : `/${path}`;
-  return `${langPrefix(lang)}${clean}`;
+  if (lang === DEFAULT_LANG) return clean;
+
+  // `/` mais aussi `/#creations` : l'ancre s'accroche au fichier d'accueil.
+  if (clean === '/' || clean.startsWith('/#')) {
+    return `/${lang}.html${clean.slice(1)}`;
+  }
+  return `/${lang}${clean}`;
 }
 
 /** Table `hreflang` complète d'une page, pour les métadonnées. */

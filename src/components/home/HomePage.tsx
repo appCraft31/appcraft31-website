@@ -1,4 +1,6 @@
 import { VISIBLE_APPS } from '@/lib/apps';
+import { JsonLd } from '@/components/site/JsonLd';
+import { organization } from '@/lib/jsonld';
 import { shortCopy } from '@/lib/copy';
 import { translator } from '@/lib/i18n';
 import { getTheme } from '@/content/themes';
@@ -17,6 +19,7 @@ export function HomePage({ lang }: { lang: Lang }) {
 
   return (
     <>
+      <JsonLd nodes={[organization()]} />
       <Header lang={lang} path="/" />
 
       <main id="content">
@@ -84,7 +87,7 @@ export function HomePage({ lang }: { lang: Lang }) {
         </section>
       </main>
 
-      <Footer lang={lang} />
+      <Footer lang={lang} path="/" />
       <Reveal />
     </>
   );

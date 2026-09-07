@@ -6,7 +6,9 @@ import { CONTACT_EMAIL, Footer } from '@/components/site/Footer';
 import { Header } from '@/components/site/Header';
 import { appPath, privacyPath } from '@/lib/apps';
 import { fontClassesFor } from '@/lib/fonts-universe';
-import { localizedUrl } from '@/lib/i18n';
+import { localizedUrl, translator } from '@/lib/i18n';
+import { JsonLd } from '@/components/site/JsonLd';
+import { breadcrumbList, organization } from '@/lib/jsonld';
 import { themeVars } from '@/lib/theme';
 import type { AppData, Lang } from '@/lib/types';
 import styles from './privacy.module.css';
@@ -21,11 +23,28 @@ import styles from './privacy.module.css';
 export function PrivacyPage({ app, lang }: { app: AppData; lang: Lang }) {
   const theme = getTheme(app.slug);
   const facts = getPrivacyFacts(app.slug);
-  const sections = privacySections(app.name, facts, CONTACT_EMAIL, lang);
-  const fr = lang === 'fr';
+  // La version française fait foi : les autres langues le disent en tête de
+  // document et renvoient vers elle.
+  const sections = privacySections(
+    app.name,
+    facts,
+    CONTACT_EMAIL,
+    lang,
+    `https://appcraft31.app${privacyPath(app)}`,
+  );
+  const t = translator(lang);
 
   return (
     <>
+      <JsonLd
+        nodes={[
+          organization(),
+          breadcrumbList(lang, [
+            { name: app.name, path: appPath(app) },
+            { name: t('nav.privacy'), path: privacyPath(app) },
+          ]),
+        ]}
+      />
       <Header lang={lang} path={privacyPath(app)} />
 
       <main
@@ -36,19 +55,19 @@ export function PrivacyPage({ app, lang }: { app: AppData; lang: Lang }) {
           <header className={styles.head}>
             <p className={styles.kicker}>{app.name}</p>
             <h1 className={styles.title}>
-              {fr ? 'Politique de confidentialité' : 'Privacy policy'}
+              {t('privacy.title')}
             </h1>
             <p className={styles.updated}>
-              {fr ? 'Dernière mise à jour : ' : 'Last updated: '}
+              {t('privacy.updated')}
               <time dateTime={facts.updated}>
-                {formatDate(facts.updated, fr ? 'fr' : 'en')}
+                {formatDate(facts.updated, lang)}
               </time>
             </p>
           </header>
 
           {/* Un sommaire : ces documents se consultent, ils ne se lisent pas
               en entier. */}
-          <nav className={styles.toc} aria-label={fr ? 'Sommaire' : 'Contents'}>
+          <nav className={styles.toc} aria-label={t('privacy.toc')}>
             <ol>
               {sections.map((s) => (
                 <li key={s.id}>
@@ -76,13 +95,13 @@ export function PrivacyPage({ app, lang }: { app: AppData; lang: Lang }) {
 
           <p className={styles.back}>
             <Link href={localizedUrl(lang, appPath(app))}>
-              ← {fr ? `Retour à la page de ${app.name}` : `Back to the ${app.name} page`}
+              ← {t('privacy.back').replace('{app}', app.name)}
             </Link>
           </p>
         </div>
       </main>
 
-      <Footer lang={lang} />
+      <Footer lang={lang} path={privacyPath(app)} />
     </>
   );
 }

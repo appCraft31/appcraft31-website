@@ -4,6 +4,10 @@
   "buildCommand": "next build",
   "outputDirectory": "out",
   "cleanUrls": false,
+  "redirects": [
+    { "source": "/:lang(en|ja|ko|es|de)", "destination": "/:lang.html", "permanent": true },
+    { "source": "/:lang(en|ja|ko|es|de)/", "destination": "/:lang.html", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/.well-known/apple-app-site-association",

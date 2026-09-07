@@ -3,6 +3,7 @@
   "directoryListing": false,
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
-    { "source": "/:lang(en|ja|ko|es|de)", "destination": "/:lang.html" }
+    { "source": "/:lang(en|ja|ko|es|de)", "destination": "/:lang.html" },
+    { "source": "/:lang(en|ja|ko|es|de)/", "destination": "/:lang.html" }
   ]
 }

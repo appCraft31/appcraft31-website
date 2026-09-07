@@ -14,13 +14,16 @@ export const LANGS: readonly Lang[] = ['fr', 'en', 'ja', 'ko', 'es', 'de'] as co
 /** Le français est la langue par défaut : ses URLs n'ont pas de préfixe. */
 export const DEFAULT_LANG: Lang = 'fr';
 
-export const LANG_META: Record<Lang, { label: string; flag: string; htmlLang: string }> = {
-  fr: { label: 'Français', flag: '🇫🇷', htmlLang: 'fr' },
-  en: { label: 'English', flag: '🇬🇧', htmlLang: 'en' },
-  ja: { label: '日本語', flag: '🇯🇵', htmlLang: 'ja' },
-  ko: { label: '한국어', flag: '🇰🇷', htmlLang: 'ko' },
-  es: { label: 'Español', flag: '🇪🇸', htmlLang: 'es' },
-  de: { label: 'Deutsch', flag: '🇩🇪', htmlLang: 'de' },
+export const LANG_META: Record<
+  Lang,
+  { label: string; flag: string; htmlLang: string; ogLocale: string }
+> = {
+  fr: { label: 'Français', flag: '🇫🇷', htmlLang: 'fr', ogLocale: 'fr_FR' },
+  en: { label: 'English', flag: '🇬🇧', htmlLang: 'en', ogLocale: 'en_US' },
+  ja: { label: '日本語', flag: '🇯🇵', htmlLang: 'ja', ogLocale: 'ja_JP' },
+  ko: { label: '한국어', flag: '🇰🇷', htmlLang: 'ko', ogLocale: 'ko_KR' },
+  es: { label: 'Español', flag: '🇪🇸', htmlLang: 'es', ogLocale: 'es_ES' },
+  de: { label: 'Deutsch', flag: '🇩🇪', htmlLang: 'de', ogLocale: 'de_DE' },
 };
 
 export type Category = 'app' | 'game';

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { VISIBLE_APPS, appPath, privacyPath } from '@/lib/apps';
 import { translator, localizedUrl } from '@/lib/i18n';
-import type { Lang } from '@/lib/types';
+import { LANG_META, LANGS, type Lang } from '@/lib/types';
 import { SocialLinks } from './SocialLinks';
 
 /**
@@ -14,7 +14,7 @@ import { SocialLinks } from './SocialLinks';
  */
 export const CONTACT_EMAIL = 'appcraft31@gmail.com';
 
-export function Footer({ lang }: { lang: Lang }) {
+export function Footer({ lang, path }: { lang: Lang; path: string }) {
   const t = translator(lang);
   const year = 2026;
 
@@ -56,6 +56,29 @@ export function Footer({ lang }: { lang: Lang }) {
             </ul>
           </nav>
         </div>
+
+        {/* Le seul chemin de crawl entre les langues.
+            Le sélecteur du bandeau ne rendait ses liens qu'une fois ouvert —
+            un état client : les 115 pages traduites n'avaient donc aucun lien
+            entrant, et n'existaient que par le sitemap. Ici, ce sont six liens
+            statiques, sur chacune des 138 pages. */}
+        <nav className="footer-langs" aria-label={t('ui.lang_label')}>
+          <ul>
+            {LANGS.map((l) => (
+              <li key={l}>
+                <Link
+                  href={localizedUrl(l, path)}
+                  hrefLang={l}
+                  lang={l}
+                  aria-current={l === lang ? 'true' : undefined}
+                  className={l === lang ? 'is-current' : undefined}
+                >
+                  {LANG_META[l].label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         <div className="footer-bottom">
           <p>© {year} AppCraft31 — Toulouse</p>

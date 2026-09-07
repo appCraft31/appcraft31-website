@@ -57,22 +57,24 @@ export function LangSwitcher({
         </span>
       </button>
 
-      {open && (
-        <div className="lang-menu" role="menu">
-          {LANGS.map((lang) => (
-            <Link
-              key={lang}
-              href={urls[lang]}
-              role="menuitem"
-              hrefLang={lang}
-              className={lang === current ? 'is-current' : undefined}
-              onClick={() => setOpen(false)}
-            >
-              <span aria-hidden="true">{LANG_META[lang].flag}</span> {LANG_META[lang].label}
-            </Link>
-          ))}
-        </div>
-      )}
+      {/* Le menu est toujours dans le document, seulement masqué : rendu
+          conditionnellement, ses six liens n'existaient que pour qui exécute
+          du JavaScript et clique. */}
+      <div className="lang-menu" role="menu" hidden={!open}>
+        {LANGS.map((lang) => (
+          <Link
+            key={lang}
+            href={urls[lang]}
+            role="menuitem"
+            hrefLang={lang}
+            lang={lang}
+            className={lang === current ? 'is-current' : undefined}
+            onClick={() => setOpen(false)}
+          >
+            <span aria-hidden="true">{LANG_META[lang].flag}</span> {LANG_META[lang].label}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

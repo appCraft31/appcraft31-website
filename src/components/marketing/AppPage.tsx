@@ -13,6 +13,8 @@ import { HeroVisual, hasHeroVisual } from './HeroVisual';
 import { FinalCta, Gallery, Hero, Items, PrivacyBlock, StatBand } from './sections';
 import { StickyDownload } from './StickyDownload';
 import styles from './universe.module.css';
+import { JsonLd } from '@/components/site/JsonLd';
+import { breadcrumbList, organization, softwareApplication } from '@/lib/jsonld';
 
 /** `var(--font-press), monospace` → `press`. */
 function displayKey(stack: string): string {
@@ -45,6 +47,13 @@ export function AppPage({
 
   return (
     <>
+      <JsonLd
+        nodes={[
+          organization(),
+          softwareApplication(app, copy, lang),
+          breadcrumbList(lang, [{ name: app.name, path: appPath(app) }]),
+        ]}
+      />
       <Header lang={lang} path={appPath(app)} />
 
       <main
@@ -70,7 +79,7 @@ export function AppPage({
         <StickyDownload app={app} lang={lang} />
       </main>
 
-      <Footer lang={lang} />
+      <Footer lang={lang} path={appPath(app)} />
       <Reveal />
     </>
   );

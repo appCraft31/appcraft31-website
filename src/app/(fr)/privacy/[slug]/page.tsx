@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PrivacyPage } from '@/components/privacy/PrivacyPage';
-import { PRIVACY_SLUGS, getAppByPrivacySlug, privacyPath } from '@/lib/apps';
-import { alternates } from '@/lib/i18n';
+import { PRIVACY_SLUGS, getAppByPrivacySlug } from '@/lib/apps';
+import { privacyMetadata } from '@/lib/metadata';
 
 export function generateStaticParams() {
   return PRIVACY_SLUGS.map((slug) => ({ slug }));
@@ -16,17 +16,10 @@ export async function generateMetadata({
   const { slug } = await params;
   const app = getAppByPrivacySlug(slug);
   if (!app) return {};
-  const path = privacyPath(app);
-
-  return {
-    title: `Politique de confidentialité — ${app.name}`,
-    description: `Ce que ${app.name} fait — et ne fait pas — de vos données : stockage local, publicité, achats intégrés, mesure d'audience et vos droits.`,
-    alternates: { canonical: path, languages: alternates(path) },
-    // Ces pages n'ont pas vocation à être trouvées par une recherche : elles
-    // sont là pour être lues depuis la fiche store et depuis l'app. Celles des
-    // outils non listés vont plus loin et sortent carrément des index.
-    robots: app.unlisted ? { index: false, follow: false } : { index: true, follow: true },
-  };
+  // Ces pages n'ont pas vocation à être trouvées par une recherche : elles
+  // sont là pour être lues depuis la fiche store et depuis l'app. Celles des
+  // outils non listés vont plus loin et sortent carrément des index.
+  return privacyMetadata(app, 'fr');
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {

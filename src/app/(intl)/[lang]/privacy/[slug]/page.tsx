@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { PrivacyPage } from '@/components/privacy/PrivacyPage';
-import { PRIVACY_SLUGS, getAppByPrivacySlug, privacyPath } from '@/lib/apps';
-import { alternates, isLang, localizedUrl } from '@/lib/i18n';
+import { PRIVACY_SLUGS, getAppByPrivacySlug } from '@/lib/apps';
+import { isLang } from '@/lib/i18n';
+import { privacyMetadata } from '@/lib/metadata';
 import { DEFAULT_LANG, LANGS } from '@/lib/types';
 
 export function generateStaticParams() {
@@ -19,16 +20,10 @@ export async function generateMetadata({
   const { lang, slug } = await params;
   const app = getAppByPrivacySlug(slug);
   if (!app || !isLang(lang)) return {};
-  const path = privacyPath(app);
-
-  return {
-    title: `Privacy policy — ${app.name}`,
-    description: `What ${app.name} does — and does not do — with your data: local storage, advertising, in-app purchases, analytics and your rights.`,
-    alternates: { canonical: localizedUrl(lang, path), languages: alternates(path) },
-    // Une page non listée reste publique — Google doit pouvoir l'ouvrir depuis
-    // l'écran de consentement — mais n'a rien à faire dans un index.
-    ...(app.unlisted ? { robots: { index: false, follow: false } } : {}),
-  };
+  // Le titre et la description suivent la langue de la page : ils étaient
+  // servis en anglais sous un `lang="ja"`, ce qui suffit à faire sortir la
+  // page de sa propre grappe hreflang.
+  return privacyMetadata(app, lang);
 }
 
 export default async function Page({

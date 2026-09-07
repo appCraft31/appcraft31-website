@@ -298,7 +298,11 @@
     gap: 2px;
   }
 
-  .lang-menu a {
+  .lang-menu[hidden] {
+    display: none;
+  }
+
+.lang-menu a {
     padding: 8px 10px;
     border-radius: 9px;
     font-size: 14px;
@@ -394,6 +398,40 @@
 
   .footer-col a:hover {
     color: var(--accent);
+  }
+
+.footer-langs {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+
+.footer-langs ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+.footer-langs a {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--text-soft);
+    text-decoration: none;
+  }
+
+.footer-langs a:hover {
+    background: var(--bg-alt);
+    color: var(--text);
+  }
+
+.footer-langs a.is-current {
+    color: var(--accent);
+    font-weight: 600;
   }
 
   .footer-bottom {

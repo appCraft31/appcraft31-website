@@ -20,6 +20,15 @@ export const metadata: Metadata = {
     ],
     apple: { url: '/apple-icon.png', sizes: '180x180' },
   },
+  // Le pendant du layout français : sans lui, les pages traduites n'héritaient
+  // d'aucune image de partage ni d'aucun nom de site. La `locale` exacte, elle,
+  // est posée par page — le layout ne connaît pas sa langue.
+  openGraph: {
+    siteName: 'AppCraft31',
+    type: 'website',
+    images: [{ url: '/assets/logo.webp', width: 2816, height: 1536, alt: 'AppCraft31' }],
+  },
+  twitter: { card: 'summary_large_image' },
 };
 
 /** Le français est servi sans préfixe par le layout `(fr)`. */

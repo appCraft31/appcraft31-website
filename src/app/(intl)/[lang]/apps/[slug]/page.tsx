@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { AppPage } from '@/components/marketing/AppPage';
-import { APP_SLUGS, appPath, getApp } from '@/lib/apps';
+import { APP_SLUGS, getApp } from '@/lib/apps';
 import { appCopy } from '@/lib/app-copy';
-import { alternates, isLang, localizedUrl } from '@/lib/i18n';
+import { isLang } from '@/lib/i18n';
+import { appMetadata } from '@/lib/metadata';
 import { DEFAULT_LANG, LANGS } from '@/lib/types';
 
 export function generateStaticParams() {
@@ -20,24 +21,7 @@ export async function generateMetadata({
   const { lang, slug } = await params;
   const app = getApp(slug);
   if (!app || !isLang(lang)) return {};
-  const copy = appCopy(app, lang);
-  const path = appPath(app);
-
-  return {
-    title: copy.meta.title,
-    description: copy.meta.description,
-    alternates: { canonical: localizedUrl(lang, path), languages: alternates(path) },
-    // Une page non listée reste publique — Google doit pouvoir l'ouvrir depuis
-    // l'écran de consentement — mais n'a rien à faire dans un index.
-    ...(app.unlisted ? { robots: { index: false, follow: false } } : {}),
-    openGraph: {
-      title: copy.meta.title,
-      description: copy.meta.description,
-      url: localizedUrl(lang, path),
-      type: 'website',
-      ...(app.ogImage ? { images: [{ url: app.ogImage }] } : {}),
-    },
-  };
+  return appMetadata(app, lang);
 }
 
 export default async function Page({
