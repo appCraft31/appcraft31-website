@@ -113,7 +113,11 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
   // intégré (ni `in_app_purchase`, ni RevenueCat). `lib/data/ad_units.dart`
   // déclare des unités AdMob de production (interstitiel et récompensée) hors
   // mode debug, `ads_admob.dart` les charge, `ads_consent.dart` demande le
-  // consentement UMP puis l'ATT sur iOS. Aucun SDK de médiation tiers.
+  // consentement UMP puis l'ATT sur iOS. La médiation AdMob peut désormais
+  // confier l'annonce à Liftoff Monetize, dont le SDK est embarqué sur les deux
+  // plateformes : adaptateur `com.google.ads.mediation:vungle` dans
+  // `android/app/build.gradle.kts`, pod `GoogleMobileAdsMediationVungle` dans
+  // `ios/Podfile` — tous deux tirent le SDK Liftoff (VungleAds) avec eux.
   pixelcraft: {
     platforms: ['iOS', 'Android'],
     localData: [
@@ -130,9 +134,12 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
       formats: ['interstitial', 'rewarded'],
       ump: true,
       att: true,
-      // Aucun `showPrivacyOptionsForm` dans le code : pas d'écran pour rouvrir
-      // le formulaire de consentement.
-      umpReopen: false,
+      // `ads_consent.dart` expose `showPrivacyOptions()`, et les réglages
+      // ouvrent le formulaire dès que la zone du joueur l'exige
+      // (`privacyOptionsRequired`) : la clause de retrait est exacte.
+      mediation: [
+        { name: 'Liftoff Monetize (VungleAdsSDK)', privacyUrl: 'https://liftoff.ai/privacy-policy/' },
+      ],
     },
     purchases: [],
     analytics: {

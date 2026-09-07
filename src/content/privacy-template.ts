@@ -110,7 +110,7 @@ export function privacySections(
       body.push(s.adsUmp);
       // `umpReopen` non renseigné = l'app propose bien un accès au formulaire.
       // Le dire quand c'est faux serait une clause inexacte dans un document
-      // juridique : PixelCraft n'a pas encore cet écran.
+      // juridique — d'où le cas contraire, à renseigner app par app.
       body.push(facts.ads.umpReopen === false ? s.adsUmpNoReopen : s.adsUmpReopen);
     }
     if (facts.ads.removedBy) body.push(s.adsRemovedBy(facts.ads.removedBy));
