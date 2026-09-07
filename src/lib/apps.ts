@@ -65,7 +65,10 @@ export const APPS: AppData[] = [
     name: 'Hold Fire',
     category: 'game',
     status: 'available',
-    store: { ios: 'https://apps.apple.com/fr/app/hold-fire-tower-defense/id6801176503' },
+    store: {
+      ios: 'https://apps.apple.com/fr/app/hold-fire-tower-defense/id6801176503',
+      android: 'https://play.google.com/store/apps/details?id=com.appcraft31.holdfire',
+    },
     icon: '/assets/icons/holdfire.svg',
     screenshots: [],
     sdk: { ads: true, purchases: false, analytics: true, network: false, accounts: false },

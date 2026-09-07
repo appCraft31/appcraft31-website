@@ -96,7 +96,7 @@ const fr: AppCopy = {
 
   cta: {
     title: 'La première vague vous attend',
-    body: 'Hold Fire est disponible sur l’App Store, en français, anglais, espagnol, japonais et coréen.',
+    body: 'Hold Fire est disponible sur l’App Store et Google Play, en français, anglais, espagnol, japonais et coréen.',
   },
 
   meta: {
@@ -199,7 +199,7 @@ const en: AppCopy = {
 
   cta: {
     title: 'The first wave is waiting',
-    body: 'Hold Fire is available on the App Store, in French, English, Spanish, Japanese and Korean.',
+    body: 'Hold Fire is available on the App Store and Google Play, in French, English, Spanish, Japanese and Korean.',
   },
 
   meta: {
