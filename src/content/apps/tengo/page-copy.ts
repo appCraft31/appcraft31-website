@@ -68,7 +68,7 @@ const fr: AppCopy = {
 
   cta: {
     title: 'Fais 10.',
-    body: 'tenGO est disponible gratuitement sur l’App Store, en dix langues.',
+    body: 'tenGO est disponible gratuitement sur l’App Store et Google Play, en dix langues.',
   },
 
   meta: {
@@ -144,7 +144,7 @@ const en: AppCopy = {
 
   cta: {
     title: 'Make 10.',
-    body: 'tenGO is available free on the App Store, in ten languages.',
+    body: 'tenGO is available free on the App Store and Google Play, in ten languages.',
   },
 
   meta: {

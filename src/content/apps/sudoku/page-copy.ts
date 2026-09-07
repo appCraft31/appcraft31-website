@@ -80,8 +80,8 @@ const fr: AppCopy = {
   ],
 
   cta: {
-    title: 'La première édition arrive',
-    body: 'Le Sudoku du jour paraît bientôt sur l’App Store. D’ici là, nos autres jeux de logique vous attendent.',
+    title: 'La première édition est parue',
+    body: 'Le Sudoku du jour paraît sur l’App Store et Google Play. Nos autres jeux de logique vous attendent aussi.',
   },
 
   meta: {
@@ -169,8 +169,8 @@ const en: AppCopy = {
   ],
 
   cta: {
-    title: 'The first edition is coming',
-    body: 'Le Sudoku du jour arrives soon on the App Store. Until then, our other logic games are waiting.',
+    title: 'The first edition is out',
+    body: 'Le Sudoku du jour is on the App Store and Google Play. Our other logic games are waiting too.',
   },
 
   meta: {

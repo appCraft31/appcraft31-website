@@ -127,7 +127,10 @@ export const APPS: AppData[] = [
     name: 'Binero',
     category: 'game',
     status: 'available',
-    store: { ios: 'https://apps.apple.com/fr/app/binero-takuzu-binairo/id6782013644' },
+    store: {
+      ios: 'https://apps.apple.com/fr/app/binero-takuzu-binairo/id6782013644',
+      android: 'https://play.google.com/store/apps/details?id=com.appcraft31.binero',
+    },
     icon: '/assets/icons/binero.svg',
     screenshots: [],
     sdk: { ads: true, purchases: true, analytics: true, network: true, accounts: true },
@@ -204,7 +207,10 @@ export const APPS: AppData[] = [
     name: 'randompix',
     category: 'game',
     status: 'available',
-    store: { ios: 'https://apps.apple.com/fr/app/randompix/id6773356363' },
+    store: {
+      ios: 'https://apps.apple.com/fr/app/randompix/id6773356363',
+      android: 'https://play.google.com/store/apps/details?id=com.appcraft31.randompix',
+    },
     icon: '/assets/randompix-icon.png',
     screenshots: [],
     sdk: { ads: true, purchases: true, analytics: true, network: false, accounts: false },
@@ -246,7 +252,10 @@ export const APPS: AppData[] = [
     name: 'tenGO',
     category: 'game',
     status: 'available',
-    store: { ios: 'https://apps.apple.com/fr/app/ten-go-calcul-mental/id6762470649' },
+    store: {
+      ios: 'https://apps.apple.com/fr/app/ten-go-calcul-mental/id6762470649',
+      android: 'https://play.google.com/store/apps/details?id=com.appcraft31.tengo',
+    },
     icon: '/assets/icons/tengo.svg',
     screenshots: [
       { src: '/assets/tengo-menu.webp', alt: "Le menu de tenGO" },

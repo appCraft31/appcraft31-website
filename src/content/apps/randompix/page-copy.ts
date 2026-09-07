@@ -62,7 +62,7 @@ const fr: AppCopy = {
 
   cta: {
     title: 'Il faut être au moins deux',
-    body: 'randompix est disponible gratuitement sur l’App Store.',
+    body: 'randompix est disponible gratuitement sur l’App Store et Google Play.',
   },
 
   meta: {
@@ -135,7 +135,7 @@ const en: AppCopy = {
 
   cta: {
     title: 'It takes at least two',
-    body: 'randompix is available free on the App Store.',
+    body: 'randompix is available free on the App Store and Google Play.',
   },
 
   meta: {

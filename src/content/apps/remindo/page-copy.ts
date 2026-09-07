@@ -64,8 +64,8 @@ const fr: AppCopy = {
   ],
 
   cta: {
-    title: 'Bientôt disponible',
-    body: 'Remindo arrive sur iOS et Android, en quinze langues.',
+    title: 'Disponible dès maintenant',
+    body: 'Remindo est sur l’App Store et Google Play, en quinze langues.',
   },
 
   meta: {
@@ -140,8 +140,8 @@ const en: AppCopy = {
   ],
 
   cta: {
-    title: 'Coming soon',
-    body: 'Remindo arrives on iOS and Android, in fifteen languages.',
+    title: 'Available now',
+    body: 'Remindo is on the App Store and Google Play, in fifteen languages.',
   },
 
   meta: {

@@ -93,8 +93,8 @@ const fr: AppCopy = {
   ],
 
   cta: {
-    title: "Bientôt sur l'App Store",
-    body: "PixelCraft arrive prochainement. En attendant, découvrez nos autres jeux calmes, à jouer hors ligne.",
+    title: "Disponible sur l'App Store",
+    body: "PixelCraft se télécharge dès maintenant. Découvrez aussi nos autres jeux calmes, à jouer hors ligne.",
   },
 
   meta: {
@@ -184,8 +184,8 @@ const en: AppCopy = {
   ],
 
   cta: {
-    title: 'Coming soon to the App Store',
-    body: 'PixelCraft is on its way. In the meantime, have a look at our other quiet games, all playable offline.',
+    title: 'Available on the App Store',
+    body: 'PixelCraft is out now. Have a look at our other quiet games too, all playable offline.',
   },
 
   meta: {

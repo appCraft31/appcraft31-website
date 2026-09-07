@@ -87,8 +87,8 @@ const fr: AppCopy = {
   ],
 
   cta: {
-    title: "Bientôt sur l'App Store et Google Play",
-    body: "Zellige arrive prochainement. En attendant, découvrez nos autres jeux de logique, à jouer hors ligne.",
+    title: "Disponible sur l'App Store et Google Play",
+    body: "Zellige se télécharge dès maintenant. Découvrez aussi nos autres jeux de logique, à jouer hors ligne.",
   },
 
   meta: {
@@ -174,8 +174,8 @@ const en: AppCopy = {
   ],
 
   cta: {
-    title: 'Coming soon to the App Store and Google Play',
-    body: 'Zellige is on its way. In the meantime, have a look at our other logic games, all playable offline.',
+    title: 'Available on the App Store and Google Play',
+    body: 'Zellige is out now. Have a look at our other logic games too, all playable offline.',
   },
 
   meta: {
