@@ -20,6 +20,9 @@ const slugs = [...apps.matchAll(/^\s*slug: '([a-z0-9-]+)',$/gm)].map((m) => m[1]
 
 const wired = readFileSync(join(ROOT, 'src/lib/app-copy.ts'), 'utf8');
 
+/** Les apps dont les six langues sont écrites — même cliquet que check:lang. */
+const TRANSLATED = ['zellige'];
+
 let problems = 0;
 
 for (const slug of slugs) {
@@ -38,10 +41,43 @@ for (const slug of slugs) {
 
   const copy = readFileSync(file, 'utf8');
   const langs = copy.match(/pageCopy: Partial<Record<Lang, AppCopy>> = \{([^}]*)\}/)?.[1] ?? '';
-  const missing = ['fr', 'en'].filter((l) => !langs.includes(l));
+
+  // Le cliquet : six langues exigées pour les apps déclarées traduites, deux
+  // pour les autres. La liste ne fait que s'allonger — une app traduite ne peut
+  // plus régresser sans faire échouer le build.
+  const required = TRANSLATED.includes(slug) ? ['fr', 'en', 'ja', 'ko', 'es', 'de'] : ['fr', 'en'];
+  const missing = required.filter((l) => !new RegExp(`\\b${l}\\b`).test(langs));
   if (missing.length) {
     console.error(`✗ ${slug} : langue(s) manquante(s) — ${missing.join(', ')}`);
     problems++;
+  }
+
+  // Une clé présente mais recopiée d'une autre langue est le mode d'échec le
+  // plus probable d'un chantier de 40 000 mots : c'est exactement ce que
+  // l'audit a trouvé sur les 184 pages « traduites ».
+  if (TRANSLATED.includes(slug)) {
+    /**
+     * L'intro d'une langue, qu'elle vive dans `page-copy.ts` (deux langues) ou
+     * dans son propre `copy.<lang>.ts` (six langues, format éclaté).
+     */
+    const intro = (lang) => {
+      const own = join(ROOT, 'src/content/apps', slug, `copy.${lang}.ts`);
+      const source = existsSync(own)
+        ? readFileSync(own, 'utf8')
+        : copy.match(new RegExp(`const ${lang}: AppCopy = \\{[\\s\\S]*?\\n\\};`))?.[0] ?? '';
+      return source.match(/\n  intro:\s*\n?\s*['"]([^'"]{20,})/)?.[1];
+    };
+
+    const reference = { fr: intro('fr'), en: intro('en') };
+    for (const lang of ['ja', 'ko', 'es', 'de']) {
+      const text = intro(lang);
+      if (!text) continue;
+      if (text === reference.fr || text === reference.en) {
+        const source = text === reference.fr ? 'français' : 'anglais';
+        console.error(`✗ ${slug} : l'intro ${lang} est identique au ${source} — non traduite`);
+        problems++;
+      }
+    }
   }
 }
 

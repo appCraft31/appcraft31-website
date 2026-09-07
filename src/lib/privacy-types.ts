@@ -9,6 +9,8 @@
  * trouvée sur Glyphe et sur Le Sudoku du jour dans l'ancien site.
  */
 
+import type { Lang } from './types';
+
 export type AdFormat = 'banner' | 'interstitial' | 'rewarded';
 
 /**
@@ -18,8 +20,16 @@ export type AdFormat = 'banner' | 'interstitial' | 'rewarded';
  * suffisant pour « réglages » ou « stations favorites ». Dès que la phrase
  * porte du sens, on écrit les deux versions : une politique lue par un
  * réviseur anglophone ne peut pas se permettre une clause en français.
+ *
+ * Les quatre autres langues sont facultatives. Le gabarit, lui, parle les six ;
+ * ces fragments-ci sont propres à chaque app — « photos éphémères de
+ * randompix », « position d'EcoPompe » — et se traduisent au fil de l'eau. Une
+ * politique japonaise dont deux puces restent en anglais vaut mieux que la page
+ * anglaise entière d'avant.
  */
-export type Localized = string | { fr: string; en: string };
+export type Localized =
+  | string
+  | ({ fr: string; en: string } & Partial<Record<Lang, string>>);
 
 export interface AdsFacts {
   /** Régie publicitaire réellement intégrée. */
@@ -79,7 +89,7 @@ export interface AnalyticsFacts {
    * campagnes d'acquisition. Écrire ici ce que le code fait, pas la formule la
    * plus rassurante : c'est une information que le RGPD impose de donner.
    */
-  purpose?: { fr: string; en: string };
+  purpose?: Localized;
 }
 
 export interface NetworkFacts {
@@ -121,5 +131,5 @@ export interface PrivacyFacts {
    * locales ». Sert aux cas que le gabarit ne couvre pas (photos éphémères de
    * randompix, position d'EcoPompe…).
    */
-  notes?: { fr: string; en: string }[];
+  notes?: Localized[];
 }
