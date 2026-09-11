@@ -13,6 +13,7 @@ import { pageCopy as admobCompanion } from '@/content/apps/admob-companion/page-
 import { pageCopy as binero } from '@/content/apps/binero/page-copy';
 import { pageCopy as combo } from '@/content/apps/combo/page-copy';
 import { pageCopy as contree } from '@/content/apps/contree/page-copy';
+import { pageCopy as ding } from '@/content/apps/ding/page-copy';
 import { pageCopy as ecopompe } from '@/content/apps/ecopompe/page-copy';
 import { pageCopy as glyphe } from '@/content/apps/glyphe/page-copy';
 import { pageCopy as graviwords } from '@/content/apps/graviwords/page-copy';
@@ -42,6 +43,7 @@ const FULL: Record<string, PerLang> = {
   binero,
   combo,
   contree,
+  ding,
   ecopompe,
   glyphe,
   graviwords,

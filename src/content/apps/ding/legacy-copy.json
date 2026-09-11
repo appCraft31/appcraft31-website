@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Jeu de gestion d’ascenseur, gratuit",
+    "desc": "Un jeu de gestion d’ascenseur gratuit sur iPhone : touchez un étage pour y envoyer la cabine, regroupez les destinations et surveillez la patience de chacun. 30 missions dans trois immeubles, un défi chaque jour et un atelier pour améliorer votre cabine.",
+    "c1": "30 missions, 3 immeubles",
+    "c2": "Un défi chaque jour",
+    "c3": "Atelier et prototypes",
+    "c4": "Entraînement libre",
+    "c5": "Musique d’ascenseur",
+    "c6": "Parties hors ligne"
+  },
+  "en": {
+    "tagline": "Elevator management game, free",
+    "desc": "A free elevator management game for iPhone: tap a floor to send the car there, group destinations and watch everyone’s patience. 30 missions across three buildings, a new challenge every day and a workshop to upgrade your car.",
+    "c1": "30 missions, 3 buildings",
+    "c2": "A challenge every day",
+    "c3": "Workshop and prototypes",
+    "c4": "Free Practice",
+    "c5": "Elevator music",
+    "c6": "Offline play"
+  },
+  "ja": {
+    "tagline": "エレベーター経営ゲーム、無料",
+    "desc": "iPhone向けの無料エレベーター経営ゲーム。階をタップしてキャビンを送り、行き先をまとめ、みんなの忍耐を見守ろう。3つの建物で30のミッション、毎日のチャレンジ、キャビンを強化する工房。",
+    "c1": "30ミッション・3つの建物",
+    "c2": "毎日のチャレンジ",
+    "c3": "工房とプロトタイプ",
+    "c4": "フリー練習",
+    "c5": "エレベーター音楽",
+    "c6": "オフラインでプレイ"
+  },
+  "ko": {
+    "tagline": "엘리베이터 경영 게임, 무료",
+    "desc": "iPhone용 무료 엘리베이터 경영 게임. 층을 탭해 캐빈을 보내고, 목적지를 묶고, 모두의 인내심을 살피세요. 세 건물의 30개 미션, 매일 새로운 도전, 캐빈을 강화하는 작업실.",
+    "c1": "30개 미션·3개 건물",
+    "c2": "매일의 도전",
+    "c3": "작업실과 프로토타입",
+    "c4": "자유 연습",
+    "c5": "엘리베이터 음악",
+    "c6": "오프라인 플레이"
+  },
+  "es": {
+    "tagline": "Juego de gestión de ascensor, gratis",
+    "desc": "Un juego de gestión de ascensor gratuito para iPhone: toca una planta para enviar la cabina, agrupa los destinos y vigila la paciencia de cada uno. 30 misiones en tres edificios, un reto cada día y un taller para mejorar tu cabina.",
+    "c1": "30 misiones, 3 edificios",
+    "c2": "Un reto cada día",
+    "c3": "Taller y prototipos",
+    "c4": "Entrenamiento libre",
+    "c5": "Música de ascensor",
+    "c6": "Partidas sin conexión"
+  },
+  "de": {
+    "tagline": "Aufzug-Managementspiel, kostenlos",
+    "desc": "Ein kostenloses Aufzug-Managementspiel fürs iPhone: Tippe auf eine Etage, um die Kabine loszuschicken, bündle die Ziele und behalte die Geduld aller im Blick. 30 Missionen in drei Gebäuden, jeden Tag eine neue Herausforderung und eine Werkstatt für deine Kabine.",
+    "c1": "30 Missionen, 3 Gebäude",
+    "c2": "Jeden Tag eine Herausforderung",
+    "c3": "Werkstatt und Prototypen",
+    "c4": "Freies Training",
+    "c5": "Aufzugsmusik",
+    "c6": "Offline spielbar"
+  }
+}

@@ -29,6 +29,96 @@ const adFunded = (removedBy?: string): PrivacyFacts['ads'] => ({
 });
 
 export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
+  // Ding! — lu dans ~/StudioProjects/ascenceur le 11 septembre 2026 :
+  // `lib/ads/ad_service.dart` (AdMob, UMP, ATT via app_tracking_transparency,
+  // `showPrivacyOptionsForm` depuis les Réglages : la clause de retrait est
+  // exacte), `lib/ads/ad_policy.dart` et `lib/main.dart` (fréquences, seuls
+  // bilans de carrière réussis), `lib/analytics/*` (Firebase Analytics soumis
+  // au consentement IAB dans l'EEE, jamais à des fins publicitaires ;
+  // Crashlytics), `lib/progress/*` et `lib/ui/settings_store.dart` (données
+  // locales). Aucun achat intégré, aucun compte. App iPhone uniquement.
+  ding: {
+    platforms: ['iOS'],
+    localData: [
+      {
+        fr: 'progression de la carrière (missions réussies, distinctions, crédits)',
+        en: 'career progress (missions completed, badges, credits)',
+        es: 'progreso de la carrera (misiones superadas, insignias, créditos)',
+        de: 'Karrierefortschritt (geschaffte Missionen, Auszeichnungen, Credits)',
+      },
+      {
+        fr: 'équipements, prototypes, tampons et finitions de la cabine',
+        en: 'gear, prototypes, stamps and car finishes',
+        es: 'equipos, prototipos, sellos y acabados de la cabina',
+        de: 'Ausrüstung, Prototypen, Stempel und Kabinen-Lackierungen',
+      },
+      {
+        fr: 'mission en cours, pour la reprendre après une interruption',
+        en: 'the mission in progress, so it can be resumed after an interruption',
+        es: 'la misión en curso, para retomarla tras una interrupción',
+        de: 'die laufende Mission, um sie nach einer Unterbrechung fortzusetzen',
+      },
+      {
+        fr: 'médailles du défi du jour et record de l’entraînement libre',
+        en: 'daily challenge medals and free practice best score',
+        es: 'medallas del reto diario y récord del entrenamiento libre',
+        de: 'Medaillen der täglichen Herausforderung und Rekord im freien Training',
+      },
+      {
+        fr: 'réglages (son, musique, vibrations, aides, animations, taille du texte)',
+        en: 'settings (sound, music, vibration, assists, animations, text size)',
+        es: 'ajustes (sonido, música, vibración, ayudas, animaciones, tamaño del texto)',
+        de: 'Einstellungen (Ton, Musik, Vibration, Hilfen, Animationen, Textgröße)',
+      },
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+    },
+    purchases: [],
+    // Pas d'interrupteur dédié : dans l'EEE, la mesure suit le formulaire de
+    // consentement (finalités 1 et 8), que les Réglages rouvrent ; hors EEE,
+    // elle est active. Crashlytics ne se coupe pas. D'où `optOut: false`,
+    // précisé dans `purpose`.
+    analytics: {
+      vendors: ['Firebase Analytics', 'Firebase Crashlytics'],
+      optOut: false,
+      purpose: {
+        fr: "mesurer la progression dans le jeu (missions commencées et terminées, immeubles achevés, nombre de missions réussies, écrans consultés) et recevoir les rapports de plantage pour corriger les erreurs. Dans l'Espace économique européen, la mesure d'audience n'est activée qu'avec votre accord dans l'écran de consentement, que le bouton « Confidentialité des publicités » des Réglages permet de modifier. Ces statistiques ne servent jamais à la publicité",
+        en: 'measure progress in the game (missions started and finished, buildings completed, number of missions completed, screens viewed) and receive crash reports to fix errors. In the European Economic Area, analytics are only enabled with your agreement in the consent form, which the “Ad privacy” button in the Settings lets you change. These statistics are never used for advertising',
+        es: 'medir el progreso en el juego (misiones empezadas y terminadas, edificios completados, número de misiones superadas, pantallas vistas) y recibir los informes de errores para corregirlos. En el Espacio Económico Europeo, la medición solo se activa con tu consentimiento en la pantalla correspondiente, que el botón «Privacidad de los anuncios» de los Ajustes permite cambiar. Estas estadísticas nunca se usan con fines publicitarios',
+        de: 'den Fortschritt im Spiel zu messen (begonnene und beendete Missionen, abgeschlossene Gebäude, Zahl der geschafften Missionen, aufgerufene Bildschirme) und Absturzberichte zu erhalten, um Fehler zu beheben. Im Europäischen Wirtschaftsraum ist die Messung nur mit deiner Zustimmung im Einwilligungsformular aktiv, die du über die Schaltfläche „Datenschutz (Werbung)“ in den Einstellungen ändern kannst. Diese Statistiken werden nie für Werbung genutzt',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "le chargement des publicités et de leur écran de consentement, puis l'envoi des statistiques d'usage et des rapports de plantage à Firebase. Les missions, le défi du jour et l'entraînement libre se jouent hors ligne",
+        en: 'loading advertising and its consent form, then sending usage statistics and crash reports to Firebase. Missions, the daily challenge and free practice are played offline',
+        es: 'la carga de los anuncios y de su pantalla de consentimiento, y el envío de estadísticas de uso e informes de errores a Firebase. Las misiones, el reto diario y el entrenamiento libre se juegan sin conexión',
+        de: 'das Laden der Werbung und ihres Einwilligungsformulars sowie das Senden von Nutzungsstatistiken und Absturzberichten an Firebase. Missionen, die tägliche Herausforderung und das freie Training laufen offline',
+      },
+    },
+    accounts: null,
+    forChildren: false,
+    updated: '2026-09-11',
+    notes: [
+      {
+        fr: "Ding! est gratuit grâce à la publicité, et aucun achat intégré ne la retire. L'interstitiel ne s'affiche qu'après une mission de carrière réussie, au moment de continuer ou de revenir à l'accueil — jamais pendant une partie, jamais sur le défi du jour ni l'entraînement libre —, au plus une fois toutes les trois victoires et toutes les cinq minutes. Pour une partie des joueurs, il est remplacé par une vidéo récompensée, précédée d'un écran qui laisse le choix de la regarder ou de continuer. La vidéo récompensée du bilan (+25 crédits) ne se lance que si vous appuyez vous-même sur son bouton.",
+        en: 'Ding! is free thanks to advertising, and no in-app purchase removes it. The interstitial only appears after a successful career mission, when you continue or go back home — never during play, never on the daily challenge or free practice — at most once every three wins and every five minutes. For some players it is replaced by a rewarded video, preceded by a screen that lets you choose to watch it or carry on. The rewarded video on the results screen (+25 credits) only starts if you tap its button yourself.',
+        es: 'Ding! es gratuito gracias a la publicidad, y ninguna compra integrada la elimina. El anuncio intersticial solo aparece tras una misión de carrera superada, al continuar o volver al inicio —nunca durante la partida, nunca en el reto diario ni en el entrenamiento libre—, como mucho una vez cada tres victorias y cada cinco minutos. Para una parte de los jugadores se sustituye por un vídeo con recompensa, precedido de una pantalla que te deja elegir entre verlo o seguir. El vídeo con recompensa del resumen (+25 créditos) solo se inicia si tú mismo pulsas su botón.',
+        de: 'Ding! ist dank Werbung kostenlos, und kein In-App-Kauf entfernt sie. Die Vollbildwerbung erscheint nur nach einer geschafften Karrieremission, wenn du weitermachst oder zum Startbildschirm zurückkehrst — nie während des Spiels, nie bei der täglichen Herausforderung oder im freien Training —, höchstens einmal alle drei Siege und alle fünf Minuten. Für einen Teil der Spieler wird sie durch ein Belohnungsvideo ersetzt, vor dem ein Bildschirm dir die Wahl lässt, es anzusehen oder weiterzuspielen. Das Belohnungsvideo der Auswertung (+25 Credits) startet nur, wenn du selbst auf seine Schaltfläche tippst.',
+      },
+      {
+        fr: "L'écran de consentement publicitaire (UMP) puis, sur iPhone, la demande de suivi (ATT) sont présentés au lancement. Un refus ne bloque jamais le jeu : les publicités restent affichées, sans personnalisation.",
+        en: 'The advertising consent form (UMP) and then, on iPhone, the tracking request (ATT) are shown at launch. Declining never blocks the game: ads are still shown, without personalisation.',
+        es: 'La pantalla de consentimiento publicitario (UMP) y después, en el iPhone, la solicitud de seguimiento (ATT) se muestran al iniciar. Rechazarlas nunca bloquea el juego: los anuncios se siguen mostrando, sin personalización.',
+        de: 'Das Werbe-Einwilligungsformular (UMP) und danach, auf dem iPhone, die Tracking-Anfrage (ATT) erscheinen beim Start. Eine Ablehnung blockiert das Spiel nie: Die Werbung wird weiter angezeigt, nur ohne Personalisierung.',
+      },
+    ],
+  },
+
   // Zellige (projet `Tectonic`) : `pubspec.yaml` lie google_mobile_ads,
   // app_tracking_transparency, firebase_analytics et games_services ; aucun
   // achat intégré. `ad_service.dart` ne charge qu'un interstitiel (une grille

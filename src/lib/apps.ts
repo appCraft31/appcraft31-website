@@ -7,6 +7,25 @@
 import type { AppData } from './types';
 
 export const APPS: AppData[] = [
+  /* Ding! sort le 21 septembre 2026 : passer `status` à 'available' ce jour-là.
+     L'identifiant App Store (6810621313) est celui de la fiche déjà créée. */
+  {
+    slug: 'ding',
+    name: 'Ding!',
+    category: 'game',
+    status: 'soon',
+    store: { ios: 'https://apps.apple.com/fr/app/id6810621313' },
+    icon: '/assets/icons/ding.webp',
+    ogImage: '/assets/ding-og.jpg',
+    screenshots: [
+      { src: '/assets/ding-screen-partie.webp', alt: 'Une partie à la Résidence des Tilleuls : la cabine dans sa gaine, les voisins qui attendent à chaque étage' },
+      { src: '/assets/ding-screen-accueil.webp', alt: "L'accueil : reprendre la carrière, défi du jour, Atelier et entraînement libre" },
+      { src: '/assets/ding-screen-defi-du-jour.webp', alt: 'Le défi du jour présenté par la voisine, avec ses trois médailles' },
+      { src: '/assets/ding-screen-atelier.webp', alt: "L'Atelier : équipements, prototypes et finitions de la cabine" },
+    ],
+    sdk: { ads: true, purchases: false, analytics: true, network: true, accounts: false },
+    privacyUpdated: '2026-09-11',
+  },
   {
     slug: 'zellige',
     name: 'Zellige',

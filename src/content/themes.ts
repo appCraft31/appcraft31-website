@@ -34,6 +34,24 @@ const F = {
 } as const;
 
 export const THEMES: Record<string, AppTheme> = {
+  /* ── Ding! : la palette de lib/config/palette.dart — sarcelle de nuit, texte
+     crème, laiton des portes Art déco, vert de la patience ──────────────── */
+  ding: {
+    palette: {
+      ink: '#FFEFD1',
+      paper: '#061E25',
+      surface: '#10383F',
+      accent: '#E8BE70',
+      accentAlt: '#6BD68F',
+      glow: 'rgba(232, 190, 112, 0.28)',
+    },
+    fonts: { display: F.editorial, body: F.inter },
+    backdrop: 'blueprint',
+    shape: { radius: 14, border: 'soft' },
+    motion: 'medium',
+    layout: ['hero-split', 'stat-band', 'how-it-plays', 'gallery-device', 'features', 'privacy', 'cta'],
+  },
+
   /* ── Tectonic en faïence : la palette claire de lib/ui/theme/tectonic_theme.dart ── */
   zellige: {
     palette: {
