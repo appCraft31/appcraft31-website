@@ -63,7 +63,7 @@ const fr: AppCopy = {
       id: 'privacy',
       kicker: 'Vie privée',
       title: 'Aucune publicité, aucun tracker',
-      body: 'Aucune régie publicitaire n’est intégrée à l’application, et votre position sert uniquement à chercher les stations autour de vous — elle n’est envoyée à personne. Vos favoris restent sur l’appareil.',
+      body: 'Aucune régie publicitaire n’est intégrée à l’application, et votre position sert à chercher les stations autour de vous, sur l’appareil. Seul le mode « Sur mon trajet » transmet votre destination et votre point de départ à Mapbox pour calculer l’itinéraire, sans identifiant. Vos favoris restent sur l’appareil.',
     },
   ],
 
@@ -139,7 +139,7 @@ const en: AppCopy = {
       id: 'privacy',
       kicker: 'Privacy',
       title: 'No ads, no trackers',
-      body: 'No ad network is built into the app, and your location is used only to look for stations around you — it is never sent to anyone. Your favourites stay on the device.',
+      body: 'No ad network is built into the app, and your location is used on the device to look for stations around you. Only the “On my route” mode sends your destination and starting point to Mapbox to calculate the route, without any identifier. Your favourites stay on the device.',
     },
   ],
 

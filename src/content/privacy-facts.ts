@@ -647,21 +647,43 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
 
   ecopompe: {
     platforms: ['iOS', 'Android'],
-    localData: ['stations favorites', 'carburant préféré', 'réglages'],
+    localData: [
+      'stations favorites',
+      'carburant préféré',
+      'capacité du réservoir et consommation du véhicule',
+      'alertes de prix',
+      'historique des prix des favoris',
+      { fr: 'pleins saisis dans le suivi de budget', en: 'fill-ups entered in the budget tracker' },
+      'réglages',
+    ],
     ads: null,
-    purchases: [],
+    // EcoPompe Pro : achat unique via StoreKit 2 (`Pro/PurchaseService.swift`)
+    // et Google Play Billing (`data/pro/PurchaseService.kt`). La fiche disait
+    // `purchases: []` — corrigé le 21 septembre 2026.
+    purchases: [
+      {
+        kind: 'non-consumable',
+        what: 'EcoPompe Pro (itinéraire, alertes illimitées, historique de 90 jours, budget illimité et export, widget « autour de moi »)',
+        productId: 'com.appcraft31.ecopompe.pro.lifetime',
+      },
+    ],
     analytics: null,
+    // Le mode « Sur mon trajet » appelle Mapbox (`RoutePlanner.swift` /
+    // `RoutePlanner.kt`) : géocodage de la destination saisie, puis calcul de
+    // l'itinéraire depuis la position de départ.
     network: {
-      purpose:
-        'le téléchargement des prix publiés en données ouvertes par les stations-service françaises',
+      purpose: {
+        fr: 'télécharger les prix publiés en données ouvertes par les stations-service françaises et, uniquement en mode « Sur mon trajet », calculer votre itinéraire avec Mapbox',
+        en: 'downloading the prices published as open data by French fuel stations and, only in the “On my route” mode, calculating your route with Mapbox',
+      },
     },
     accounts: null,
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-09-21',
     notes: [
       {
-        fr: 'Votre position sert uniquement, sur votre appareil, à trier les stations par distance. Elle n’est envoyée à aucun serveur.',
-        en: 'Your location is used only, on your device, to sort stations by distance. It is never sent to any server.',
+        fr: 'Votre position sert, sur votre appareil, à trier les stations par distance. Elle n’est envoyée à aucun serveur, sauf lorsque vous utilisez le mode « Sur mon trajet » : la destination saisie, votre point de départ et les coordonnées de la destination sont alors envoyés à Mapbox, Inc. (États-Unis) pour proposer des adresses et calculer l’itinéraire, sans aucun identifiant vous concernant. Mapbox les traite selon sa propre politique de confidentialité : https://www.mapbox.com/legal/privacy',
+        en: 'Your location is used on your device to sort stations by distance. It is never sent to any server, except when you use the “On my route” mode: the destination you type, your starting point and the destination coordinates are then sent to Mapbox, Inc. (United States) to suggest addresses and calculate the route, without any identifier about you. Mapbox processes them under its own privacy policy: https://www.mapbox.com/legal/privacy',
       },
     ],
   },
