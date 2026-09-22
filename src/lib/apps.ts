@@ -26,6 +26,24 @@ export const APPS: AppData[] = [
     sdk: { ads: true, purchases: false, analytics: true, network: true, accounts: false },
     privacyUpdated: '2026-09-11',
   },
+  /* Glowmi — en vente depuis le 9 juin 2026 (version 2.1). Sa fiche App Store
+     pointait vers appcraft31.vercel.app/glowmi*.html, jamais servies. */
+  {
+    slug: 'glowmi',
+    name: 'Glowmi',
+    category: 'game',
+    status: 'available',
+    store: { ios: 'https://apps.apple.com/fr/app/glowmi-animal-virtuel/id6776699294' },
+    icon: '/assets/icons/glowmi.webp',
+    screenshots: [
+      { src: '/assets/glowmi-screen-maison.webp', alt: 'La maison : le compagnon heureux, ses pièces et les boutons Nourrir, Laver, Dodo et Soigner' },
+      { src: '/assets/glowmi-screen-mini-jeux.webp', alt: 'Les quatre mini-jeux : Séquence, Mémo des paires, Attrape-gourmandises et Tempo' },
+      { src: '/assets/glowmi-screen-garde-robe.webp', alt: 'La garde-robe : tenues, objets, décors et auras essayés sur le compagnon' },
+      { src: '/assets/glowmi-screen-collection.webp', alt: 'L’album : la collection des 24 espèces, découvertes au fil des éclosions' },
+    ],
+    sdk: { ads: true, purchases: true, analytics: true, network: true, accounts: true },
+    privacyUpdated: '2026-09-22',
+  },
   {
     slug: 'zellige',
     name: 'Zellige',

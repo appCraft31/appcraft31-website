@@ -10,6 +10,7 @@ import binero from '@/content/apps/binero/legacy-copy.json';
 import combo from '@/content/apps/combo/legacy-copy.json';
 import contree from '@/content/apps/contree/legacy-copy.json';
 import ding from '@/content/apps/ding/legacy-copy.json';
+import glowmi from '@/content/apps/glowmi/legacy-copy.json';
 import ecopompe from '@/content/apps/ecopompe/legacy-copy.json';
 import glyphe from '@/content/apps/glyphe/legacy-copy.json';
 import graviwords from '@/content/apps/graviwords/legacy-copy.json';
@@ -47,6 +48,7 @@ const SHORT: Record<string, Partial<Record<Lang, ShortCopy>>> = {
   combo,
   contree,
   ding,
+  glowmi,
   ecopompe,
   glyphe,
   graviwords,

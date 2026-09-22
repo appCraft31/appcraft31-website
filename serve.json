@@ -4,6 +4,10 @@
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
     { "source": "/:lang(en|ja|ko|es|de)", "destination": "/:lang.html" },
-    { "source": "/:lang(en|ja|ko|es|de)/", "destination": "/:lang.html" }
+    { "source": "/:lang(en|ja|ko|es|de)/", "destination": "/:lang.html" },
+    { "source": "/glowmi.html", "destination": "/apps/glowmi.html" },
+    { "source": "/glowmi-privacy.html", "destination": "/privacy/glowmi.html" },
+    { "source": "/shizuku.html", "destination": "/apps/shizuku.html" },
+    { "source": "/shizuku-privacy.html", "destination": "/privacy/shizuku.html" }
   ]
 }

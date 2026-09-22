@@ -119,6 +119,78 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     ],
   },
 
+  // Glowmi — lu dans ~/StudioProjects/tamagotchi (version 2.1) le 22 septembre
+  // 2026 : `Services/AdManager.swift` (AdMob, vidéos récompensées seulement,
+  // 4 par jour au plus ; UMP avant `MobileAds.start`, mais aucun appel à
+  // `presentPrivacyOptionsForm` : pas de clause de retrait depuis l'app),
+  // `App/GlowmiApp.swift` et `Services/TrackingManager.swift` (écran de
+  // contexte puis ATT ; refus = annonces non personnalisées),
+  // `Store/StoreManager.swift` (4 packs de pièces consommables),
+  // `Services/AnalyticsService.swift` (Firebase Analytics, configuré au
+  // lancement, sans interrupteur), `Services/GameCenterService.swift`,
+  // `Services/CloudSync.swift` et le conteneur CloudKit privé
+  // `iCloud.com.appcraft31.glowmi`. Pas de Crashlytics, pas de serveur propre.
+  glowmi: {
+    platforms: ['iOS', 'iPadOS'],
+    localData: [
+      {
+        fr: 'votre compagnon (nom, espèce, âge, besoins, personnalité, niveau de lien)',
+        en: 'your companion (name, species, age, needs, personality, bond level)',
+      },
+      {
+        fr: 'l’album des souvenirs et la collection des espèces découvertes',
+        en: 'the memory album and the collection of species discovered',
+      },
+      { fr: 'pièces, cosmétiques et série de fidélité', en: 'coins, cosmetics and loyalty streak' },
+      'réglages',
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['rewarded'],
+      ump: true,
+      att: true,
+      umpReopen: false,
+      // Aucun `maxAdContentRating` ni `tagForChildDirectedTreatment` dans le code.
+      familyContent: false,
+    },
+    purchases: [
+      { kind: 'consumable', what: 'des pièces (4 packs)', productId: 'com.appcraft31.glowmi.coins.small' },
+    ],
+    analytics: {
+      vendors: ['Firebase Analytics'],
+      optOut: false,
+      anonymous: false,
+      purpose: {
+        fr: "mesurer l'usage du jeu (éclosions, soins, parties de mini-jeux, achats, vidéos regardées, partages, écrans consultés) pour l'améliorer. L'identifiant publicitaire de l'appareil n'est associé à ces mesures que si vous avez accepté la demande de suivi",
+        en: 'measure how the game is used (hatchings, care actions, mini-games played, purchases, videos watched, shares, screens viewed) in order to improve it. The device advertising identifier is only associated with these measurements if you accepted the tracking request',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "le chargement des vidéos publicitaires et de leur écran de consentement, l'envoi des statistiques d'usage à Firebase, les classements Game Center et, si iCloud est activé, la synchronisation de votre compagnon dans votre espace iCloud privé. Les soins et les mini-jeux fonctionnent hors ligne",
+        en: 'loading advertising videos and their consent form, sending usage statistics to Firebase, Game Center leaderboards and, if iCloud is on, syncing your companion to your private iCloud storage. Care and mini-games work offline',
+      },
+    },
+    accounts: { service: 'Game Center', what: 'les classements des quatre mini-jeux et les succès' },
+    cloudSync: true,
+    forChildren: false,
+    updated: '2026-09-22',
+    notes: [
+      {
+        fr: "Si iCloud est activé sur l'appareil, votre compagnon, l'album, les pièces et les cosmétiques sont synchronisés dans votre espace iCloud privé, géré par Apple et auquel le studio n'a pas accès. Sinon, tout reste sur l'appareil.",
+        en: 'If iCloud is enabled on the device, your companion, album, coins and cosmetics are synced to your private iCloud storage, managed by Apple and inaccessible to the studio. Otherwise, everything stays on the device.',
+      },
+      {
+        fr: "Glowmi n'affiche ni bannière ni publicité plein écran imposée : les seules publicités sont des vidéos bonus (doubler les gains d'une partie, bonifier la récompense du jour, renouveler le marché, un coffret offert), qui ne se lancent que si vous appuyez sur leur bouton, quatre par jour au plus.",
+        en: 'Glowmi shows no banners and no forced full-screen ads: the only ads are bonus videos (doubling a game’s winnings, boosting the daily reward, refreshing the market, a free gift box), which only start if you tap their button, four a day at most.',
+      },
+      {
+        fr: "L'écran de consentement publicitaire (UMP), puis un écran d'explication suivi de la demande de suivi (ATT), sont présentés au lancement. Un refus ne bloque jamais le jeu : les vidéos restent proposées, sans personnalisation.",
+        en: 'The advertising consent form (UMP), then an explanation screen followed by the tracking request (ATT), are shown at launch. Declining never blocks the game: videos are still offered, without personalisation.',
+      },
+    ],
+  },
+
   // Zellige (projet `Tectonic`) : `pubspec.yaml` lie google_mobile_ads,
   // app_tracking_transparency, firebase_analytics et games_services ; aucun
   // achat intégré. `ad_service.dart` ne charge qu'un interstitiel (une grille

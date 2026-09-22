@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Animal virtuel kawaii, gratuit",
+    "desc": "Faites éclore un œuf mystère et prenez soin du petit compagnon qui en sort : nourrissez-le, lavez-le, couchez-le et regardez-le grandir. 24 espèces, 4 mini-jeux, une garde-robe et un album de souvenirs.",
+    "c1": "24 espèces à découvrir",
+    "c2": "6 âges, de l’œuf à l’ancien",
+    "c3": "4 mini-jeux",
+    "c4": "Garde-robe et décors",
+    "c5": "Événements saisonniers",
+    "c6": "Widget d’accueil"
+  },
+  "en": {
+    "tagline": "Kawaii virtual pet, free",
+    "desc": "Hatch a mystery egg and look after the little companion inside: feed it, wash it, put it to bed and watch it grow. 24 species, 4 mini-games, a wardrobe and an album of memories.",
+    "c1": "24 species to discover",
+    "c2": "6 life stages, egg to elder",
+    "c3": "4 mini-games",
+    "c4": "Wardrobe and backdrops",
+    "c5": "Seasonal events",
+    "c6": "Home Screen widget"
+  },
+  "ja": {
+    "tagline": "かわいいバーチャルペット・無料",
+    "desc": "ふしぎなたまごをかえして、生まれた小さな相棒のお世話をしよう。ごはん、お風呂、おやすみ — 成長を見守ります。24種類の生きもの、4つのミニゲーム、クローゼット、思い出のアルバム。",
+    "c1": "24種類の生きもの",
+    "c2": "たまごからものしりまで6つの成長段階",
+    "c3": "4つのミニゲーム",
+    "c4": "クローゼットと背景",
+    "c5": "季節のイベント",
+    "c6": "ホーム画面ウィジェット"
+  },
+  "ko": {
+    "tagline": "귀여운 가상 펫, 무료",
+    "desc": "신비한 알을 부화시키고 태어난 작은 친구를 돌봐 주세요. 밥 주기, 씻기기, 재우기 — 자라는 모습을 지켜보세요. 24종의 생명체, 4가지 미니게임, 옷장, 추억 앨범.",
+    "c1": "24종의 생명체",
+    "c2": "알부터 원로까지 6단계",
+    "c3": "4가지 미니게임",
+    "c4": "옷장과 배경",
+    "c5": "계절 이벤트",
+    "c6": "홈 화면 위젯"
+  },
+  "es": {
+    "tagline": "Mascota virtual kawaii, gratis",
+    "desc": "Haz eclosionar un huevo misterioso y cuida del pequeño compañero que sale de él: dale de comer, báñalo, acuéstalo y míralo crecer. 24 especies, 4 minijuegos, un armario y un álbum de recuerdos.",
+    "c1": "24 especies por descubrir",
+    "c2": "6 edades, del huevo al anciano",
+    "c3": "4 minijuegos",
+    "c4": "Armario y decorados",
+    "c5": "Eventos de temporada",
+    "c6": "Widget de inicio"
+  },
+  "de": {
+    "tagline": "Kawaii-Haustier, kostenlos",
+    "desc": "Lass ein geheimnisvolles Ei schlüpfen und kümmere dich um deinen kleinen Begleiter: füttern, baden, ins Bett bringen und beim Wachsen zusehen. 24 Arten, 4 Minispiele, ein Kleiderschrank und ein Erinnerungsalbum.",
+    "c1": "24 Arten zu entdecken",
+    "c2": "6 Lebensphasen, vom Ei bis ins Alter",
+    "c3": "4 Minispiele",
+    "c4": "Kleiderschrank und Kulissen",
+    "c5": "Saisonale Events",
+    "c6": "Home-Bildschirm-Widget"
+  }
+}

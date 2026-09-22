@@ -52,6 +52,25 @@ export const THEMES: Record<string, AppTheme> = {
     layout: ['hero-split', 'stat-band', 'how-it-plays', 'gallery-device', 'features', 'privacy', 'cta'],
   },
 
+  /* ── Glowmi : le rose et le violet de l'app (SettingsView, ShareCard), la
+     police arrondie du système transposée en Baloo, les bulles de ses écrans ── */
+  glowmi: {
+    palette: {
+      ink: '#3A2B44',
+      paper: '#FFF1F7',
+      surface: '#FFFFFF',
+      accent: '#FA739E',
+      accentAlt: '#C773F2',
+      accentText: '#C93A68',
+      glow: 'rgba(250, 115, 158, 0.32)',
+    },
+    fonts: { display: F.rounded, body: F.roundedBody },
+    backdrop: 'soft-bubbles',
+    shape: { radius: 24, border: 'soft' },
+    motion: 'calm',
+    layout: ['hero-offset', 'stat-band', 'how-it-plays', 'gallery-stack', 'features', 'privacy', 'cta'],
+  },
+
   /* ── Tectonic en faïence : la palette claire de lib/ui/theme/tectonic_theme.dart ── */
   zellige: {
     palette: {
