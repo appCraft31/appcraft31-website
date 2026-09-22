@@ -13,7 +13,7 @@ const fr: AppCopy = {
     'Le Binero — aussi appelé Takuzu ou Binairo — c’est la détente du sudoku, mais en binaire : des règles limpides et des grilles qui occupent l’esprit pendant des heures. Remplissez la grille de 0 et de 1 par pure déduction, jamais au hasard.',
 
   stats: [
-    { value: '50', label: 'niveaux' },
+    { value: '∞', label: 'niveaux' },
     { value: '6×6 → 14×14', label: 'tailles de grille' },
     { value: '1', label: 'grille du jour' },
     { value: '4', label: 'règles' },
@@ -47,7 +47,7 @@ const fr: AppCopy = {
       items: [
         {
           title: 'Mode histoire',
-          body: '50 niveaux à la difficulté qui monte en douceur, du 6×6 au 14×14.',
+          body: 'Des niveaux sans fin à la difficulté qui monte en douceur, du 6×6 au 14×14.',
         },
         { title: 'Grille du jour', body: 'Un nouveau défi chaque jour, en mode cauchemar (14×14).' },
         {
@@ -78,7 +78,7 @@ const fr: AppCopy = {
   meta: {
     title: 'Binero — Takuzu et Binairo, la logique en noir et blanc',
     description:
-      'Remplissez la grille de 0 et de 1 par pure déduction : 50 niveaux du 6×6 au 14×14, une grille du jour en 14×14 et un classement mondial via Game Center.',
+      'Remplissez la grille de 0 et de 1 par pure déduction : des niveaux sans fin du 6×6 au 14×14, une grille du jour en 14×14 et un classement mondial via Game Center.',
   },
 
   chips: [],
@@ -96,7 +96,7 @@ const en: AppCopy = {
     'Binero — also known as Takuzu or Binairo — is the calm of sudoku, in binary: crystal-clear rules and grids that keep the mind busy for hours. Fill the grid with 0s and 1s by pure deduction, never by guessing.',
 
   stats: [
-    { value: '50', label: 'levels' },
+    { value: '∞', label: 'levels' },
     { value: '6×6 → 14×14', label: 'grid sizes' },
     { value: '1', label: 'daily grid' },
     { value: '4', label: 'rules' },
@@ -119,7 +119,7 @@ const en: AppCopy = {
       kicker: 'What is inside',
       title: 'Everything to sharpen your logic',
       items: [
-        { title: 'Story mode', body: '50 levels of gently rising difficulty, from 6×6 to 14×14.' },
+        { title: 'Story mode', body: 'Endless levels of gently rising difficulty, from 6×6 to 14×14.' },
         { title: 'Daily grid', body: 'A new challenge every day, in nightmare mode (14×14).' },
         {
           title: 'Adaptive difficulty',
@@ -146,7 +146,7 @@ const en: AppCopy = {
   meta: {
     title: 'Binero — Takuzu and Binairo, logic in black and white',
     description:
-      'Fill the grid with 0s and 1s by pure deduction: 50 levels from 6×6 to 14×14, a daily 14×14 grid and a global leaderboard through Game Center.',
+      'Fill the grid with 0s and 1s by pure deduction: endless levels from 6×6 to 14×14, a daily 14×14 grid and a global leaderboard through Game Center.',
   },
 
   chips: [],

@@ -8,7 +8,7 @@
         "components": [
           {
             "/": "/holdfire/*",
-            "comment": "Hold Fire — liens d'application, dont l'événement de lancement"
+            "comment": "Hold Fire \u2014 liens d'application, dont l'\u00e9v\u00e9nement de lancement"
           }
         ]
       },
@@ -19,7 +19,7 @@
         "components": [
           {
             "/": "/pixelcraft/*",
-            "comment": "PixelCraft — liens d'application, dont l'événement de lancement"
+            "comment": "PixelCraft \u2014 liens d'application, dont l'\u00e9v\u00e9nement de lancement"
           }
         ]
       },
@@ -30,7 +30,7 @@
         "components": [
           {
             "/": "/randompix/*",
-            "comment": "randompix — liens d'application, dont l'événement 2.0"
+            "comment": "randompix \u2014 liens d'application, dont l'\u00e9v\u00e9nement 2.0"
           }
         ]
       },
@@ -41,7 +41,23 @@
         "components": [
           {
             "/": "/tengo/*",
-            "comment": "tenGO — liens d'application, dont l'événement de la 3.0"
+            "comment": "tenGO \u2014 liens d'application, dont l'\u00e9v\u00e9nement de la 3.0"
+          }
+        ]
+      },
+      {
+        "appIDs": [
+          "JDKABK93UH.com.appcraft31.binero"
+        ],
+        "components": [
+          {
+            "/": "/apps/binero.html",
+            "?": {
+              "challenge": "????-??-??",
+              "difficulty": "*",
+              "v": "2"
+            },
+            "comment": "Binero daily challenge links"
           }
         ]
       }

@@ -348,7 +348,7 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
 
   binero: {
     platforms: ['iOS'],
-    localData: ['progression des 50 niveaux', 'meilleurs temps', 'réglages'],
+    localData: ['progression du mode histoire', 'meilleurs temps', 'réglages'],
     // Binero n'affiche pas de bannière : AdManager ne charge qu'un interstitiel
     // et une vidéo récompensée. Depuis la 1.4.4, la médiation AdMob peut confier
     // l'annonce à Liftoff Monetize, dont le SDK est embarqué dans l'app.

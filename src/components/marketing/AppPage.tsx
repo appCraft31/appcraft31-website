@@ -1,3 +1,4 @@
+import { BineroChallengeLink } from './BineroChallengeLink';
 import { getTheme } from '@/content/themes';
 import { Backdrop } from '@/components/backdrops/Backdrop';
 import { Footer } from '@/components/site/Footer';
@@ -71,6 +72,7 @@ export function AppPage({
         <Backdrop kind={theme.backdrop} />
 
         <div className={styles.content}>
+          {app.slug === 'binero' && <BineroChallengeLink lang={lang} />}
           {theme.layout.map((id) => renderSection(id))}
         </div>
 
