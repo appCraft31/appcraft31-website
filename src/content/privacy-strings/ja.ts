@@ -19,6 +19,8 @@ export const strings: PrivacyStrings = {
   localTitle: '端末内に残るもの',
   localIntro: (app) =>
     `${app}は次の項目を端末内のストレージに保存します。これらはいかなるサーバーにも送信されず、アプリを削除すると消えます。`,
+  localIntroCloud: (app) =>
+    `${app}は次の項目を端末内のストレージに保存します。これらがスタジオのサーバーに送信されることはありません。`,
 
   adsTitle: '広告',
   adsIntro: (app, network, formats) =>
@@ -78,10 +80,12 @@ export const strings: PrivacyStrings = {
   rightsTitle: 'あなたの権利',
   rightsUninstall:
     '上記のデータは端末内に留まるため、消去のもっとも直接的な方法はアプリを削除することです。すべてがアプリとともに消えます。',
+  rightsUninstallCloud:
+    'アプリを削除すると、端末に保存されたデータは消えます。iCloud上のコピーは、端末のiCloud設定（ストレージの管理）から削除できます。',
   rightsGdpr: (email) =>
     `さらに EU 一般データ保護規則（GDPR）により、アクセス、訂正、消去、処理の制限、異議申立ての権利が認められています。行使をご希望の場合は ${email} までご連絡ください。`,
-  rightsAdNetworks: (networks) =>
-    `広告ネットワークが処理するデータについては、それぞれの事業者に対して権利を行使することになります：${networks}。なお広告に関する選択は、アプリの設定および端末の設定からいつでも変更できます。`,
+  rightsAdNetworks: (networks, inApp) =>
+    `広告ネットワークが処理するデータについては、それぞれの事業者に対して権利を行使することになります：${networks}。${inApp ? 'なお広告に関する選択は、アプリの設定および端末の設定からいつでも変更できます。' : 'なお広告に関する選択は、端末の設定からいつでも変更できます。'}`,
 
   changesTitle: '変更について',
   changes: (date) =>

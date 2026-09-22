@@ -2,9 +2,10 @@ import type { AppCopy, Lang } from '@/lib/types';
 
 /**
  * Textes repris de l'ancienne page `apps/poddroid.html`.
- * L'audit du projet `~/StudioProjects/podcast` ne trouve ni régie publicitaire,
- * ni achat intégré, ni mesure d'audience : « sans publicité, sans compte, sans
- * pistage » est exact.
+ * L'ancienne page promettait « sans publicité ni pistage » : faux. Le projet
+ * `~/StudioProjects/poddroid` affiche une bannière AdMob
+ * (`ui/components/BannerAd.kt`). Restent exacts : aucun compte, aucun achat
+ * intégré, aucune mesure d'audience.
  */
 const fr: AppCopy = {
   tagline: 'Lecteur de podcasts · Android',
@@ -19,8 +20,6 @@ const fr: AppCopy = {
 
   stats: [
     { value: '0', label: 'compte' },
-    { value: '0', label: 'publicité' },
-    { value: '0', label: 'traceur' },
     { value: '3', label: 'durées « Ma journée »' },
   ],
 
@@ -69,7 +68,7 @@ const fr: AppCopy = {
       id: 'privacy',
       kicker: 'Vie privée',
       title: 'Votre vie privée d’abord',
-      body: 'Pas de compte, pas de publicité, pas de traceurs. Vos abonnements et votre progression restent sur votre appareil ; l’application ne contacte que les serveurs des podcasts auxquels vous êtes abonné.',
+      body: 'Pas de compte à créer, pas de mesure d’audience. Vos abonnements et votre progression restent sur votre appareil. L’application est financée par une bannière publicitaire Google AdMob ; le détail figure dans la politique de confidentialité.',
     },
   ],
 
@@ -81,7 +80,7 @@ const fr: AppCopy = {
   meta: {
     title: 'PodDroid — vos podcasts, sans distraction',
     description:
-      'Un lecteur de podcasts Android sans compte, sans publicité et sans pistage : file « Ma journée », flux immersif, minuteur de sommeil, écoute hors-ligne et Android Auto.',
+      'Un lecteur de podcasts Android sans compte : file « Ma journée », flux immersif, minuteur de sommeil, écoute hors-ligne et Android Auto.',
   },
 
   chips: [],
@@ -100,8 +99,6 @@ const en: AppCopy = {
 
   stats: [
     { value: '0', label: 'accounts' },
-    { value: '0', label: 'ads' },
-    { value: '0', label: 'trackers' },
     { value: '3', label: '“My day” lengths' },
   ],
 
@@ -150,7 +147,7 @@ const en: AppCopy = {
       id: 'privacy',
       kicker: 'Privacy',
       title: 'Your privacy first',
-      body: 'No account, no advertising, no trackers. Your subscriptions and progress stay on your device; the app only contacts the servers of the podcasts you subscribe to.',
+      body: 'No account to create, no analytics. Your subscriptions and progress stay on your device. The app is funded by a Google AdMob advertising banner; the details are in the privacy policy.',
     },
   ],
 
@@ -162,7 +159,7 @@ const en: AppCopy = {
   meta: {
     title: 'PodDroid — your podcasts, without the distraction',
     description:
-      'An Android podcast player with no account, no ads and no tracking: a “My day” queue, an immersive feed, a sleep timer, offline listening and Android Auto.',
+      'An Android podcast player with no account: a “My day” queue, an immersive feed, a sleep timer, offline listening and Android Auto.',
   },
 
   chips: [],

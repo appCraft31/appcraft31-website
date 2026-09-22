@@ -39,8 +39,8 @@ const SOURCES = {
   tengo: 'tenGO',
   meliz: 'meliz',
   motfleche: 'mot_fleche',
-  shizuku: null, // projet source non identifié
-  poddroid: 'podcast',
+  shizuku: 'timer_café',
+  poddroid: 'poddroid',
   ecopompe: 'Ecopompe',
 };
 
@@ -49,7 +49,7 @@ const MARKERS = {
   // `RewardedAd` et `InterstitialAd` seuls ne prouvent rien : ce sont aussi
   // les noms qu'une app donne à sa propre abstraction quand elle prépare une
   // régie sans en intégrer aucune. Un SDK réellement lié se nomme, lui.
-  ads: 'AdMob|GADMobileAds|google_mobile_ads|GoogleMobileAds|AppLovin|applovin|admob',
+  ads: 'AdMob|GADMobileAds|google_mobile_ads|GoogleMobileAds|com\\.google\\.android\\.gms\\.ads|play-services-ads|AppLovin|applovin|admob',
   purchases: 'in_app_purchase|StoreKit|SKProduct|Purchases\\.|RevenueCat|purchaseProduct',
   analytics: 'FirebaseAnalytics|Crashlytics|Sentry|firebase_analytics|Amplitude|Mixpanel',
   network: 'URLSession|http\\.get|Dio\\(|dart:io.*HttpClient|fetch\\(|Alamofire',

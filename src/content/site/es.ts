@@ -28,7 +28,7 @@ export const dict: SiteDict = {
   "common.learn_more": "Saber más",
   "apps.pill": "Aplicaciones",
   "apps.title": "Herramientas para el día a día",
-  "apps.subtitle": "Útiles, rápidas, sin anuncios ni rastreo.",
+  "apps.subtitle": "Útiles, rápidas, sin complicaciones.",
   "portfolio.title": "Nuestras Creaciones",
   "portfolio.subtitle": "Aplicaciones útiles y juegos cuidados, respetuosos con su privacidad.",
   "portfolio.filter_all": "Todos",

@@ -27,7 +27,7 @@ export const dict = {
   "common.learn_more": "En savoir plus",
   "apps.pill": "Applications",
   "apps.title": "Des outils du quotidien",
-  "apps.subtitle": "Utiles, rapides, sans pub ni tracking.",
+  "apps.subtitle": "Utiles, rapides, sans superflu.",
   "portfolio.title": "Nos Créations",
   "portfolio.subtitle": "Des applications utiles et des jeux soignés, respectueux de votre vie privée.",
   "portfolio.filter_all": "Tout",

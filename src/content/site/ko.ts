@@ -28,7 +28,7 @@ export const dict: SiteDict = {
   "common.learn_more": "자세히 보기",
   "apps.pill": "앱",
   "apps.title": "일상을 위한 도구",
-  "apps.subtitle": "유용하고 빠르며, 광고와 추적이 없습니다.",
+  "apps.subtitle": "유용하고 빠르며, 군더더기가 없습니다.",
   "portfolio.title": "우리의 작품",
   "portfolio.subtitle": "개인정보를 존중하고 정성스럽게 만든 유용한 앱과 게임.",
   "portfolio.filter_all": "전체",

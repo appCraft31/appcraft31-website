@@ -20,7 +20,7 @@ const audit = JSON.parse(readFileSync(join(ROOT, 'src/content/sdk-audit.json'), 
 
 /** Les tournures qui nient la publicité, dans les six langues du site. */
 const NO_ADS =
-  /sans publicit|aucune publicit|z[ée]ro publicit|no ads\b|ad-free|without ads|sin anuncios|sin publicidad|ohne werbung|werbefrei|広告はありません|広告なし|광고 없|광고가 없/i;
+  /sans publicit|sans pub\b|aucune publicit|z[ée]ro publicit|no ads\b|ad-free|without ads|sin anuncios|sin publicidad|ohne werbung|werbefrei|広告はありません|広告なし|広告も[^。]*なし|광고 없|광고가 없|광고와[^.]*없/i;
 
 /** Les tournures qui nient les achats intégrés. */
 const NO_IAP = /aucun achat|sans achat|no in-app purchase|keine in-app-käufe|sin compras/i;

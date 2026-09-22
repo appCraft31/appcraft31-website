@@ -21,6 +21,8 @@ export interface PrivacyStrings {
 
   localTitle: string;
   localIntro: (app: string) => string;
+  /** Variante quand les données sont aussi synchronisées dans iCloud. */
+  localIntroCloud: (app: string) => string;
 
   adsTitle: string;
   adsIntro: (app: string, network: string, formats: string) => string;
@@ -62,8 +64,10 @@ export interface PrivacyStrings {
 
   rightsTitle: string;
   rightsUninstall: string;
+  rightsUninstallCloud: string;
   rightsGdpr: (email: string) => string;
-  rightsAdNetworks: (networks: string) => string;
+  /** `inApp` : l'app offre-t-elle un accès à ses choix publicitaires ? */
+  rightsAdNetworks: (networks: string, inApp: boolean) => string;
 
   changesTitle: string;
   changes: (date: string) => string;

@@ -18,6 +18,8 @@ export const strings: PrivacyStrings = {
   localTitle: 'Ce qui reste sur votre appareil',
   localIntro: (app) =>
     `${app} enregistre les éléments suivants dans le stockage de votre appareil. Ils ne sont envoyés à aucun serveur et disparaissent si vous désinstallez l'application.`,
+  localIntroCloud: (app) =>
+    `${app} enregistre les éléments suivants dans le stockage de votre appareil. Ils ne sont envoyés à aucun serveur du studio.`,
 
   adsTitle: 'Publicité',
   adsIntro: (app, network, formats) =>
@@ -79,10 +81,12 @@ export const strings: PrivacyStrings = {
   rightsTitle: 'Vos droits',
   rightsUninstall:
     "Les données décrites ci-dessus restant sur votre appareil, le moyen le plus direct de les effacer est de désinstaller l'application : tout disparaît avec elle.",
+  rightsUninstallCloud:
+    "Désinstaller l'application efface les données enregistrées sur l'appareil. Leur copie iCloud, elle, se supprime depuis les réglages iCloud de votre appareil (gestion du stockage).",
   rightsGdpr: (email) =>
     `Le règlement général sur la protection des données vous ouvre par ailleurs un droit d'accès, de rectification, d'effacement, de limitation et d'opposition. Pour l'exercer, écrivez à ${email}.`,
-  rightsAdNetworks: (networks) =>
-    `Pour les données traitées par les régies publicitaires, ces droits s'exercent auprès de chacune d'elles : ${networks}. Vos choix publicitaires restent par ailleurs modifiables à tout moment depuis les réglages de l'application et ceux de votre appareil.`,
+  rightsAdNetworks: (networks, inApp) =>
+    `Pour les données traitées par les régies publicitaires, ces droits s'exercent auprès de chacune d'elles : ${networks}. ${inApp ? "Vos choix publicitaires restent par ailleurs modifiables à tout moment depuis les réglages de l'application et ceux de votre appareil." : 'Vos choix publicitaires restent par ailleurs modifiables à tout moment depuis les réglages de votre appareil.'}`,
 
   changesTitle: 'Modifications',
   changes: (date) =>

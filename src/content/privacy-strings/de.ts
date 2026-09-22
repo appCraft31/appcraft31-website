@@ -18,6 +18,8 @@ export const strings: PrivacyStrings = {
   localTitle: 'Was auf Ihrem Gerät bleibt',
   localIntro: (app) =>
     `${app} speichert das Folgende im Speicher Ihres Geräts. Nichts davon wird an einen Server gesendet, und alles verschwindet, wenn Sie die App deinstallieren.`,
+  localIntroCloud: (app) =>
+    `${app} speichert das Folgende im Speicher Ihres Geräts. Nichts davon wird an einen Server des Studios gesendet.`,
 
   adsTitle: 'Werbung',
   adsIntro: (app, network, formats) =>
@@ -78,10 +80,12 @@ export const strings: PrivacyStrings = {
   rightsTitle: 'Ihre Rechte',
   rightsUninstall:
     'Da die oben beschriebenen Daten auf Ihrem Gerät bleiben, ist der direkteste Weg, sie zu löschen, die App zu deinstallieren: Alles geht mit ihr.',
+  rightsUninstallCloud:
+    'Wenn Sie die App deinstallieren, werden die auf dem Gerät gespeicherten Daten gelöscht. Die iCloud-Kopie löschen Sie in den iCloud-Einstellungen Ihres Geräts (Speicher verwalten).',
   rightsGdpr: (email) =>
     `Die Datenschutz-Grundverordnung gewährt Ihnen darüber hinaus Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung und Widerspruch. Um sie auszuüben, schreiben Sie an ${email}.`,
-  rightsAdNetworks: (networks) =>
-    `Für die von den Werbenetzwerken verarbeiteten Daten sind diese Rechte gegenüber jedem einzelnen Netzwerk geltend zu machen: ${networks}. Ihre Werbeeinstellungen bleiben zudem jederzeit in den Einstellungen der App und Ihres Geräts änderbar.`,
+  rightsAdNetworks: (networks, inApp) =>
+    `Für die von den Werbenetzwerken verarbeiteten Daten sind diese Rechte gegenüber jedem einzelnen Netzwerk geltend zu machen: ${networks}. ${inApp ? 'Ihre Werbeeinstellungen bleiben zudem jederzeit in den Einstellungen der App und Ihres Geräts änderbar.' : 'Ihre Werbeeinstellungen bleiben zudem jederzeit in den Einstellungen Ihres Geräts änderbar.'}`,
 
   changesTitle: 'Änderungen',
   changes: (date) =>

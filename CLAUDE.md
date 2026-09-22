@@ -58,7 +58,11 @@ nomme un produit.
 ## Ce qu'on écrit sur les apps doit être vérifiable dans leur code
 
 Les projets sources sont dans `~/StudioProjects/`. `npm run audit:sdk` les
-parcourt et écrit `src/content/sdk-audit.json`.
+parcourt et affiche un tableau ; c'est
+`node scripts/audit-sdk.mjs --json > src/content/sdk-audit.json` qui met à
+jour le fichier que lit `check:claims`. Un slug sans dossier source dans
+`SOURCES` n'est vérifié par rien : Shizuku et PodDroid l'étaient, et leurs
+pages affirmaient « aucun achat » et « sans publicité » à tort.
 
 Attention : plusieurs pages de l'ancien site affirmaient l'inverse de ce que
 fait le code. Exemple relevé et corrigé : **Glyphe** annonçait « aucune

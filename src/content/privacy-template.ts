@@ -88,7 +88,7 @@ export function privacySections(
   sections.push({
     id: 'donnees-locales',
     title: s.localTitle,
-    body: [s.localIntro(appName), ...(facts.notes ?? []).map((n) => loc(lang, n))],
+    body: [facts.cloudSync ? s.localIntroCloud(appName) : s.localIntro(appName), ...(facts.notes ?? []).map((n) => loc(lang, n))],
     items: facts.localData.map((d) => loc(lang, d)),
   });
 
@@ -144,7 +144,13 @@ export function privacySections(
                 loc(lang, facts.analytics.purpose),
               )
             : s.analyticsDefault(appName, list(lang, facts.analytics.vendors)),
-          facts.analytics.optOut ? s.analyticsOptOut : s.analyticsAnonymous,
+          // L'interrupteur prime ; à défaut, l'anonymat n'est affirmé que s'il
+          // est vrai.
+          ...(facts.analytics.optOut
+            ? [s.analyticsOptOut]
+            : facts.analytics.anonymous === false
+              ? []
+              : [s.analyticsAnonymous]),
         ]
       : [s.analyticsNone(appName)],
   });
@@ -187,7 +193,7 @@ export function privacySections(
     title: s.childrenTitle,
     body: [
       facts.forChildren ? s.childrenAimed(appName) : s.childrenNotAimed(appName),
-      ...(facts.ads ? [s.childrenAds] : []),
+      ...(facts.ads && facts.ads.familyContent !== false ? [s.childrenAds] : []),
     ],
   });
 
@@ -196,12 +202,15 @@ export function privacySections(
     id: 'droits',
     title: s.rightsTitle,
     body: [
-      s.rightsUninstall,
+      facts.cloudSync ? s.rightsUninstallCloud : s.rightsUninstall,
       s.rightsGdpr(contactEmail),
       ...(facts.ads
         ? [
             s.rightsAdNetworks(
               list(lang, ['Google', ...(facts.ads.mediation ?? []).map((m) => m.name)]),
+              // Sans formulaire rouvrable, les choix ne se changent que dans
+              // les réglages de l'appareil.
+              facts.ads.ump && facts.ads.umpReopen !== false,
             ),
           ]
         : []),

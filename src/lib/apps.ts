@@ -333,8 +333,8 @@ export const APPS: AppData[] = [
     store: { ios: 'https://apps.apple.com/fr/app/shizuku-caf%C3%A9-filtre/id6777961527' },
     icon: '/assets/icons/shizuku.svg',
     screenshots: [],
-    sdk: { ads: false, purchases: false, analytics: false, network: false, accounts: false },
-    privacyUpdated: '2026-08-16',
+    sdk: { ads: false, purchases: true, analytics: false, network: false, accounts: false },
+    privacyUpdated: '2026-09-22',
   },
   {
     slug: 'poddroid',
@@ -344,8 +344,8 @@ export const APPS: AppData[] = [
     store: { android: 'https://play.google.com/store/apps/details?id=com.appcraft31.poddroid' },
     icon: '/assets/icons/poddroid.svg',
     screenshots: [],
-    sdk: { ads: false, purchases: false, analytics: false, network: false, accounts: false },
-    privacyUpdated: '2026-08-16',
+    sdk: { ads: true, purchases: false, analytics: false, network: true, accounts: false },
+    privacyUpdated: '2026-09-22',
   },
   {
     slug: 'ecopompe',

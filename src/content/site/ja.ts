@@ -28,7 +28,7 @@ export const dict: SiteDict = {
   "common.learn_more": "詳しく見る",
   "apps.pill": "アプリ",
   "apps.title": "毎日に役立つツール",
-  "apps.subtitle": "役立ち、軽快、広告もトラッキングもなし。",
+  "apps.subtitle": "役立ち、軽快、無駄なし。",
   "portfolio.title": "プロダクト",
   "portfolio.subtitle": "プライバシーを尊重した、便利なアプリと丁寧に作られたゲーム。",
   "portfolio.filter_all": "すべて",

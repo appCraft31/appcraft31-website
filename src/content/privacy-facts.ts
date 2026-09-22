@@ -606,16 +606,26 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     ],
   },
 
+  // Shizuku — relu dans ~/StudioProjects/timer_café le 22 septembre 2026 :
+  // `Bloom/Engine/StoreManager.swift` gère un achat unique « Shizuku Pro »
+  // (StoreKit 2) qui débloque bibliothèque complète, recettes personnalisées,
+  // pilotage vocal et Apple Watch. Aucune régie, aucune mesure d'audience.
   shizuku: {
     platforms: ['iOS', 'watchOS'],
     localData: ['recettes', 'historique de brassage', 'réglages'],
     ads: null,
-    purchases: [],
+    purchases: [
+      {
+        kind: 'non-consumable',
+        what: 'Shizuku Pro (bibliothèque complète, recettes personnalisées, pilotage vocal et Apple Watch)',
+        productId: 'com.appcraft31.bloom.pro',
+      },
+    ],
     analytics: null,
     network: null,
     accounts: null,
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-09-22',
     notes: [
       {
         fr: 'La reconnaissance vocale utilise le service de dictée d’Apple, activé uniquement quand vous allumez le micro depuis l’écran de brassage.',
@@ -624,10 +634,22 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     ],
   },
 
+  // Poddroid — relu dans ~/StudioProjects/poddroid le 22 septembre 2026 :
+  // `ui/components/BannerAd.kt` affiche une bannière AdMob (unité de
+  // production) sur la liste des podcasts et sur le lecteur ; l'ID
+  // d'application est déclaré dans `AndroidManifest.xml`. Aucun formulaire
+  // UMP n'est implémenté : la politique ne promet donc aucun écran de choix.
   poddroid: {
     platforms: ['Android'],
     localData: ['abonnements', 'progression d’écoute', 'épisodes téléchargés', 'réglages'],
-    ads: null,
+    ads: {
+      network: 'Google AdMob',
+      formats: ['banner'],
+      ump: false,
+      att: false,
+      umpReopen: false,
+      familyContent: false,
+    },
     purchases: [],
     analytics: null,
     network: {
@@ -636,11 +658,11 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     },
     accounts: null,
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-09-22',
     notes: [
       {
-        fr: 'L’application ne contacte que les serveurs des podcasts que vous écoutez et l’annuaire de recherche. Aucun compte, aucune régie publicitaire, aucun traceur.',
-        en: 'The app only contacts the servers of the podcasts you listen to and the search directory. No account, no ad network, no trackers.',
+        fr: 'En dehors de la bannière publicitaire, l’application ne contacte que les serveurs des podcasts que vous écoutez et l’annuaire de recherche. Aucun compte, aucune mesure d’audience.',
+        en: 'Apart from the advertising banner, the app only contacts the servers of the podcasts you listen to and the search directory. No account, no analytics.',
       },
     ],
   },

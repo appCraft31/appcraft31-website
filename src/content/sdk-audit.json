@@ -1,4 +1,26 @@
 {
+  "ding": {
+    "source": "ascenceur",
+    "hits": {
+      "ads": 5,
+      "purchases": 0,
+      "analytics": 5,
+      "network": 0,
+      "accounts": 0,
+      "consent": 2
+    }
+  },
+  "glowmi": {
+    "source": "tamagotchi",
+    "hits": {
+      "ads": 2,
+      "purchases": 4,
+      "analytics": 2,
+      "network": 1,
+      "accounts": 6,
+      "consent": 3
+    }
+  },
   "zellige": {
     "source": "Tectonic",
     "hits": {
@@ -13,7 +35,7 @@
   "pixelcraft": {
     "source": "pixel_art",
     "hits": {
-      "ads": 7,
+      "ads": 9,
       "purchases": 0,
       "analytics": 4,
       "network": 0,
@@ -79,11 +101,11 @@
   "binero": {
     "source": "binero",
     "hits": {
-      "ads": 12,
-      "purchases": 9,
-      "analytics": 74,
+      "ads": 14,
+      "purchases": 10,
+      "analytics": 75,
       "network": 58,
-      "accounts": 359,
+      "accounts": 361,
       "consent": 1
     }
   },
@@ -102,7 +124,7 @@
     "source": "zenkuro",
     "hits": {
       "ads": 2,
-      "purchases": 1,
+      "purchases": 2,
       "analytics": 0,
       "network": 0,
       "accounts": 0,
@@ -113,7 +135,7 @@
     "source": "contre",
     "hits": {
       "ads": 6,
-      "purchases": 0,
+      "purchases": 3,
       "analytics": 4,
       "network": 0,
       "accounts": 8,
@@ -138,7 +160,7 @@
       "purchases": 3,
       "analytics": 5,
       "network": 0,
-      "accounts": 6,
+      "accounts": 5,
       "consent": 1
     }
   },
@@ -147,7 +169,7 @@
     "hits": {
       "ads": 9,
       "purchases": 7,
-      "analytics": 7,
+      "analytics": 8,
       "network": 0,
       "accounts": 0,
       "consent": 3
@@ -169,9 +191,9 @@
     "hits": {
       "ads": 3,
       "purchases": 1,
-      "analytics": 0,
+      "analytics": 3,
       "network": 0,
-      "accounts": 8,
+      "accounts": 9,
       "consent": 1
     }
   },
@@ -202,19 +224,27 @@
     "hits": {
       "ads": 3,
       "purchases": 4,
-      "analytics": 0,
+      "analytics": 3,
       "network": 0,
       "accounts": 8,
       "consent": 1
     }
   },
   "shizuku": {
-    "error": "projet source non identifié"
-  },
-  "poddroid": {
-    "source": "podcast",
+    "source": "timer_café",
     "hits": {
       "ads": 0,
+      "purchases": 2,
+      "analytics": 0,
+      "network": 0,
+      "accounts": 0,
+      "consent": 0
+    }
+  },
+  "poddroid": {
+    "source": "poddroid",
+    "hits": {
+      "ads": 3,
       "purchases": 0,
       "analytics": 0,
       "network": 0,
@@ -226,7 +256,7 @@
     "source": "Ecopompe",
     "hits": {
       "ads": 0,
-      "purchases": 13,
+      "purchases": 8,
       "analytics": 1,
       "network": 7,
       "accounts": 0,

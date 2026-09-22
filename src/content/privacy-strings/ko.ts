@@ -14,6 +14,8 @@ export const strings: PrivacyStrings = {
   localTitle: '기기에 남는 것',
   localIntro: (app) =>
     `${app}은(는) 다음 항목을 기기 저장소에 보관합니다. 어떤 서버로도 전송되지 않으며, 앱을 삭제하면 함께 사라집니다.`,
+  localIntroCloud: (app) =>
+    `${app}은(는) 다음 항목을 기기 저장소에 보관합니다. 스튜디오 서버로는 전송되지 않습니다.`,
 
   adsTitle: '광고',
   adsIntro: (app, network, formats) =>
@@ -73,10 +75,12 @@ export const strings: PrivacyStrings = {
   rightsTitle: '이용자의 권리',
   rightsUninstall:
     '위에 설명한 데이터는 기기에 남으므로, 지우는 가장 확실한 방법은 앱을 삭제하는 것입니다. 모든 것이 앱과 함께 사라집니다.',
+  rightsUninstallCloud:
+    '앱을 삭제하면 기기에 저장된 데이터가 지워집니다. iCloud 사본은 기기의 iCloud 설정(저장 공간 관리)에서 삭제할 수 있습니다.',
   rightsGdpr: (email) =>
     `또한 유럽 일반개인정보보호법(GDPR)은 열람, 정정, 삭제, 처리 제한, 반대의 권리를 보장합니다. 행사를 원하시면 ${email} 로 연락해 주세요.`,
-  rightsAdNetworks: (networks) =>
-    `광고 네트워크가 처리하는 데이터에 대해서는 각 사업자에게 권리를 행사하게 됩니다: ${networks}. 광고 관련 선택은 앱 설정과 기기 설정에서 언제든지 바꿀 수 있습니다.`,
+  rightsAdNetworks: (networks, inApp) =>
+    `광고 네트워크가 처리하는 데이터에 대해서는 각 사업자에게 권리를 행사하게 됩니다: ${networks}. ${inApp ? '광고 관련 선택은 앱 설정과 기기 설정에서 언제든지 바꿀 수 있습니다.' : '광고 관련 선택은 기기 설정에서 언제든지 바꿀 수 있습니다.'}`,
 
   changesTitle: '변경 사항',
   changes: (date) =>

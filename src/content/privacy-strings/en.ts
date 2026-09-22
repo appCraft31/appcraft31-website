@@ -18,6 +18,8 @@ export const strings: PrivacyStrings = {
   localTitle: 'What stays on your device',
   localIntro: (app) =>
     `${app} stores the following in your device's own storage. None of it is sent to any server, and all of it disappears if you uninstall the app.`,
+  localIntroCloud: (app) =>
+    `${app} stores the following in your device's own storage. None of it is sent to any studio server.`,
 
   adsTitle: 'Advertising',
   adsIntro: (app, network, formats) =>
@@ -77,10 +79,12 @@ export const strings: PrivacyStrings = {
   rightsTitle: 'Your rights',
   rightsUninstall:
     'Since the data described above stays on your device, the most direct way to erase it is to uninstall the app: everything goes with it.',
+  rightsUninstallCloud:
+    'Uninstalling the app erases the data stored on the device. Its iCloud copy is deleted from your device’s iCloud settings (storage management).',
   rightsGdpr: (email) =>
     `The General Data Protection Regulation further grants you rights of access, rectification, erasure, restriction and objection. To exercise them, write to ${email}.`,
-  rightsAdNetworks: (networks) =>
-    `For data processed by the ad networks, those rights are exercised with each of them: ${networks}. Your advertising choices also remain changeable at any time from the app settings and your device settings.`,
+  rightsAdNetworks: (networks, inApp) =>
+    `For data processed by the ad networks, those rights are exercised with each of them: ${networks}. ${inApp ? 'Your advertising choices also remain changeable at any time from the app settings and your device settings.' : 'Your advertising choices also remain changeable at any time from your device settings.'}`,
 
   changesTitle: 'Changes',
   changes: (date) =>

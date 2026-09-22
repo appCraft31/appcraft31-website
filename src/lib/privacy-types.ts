@@ -57,6 +57,13 @@ export interface AdsFacts {
    * projet : `Liftoff Monetize (VungleAdsSDK)`.
    */
   mediation?: MediationPartner[];
+  /**
+   * Les annonces sont-elles restreintes au contenu familial
+   * (`maxAdContentRating`, `tagForChildDirectedTreatment`…) ? Non renseigné
+   * vaut oui, comme avant l'ajout du champ. À mettre à `false` quand le code
+   * ne configure rien de tel.
+   */
+  familyContent?: boolean;
 }
 
 /** Un réseau de médiation, avec le lien vers sa propre politique. */
@@ -90,6 +97,12 @@ export interface AnalyticsFacts {
    * plus rassurante : c'est une information que le RGPD impose de donner.
    */
   purpose?: Localized;
+  /**
+   * Les données sont-elles anonymes ? Non renseigné vaut oui. À mettre à
+   * `false` quand l'identifiant publicitaire peut leur être associé (ATT
+   * accepté) : « ne permettent pas de vous identifier » serait alors inexact.
+   */
+  anonymous?: boolean;
 }
 
 export interface NetworkFacts {
@@ -122,6 +135,12 @@ export interface PrivacyFacts {
   analytics: AnalyticsFacts | null;
   network: NetworkFacts | null;
   accounts: AccountFacts | null;
+  /**
+   * Les données locales sont-elles aussi synchronisées dans l'espace iCloud
+   * privé de l'utilisateur ? Elles ne « restent » alors plus sur l'appareil,
+   * et la désinstallation ne les efface pas : le gabarit le dit.
+   */
+  cloudSync?: boolean;
   /** L'app est-elle destinée aux enfants de moins de 13 ans ? */
   forChildren: boolean;
   /** Date de dernière mise à jour de la politique, au format ISO. */
