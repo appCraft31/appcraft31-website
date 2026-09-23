@@ -11,11 +11,11 @@ import { themeVars } from '@/lib/theme';
 import type { AppCopy, AppData, Lang, SectionId } from '@/lib/types';
 import { Diagram } from './Diagram';
 import { HeroVisual, hasHeroVisual } from './HeroVisual';
-import { FinalCta, Gallery, Hero, Items, PrivacyBlock, StatBand } from './sections';
+import { Faq, FinalCta, Gallery, Hero, Items, PrivacyBlock, StatBand } from './sections';
 import { StickyDownload } from './StickyDownload';
 import styles from './universe.module.css';
 import { JsonLd } from '@/components/site/JsonLd';
-import { breadcrumbList, organization, softwareApplication } from '@/lib/jsonld';
+import { breadcrumbList, faqPage, organization, softwareApplication } from '@/lib/jsonld';
 
 /** `var(--font-press), monospace` → `press`. */
 function displayKey(stack: string): string {
@@ -45,6 +45,9 @@ export function AppPage({
   const theme = getTheme(app.slug);
   const t = translator(lang);
   const byId = new Map(copy.sections.map((s) => [s.id, s]));
+  // La FAQ n'est balisée que si le gabarit l'affiche : un `FAQPage` sans
+  // texte visible correspondant serait un balisage trompeur.
+  const faq = theme.layout.includes('faq') ? faqPage(copy, lang, appPath(app)) : null;
 
   return (
     <>
@@ -53,6 +56,7 @@ export function AppPage({
           organization(),
           softwareApplication(app, copy, lang),
           breadcrumbList(lang, [{ name: app.name, path: appPath(app) }]),
+          ...(faq ? [faq] : []),
         ]}
       />
       <Header lang={lang} path={appPath(app)} />
@@ -126,6 +130,13 @@ export function AppPage({
             linkLabel={t('footer.privacy')}
             contactLabel={t('footer.support')}
           />
+        ) : null;
+      }
+
+      case 'faq': {
+        const section = byId.get('faq');
+        return section && copy.faq?.length ? (
+          <Faq key={id} section={section} entries={copy.faq} />
         ) : null;
       }
 

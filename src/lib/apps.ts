@@ -208,6 +208,9 @@ export const APPS: AppData[] = [
     screenshots: [],
     sdk: { ads: true, purchases: false, analytics: true, network: false, accounts: true },
     privacyUpdated: '2026-08-16',
+    // Gratuite, sans achat intégré : StoreKit n'y sert qu'à la demande d'avis
+    // (`requestReview`), aucun produit n'est déclaré.
+    free: true,
     privacySlug: 'contree-privacy',
   },
   {

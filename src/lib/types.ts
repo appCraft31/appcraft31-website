@@ -90,6 +90,8 @@ export type SectionId =
   | 'diagram'
   | 'rules'
   | 'privacy'
+  /* Questions fréquentes : rendues en clair et reprises en `FAQPage`. */
+  | 'faq'
   | 'cta';
 
 export interface StoreLinks {
@@ -133,6 +135,12 @@ export interface AppData {
   /** Date de dernière mise à jour de la politique, format ISO. */
   privacyUpdated: string;
   /**
+   * Téléchargement gratuit, sans achat intégré — vérifié dans le code de
+   * l'app et sur sa fiche store. Seul cas où le JSON-LD déclare une `offers`
+   * (prix 0) : un prix nul est un fait, pas une estimation.
+   */
+  free?: boolean;
+  /**
    * Produit non listé : ses deux pages sont bien engendrées et servies, mais
    * il n'apparaît ni sur l'accueil, ni dans le pied de page, ni dans le
    * sitemap, et ses pages portent un `noindex`.
@@ -171,6 +179,17 @@ export interface AppCopy {
   /** Description courte pour la carte de l'accueil et les métadonnées. */
   meta: { title: string; description: string };
   chips: string[];
+  /**
+   * Questions fréquentes, affichées par le bloc `faq` et reprises mot pour
+   * mot dans le `FAQPage` du JSON-LD : Google exige que les deux concordent.
+   */
+  faq?: { question: string; answer: string }[];
+  /** Compléments schema.org, dans la langue de la page. */
+  schema?: {
+    /** Autres noms sous lesquels on cherche l'app (nom store, synonymes). */
+    alternateName?: string[];
+    featureList?: string[];
+  };
 }
 
 export interface CopySection {

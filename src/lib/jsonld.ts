@@ -7,11 +7,12 @@
  * nouveau sur ce point précis.
  *
  * Règle de fabrication : rien qui ne se lise dans `AppData` ou dans les textes
- * déjà écrits. En particulier **pas d'`offers` ni d'`aggregateRating`** — les
- * deux déclencheraient un résultat enrichi, mais on n'a ni prix structuré ni
+ * déjà écrits. En particulier **pas d'`aggregateRating`** : on n'a pas de
  * notes, et les inventer serait à la fois un mensonge et une violation des
  * règles de Google. Un balisage exact sans vignette vaut mieux qu'une vignette
- * fausse.
+ * fausse. Une `offers` n'est déclarée que pour une app marquée `free` dans le
+ * registre — gratuite et sans achat intégré, vérifié dans son code : le prix
+ * nul est alors un fait, pas une estimation.
  */
 
 import { SOCIAL } from '@/components/site/social';
@@ -52,6 +53,7 @@ export function softwareApplication(app: AppData, copy: AppCopy, lang: Lang) {
     app.store.ios ? 'iOS' : null,
     app.store.android ? 'Android' : null,
   ].filter(Boolean);
+  const stores = [app.store.ios, app.store.android].filter((url): url is string => !!url);
 
   return {
     '@type': app.category === 'game' ? 'GameApplication' : 'MobileApplication',
@@ -68,11 +70,53 @@ export function softwareApplication(app: AppData, copy: AppCopy, lang: Lang) {
       : {}),
     inLanguage: LANG_META[lang].htmlLang,
     // Les fiches store sont la même œuvre à une autre adresse.
-    ...(app.store.ios || app.store.android
-      ? { sameAs: [app.store.ios, app.store.android].filter(Boolean) }
+    ...(stores.length ? { sameAs: stores } : {}),
+    // Le lien store est l'adresse de téléchargement et d'installation.
+    ...(stores.length
+      ? { downloadUrl: one(stores), installUrl: one(stores) }
       : {}),
+    ...(app.free
+      ? {
+          offers: {
+            '@type': 'Offer',
+            price: 0,
+            priceCurrency: 'EUR',
+            availability: 'https://schema.org/InStock',
+            ...(stores.length ? { url: stores[0] } : {}),
+          },
+        }
+      : {}),
+    ...(copy.schema?.alternateName?.length
+      ? { alternateName: one(copy.schema.alternateName) }
+      : {}),
+    ...(copy.schema?.featureList?.length ? { featureList: copy.schema.featureList } : {}),
     publisher: { '@id': STUDIO_ID },
     privacyPolicy: absolute(localizedUrl(lang, privacyPath(app))),
+  };
+}
+
+/** Une valeur seule n'a pas à être emballée dans un tableau. */
+function one<T>(values: T[]): T | T[] {
+  return values.length === 1 ? values[0] : values;
+}
+
+/**
+ * Les questions fréquentes d'une page.
+ *
+ * Construit depuis `copy.faq`, le même tableau que rend le bloc `faq` : le
+ * balisage ne peut donc pas diverger du texte visible, ce que Google exige.
+ */
+export function faqPage(copy: AppCopy, lang: Lang, path: string) {
+  if (!copy.faq?.length) return null;
+  return {
+    '@type': 'FAQPage',
+    url: absolute(localizedUrl(lang, path)),
+    inLanguage: LANG_META[lang].htmlLang,
+    mainEntity: copy.faq.map((entry) => ({
+      '@type': 'Question',
+      name: entry.question,
+      acceptedAnswer: { '@type': 'Answer', text: entry.answer },
+    })),
   };
 }
 

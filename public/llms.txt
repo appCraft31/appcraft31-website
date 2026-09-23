@@ -1,0 +1,47 @@
+# AppCraft31
+
+> Studio indépendant toulousain. Des applications et des jeux soignés pour iPhone et Android, qui disent franchement ce qu’ils font de vos données.
+
+Chaque produit a une page de présentation (`/apps/<slug>.html`) et une politique de confidentialité (`/privacy/…`). Les pages sont en français à l’adresse sans préfixe ; les versions anglaises sont sous `/en/` (par exemple https://appcraft31.app/en/apps/contree.html), et le site existe aussi en japonais (`/ja/`), coréen (`/ko/`), espagnol (`/es/`) et allemand (`/de/`). Contact : appcraft31@gmail.com.
+
+## À la une : Contrée : Belote & Coinche (iPhone)
+
+- [Contrée : Belote & Coinche](https://appcraft31.app/apps/contree.html) : la belote contrée, aussi appelée coinche, sur iPhone. Toutes les règles : annonces de 80 à 160 puis capot à 250, contre (×2) et surcontre (×4), obligations de fournir, couper et monter, belote-rebelote (+20), dix de der.
+- En solo, vous et votre partenaire contre deux adversaires, tous tenus par une IA en trois niveaux (Facile, Normal, Difficile — en Difficile, l’IA mémorise les cartes). Parties en 500, 1000 ou 1500 points, sauvegarde automatique, statistiques, écran de règles, VoiceOver.
+- Multijoueur en ligne via Game Center : partie rapide ou invitation d’amis ; des bots occupent les sièges vides et remplacent les joueurs qui partent. Le solo se joue hors ligne.
+- Gratuit, sans compte à créer, sans achat intégré ; financé par la publicité (bannière à l’accueil, interstitiel entre certaines manches, jamais pendant le jeu). iPhone uniquement, pas de version Android.
+- [App Store](https://apps.apple.com/app/id6790448405) · [English page](https://appcraft31.app/en/apps/contree.html)
+
+## Jeux
+
+- [Ding!](https://appcraft31.app/apps/ding.html) (iPhone, bientôt disponible) : Un jeu de gestion d’ascenseur gratuit sur iPhone : 30 missions dans trois immeubles, un défi chaque jour et un atelier pour améliorer votre cabine. Regroupez les destinations, surveillez la patience, évitez les détours.
+- [Glowmi](https://appcraft31.app/apps/glowmi.html) (iPhone) : Un animal virtuel gratuit sur iPhone et iPad : faites éclore l’une des 24 espèces, prenez soin d’elle jour après jour, jouez à 4 mini-jeux et habillez votre compagnon.
+- [Zellige](https://appcraft31.app/apps/zellige.html) (iPhone, Android) : Jeu de Tectonic (Suguru) en carreaux de faïence : grilles engendrées sur votre appareil et vérifiées à solution unique, du 5×5 au 12×12, grille du jour, notes, annulation, thème sombre. Sans compte, en 21 langues.
+- [PixelCraft](https://appcraft31.app/apps/pixelcraft.html) (iPhone) : 120 dessins pixel art à colorier case par case, sans chrono ni pénalité. Timelapse de chaque création, mode libre et cinq ambiances de couleurs. Jouable hors ligne, sans compte à créer.
+- [Hold Fire](https://appcraft31.app/apps/holdfire.html) (iPhone, Android) : Un tower defense où c’est vous qui tirez : visez au doigt, posez cinq types de tourelles entre les vagues et tenez cent vagues jusqu’au Léviathan. Hors ligne, sans compte.
+- [Le Sudoku du jour](https://appcraft31.app/apps/sudoku.html) (iPhone, Android) : Un défi de sudoku quotidien dont la variante change chaque jour : classique, X, killer, irrégulier, thermomètre. Carnet de tampons, rangs, archives — sans compte et hors connexion.
+- [Talon](https://appcraft31.app/apps/talon.html) (iPhone, Android) : Un solitaire gratuit qui se joue hors ligne, sans bannière et sans coupure en pleine partie. Chaque donne est gagnable et affiche son « par », le nombre de coups de la meilleure solution connue.
+- [Tinta](https://appcraft31.app/apps/tinta.html) (iPhone) : 300 grilles de déduction pure : les pastilles comptent les couleurs, les signes = et ≠ relient les voisines, et chaque grille a une solution unique vérifiée par un moteur logique.
+- [Binero](https://appcraft31.app/apps/binero.html) (iPhone, Android) : Remplissez la grille de 0 et de 1 par pure déduction : des niveaux sans fin du 6×6 au 14×14, une grille du jour en 14×14 et un classement mondial via Game Center.
+- [Glyphe](https://appcraft31.app/apps/glyphe.html) (iPhone) : Percez un code secret de quatre glyphes en six essais. Une grille par jour, la même pour tous, avec classement Game Center, mode daltonien et jeu hors connexion.
+- [Zenkuro](https://appcraft31.app/apps/zenkuro.html) (iPhone) : Des grilles de kakuro générées à l’infini, chacune avec une solution unique. Design pastel, mode crayon, indices, chrono et records — jouable hors ligne.
+- [SquareLink](https://appcraft31.app/apps/combo.html) (iPhone) : Un puzzle de tuiles à quatre faces : fais correspondre les chiffres avec les voisines, enchaîne les combos jusqu’à ×3 et vise l’encastrement parfait à +500 points.
+- [randompix](https://appcraft31.app/apps/randompix.html) (iPhone, Android) : Le party game qui pioche dans vos vraies photos : de 2 à 10 joueurs, un code à six chiffres, dix secondes pour deviner, combos et podium animé. Photos éphémères et sans compte.
+- [GraviWords](https://appcraft31.app/apps/graviwords.html) (iPhone) : Les lettres tombent et s’empilent : trace des mots dans huit directions pour les faire exploser avant que la pile ne déborde. Sept pouvoirs, boutique et classement Game Center.
+- [Orbis](https://appcraft31.app/apps/orbis.html) (iPhone) : Appuie et maintiens pour déployer un cercle de lumière, relâche pour l’ancrer, couvre 75 % de l’arène sans frôler le vide. Niveaux infinis, son entièrement synthétisé.
+- [tenGO](https://appcraft31.app/apps/tengo.html) (iPhone, Android) : Trace un chemin dont la somme fait exactement 10 : les bulles éclatent, la grille s’effondre, les combos s’enchaînent. Gratuit sur iPhone, en dix langues.
+- [Mêliz](https://appcraft31.app/apps/meliz.html) (iPhone, Android, navigateur) : Un jeu de mots mêlés au design pastel : six univers, trois difficultés, chrono et scores conservés par thème. Jouable sur iPhone, Android et directement en ligne sur https://appcraft31.app/play/meliz/.
+- [Mots Fléchés](https://appcraft31.app/apps/motfleche.html) (iPhone) : Des mots fléchés au style vintage : définitions et flèches, thèmes à débloquer avec vos étoiles, indices quand vous bloquez. Sans compte et jouable hors connexion.
+
+## Applications
+
+- [Remindo](https://appcraft31.app/apps/remindo.html) (iPhone, Android) : Notes, rappels datés, routines et objectifs chiffrés dans une seule app, sans compte ni cloud. Vos notes restent sur le téléphone et l’app fonctionne sans réseau.
+- [Keeply](https://appcraft31.app/apps/keeply.html) (iPhone) : Des milliers de photos transformées en missions courtes : doublons, similaires, captures d’écran, vidéos lourdes. Espace récupérable annoncé, corbeille de sécurité, 100 % sur l’appareil.
+- [Shizuku](https://appcraft31.app/apps/shizuku.html) (iPhone) : Le minuteur pour réussir votre café filtre : étapes de versement chronométrées, commandes vocales, pilotage depuis l’Apple Watch et calculateur de ratio.
+- [PodDroid](https://appcraft31.app/apps/poddroid.html) (Android) : Un lecteur de podcasts Android sans compte : file « Ma journée », flux immersif, minuteur de sommeil, écoute hors-ligne et Android Auto.
+- [EcoPompe](https://appcraft31.app/apps/ecopompe.html) (iPhone, Android) : Comparez les prix des ~10 000 stations-service de France à partir des données officielles : la moins chère près de vous, vos favorites, l’historique des prix. Sans publicité ni traceur.
+
+## Optional
+
+- [Accueil du site](https://appcraft31.app/) : le catalogue complet.
+- [Plan du site](https://appcraft31.app/sitemap.xml) : toutes les pages, avec leurs versions dans les six langues.

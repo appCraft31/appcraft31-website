@@ -270,7 +270,7 @@ export const THEMES: Record<string, AppTheme> = {
     backdrop: 'card-felt',
     shape: { radius: 12, border: 'soft' },
     motion: 'medium',
-    layout: ['hero-full', 'how-it-plays', 'stat-band', 'gallery-tilt', 'privacy', 'cta'],
+    layout: ['hero-full', 'how-it-plays', 'stat-band', 'gallery-tilt', 'privacy', 'faq', 'cta'],
   },
 
   keeply: {

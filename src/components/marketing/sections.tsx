@@ -231,6 +231,47 @@ export function PrivacyBlock({
   );
 }
 
+/* ── Questions fréquentes ───────────────────────────────────────────────── */
+
+/**
+ * Les questions qu'on pose vraiment sur l'app, en clair dans la page.
+ *
+ * Pas d'accordéon : une réponse repliée est une réponse que le lecteur ne voit
+ * pas d'emblée. Le même tableau alimente le `FAQPage` du JSON-LD.
+ */
+export function Faq({
+  section,
+  entries,
+}: {
+  section: CopySection;
+  entries: NonNullable<AppCopy['faq']>;
+}) {
+  return (
+    <section className={`${styles.section} ${styles.faq}`}>
+      <div className={styles.inner}>
+        <header className={`${styles.sectionHead} reveal`}>
+          {section.kicker && <p className={styles.kicker}>{section.kicker}</p>}
+          <h2 className={styles.sectionTitle}>{section.title}</h2>
+          {section.body && <p className={styles.sectionBody}>{section.body}</p>}
+        </header>
+
+        <dl className={styles.faqList}>
+          {entries.map((entry, i) => (
+            <div
+              key={entry.question}
+              className="reveal"
+              style={{ '--reveal-delay': `${Math.min(i, 6) * 50}ms` } as never}
+            >
+              <dt>{entry.question}</dt>
+              <dd>{entry.answer}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+  );
+}
+
 /* ── Appel final ────────────────────────────────────────────────────────── */
 
 export function FinalCta({

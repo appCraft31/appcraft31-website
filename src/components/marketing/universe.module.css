@@ -384,6 +384,38 @@
   text-underline-offset: 3px;
 }
 
+/* ── Questions fréquentes ──────────────────────────────────────────────── */
+
+.faqList {
+  display: grid;
+  gap: 14px;
+  max-width: 48rem;
+  margin: 0;
+}
+
+.faqList > div {
+  padding: 22px 24px;
+  border: var(--u-border-w) solid color-mix(in srgb, var(--u-ink) 14%, transparent);
+  border-radius: var(--u-radius);
+  background: color-mix(in srgb, var(--u-surface) 70%, transparent);
+}
+
+.faqList dt {
+  margin: 0 0 8px;
+  font-family: var(--u-font-display);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--u-accent-text);
+}
+
+.faqList dd {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--u-ink) 76%, transparent);
+}
+
 /* ── Appel final ───────────────────────────────────────────────────────── */
 
 .cta {
@@ -460,6 +492,10 @@
 [data-backdrop='starfield'] .items li,
 [data-backdrop='card-felt'] .items li,
 [data-backdrop='waveform'] .items li,
+[data-backdrop='neon-grid'] .faqList > div,
+[data-backdrop='starfield'] .faqList > div,
+[data-backdrop='card-felt'] .faqList > div,
+[data-backdrop='waveform'] .faqList > div,
 [data-backdrop='neon-grid'] .privacyCard,
 [data-backdrop='starfield'] .privacyCard,
 [data-backdrop='card-felt'] .privacyCard,
