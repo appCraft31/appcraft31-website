@@ -96,21 +96,22 @@ const MOTIFS: Record<string, React.ReactNode> = {
     </svg>
   ),
 
-  /* Hold Fire — le couloir, la ligne de tir, le noyau. */
+  /* Hold Fire — le couloir, la ligne de tir, le noyau. Couloir aux couleurs
+     du « système » (--u-line), défense en --u-accent-2, noyau blanc au cœur
+     d'une menace en --u-accent : la grammaire du jeu. */
   holdfire: (
     <svg viewBox="0 0 440 120" className={styles.svg}>
-      <path d="M10 96 H430" stroke="var(--u-accent)" strokeWidth="24" opacity="0.14" />
-      <path d="M10 96 H430" stroke="var(--u-accent)" strokeWidth="1" opacity="0.5" />
-      <path d="M10 56 H430" stroke="var(--u-accent)" strokeWidth="1" strokeDasharray="6 10" opacity="0.3" />
-      <circle cx="46" cy="96" r="13" fill="none" stroke="var(--u-accent)" strokeWidth="2.5" />
+      <path d="M10 96 H430" stroke="var(--u-line, var(--u-accent))" strokeWidth="24" opacity="0.16" />
+      <path d="M10 96 H430" stroke="var(--u-line, var(--u-accent))" strokeWidth="1" opacity="0.6" />
+      <path d="M10 56 H430" stroke="var(--u-line, var(--u-accent))" strokeWidth="1" strokeDasharray="14 5 3 5" opacity="0.4" />
+      <circle cx="46" cy="96" r="13" fill="none" stroke="var(--u-accent-2)" strokeWidth="2.5" />
       <path d="M46 96 L360 46" stroke="var(--u-accent-2)" strokeWidth="2.5" className={styles.shot} />
-      {[150, 250, 350].map((x, i) => (
-        <rect
+      {[150, 250].map((x, i) => (
+        <circle
           key={x}
-          x={x}
-          y="30"
-          width="26"
-          height="26"
+          cx={x + 13}
+          cy="30"
+          r="12"
           fill="none"
           stroke="var(--u-accent-2)"
           strokeWidth="2"
@@ -118,7 +119,8 @@ const MOTIFS: Record<string, React.ReactNode> = {
           style={{ '--i': i } as never}
         />
       ))}
-      <circle cx="363" cy="43" r="6" fill="var(--u-accent-2)" className={styles.core} />
+      <path d="M363 29 L378 37 L378 53 L363 61 L348 53 L348 37 Z" fill="none" stroke="var(--u-accent)" strokeWidth="2.5" />
+      <circle cx="363" cy="45" r="5" fill="var(--u-ink)" className={styles.core} />
     </svg>
   ),
 

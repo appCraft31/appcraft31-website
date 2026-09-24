@@ -106,10 +106,17 @@ export const APPS: AppData[] = [
       ios: 'https://apps.apple.com/fr/app/hold-fire-tower-defense/id6801176503',
       android: 'https://play.google.com/store/apps/details?id=com.appcraft31.holdfire',
     },
-    icon: '/assets/icons/holdfire.svg',
-    screenshots: [],
-    sdk: { ads: true, purchases: false, analytics: true, network: false, accounts: false },
-    privacyUpdated: '2026-08-16',
+    icon: '/assets/icons/holdfire.webp',
+    screenshots: [
+      { src: '/assets/holdfire-combat.webp', alt: "Une vague en cours : des ennemis magenta descendent le couloir vers la base, tourelles cyan de part et d'autre, canon en bas de l'écran" },
+      { src: '/assets/holdfire-ligne.webp', alt: 'Le canon au niveau maximum et une tourelle de niveau 3, grossis dans deux loupes : leur apparence change avec le niveau' },
+      { src: '/assets/holdfire-noyaux.webp', alt: "Le tir du canon sur le noyau blanc d'un ennemi, qui encaisse trois fois plus de dégâts" },
+      { src: '/assets/holdfire-boss.webp', alt: 'Un boss hexagonal magenta au milieu des couloirs, face aux tourelles cyan' },
+    ],
+    // Le réseau sert à la publicité et à Firebase (statistiques, plantages) ;
+    // le jeu lui-même se joue hors ligne.
+    sdk: { ads: true, purchases: false, analytics: true, network: true, accounts: false },
+    privacyUpdated: '2026-09-24',
   },
   {
     slug: 'sudoku',

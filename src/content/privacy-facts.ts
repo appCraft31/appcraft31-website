@@ -346,25 +346,83 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
       },
     ],
   },
+  // Hold Fire — lu dans ~/StudioProjects/Hold_fire (version 2.0) le 24
+  // septembre 2026. `pubspec.yaml` lie google_mobile_ads,
+  // app_tracking_transparency, gma_mediation_unity, gma_mediation_liftoffmonetize,
+  // firebase_analytics et firebase_crashlytics ; aucun achat intégré.
+  // `lib/game/systems/ads.dart` : formulaire UMP d'abord, puis ATT sur iOS,
+  // puis initialisation d'AdMob seulement si `canRequestAds()`. Aucun appel à
+  // `showPrivacyOptionsForm` (d'où `umpReopen: false`), aucune restriction de
+  // contenu (`familyContent: false`). `ios/Podfile.lock` tire UnityAds et
+  // VungleAds (Liftoff). `lib/game/systems/telemetry.dart` : Firebase actif en
+  // version publiée, sans interrupteur dans le jeu ; événements `run_ended`
+  // et `pact_signed`, plus Crashlytics. Le pod GoogleAppMeasurement embarque
+  // IdentitySupport : l'identifiant publicitaire peut être associé si l'ATT
+  // est accepté, d'où `anonymous: false`. Données locales : meta_store,
+  // run_store, settings_store, review_store (SharedPreferences).
   holdfire: {
-    platforms: ['iOS'],
-    localData: ['record', 'fragments', 'modules débloqués', 'réglages'],
+    platforms: ['iOS', 'Android'],
+    localData: [
+      {
+        fr: 'record (vague la plus haute atteinte)',
+        en: 'best score (highest wave reached)',
+      },
+      {
+        fr: 'fragments et modules permanents débloqués',
+        en: 'fragments and permanent modules unlocked',
+      },
+      {
+        fr: 'partie en cours, pour la reprendre après une interruption',
+        en: 'the run in progress, so it can be resumed after an interruption',
+      },
+      {
+        fr: 'réglages (langue, son, musique, vibrations)',
+        en: 'settings (language, sound, music, vibration)',
+      },
+      {
+        fr: "nombre de parties terminées et date de la dernière demande d'avis, pour ne pas la répéter",
+        en: 'number of finished runs and date of the last review request, so it is not repeated',
+      },
+    ],
     ads: {
       network: 'Google AdMob',
-      formats: ['rewarded'],
+      formats: ['interstitial', 'rewarded'],
       ump: true,
       att: true,
+      umpReopen: false,
+      familyContent: false,
+      mediation: [
+        { name: 'Unity Ads', privacyUrl: 'https://unity.com/legal/game-player-and-app-user-privacy-policy' },
+        { name: 'Liftoff Monetize (VungleAdsSDK)', privacyUrl: 'https://liftoff.ai/privacy-policy/' },
+      ],
     },
     purchases: [],
-    analytics: null,
-    network: null,
+    analytics: {
+      vendors: ['Firebase Analytics', 'Firebase Crashlytics'],
+      optOut: false,
+      anonymous: false,
+      purpose: {
+        fr: "mesurer le déroulement des parties (vague et secteur atteints, victoire ou défaite, sursis utilisé, fragments gagnés, pactes signés) afin d'équilibrer la difficulté, et recevoir les rapports de plantage pour corriger les erreurs. Ces mesures ne contiennent ni nom ni contenu personnel ; Firebase y associe toutefois un identifiant d'installation, et l'identifiant publicitaire de l'appareil — sur iPhone, seulement si vous avez accepté la demande de suivi. Elles ne se désactivent pas depuis le jeu",
+        en: 'measure how runs unfold (wave and sector reached, victory or defeat, revive used, fragments earned, pacts signed) so as to balance the difficulty, and receive crash reports to fix errors. These measurements contain no name or personal content; Firebase does however attach an installation identifier, and the device advertising identifier — on iPhone, only if you accepted the tracking request. They cannot be switched off from within the game',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "le chargement des publicités et de leur écran de consentement, puis l'envoi des statistiques de partie et des rapports de plantage à Firebase. Le jeu lui-même se joue hors ligne",
+        en: 'loading advertising and its consent form, then sending run statistics and crash reports to Firebase. The game itself plays offline',
+      },
+    },
     accounts: null,
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-09-24',
     notes: [
       {
-        fr: 'La publicité n’apparaît qu’en fin de partie, et seulement si vous choisissez de la regarder pour doubler vos fragments ou reprendre la vague. Aucune publicité pendant la partie.',
-        en: 'Advertising only appears at the end of a run, and only if you choose to watch it to double your fragments or resume the wave. No ads during play.',
+        fr: "Hold Fire est gratuit grâce à la publicité, et aucun achat intégré ne la retire. Un interstitiel peut s'afficher toutes les trois vagues, au début de la phase de construction : le jeu est alors figé, et l'annonce n'interrompt jamais une vague en cours. Un autre peut s'afficher en revenant à l'accueil, après une fin de partie ou un abandon depuis la pause, au plus une fois toutes les trois parties et jamais moins de quatre minutes après une autre annonce. Les deux vidéos récompensées — le sursis, qui permet de reprendre la vague, et le doublement des fragments en fin de partie — ne se lancent que si vous appuyez vous-même sur leur bouton.",
+        en: 'Hold Fire is free thanks to advertising, and no in-app purchase removes it. An interstitial may appear every three waves, at the start of the build phase: the game is frozen, and the ad never interrupts a wave in progress. Another may appear when you return to the home screen, after a run ends or when you quit from the pause menu, at most once every three runs and never less than four minutes after another ad. The two rewarded videos — the revive, which lets you resume the wave, and doubling your fragments at the end of a run — only start if you tap their button yourself.',
+      },
+      {
+        fr: "L'écran de consentement publicitaire (UMP) puis, sur iPhone, la demande de suivi (ATT) sont présentés au lancement. Un refus ne bloque jamais le jeu : les publicités restent affichées, sans personnalisation.",
+        en: 'The advertising consent form (UMP) and then, on iPhone, the tracking request (ATT) are shown at launch. Declining never blocks the game: ads are still shown, without personalisation.',
       },
     ],
   },

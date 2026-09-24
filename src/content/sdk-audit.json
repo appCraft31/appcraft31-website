@@ -55,7 +55,7 @@
     }
   },
   "holdfire": {
-    "source": "tir_game",
+    "source": "Hold_fire",
     "hits": {
       "ads": 5,
       "purchases": 0,

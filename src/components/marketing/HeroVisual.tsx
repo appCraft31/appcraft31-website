@@ -12,11 +12,14 @@ import type { AppData } from '@/lib/types';
 
 /** Visuels dessinés à la main, par produit. */
 const ARTWORK: Record<string, { src: string; alt: string; width: number; height: number }> = {
+  // Le logotype du jeu (`lib/ui/widgets/wordmark.dart`) : lettres de Michroma
+  // converties en tracés — un SVG chargé en <img> ne voit pas les polices de
+  // la page —, dégradé violet → magenta, filet interrompu et réticule.
   holdfire: {
-    src: '/assets/holdfire/wordmark.svg',
-    alt: 'Le logotype Hold Fire, en néon cyan et rose',
-    width: 569,
-    height: 382,
+    src: '/assets/holdfire/wordmark-signal.svg',
+    alt: 'Le logotype Hold Fire : HOLD au-dessus de FIRE en capitales larges, dégradé du violet au magenta, séparés par un filet pointillé et un petit réticule',
+    width: 510,
+    height: 280,
   },
 };
 

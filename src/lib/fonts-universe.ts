@@ -14,8 +14,11 @@
 import {
   Baloo_2,
   Chakra_Petch,
+  IBM_Plex_Mono,
+  IBM_Plex_Sans_Condensed,
   Instrument_Serif,
   JetBrains_Mono,
+  Michroma,
   Newsreader,
   Nunito,
   Outfit,
@@ -100,6 +103,30 @@ const jetbrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains',
 });
 
+// Michroma n'existe qu'en un seul poids : la demander en 700 ferait fabriquer
+// un faux gras par le navigateur. Les univers qui l'emploient le savent.
+const michroma = Michroma({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  weight: '400',
+  variable: '--font-michroma',
+});
+const plexCondensed = IBM_Plex_Sans_Condensed({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  weight: ['500', '600'],
+  variable: '--font-plexcond',
+});
+const plexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  weight: ['500', '600'],
+  variable: '--font-plexmono',
+});
+
 /** Variable CSS → classe qui la définit. */
 const BY_VAR: Record<string, string> = {
   '--font-chakra': chakraPetch.variable,
@@ -113,15 +140,22 @@ const BY_VAR: Record<string, string> = {
   '--font-press': pressStart.variable,
   '--font-playfair': playfair.variable,
   '--font-jetbrains': jetbrainsMono.variable,
+  '--font-michroma': michroma.variable,
+  '--font-plexcond': plexCondensed.variable,
+  '--font-plexmono': plexMono.variable,
 };
 
 /**
  * Classes à poser sur la page d'un produit, déduites des `var(--font-…)`
  * citées par son thème. Une police non citée n'est pas chargée.
  */
-export function fontClassesFor(fonts: { display: string; body: string }): string {
+export function fontClassesFor(fonts: {
+  display: string;
+  body: string;
+  numeric?: string;
+}): string {
   const cited = new Set<string>();
-  for (const stack of [fonts.display, fonts.body]) {
+  for (const stack of [fonts.display, fonts.body, fonts.numeric ?? '']) {
     for (const [, name] of stack.matchAll(/var\((--font-[a-z]+)\)/g)) {
       const className = BY_VAR[name];
       if (className) cited.add(className);

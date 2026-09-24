@@ -31,6 +31,9 @@ const F = {
   mono: 'var(--font-jetbrains), ui-monospace, monospace',
   inter: 'var(--font-inter), Inter, system-ui, sans-serif',
   geometric: 'var(--font-outfit), system-ui, sans-serif',
+  wide: 'var(--font-michroma), system-ui, sans-serif',
+  condensed: 'var(--font-plexcond), system-ui, sans-serif',
+  plexMono: 'var(--font-plexmono), ui-monospace, monospace',
 } as const;
 
 export const THEMES: Record<string, AppTheme> = {
@@ -105,23 +108,30 @@ export const THEMES: Record<string, AppTheme> = {
     motion: 'calm',
     layout: ['hero-offset', 'stat-band', 'how-it-plays', 'gallery-stack', 'features', 'privacy', 'cta'],
   },
-  /* ── Tower defense néon : la palette vient de lib/config/palette.dart ───── */
+  /* ── Tower defense « Signal magenta » : lib/config/palette.dart et
+     lib/ui/theme/chrome.dart. Noir violet, magenta pour la signature (et la
+     menace, en jeu), cyan réservé à la défense, violet pour le système. ──── */
   holdfire: {
     palette: {
-      ink: '#E6F3FF',
-      paper: '#070B14',
-      surface: '#0D1526',
-      accent: '#3BE8FF',
-      // Le rose est celui du logotype du jeu, pas de son gameplay : c'est lui
-      // qui identifie Hold Fire, l'ambre n'est qu'une couleur de couloir.
-      accentAlt: '#FF3DAE',
-      glow: 'rgba(59, 232, 255, 0.32)',
+      ink: '#EDF4FF',
+      paper: '#05040A',
+      surface: '#0C0815',
+      accent: '#FF2DAA',
+      // Le rose laser, plus clair : lisible en petit sur le noir, là où le
+      // magenta plein vibre.
+      accentText: '#FF5CD6',
+      // Cyan : la défense. Rare dans le jeu, rare sur la page.
+      accentAlt: '#20E3FF',
+      glow: 'rgba(255, 45, 170, 0.24)',
+      // La grille et les filets sont le « système » du jeu : violets.
+      line: '#7C3CFF',
     },
-    fonts: { display: F.techno, body: F.technoBody },
+    fonts: { display: F.wide, body: F.condensed, numeric: F.plexMono },
     backdrop: 'neon-grid',
-    shape: { radius: 4, border: 'hard' },
-    motion: 'high',
-    layout: ['hero-full', 'stat-band', 'how-it-plays', 'diagram', 'privacy', 'cta'],
+    // Plaques arrondies et pilules : le jeu n'a aucun coin coupé.
+    shape: { radius: 16, border: 'soft' },
+    motion: 'medium',
+    layout: ['hero-full', 'stat-band', 'how-it-plays', 'gallery-tilt', 'diagram', 'privacy', 'cta'],
   },
 
   /* ── Sudoku : papier crème et encre, palette de theme.dart ─────────────── */

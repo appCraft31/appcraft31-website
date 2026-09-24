@@ -101,7 +101,9 @@ devient inerte sans que rien ne se voie. C'est exactement ce qui rendait
 `check:claims` confronte les textes (dans les six langues) et les faits de
 confidentialité à l'audit du code : il refuse qu'une app qui charge AdMob soit
 présentée comme « sans publicité ». Il tolère les formulations nuancées
-(« aucune publicité pendant la partie », vrai pour Hold Fire) et ignore les
+(« aucune publicité pendant la partie ») — à n'employer que si le code le
+confirme : Hold Fire 2.0 affiche un interstitiel en phase de construction, la
+phrase y est donc devenue fausse et ignore les
 commentaires du code.
 
 `npm run check:live` accepte une URL d'aperçu :

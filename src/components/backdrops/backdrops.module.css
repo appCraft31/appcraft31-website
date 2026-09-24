@@ -1,7 +1,8 @@
 /* ============================================================================
    Moteurs de fond des pages produits.
    ----------------------------------------------------------------------------
-   Chacun ne connaît que --u-accent, --u-accent-2, --u-glow et --u-motion :
+   Chacun ne connaît que --u-accent, --u-accent-2, --u-line, --u-glow et
+   --u-motion :
    c'est ce qui leur permet de servir plusieurs apps sans être dupliqués.
    Tout est en CSS, rien ne tourne en JavaScript.
    ============================================================================ */
@@ -44,8 +45,8 @@
   position: absolute;
   inset: -50% -50% 0;
   background-image:
-    linear-gradient(var(--u-accent) 1px, transparent 1px),
-    linear-gradient(90deg, var(--u-accent) 1px, transparent 1px);
+    linear-gradient(var(--u-line, var(--u-accent)) 1px, transparent 1px),
+    linear-gradient(90deg, var(--u-line, var(--u-accent)) 1px, transparent 1px);
   background-size: 56px 56px;
   opacity: 0.14;
   transform: perspective(420px) rotateX(62deg);

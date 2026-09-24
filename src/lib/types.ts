@@ -63,12 +63,26 @@ export interface Palette {
   accentText?: string;
   /** Halo/lueur, en rgba pour pouvoir être superposée. */
   glow: string;
+  /**
+   * Couleur des structures du décor (grille, filets), quand l'app la
+   * distingue de son accent : un violet « système » sous un magenta
+   * « signature ». Sans elle, le décor prend l'accent.
+   */
+  line?: string;
 }
 
 export interface AppTheme {
   palette: Palette;
   /** Piles CSS référençant les variables de `lib/fonts-universe.ts`. */
-  fonts: { display: string; body: string };
+  fonts: {
+    display: string;
+    body: string;
+    /**
+     * Police des chiffres (tableau de score), quand l'app en a une à part.
+     * Sans elle, les chiffres prennent la police de titre.
+     */
+    numeric?: string;
+  };
   backdrop: Backdrop;
   shape: { radius: number; border: BorderStyle };
   motion: Motion;

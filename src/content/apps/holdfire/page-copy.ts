@@ -1,12 +1,25 @@
 import type { AppCopy, Lang } from '@/lib/types';
 
 /**
- * Textes repris de l'ancienne page `apps/holdfire.html`, restructurés pour le
- * nouveau gabarit. Les chiffres viennent des tables de configuration du jeu
- * (`~/StudioProjects/tir_game`) et sont repris tels quels.
+ * Textes de la page `apps/holdfire.html`, relus contre le code du jeu
+ * (`~/StudioProjects/Hold_fire`, version 2.0) :
+ *
+ * - chiffres : `lib/config/balance.dart` (noyau ×3, 12 ennemis + 10 boss,
+ *   5 tourelles), `lib/config/pacts.dart` (12 pactes, 3 proposés après chaque
+ *   boss), `MetaModule` (17 modules) ;
+ * - publicité : `lib/game/systems/ads.dart` et `turret_line_game.dart`. Un
+ *   interstitiel peut s'ouvrir toutes les trois vagues, au début de la phase
+ *   de construction (jeu figé, jamais en pleine vague), et un autre au retour
+ *   à l'accueil — fin de partie ou abandon —, au plus une fois toutes les
+ *   trois parties et jamais à moins de quatre minutes d'une autre annonce.
+ *   Deux vidéos récompensées facultatives : le sursis et le doublement des
+ *   fragments. L'ancienne page promettait l'absence de publicité pendant la
+ *   partie : ce n'est plus vrai, elle ne le dit plus ;
+ * - musique : `lib/game/systems/music.dart` (une boucle par secteur, en trois
+ *   couches : construction, vague, boss).
  */
 const fr: AppCopy = {
-  tagline: 'Tower defense & tir manuel · iOS',
+  tagline: 'Tower defense & tir manuel · iOS et Android',
 
   headline: {
     lead: 'Les tourelles tiennent le couloir.',
@@ -14,7 +27,7 @@ const fr: AppCopy = {
   },
 
   intro:
-    'Un tower defense où l’on ne se contente pas de regarder. Maintenez votre doigt : le canon vise, chauffe et crache. Entre deux vagues, une fenêtre de construction s’ouvre et vous posez vos tourelles. Puis la vague suivante arrive, et il faut couvrir vous-même ce que les tourelles ne voient pas — le brouilleur qu’elles ignorent, le sprinteur trop rapide pour elles, le volant qu’aucun mortier n’accroche.',
+    'Un tower defense où l’on ne se contente pas de regarder. Maintenez votre doigt : le canon vise, chauffe et tire. Entre deux vagues, une fenêtre de construction s’ouvre et vous posez vos tourelles. Puis la vague suivante descend les couloirs, et il faut couvrir vous-même ce que les tourelles ne voient pas — le brouilleur qu’elles ignorent, le sprinteur trop rapide pour elles, le volant qu’aucun mortier n’accroche.',
 
   stats: [
     { value: '100', label: 'vagues' },
@@ -34,7 +47,7 @@ const fr: AppCopy = {
       items: [
         {
           title: 'Les noyaux',
-          body: 'Les points faibles jaunes encaissent trois fois plus. Un tir placé vaut dix tirs lâchés.',
+          body: 'Au cœur de chaque ennemi magenta, un point blanc : c’est lui qu’il faut viser. Il encaisse trois fois plus. Un tir placé vaut dix tirs lâchés.',
         },
         {
           title: 'La surchauffe',
@@ -46,11 +59,11 @@ const fr: AppCopy = {
         },
         {
           title: 'Cinq tourelles',
-          body: 'Gatling, mortier, DCA, tesla, missiles. Aucune ne couvre tout : c’est la ligne entière qui tient, ou personne.',
+          body: 'Gatling, mortier, DCA, tesla, missiles. Aucune ne couvre tout : c’est la ligne entière qui tient, ou personne. Chaque niveau gagné change leur silhouette.',
         },
         {
-          title: 'Un pacte par partie',
-          body: 'Douze marchés, un seul choisi, tenu jusqu’au bout. Plus de dégâts contre moins de portée, de l’or contre des points de vie. Rien n’est gratuit.',
+          title: 'Un pacte après chaque boss',
+          body: 'Trois marchés proposés, un seul signé, et il vous suit jusqu’à la fin de la partie. Plus de dégâts contre moins de portée, de l’or contre des points de vie. Rien n’est gratuit.',
         },
         {
           title: 'Chaque partie compte',
@@ -59,10 +72,14 @@ const fr: AppCopy = {
       ],
     },
     {
+      id: 'gallery-tilt',
+      title: 'Cent vagues, en images',
+    },
+    {
       id: 'diagram',
-      kicker: 'Le couloir',
+      kicker: 'Le terrain',
       title: 'Une vague arrive. Voilà ce que vous voyez.',
-      body: 'Les ennemis remontent le couloir vers votre base. Vos tourelles tirent seules ; votre canon, lui, n’attend que vous.',
+      body: 'Les ennemis descendent les couloirs vers votre base. Vos tourelles tirent seules ; votre canon, lui, n’attend que vous.',
       items: [
         {
           title: 'Votre base',
@@ -70,19 +87,19 @@ const fr: AppCopy = {
         },
         {
           title: 'Votre canon',
-          body: 'Maintenez le doigt : il vise, chauffe et crache. C’est la seule arme que vous pilotez.',
+          body: 'Maintenez le doigt : il vise, chauffe et tire. C’est la seule arme que vous pilotez.',
         },
         {
           title: 'Vos tourelles',
-          body: 'Posées entre deux vagues, de part et d’autre du couloir. Elles tirent d’elles-mêmes, mais ne voient pas tout.',
+          body: 'Posées entre deux vagues sur les emplacements libres, le long des couloirs. Elles tirent d’elles-mêmes, mais ne voient pas tout.',
         },
         {
           title: 'Le noyau',
-          body: 'Le point faible jaune encaisse trois fois plus. Un tir placé vaut dix tirs lâchés.',
+          body: 'Le point blanc au cœur de l’ennemi encaisse trois fois plus. Un tir placé vaut dix tirs lâchés.',
         },
         {
           title: 'L’arrivée',
-          body: 'La vague entre par la droite. Cent vagues, dix secteurs, et le Léviathan au bout.',
+          body: 'Les vagues entrent par le haut de l’écran. Cent vagues, dix secteurs, et le Léviathan au bout.',
         },
       ],
     },
@@ -90,13 +107,13 @@ const fr: AppCopy = {
       id: 'privacy',
       kicker: 'Vie privée',
       title: 'Aucun compte à créer, rien à configurer',
-      body: 'Le jeu se joue hors ligne et votre progression — record, fragments, modules, réglages — reste sur votre appareil. Le jeu est gratuit : à la fin d’une partie seulement, vous pouvez choisir de regarder une vidéo pour doubler vos fragments ou reprendre la vague où vous êtes tombé. Aucune publicité pendant la partie, et aucune ne rend votre canon plus fort.',
+      body: 'Le jeu se joue hors ligne et votre progression — record, fragments, modules, réglages — reste sur votre appareil. Hold Fire est gratuit et financé par la publicité : toutes les trois vagues, une annonce peut s’afficher au début de la phase de construction, le jeu figé — jamais au milieu d’une vague —, et une autre en revenant à l’accueil, au plus une fois toutes les trois parties. Les deux vidéos récompensées restent à votre choix : reprendre la vague où vous êtes tombé, ou doubler vos fragments en fin de partie. Regarder une annonce ne rend jamais votre canon plus fort. Des statistiques de partie et les rapports de plantage sont envoyés à Firebase (Google) pour équilibrer le jeu et corriger les erreurs.',
     },
   ],
 
   cta: {
     title: 'La première vague vous attend',
-    body: 'Hold Fire est disponible sur l’App Store et Google Play, en français, anglais, espagnol, japonais et coréen.',
+    body: 'La version 2.0 apporte une nouvelle identité néon, une bande-son qui suit la partie — construction, vague, boss — et des tourelles qui changent d’apparence à chaque niveau. Hold Fire est disponible sur l’App Store et Google Play, en français, anglais, espagnol, japonais et coréen.',
   },
 
   meta: {
@@ -109,7 +126,7 @@ const fr: AppCopy = {
 };
 
 const en: AppCopy = {
-  tagline: 'Tower defense & manual fire · iOS',
+  tagline: 'Tower defense & manual fire · iOS and Android',
 
   headline: {
     lead: 'The turrets hold the lane.',
@@ -117,7 +134,7 @@ const en: AppCopy = {
   },
 
   intro:
-    'A tower defense you do not just watch. Hold your finger down: the cannon aims, heats up and fires. Between waves a build window opens and you place your turrets. Then the next wave arrives, and you have to cover what the turrets cannot see — the jammer they ignore, the runner too fast for them, the flyer no mortar will ever catch.',
+    'A tower defense you do not just watch. Hold your finger down: the cannon aims, heats up and fires. Between waves a build window opens and you place your turrets. Then the next wave comes down the lanes, and you have to cover what the turrets cannot see — the jammer they ignore, the runner too fast for them, the flyer no mortar will ever catch.',
 
   stats: [
     { value: '100', label: 'waves' },
@@ -137,7 +154,7 @@ const en: AppCopy = {
       items: [
         {
           title: 'Cores',
-          body: 'Yellow weak points take three times the damage. One placed shot is worth ten loose ones.',
+          body: 'At the heart of every magenta enemy sits a white dot: that is what you aim for. It takes three times the damage. One placed shot is worth ten loose ones.',
         },
         {
           title: 'Overheating',
@@ -149,11 +166,11 @@ const en: AppCopy = {
         },
         {
           title: 'Five turrets',
-          body: 'Gatling, mortar, anti-air, tesla, missiles. None of them covers everything: either the whole line holds, or nobody does.',
+          body: 'Gatling, mortar, anti-air, tesla, missiles. None of them covers everything: either the whole line holds, or nobody does. Every level gained changes their silhouette.',
         },
         {
-          title: 'One pact per run',
-          body: 'Twelve bargains, one chosen, kept to the end. More damage for less range, gold for hit points. Nothing comes free.',
+          title: 'A pact after every boss',
+          body: 'Three bargains on offer, one signed, and it stays with you until the end of the run. More damage for less range, gold for hit points. Nothing comes free.',
         },
         {
           title: 'Every run counts',
@@ -162,10 +179,14 @@ const en: AppCopy = {
       ],
     },
     {
+      id: 'gallery-tilt',
+      title: 'A hundred waves, in pictures',
+    },
+    {
       id: 'diagram',
-      kicker: 'The lane',
+      kicker: 'The field',
       title: 'A wave is coming. Here is what you see.',
-      body: 'Enemies push up the lane towards your base. Your turrets fire on their own; your cannon is waiting for you.',
+      body: 'Enemies come down the lanes towards your base. Your turrets fire on their own; your cannon is waiting for you.',
       items: [
         {
           title: 'Your base',
@@ -177,15 +198,15 @@ const en: AppCopy = {
         },
         {
           title: 'Your turrets',
-          body: 'Placed between waves, on either side of the lane. They fire by themselves, but they do not see everything.',
+          body: 'Placed between waves on the free slots along the lanes. They fire by themselves, but they do not see everything.',
         },
         {
           title: 'The core',
-          body: 'The yellow weak point takes three times the damage. One placed shot is worth ten loose ones.',
+          body: 'The white dot at the heart of the enemy takes three times the damage. One placed shot is worth ten loose ones.',
         },
         {
           title: 'The entrance',
-          body: 'The wave comes in from the right. A hundred waves, ten sectors, and the Leviathan at the end.',
+          body: 'Waves come in from the top of the screen. A hundred waves, ten sectors, and the Leviathan at the end.',
         },
       ],
     },
@@ -193,13 +214,13 @@ const en: AppCopy = {
       id: 'privacy',
       kicker: 'Privacy',
       title: 'No account to create, nothing to configure',
-      body: 'The game runs offline and your progress — best score, fragments, modules, settings — stays on your device. The game is free: only at the end of a run can you choose to watch a video to double your fragments or resume the wave you fell on. No ads during play, and none of them make your cannon stronger.',
+      body: 'The game runs offline and your progress — best score, fragments, modules, settings — stays on your device. Hold Fire is free and funded by advertising: every three waves, an ad may appear at the start of the build phase, with the game frozen — never in the middle of a wave — and another when you return to the home screen, at most once every three runs. The two rewarded videos are always your choice: resume the wave you fell on, or double your fragments at the end of a run. Watching an ad never makes your cannon stronger. Run statistics and crash reports are sent to Firebase (Google) to balance the game and fix errors.',
     },
   ],
 
   cta: {
     title: 'The first wave is waiting',
-    body: 'Hold Fire is available on the App Store and Google Play, in French, English, Spanish, Japanese and Korean.',
+    body: 'Version 2.0 brings a new neon identity, a soundtrack that follows the run — build, wave, boss — and turrets that change their look at every level. Hold Fire is available on the App Store and Google Play, in French, English, Spanish, Japanese and Korean.',
   },
 
   meta: {
