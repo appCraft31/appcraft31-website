@@ -273,6 +273,29 @@
   transform: rotate(3deg);
 }
 
+.featured-phones {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.featured-phones > * {
+  grid-area: 1 / 1;
+}
+
+/* Le second téléphone se glisse derrière, décalé vers la gauche et incliné
+   dans l'autre sens : deux écrans qui se chevauchent, pas une galerie. */
+.featured-phone--back {
+  width: min(186px, 88%);
+  transform: translateX(-46%) rotate(-7deg) scale(0.94);
+  opacity: 0.92;
+}
+
+.featured-phones .featured-phone:not(.featured-phone--back) {
+  transform: translateX(22%) rotate(4deg);
+}
+
 .featured-phone img {
   display: block;
   width: 100%;
@@ -397,10 +420,21 @@
     width: min(260px, 80%);
   }
 
+  .featured-phones {
+    align-self: start;
+  }
+
   .featured-phone {
     width: 150px;
-    align-self: start;
-    transform: rotate(3deg) translateY(8px);
+  }
+
+  .featured-phone--back {
+    width: 132px;
+    transform: translateX(-52%) rotate(-7deg) translateY(26px);
+  }
+
+  .featured-phones .featured-phone:not(.featured-phone--back) {
+    transform: translateX(26%) rotate(4deg) translateY(10px);
   }
 
   .featured-rank {
@@ -431,10 +465,6 @@
 @media (prefers-reduced-motion: reduce) {
   .featured-track {
     scroll-behavior: auto;
-  }
-
-  .featured-phone {
-    transform: none;
   }
 }
 

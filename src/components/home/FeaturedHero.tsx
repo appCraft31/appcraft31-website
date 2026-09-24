@@ -78,7 +78,7 @@ function Slide({ app, rank, lang }: { app: AppData; rank: number; lang: Lang }) 
   const theme = getTheme(app.slug);
   const copy = shortCopy(app.slug, lang);
   const href = localizedUrl(lang, appPath(app));
-  const shot = app.screenshots[0];
+  const [shot, second] = app.screenshots;
 
   return (
     <div
@@ -125,8 +125,17 @@ function Slide({ app, rank, lang }: { app: AppData; rank: number; lang: Lang }) 
           d'attente qui montrerait autre chose que le produit. */}
       <div className="featured-visual" aria-hidden={shot ? undefined : true}>
         {shot ? (
-          <div className="featured-phone">
-            <Image src={shot.src} alt={shot.alt} width={420} height={910} unoptimized loading={rank === 1 ? 'eager' : 'lazy'} />
+          <div className="featured-phones">
+            {/* Le second écran, en retrait derrière : il montre qu'il y a plus
+                qu'une scène dans l'app, sans rien dire que le premier ne dise. */}
+            {second && (
+              <div className="featured-phone featured-phone--back" aria-hidden="true">
+                <Image src={second.src} alt="" width={420} height={910} unoptimized loading="lazy" />
+              </div>
+            )}
+            <div className="featured-phone">
+              <Image src={shot.src} alt={shot.alt} width={420} height={910} unoptimized loading={rank === 1 ? 'eager' : 'lazy'} />
+            </div>
           </div>
         ) : hasMotif(app.slug) ? (
           <div className="featured-motif">

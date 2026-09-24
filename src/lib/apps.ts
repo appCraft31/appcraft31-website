@@ -176,7 +176,12 @@ export const APPS: AppData[] = [
       android: 'https://play.google.com/store/apps/details?id=com.appcraft31.binero',
     },
     icon: '/assets/icons/binero.svg',
-    screenshots: [],
+    // Captures réelles de l'app iOS (`binero_IOS/marketing/screens-real`, `screens-v3`).
+    screenshots: [
+      { src: '/assets/binero-screen-partie.webp', alt: 'Une grille 6×6 du niveau 1 en cours : des 0 orange et des 1 verts, quelques cases encore vides' },
+      { src: '/assets/binero-screen-accueil.webp', alt: "L'accueil : la grille du jour en mode cauchemar, Jouer et le classement mondial" },
+      { src: '/assets/binero-screen-jour.webp', alt: 'La grille du jour, une 14×14 en mode cauchemar' },
+    ],
     sdk: { ads: true, purchases: true, analytics: true, network: true, accounts: true },
     privacyUpdated: '2026-08-16',
   },
@@ -261,7 +266,12 @@ export const APPS: AppData[] = [
       android: 'https://play.google.com/store/apps/details?id=com.appcraft31.randompix',
     },
     icon: '/assets/randompix-icon.png',
-    screenshots: [],
+    // Captures réelles de l'app (`randompix/design/captures`, iPhone 6,9", fr).
+    screenshots: [
+      { src: '/assets/randompix-screen-manche.webp', alt: "Une manche : la photo d'un chien au milieu d'un salon saccagé, le compte à rebours, et quatre joueurs à désigner" },
+      { src: '/assets/randompix-screen-vote.webp', alt: '« Qui de nous ? » : chacun vote pour le joueur le plus susceptible de rater son avion' },
+      { src: '/assets/randompix-screen-podium.webp', alt: 'Fin de partie : Léa remporte le podium, les scores des quatre joueurs et le bouton Rejouer' },
+    ],
     sdk: { ads: true, purchases: true, analytics: true, network: false, accounts: false },
     privacyUpdated: '2026-08-16',
   },
