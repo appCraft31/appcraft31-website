@@ -21,60 +21,6 @@
   border-bottom: 1px solid var(--line);
 }
 
-.hero-plan {
-  position: absolute;
-  inset: 0;
-  color: var(--accent);
-  opacity: 0.14;
-  pointer-events: none;
-}
-
-.hero-plan svg {
-  width: 100%;
-  height: 100%;
-}
-
-.plan-arc,
-.plan-rule {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-}
-
-/* Les tracés se dessinent au chargement, comme un plan qu'on trace. */
-.plan-arc {
-  stroke-dasharray: 1200;
-  stroke-dashoffset: 1200;
-  animation: draw 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.plan-arc--2 {
-  animation-delay: 0.25s;
-  opacity: 0.6;
-}
-
-.plan-rule {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: draw 2s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
-}
-
-.plan-rule--2 {
-  animation-delay: 0.6s;
-  opacity: 0.5;
-}
-
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 1;
-}
-
 .hero-kicker {
   display: inline-flex;
   align-items: center;
@@ -103,30 +49,6 @@
   100% {
     box-shadow: 0 0 0 0 transparent;
   }
-}
-
-.hero-title {
-  font-size: clamp(44px, 9.5vw, 116px);
-  font-weight: 800;
-  max-width: 15ch;
-}
-
-.hero-title-accent {
-  color: var(--accent);
-}
-
-.hero-sub {
-  margin: 26px 0 0;
-  max-width: 56ch;
-  font-size: clamp(17px, 2vw, 20px);
-  color: var(--text-soft);
-}
-
-.hero-cta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 34px;
 }
 
 .btn {
@@ -164,37 +86,356 @@
   color: var(--text);
 }
 
-.btn-social {
-  gap: 9px;
-}
-
 .btn-ghost:hover {
   border-color: var(--accent);
   color: var(--accent);
 }
 
-.hero-figures {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(28px, 6vw, 64px);
-  margin: 56px 0 0;
-  padding-top: 28px;
-  border-top: 1px solid var(--line);
+/* ── Carrousel des apps à la une ──────────────────────────────────────────
+   Le cadre (titre, flèches, pastilles) appartient au site ; l'intérieur de
+   chaque diapositive appartient à l'app, et ne lit que ses variables --u-*. */
+
+.featured {
+  padding-block: clamp(28px, 5vh, 56px) clamp(36px, 6vh, 64px);
 }
 
-.hero-figures dt {
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.featured-head {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  margin-bottom: clamp(22px, 3vw, 32px);
+}
+
+.featured-head .hero-kicker {
+  margin: 0 0 6px;
+}
+
+.featured-title {
+  font-size: clamp(30px, 4.6vw, 54px);
+  font-weight: 800;
+}
+
+.featured-note {
+  margin: 0;
+  font-size: 14px;
   color: var(--text-faint);
 }
 
-.hero-figures dd {
-  margin: 4px 0 0;
-  font-family: var(--font-display);
-  font-size: clamp(32px, 5vw, 46px);
+.featured-carousel {
+  position: relative;
+  z-index: 1;
+}
+
+.featured-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  border-radius: 28px;
+  box-shadow: var(--shadow-lg);
+}
+
+.featured-track::-webkit-scrollbar {
+  display: none;
+}
+
+.featured-item {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.featured-slide {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(20px, 4vw, 56px);
+  height: 100%;
+  min-height: clamp(400px, 54vh, 520px);
+  padding: clamp(24px, 4.5vw, 56px);
+  background: var(--u-paper);
+  color: var(--u-ink);
+  font-family: var(--u-font-body);
+}
+
+/* Le halo de l'app, en deux taches : sa couleur d'accent et la seconde. */
+.featured-slide::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60% 80% at 85% 30%, var(--u-glow), transparent 70%),
+    radial-gradient(40% 50% at 10% 110%, color-mix(in srgb, var(--u-accent-2) 22%, transparent), transparent 70%);
+}
+
+.featured-rank {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 14px;
+  font-family: var(--u-font-display);
+  font-size: 40px;
   font-weight: 800;
   line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--u-accent-text);
+}
+
+.featured-id {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.featured-icon {
+  flex-shrink: 0;
+  width: clamp(64px, 8vw, 84px);
+  height: auto;
+  border-radius: 22%;
+  box-shadow: 0 10px 26px color-mix(in srgb, var(--u-ink) 18%, transparent);
+}
+
+.featured-name {
+  font-family: var(--u-font-display);
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.featured-tagline {
+  margin: 8px 0 0;
+  font-size: clamp(15px, 1.6vw, 18px);
+  font-weight: 600;
+  color: var(--u-accent-text);
+}
+
+.featured-desc {
+  margin: 22px 0 0;
+  max-width: 48ch;
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--u-ink) 78%, transparent);
+}
+
+.featured-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.featured-actions img {
+  display: block;
+  height: 45px;
+  width: auto;
+}
+
+.featured-cta {
+  display: inline-flex;
+  align-items: center;
+  height: 45px;
+  padding-inline: 22px;
+  border-radius: 999px;
+  background: var(--u-ink);
+  color: var(--u-paper);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.featured-cta:hover {
+  transform: translateY(-2px);
+}
+
+.featured-visual {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+.featured-phone {
+  width: min(212px, 100%);
+  padding: 8px;
+  border-radius: 40px;
+  background: #0d0d10;
+  box-shadow:
+    0 30px 60px color-mix(in srgb, var(--u-ink) 28%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--u-ink) 12%, transparent);
+  transform: rotate(3deg);
+}
+
+.featured-phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 32px;
+}
+
+.featured-motif {
+  width: 100%;
+}
+
+.featured-bigicon {
+  width: min(240px, 80%);
+  height: auto;
+  border-radius: 22%;
+}
+
+.featured-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.featured-dots {
+  display: flex;
+  flex: 1;
+  gap: 8px;
+  min-width: 0;
+}
+
+.featured-dot {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  color: var(--text-faint);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  text-align: start;
+  cursor: pointer;
+}
+
+.featured-dot[aria-current='true'] {
+  color: var(--text);
+}
+
+.featured-dot-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* La jauge : pleine sur la diapositive active, et qui se remplit en
+   avance automatique pour dire au visiteur quand ça va bouger. */
+.featured-dot-bar {
+  display: block;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--line-strong);
+  overflow: hidden;
+}
+
+.featured-dot[aria-current='true'] .featured-dot-bar {
+  background: linear-gradient(var(--accent), var(--accent)) no-repeat left / 100% 100%, var(--line-strong);
+}
+
+.featured-carousel[data-playing] .featured-dot[aria-current='true'] .featured-dot-bar {
+  animation: fill var(--autoplay) linear;
+}
+
+@keyframes fill {
+  from {
+    background-size: 0% 100%, auto;
+  }
+}
+
+.featured-arrow {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.featured-arrow:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.featured-all {
+  position: relative;
+  z-index: 1;
+  margin: 26px 0 0;
+}
+
+@media (max-width: 760px) {
+  .featured-slide {
+    grid-template-columns: 1fr;
+    align-content: start;
+    min-height: 0;
+  }
+
+  .featured-visual {
+    order: -1;
+    height: 170px;
+    overflow: hidden;
+  }
+
+  .featured-motif {
+    width: min(260px, 80%);
+  }
+
+  .featured-phone {
+    width: 150px;
+    align-self: start;
+    transform: rotate(3deg) translateY(8px);
+  }
+
+  .featured-rank {
+    font-size: 30px;
+  }
+
+  .featured-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: 16px;
+  }
+
+  .featured-actions {
+    margin-top: 22px;
+  }
+
+  .featured-actions img {
+    height: 40px;
+  }
+
+  .featured-dot-name {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-track {
+    scroll-behavior: auto;
+  }
+
+  .featured-phone {
+    transform: none;
+  }
 }
 
 /* ── Bandeau défilant ─────────────────────────────────────────────────── */

@@ -9,7 +9,7 @@ import { Footer } from '@/components/site/Footer';
 import { Header } from '@/components/site/Header';
 import { Reveal } from '@/components/site/Reveal';
 import { AppCard } from './AppCard';
-import { Hero } from './Hero';
+import { FeaturedHero } from './FeaturedHero';
 import { Marquee } from './Marquee';
 import { PortfolioFilters } from './PortfolioFilters';
 
@@ -23,7 +23,7 @@ export function HomePage({ lang }: { lang: Lang }) {
       <Header lang={lang} path="/" />
 
       <main id="content">
-        <Hero lang={lang} />
+        <FeaturedHero lang={lang} />
         <Marquee />
 
         <section className="section" id="creations">
