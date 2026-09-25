@@ -168,7 +168,10 @@ export function privacySections(
   if (facts.accounts) {
     sections.push({
       id: 'comptes',
-      title: facts.accounts.body ? s.accountsSignInTitle : s.accountsServiceTitle,
+      title:
+        facts.accounts.body && facts.accounts.bodyTitle !== 'service'
+          ? s.accountsSignInTitle
+          : s.accountsServiceTitle,
       body: facts.accounts.body
         ? facts.accounts.body.map((b) => loc(lang, b))
         : [

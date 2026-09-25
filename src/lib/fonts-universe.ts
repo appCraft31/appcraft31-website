@@ -13,7 +13,9 @@
 
 import {
   Baloo_2,
+  Bungee,
   Chakra_Petch,
+  Fredoka,
   IBM_Plex_Mono,
   IBM_Plex_Sans_Condensed,
   Instrument_Serif,
@@ -25,6 +27,7 @@ import {
   Playfair_Display,
   Press_Start_2P,
   Rajdhani,
+  Rubik,
   Space_Grotesk,
 } from 'next/font/google';
 
@@ -127,6 +130,29 @@ const plexMono = IBM_Plex_Mono({
   variable: '--font-plexmono',
 });
 
+// Les trois polices d'Elastic Hero (`pubspec.yaml`) : Bungee pour les titres,
+// qui n'existe qu'en un poids, Rubik pour les textes des menus, Fredoka pour
+// les chiffres du HUD.
+const bungee = Bungee({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  weight: '400',
+  variable: '--font-bungee',
+});
+const rubik = Rubik({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-rubik',
+});
+const fredoka = Fredoka({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-fredoka',
+});
+
 /** Variable CSS → classe qui la définit. */
 const BY_VAR: Record<string, string> = {
   '--font-chakra': chakraPetch.variable,
@@ -143,6 +169,9 @@ const BY_VAR: Record<string, string> = {
   '--font-michroma': michroma.variable,
   '--font-plexcond': plexCondensed.variable,
   '--font-plexmono': plexMono.variable,
+  '--font-bungee': bungee.variable,
+  '--font-rubik': rubik.variable,
+  '--font-fredoka': fredoka.variable,
 };
 
 /**

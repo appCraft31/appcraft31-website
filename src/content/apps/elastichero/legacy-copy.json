@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Jeu d’escalade élastique, gratuit",
+    "desc": "Un jeu d’escalade sans fin, gratuit sur iPhone, iPad et Android : étirez les bras et les jambes d’un héros en gelée, accrochez les boules en bonbon et catapultez-vous toujours plus haut. Abeilles, piques, cinq bonus, des défis et des classements mondiaux.",
+    "c1": "Une tour sans fin",
+    "c2": "4 sortes de prises",
+    "c3": "5 bonus",
+    "c4": "Défis sans fin",
+    "c5": "33 objets de boutique",
+    "c6": "Classements mondiaux"
+  },
+  "en": {
+    "tagline": "Stretchy climbing game, free",
+    "desc": "A free endless climbing game for iPhone, iPad and Android: stretch the arms and legs of a jelly hero, grab candy knobs and fling yourself ever higher. Bees, spikes, five power-ups, challenges and global leaderboards.",
+    "c1": "An endless tower",
+    "c2": "4 kinds of knobs",
+    "c3": "5 power-ups",
+    "c4": "Endless challenges",
+    "c5": "33 shop items",
+    "c6": "Global leaderboards"
+  },
+  "ja": {
+    "tagline": "伸びるクライミングゲーム、無料",
+    "desc": "iPhone・iPad・Android向けの無料エンドレスクライミングゲーム。ゼリーのヒーローの腕と脚を伸ばし、キャンディのノブをつかんで、どこまでも高く飛び上がろう。ハチ、トゲ、5つのパワーアップ、チャレンジ、世界ランキング。",
+    "c1": "終わりのないタワー",
+    "c2": "4種類のノブ",
+    "c3": "5つのパワーアップ",
+    "c4": "エンドレスチャレンジ",
+    "c5": "ショップのアイテム33個",
+    "c6": "世界ランキング"
+  },
+  "ko": {
+    "tagline": "쭉쭉 늘어나는 등반 게임, 무료",
+    "desc": "iPhone, iPad, Android용 무료 무한 등반 게임. 젤리 히어로의 팔다리를 늘려 사탕 손잡이를 잡고 더 높이 튕겨 올라가세요. 벌, 가시, 5가지 파워업, 도전 과제와 세계 순위표.",
+    "c1": "끝없는 탑",
+    "c2": "4가지 손잡이",
+    "c3": "5가지 파워업",
+    "c4": "끝없는 도전",
+    "c5": "상점 아이템 33개",
+    "c6": "세계 순위표"
+  },
+  "es": {
+    "tagline": "Juego de escalada elástica, gratis",
+    "desc": "Un juego de escalada sin fin, gratis para iPhone, iPad y Android: estira los brazos y las piernas de un héroe de gelatina, agárrate a los pomos de caramelo y catapúltate cada vez más alto. Abejas, pinchos, cinco potenciadores, retos y clasificaciones mundiales.",
+    "c1": "Una torre sin fin",
+    "c2": "4 tipos de pomos",
+    "c3": "5 potenciadores",
+    "c4": "Retos sin fin",
+    "c5": "33 objetos en la tienda",
+    "c6": "Clasificaciones mundiales"
+  },
+  "de": {
+    "tagline": "Elastisches Kletterspiel, kostenlos",
+    "desc": "Ein kostenloses Endlos-Kletterspiel für iPhone, iPad und Android: Dehne Arme und Beine eines Gummihelden, schnapp dir die Bonbon-Knäufe und katapultiere dich immer höher. Bienen, Stacheln, fünf Power-ups, Herausforderungen und weltweite Bestenlisten.",
+    "c1": "Ein endloser Turm",
+    "c2": "4 Arten von Knäufen",
+    "c3": "5 Power-ups",
+    "c4": "Endlose Herausforderungen",
+    "c5": "33 Shop-Artikel",
+    "c6": "Weltweite Bestenlisten"
+  }
+}

@@ -34,9 +34,35 @@ const F = {
   wide: 'var(--font-michroma), system-ui, sans-serif',
   condensed: 'var(--font-plexcond), system-ui, sans-serif',
   plexMono: 'var(--font-plexmono), ui-monospace, monospace',
+  bungee: 'var(--font-bungee), system-ui, sans-serif',
+  rubik: 'var(--font-rubik), system-ui, sans-serif',
+  fredoka: 'var(--font-fredoka), system-ui, sans-serif',
 } as const;
 
 export const THEMES: Record<string, AppTheme> = {
+  /* ── Elastic Hero : les menus du jeu (lib/ui/menu_style.dart) — nuit violette
+     #140F33 → #2E1B66, titre or → orange → rose — et le « Jelly Pop » de la
+     partie (lib/game/theme/jelly_palette.dart) : héros rose #FF4F86, bonbon
+     or, mur violet. Bungee, Rubik et Fredoka, comme dans `pubspec.yaml`. ── */
+  elastichero: {
+    palette: {
+      ink: '#FFFFFF',
+      paper: '#140F33',
+      surface: '#2E1B66',
+      accent: '#FF4F86',
+      accentAlt: '#FFD23F',
+      // Le rose du héros éclairci d'un cran : lisible en petit sur la nuit.
+      accentText: '#FF7AA3',
+      glow: 'rgba(255, 79, 134, 0.30)',
+      line: '#8E6CFF',
+    },
+    fonts: { display: F.bungee, body: F.rubik, numeric: F.fredoka },
+    backdrop: 'soft-bubbles',
+    shape: { radius: 22, border: 'soft' },
+    motion: 'high',
+    layout: ['hero-split', 'stat-band', 'how-it-plays', 'gallery-device', 'features', 'privacy', 'cta'],
+  },
+
   /* ── Ding! : la palette de lib/config/palette.dart — sarcelle de nuit, texte
      crème, laiton des portes Art déco, vert de la patience ──────────────── */
   ding: {

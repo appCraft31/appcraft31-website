@@ -29,6 +29,163 @@ const adFunded = (removedBy?: string): PrivacyFacts['ads'] => ({
 });
 
 export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
+  // Elastic Hero — lu dans /Volumes/Appcraft/MAQUETTES/Elastic_Hero le
+  // 25 septembre 2026 : `lib/game/ads/*` (AdMob 9.x, interstitiel et vidéo
+  // récompensée ; UMP puis ATT, `showPrivacyOptionsForm` derrière le bouton
+  // « Confidentialité » des Réglages quand UMP l'exige ; unités de test hors
+  // release ; aucun `maxAdContentRating` ni `tagForChildDirectedTreatment`),
+  // `lib/game/analytics/game_analytics.dart` (Firebase Analytics, actif dès le
+  // lancement, consentements publicitaires à `false` ; variante iOS sans IDFA,
+  // collecte de l'AAID coupée dans l'AndroidManifest), `lib/game/online/*` et
+  // `backend/ugs/*.js` (Unity Gaming Services : joueur anonyme, pseudo filtré
+  // côté serveur, score + hauteur + durée pour valider), `shared_preferences`
+  // pour tout le reste, `in_app_review` pour la demande de note. Aucun achat
+  // intégré. iPhone, iPad et Android.
+  elastichero: {
+    platforms: ['iOS', 'iPadOS', 'Android'],
+    localData: [
+      {
+        fr: 'meilleur score et meilleure hauteur',
+        en: 'best score and best height',
+        ja: 'ベストスコアと最高到達点',
+        ko: '최고 점수와 최고 높이',
+        es: 'mejor puntuación y mayor altura',
+        de: 'Bestpunktzahl und größte Höhe',
+      },
+      {
+        fr: 'bonbons, objets achetés et objets équipés dans la boutique',
+        en: 'candies, items bought and items equipped in the shop',
+        ja: 'キャンディ、ショップで買ったアイテムと装備中のアイテム',
+        ko: '사탕, 상점에서 산 아이템과 장착한 아이템',
+        es: 'caramelos, objetos comprados y objetos equipados en la tienda',
+        de: 'Bonbons, gekaufte und ausgerüstete Shop-Artikel',
+      },
+      {
+        fr: 'progression des défis',
+        en: 'challenge progress',
+        ja: 'チャレンジの進行状況',
+        ko: '도전 진행 상황',
+        es: 'progreso de los retos',
+        de: 'Fortschritt der Herausforderungen',
+      },
+      {
+        fr: 'réglages (musique, sons, vibrations)',
+        en: 'settings (music, sounds, vibrations)',
+        ja: '設定（音楽、効果音、振動）',
+        ko: '설정(음악, 효과음, 진동)',
+        es: 'ajustes (música, sonidos, vibraciones)',
+        de: 'Einstellungen (Musik, Töne, Vibrationen)',
+      },
+      {
+        fr: 'compteurs qui espacent les publicités et la demande de note (parties jouées, temps de jeu, date du dernier affichage)',
+        en: 'counters that space out ads and the rating request (runs played, play time, date last shown)',
+        ja: '広告と評価依頼の間隔を空けるためのカウンター（プレイ回数、プレイ時間、最後に表示した日時）',
+        ko: '광고와 평가 요청의 간격을 두기 위한 카운터(플레이 횟수, 플레이 시간, 마지막 표시 시각)',
+        es: 'contadores que espacian los anuncios y la solicitud de valoración (partidas jugadas, tiempo de juego, fecha de la última vez)',
+        de: 'Zähler, die Werbung und Bewertungsanfrage zeitlich verteilen (gespielte Runden, Spielzeit, Zeitpunkt der letzten Anzeige)',
+      },
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      familyContent: false,
+    },
+    purchases: [],
+    analytics: {
+      vendors: ['Firebase Analytics'],
+      optOut: false,
+      // Identifiant d'instance de l'app : pseudonyme, pas anonyme.
+      anonymous: false,
+      purpose: {
+        fr: "comprendre comment le jeu est joué et l'améliorer : écrans consultés (accueil, partie, pause, fin de partie, boutique, classement, réglages), événements de jeu (début et fin de partie avec score, hauteur, durée et cause de la chute, défis réussis, bonus, bonbons gagnés et dépensés, objets achetés avec des bonbons, publicités affichées, consultation du classement), ainsi que les données automatiques de Firebase : identifiant d'instance de l'application, modèle et système de l'appareil, version de l'app, pays, langue et sessions. Aucun identifiant publicitaire (IDFA sur iOS, identifiant publicitaire Android) n'est collecté par cet outil, ces données ne servent pas à personnaliser la publicité ni à vous suivre d'une application à l'autre, et leur durée de conservation est celle définie par défaut par Firebase",
+        en: 'understand how the game is played and improve it: screens viewed (home, game, pause, game over, shop, leaderboard, settings), game events (run start and end with score, height, duration and cause of the fall, challenges completed, power-ups, candies earned and spent, items bought with candies, ads shown, leaderboard views), plus Firebase’s automatic data: app instance identifier, device model and operating system, app version, country, language and sessions. No advertising identifier (IDFA on iOS, Android advertising ID) is collected by this tool, the data is not used to personalise ads or to track you across apps, and it is kept for Firebase’s default retention period',
+        ja: 'ゲームの遊ばれ方を理解して改善するため：表示された画面（ホーム、プレイ、ポーズ、ゲームオーバー、ショップ、ランキング、設定）、ゲーム内のイベント（スコア・高さ・時間・落下の原因を含むプレイの開始と終了、達成したチャレンジ、パワーアップ、獲得・使用したキャンディ、キャンディで買ったアイテム、表示された広告、ランキングの閲覧）、そしてFirebaseが自動で集めるデータ（アプリのインスタンスID、端末の機種とOS、アプリのバージョン、国、言語、セッション）です。このツールは広告ID（iOSのIDFA、Androidの広告ID）を収集せず、データは広告のパーソナライズやアプリをまたいだ追跡には使われません。保存期間はFirebaseの既定の設定に従います',
+        ko: '게임이 어떻게 플레이되는지 이해하고 개선하기 위해: 본 화면(홈, 게임, 일시정지, 게임 오버, 상점, 순위표, 설정), 게임 이벤트(점수·높이·시간·추락 원인이 포함된 판의 시작과 끝, 완료한 도전, 파워업, 얻고 쓴 사탕, 사탕으로 산 아이템, 표시된 광고, 순위표 조회), 그리고 Firebase가 자동으로 수집하는 데이터(앱 인스턴스 식별자, 기기 모델과 운영체제, 앱 버전, 국가, 언어, 세션)입니다. 이 도구는 광고 식별자(iOS의 IDFA, Android 광고 ID)를 수집하지 않으며, 데이터는 광고 맞춤화나 앱 간 추적에 사용되지 않고, Firebase의 기본 보존 기간 동안 보관됩니다',
+        es: 'entender cómo se juega y mejorar el juego: pantallas vistas (inicio, partida, pausa, fin de partida, tienda, clasificación, ajustes), eventos de juego (inicio y fin de partida con puntuación, altura, duración y causa de la caída, retos superados, potenciadores, caramelos ganados y gastados, objetos comprados con caramelos, anuncios mostrados, consultas de la clasificación), además de los datos automáticos de Firebase: identificador de instancia de la app, modelo y sistema del dispositivo, versión de la app, país, idioma y sesiones. Esta herramienta no recoge ningún identificador publicitario (IDFA en iOS, ID de publicidad de Android), los datos no se usan para personalizar la publicidad ni para seguirte de una app a otra, y se conservan durante el plazo predeterminado de Firebase',
+        de: 'zu verstehen, wie das Spiel gespielt wird, und es zu verbessern: aufgerufene Bildschirme (Start, Spiel, Pause, Rundenende, Shop, Bestenliste, Einstellungen), Spielereignisse (Beginn und Ende einer Runde mit Punktzahl, Höhe, Dauer und Absturzursache, geschaffte Herausforderungen, Power-ups, verdiente und ausgegebene Bonbons, mit Bonbons gekaufte Artikel, angezeigte Werbung, Aufrufe der Bestenliste) sowie die automatischen Daten von Firebase: App-Instanz-ID, Gerätemodell und Betriebssystem, App-Version, Land, Sprache und Sitzungen. Dieses Tool erfasst keine Werbe-ID (IDFA unter iOS, Android-Werbe-ID), die Daten dienen weder der Personalisierung von Werbung noch der app-übergreifenden Verfolgung und werden für die Standard-Aufbewahrungsdauer von Firebase gespeichert',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "le chargement des publicités et de leur écran de consentement (Google), l'envoi des statistiques d'usage à Firebase (Google) et les classements en ligne (Unity Gaming Services). Aucun autre serveur n'est contacté. Les parties se jouent hors ligne : sans connexion, seul le classement est indisponible, et le meilleur score non envoyé est gardé pour plus tard",
+        en: 'loading ads and their consent form (Google), sending usage statistics to Firebase (Google) and the online leaderboards (Unity Gaming Services). No other server is contacted. Runs can be played offline: without a connection only the leaderboard is unavailable, and the best unsent score is kept for later',
+        ja: '広告とその同意画面の読み込み（Google）、Firebase（Google）への利用統計の送信、オンラインランキング（Unity Gaming Services）。それ以外のサーバーには接続しません。プレイはオフラインでもでき、接続がないときはランキングだけが使えず、送信できなかったベストスコアは後で送るために保存されます',
+        ko: '광고와 동의 화면 불러오기(Google), Firebase(Google)로 사용 통계 전송, 온라인 순위표(Unity Gaming Services). 그 밖의 서버에는 접속하지 않습니다. 게임은 오프라인으로도 할 수 있으며, 연결이 없으면 순위표만 이용할 수 없고 보내지 못한 최고 점수는 나중을 위해 보관됩니다',
+        es: 'cargar los anuncios y su pantalla de consentimiento (Google), enviar las estadísticas de uso a Firebase (Google) y las clasificaciones en línea (Unity Gaming Services). No se contacta con ningún otro servidor. Las partidas se juegan sin conexión: sin red solo deja de estar disponible la clasificación, y la mejor puntuación no enviada se guarda para más tarde',
+        de: 'das Laden der Werbung und ihres Einwilligungsformulars (Google), das Senden von Nutzungsstatistiken an Firebase (Google) und die Online-Bestenlisten (Unity Gaming Services). Kein anderer Server wird kontaktiert. Gespielt wird offline: Ohne Verbindung ist nur die Bestenliste nicht verfügbar, und die beste noch nicht gesendete Punktzahl wird für später aufbewahrt',
+      },
+    },
+    accounts: {
+      service: 'Unity Gaming Services',
+      what: 'les classements mondiaux',
+      bodyTitle: 'service',
+      body: [
+        {
+          fr: "Elastic Hero ne vous demande jamais de créer un compte. Pour les classements mondiaux (SEMAINE et TOUJOURS), le jeu ouvre au premier lancement une session anonyme auprès de Unity Gaming Services, un service de Unity Technologies : un identifiant de joueur aléatoire, qui ne contient ni nom, ni adresse e-mail, ni numéro de téléphone. L'appareil garde le jeton de cette session pour vous reconnaître d'une partie à l'autre.",
+          en: 'Elastic Hero never asks you to create an account. For the global leaderboards (WEEK and ALL TIME), the game opens an anonymous session with Unity Gaming Services, a Unity Technologies service, at first launch: a random player identifier containing no name, email address or phone number. The device keeps this session’s token so you are recognised from one run to the next.',
+          ja: 'Elastic Heroがアカウントの作成を求めることはありません。世界ランキング（週間と総合）のために、ゲームは初回起動時にUnity Technologiesのサービス、Unity Gaming Servicesで匿名のセッションを開きます。ランダムなプレイヤーIDで、名前、メールアドレス、電話番号は含まれません。端末はこのセッションのトークンを保存し、プレイをまたいであなたを識別します。',
+          ko: 'Elastic Hero는 계정 생성을 요구하지 않습니다. 세계 순위표(주간과 전체)를 위해 게임은 첫 실행 때 Unity Technologies의 서비스인 Unity Gaming Services에 익명 세션을 엽니다. 이름, 이메일 주소, 전화번호가 들어 있지 않은 무작위 플레이어 식별자입니다. 기기는 판이 바뀌어도 당신을 알아볼 수 있도록 이 세션의 토큰을 보관합니다.',
+          es: 'Elastic Hero nunca te pide crear una cuenta. Para las clasificaciones mundiales (SEMANA y SIEMPRE), el juego abre en el primer inicio una sesión anónima en Unity Gaming Services, un servicio de Unity Technologies: un identificador de jugador aleatorio que no contiene nombre, dirección de correo ni número de teléfono. El dispositivo guarda el token de esa sesión para reconocerte de una partida a otra.',
+          de: 'Elastic Hero verlangt nie, dass du ein Konto anlegst. Für die weltweiten Bestenlisten (WOCHE und ALLZEIT) eröffnet das Spiel beim ersten Start eine anonyme Sitzung bei Unity Gaming Services, einem Dienst von Unity Technologies: eine zufällige Spieler-ID ohne Namen, E-Mail-Adresse oder Telefonnummer. Das Gerät speichert das Token dieser Sitzung, damit du von Runde zu Runde wiedererkannt wirst.',
+        },
+        {
+          fr: "Sont transmis à Unity : cet identifiant ; votre pseudo public, engendré automatiquement, modifiable (3 à 16 caractères) et filtré sur le serveur ; et, à la fin de chaque partie, le score, la hauteur atteinte et la durée de la partie, qui servent à vérifier que le score est plausible. Le pseudo et les meilleurs scores sont visibles des autres joueurs dans les classements.",
+          en: 'Sent to Unity: this identifier; your public nickname, generated automatically, editable (3 to 16 characters) and filtered on the server; and, at the end of each run, the score, the height reached and the run’s duration, used to check that the score is plausible. Your nickname and best scores are visible to other players in the leaderboards.',
+          ja: 'Unityに送られるのは、このID、自動で作られ変更もできる（3〜16文字）公開ニックネーム（サーバーで確認されます）、そして各プレイの終わりに、スコアが妥当か確かめるためのスコア、到達した高さ、プレイ時間です。ニックネームとベストスコアはランキングでほかのプレイヤーに表示されます。',
+          ko: 'Unity로 전송되는 것은 이 식별자, 자동으로 만들어지고 수정할 수 있는(3~16자) 공개 닉네임(서버에서 검사), 그리고 각 판이 끝날 때 점수가 타당한지 확인하는 데 쓰이는 점수, 도달한 높이, 플레이 시간입니다. 닉네임과 최고 점수는 순위표에서 다른 플레이어에게 보입니다.',
+          es: 'Se envían a Unity: este identificador; tu apodo público, generado automáticamente, modificable (de 3 a 16 caracteres) y filtrado en el servidor; y, al final de cada partida, la puntuación, la altura alcanzada y la duración de la partida, que sirven para comprobar que la puntuación es verosímil. El apodo y las mejores puntuaciones son visibles para los demás jugadores en las clasificaciones.',
+          de: 'An Unity übermittelt werden: diese ID; dein öffentlicher Spielername, automatisch erzeugt, änderbar (3 bis 16 Zeichen) und auf dem Server gefiltert; und am Ende jeder Runde Punktzahl, erreichte Höhe und Dauer der Runde, mit denen geprüft wird, ob die Punktzahl plausibel ist. Spielername und Bestpunktzahlen sind in den Bestenlisten für andere Spieler sichtbar.',
+        },
+        {
+          fr: 'Ces données sont traitées par Unity Technologies pour le compte du studio (politique de Unity : https://unity.com/legal/privacy-policy). Pour faire effacer votre entrée des classements, écrivez-nous en indiquant votre pseudo.',
+          en: 'This data is processed by Unity Technologies on the studio’s behalf (Unity’s policy: https://unity.com/legal/privacy-policy). To have your leaderboard entry deleted, write to us with your nickname.',
+          ja: 'これらのデータはスタジオに代わってUnity Technologiesが処理します（Unityのポリシー：https://unity.com/legal/privacy-policy）。ランキングの記録の削除を希望する場合は、ニックネームを添えてご連絡ください。',
+          ko: '이 데이터는 스튜디오를 대신해 Unity Technologies가 처리합니다(Unity 정책: https://unity.com/legal/privacy-policy). 순위표 기록 삭제를 원하시면 닉네임을 적어 연락해 주세요.',
+          es: 'Estos datos los trata Unity Technologies por cuenta del estudio (política de Unity: https://unity.com/legal/privacy-policy). Para que borremos tu entrada de las clasificaciones, escríbenos indicando tu apodo.',
+          de: 'Diese Daten verarbeitet Unity Technologies im Auftrag des Studios (Datenschutzrichtlinie von Unity: https://unity.com/legal/privacy-policy). Wenn dein Eintrag aus den Bestenlisten gelöscht werden soll, schreib uns mit deinem Spielernamen.',
+        },
+      ],
+    },
+    forChildren: false,
+    updated: '2026-09-25',
+    notes: [
+      {
+        fr: "Pour le classement en ligne, l'appareil garde aussi le jeton de session, l'identifiant de joueur anonyme et, faute de connexion, le meilleur score pas encore envoyé : ceux-là sont destinés à Unity Gaming Services, comme décrit à la rubrique « Comptes et services de jeu ».",
+        en: 'For the online leaderboard, the device also keeps the session token, the anonymous player identifier and, when offline, the best score not yet sent: these are meant for Unity Gaming Services, as described under “Accounts and game services”.',
+        ja: 'オンラインランキングのために、端末はセッショントークン、匿名のプレイヤーID、そして接続がないときはまだ送っていないベストスコアも保存します。これらは「アカウントとゲームサービス」の項で説明するとおり、Unity Gaming Servicesに送るためのものです。',
+        ko: '온라인 순위표를 위해 기기는 세션 토큰, 익명 플레이어 식별자, 그리고 연결이 없을 때는 아직 보내지 못한 최고 점수도 보관합니다. 이것들은 «계정과 게임 서비스» 항목에서 설명하듯 Unity Gaming Services로 보내기 위한 것입니다.',
+        es: 'Para la clasificación en línea, el dispositivo guarda también el token de sesión, el identificador de jugador anónimo y, sin conexión, la mejor puntuación aún no enviada: esos datos van destinados a Unity Gaming Services, como se describe en el apartado «Cuentas y servicios de juego».',
+        de: 'Für die Online-Bestenliste speichert das Gerät außerdem das Sitzungstoken, die anonyme Spieler-ID und, ohne Verbindung, die beste noch nicht gesendete Punktzahl: Diese sind für Unity Gaming Services bestimmt, wie im Abschnitt „Konten und Spieldienste“ beschrieben.',
+      },
+      {
+        fr: "Elastic Hero est gratuit grâce à la publicité, sans aucun achat intégré. L'interstitiel ne s'affiche qu'entre deux parties, après un écran de fin de partie : jamais avant la quatrième partie ni avant trois minutes de jeu, au plus une fois toutes les trois parties et toutes les deux minutes, jamais après une partie de moins de 15 secondes ni après un nouveau record. Les vidéos récompensées (« Continuer » une fois par partie, doubler les bonbons gagnés) ne se lancent que si vous appuyez vous-même sur leur bouton.",
+        en: 'Elastic Hero is free thanks to advertising, with no in-app purchases at all. The interstitial only appears between runs, after a game over screen: never before the fourth run or before three minutes of play, at most once every three runs and every two minutes, never after a run shorter than 15 seconds or after a new record. Rewarded videos (“Continue” once per run, doubling the candies earned) only start if you tap their button yourself.',
+        ja: 'Elastic Heroは広告によって無料で、アプリ内課金は一切ありません。インタースティシャル広告はゲームオーバー画面のあと、プレイとプレイのあいだにだけ表示されます。4回目のプレイより前や3分のプレイより前には表示されず、3プレイに1回・2分に1回まで、15秒未満のプレイや新記録のあとには表示されません。リワード動画（1プレイに1回の「コンティニュー」、獲得したキャンディを2倍）は、あなた自身がボタンを押したときだけ始まります。',
+        ko: 'Elastic Hero는 광고 덕분에 무료이며, 인앱 구매는 전혀 없습니다. 전면 광고는 게임 오버 화면 뒤, 판과 판 사이에만 나타납니다. 네 번째 판 이전이나 플레이 3분 이전에는 나오지 않고, 세 판에 한 번·2분에 한 번까지이며, 15초 미만의 판이나 새 기록 뒤에는 나오지 않습니다. 보상형 영상(한 판에 한 번 «이어하기», 얻은 사탕 두 배)은 직접 버튼을 눌렀을 때만 시작됩니다.',
+        es: 'Elastic Hero es gratuito gracias a la publicidad, sin ninguna compra integrada. El anuncio intersticial solo aparece entre dos partidas, tras la pantalla de fin de partida: nunca antes de la cuarta partida ni antes de tres minutos de juego, como mucho una vez cada tres partidas y cada dos minutos, nunca tras una partida de menos de 15 segundos ni tras un nuevo récord. Los vídeos con recompensa («Continuar» una vez por partida, doblar los caramelos ganados) solo se inician si tú mismo pulsas su botón.',
+        de: 'Elastic Hero ist dank Werbung kostenlos und hat keinerlei In-App-Käufe. Die Vollbildwerbung erscheint nur zwischen zwei Runden, nach dem Rundenende-Bildschirm: nie vor der vierten Runde oder vor drei Minuten Spielzeit, höchstens einmal alle drei Runden und alle zwei Minuten, nie nach einer Runde unter 15 Sekunden oder nach einem neuen Rekord. Belohnungsvideos („Weiter“ einmal pro Runde, gesammelte Bonbons verdoppeln) starten nur, wenn du selbst auf ihre Schaltfläche tippst.',
+      },
+      {
+        fr: "L'écran de consentement publicitaire (UMP) puis, sur iPhone et iPad, la demande de suivi (ATT) sont présentés au lancement. Refuser le suivi ne bloque jamais le jeu : les annonces ne sont simplement pas personnalisées. Là où le consentement est requis, le bouton « Confidentialité » des Réglages du jeu rouvre ce formulaire.",
+        en: 'The advertising consent form (UMP) and then, on iPhone and iPad, the tracking request (ATT) are shown at launch. Declining tracking never blocks the game: ads are simply not personalised. Where consent is required, the “Privacy” button in the game’s Settings reopens this form.',
+        ja: '起動時に広告の同意画面（UMP）が表示され、続いてiPhoneとiPadではトラッキングの許可（ATT）を求められます。トラッキングを拒否してもゲームが遊べなくなることはなく、広告がパーソナライズされないだけです。同意が必要な地域では、ゲームの設定にある「プライバシー」ボタンからこの画面を開き直せます。',
+        ko: '실행 시 광고 동의 화면(UMP)이 표시되고, 이어서 iPhone과 iPad에서는 추적 허용 요청(ATT)이 표시됩니다. 추적을 거부해도 게임이 막히지 않으며, 광고가 맞춤화되지 않을 뿐입니다. 동의가 필요한 지역에서는 게임 설정의 «개인정보» 버튼으로 이 화면을 다시 열 수 있습니다.',
+        es: 'Al iniciar se muestran la pantalla de consentimiento publicitario (UMP) y después, en iPhone y iPad, la solicitud de seguimiento (ATT). Rechazar el seguimiento nunca bloquea el juego: los anuncios simplemente no se personalizan. Donde el consentimiento es obligatorio, el botón «Privacidad» de los Ajustes del juego vuelve a abrir ese formulario.',
+        de: 'Beim Start erscheinen das Werbe-Einwilligungsformular (UMP) und danach, auf iPhone und iPad, die Tracking-Anfrage (ATT). Eine Ablehnung des Trackings blockiert das Spiel nie: Die Werbung wird lediglich nicht personalisiert. Wo eine Einwilligung erforderlich ist, öffnet die Schaltfläche „Datenschutz“ in den Einstellungen des Spiels dieses Formular erneut.',
+      },
+      {
+        fr: "La demande de note passe par la fenêtre native d'Apple ou de Google, rarement et seulement après un record ou un défi réussi : le jeu n'envoie lui-même aucune donnée à cette occasion.",
+        en: 'The rating request uses Apple’s or Google’s native prompt, rarely and only after a record or a completed challenge: the game itself sends no data on that occasion.',
+        ja: '評価の依頼にはAppleまたはGoogleの標準の画面を使い、記録更新やチャレンジ達成のあとにまれに表示するだけです。その際、ゲーム自体がデータを送ることはありません。',
+        ko: '평가 요청은 Apple 또는 Google의 기본 창을 사용하며, 기록 경신이나 도전 완료 뒤에만 가끔 표시됩니다. 이때 게임 자체는 어떤 데이터도 보내지 않습니다.',
+        es: 'La solicitud de valoración usa la ventana nativa de Apple o de Google, pocas veces y solo tras un récord o un reto superado: el juego no envía ningún dato en ese momento.',
+        de: 'Die Bewertungsanfrage nutzt das native Fenster von Apple oder Google, selten und nur nach einem Rekord oder einer geschafften Herausforderung: Das Spiel selbst sendet dabei keine Daten.',
+      },
+    ],
+  },
+
   // Ding! — lu dans ~/StudioProjects/ascenceur le 11 septembre 2026 :
   // `lib/ads/ad_service.dart` (AdMob, UMP, ATT via app_tracking_transparency,
   // `showPrivacyOptionsForm` depuis les Réglages : la clause de retrait est

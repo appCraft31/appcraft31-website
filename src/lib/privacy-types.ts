@@ -111,7 +111,7 @@ export interface NetworkFacts {
 }
 
 export interface AccountFacts {
-  service: 'Game Center' | 'Apple' | 'Google Play Jeux' | 'compte Google';
+  service: 'Game Center' | 'Apple' | 'Google Play Jeux' | 'compte Google' | 'Unity Gaming Services';
   what: string;
   /**
    * Rubrique rédigée en entier, quand la phrase type ne convient pas.
@@ -121,6 +121,12 @@ export interface AccountFacts {
    * propriétaire.
    */
   body?: Localized[];
+  /**
+   * Titre de la rubrique rédigée dans `body`. Par défaut « Connexion à votre
+   * compte » ; `service` garde « Comptes et services de jeu », pour un
+   * classement en ligne qui ne passe pas par Apple (Elastic Hero et Unity).
+   */
+  bodyTitle?: 'sign-in' | 'service';
 }
 
 export interface PrivacyFacts {

@@ -7,6 +7,26 @@
 import type { AppData } from './types';
 
 export const APPS: AppData[] = [
+  /* Elastic Hero — pas encore publié (com.appcraft31.elastichero, iPhone et
+     Android). Ajouter les liens store et passer `status` à 'available' le jour
+     de la sortie. Captures réelles du mode capture du jeu
+     (`design/store/raw/iphone`, iPhone 16 Pro Max, fr). */
+  {
+    slug: 'elastichero',
+    name: 'Elastic Hero',
+    category: 'game',
+    status: 'soon',
+    store: {},
+    icon: '/assets/icons/elastichero.webp',
+    screenshots: [
+      { src: '/assets/elastichero-screen-escalade.webp', alt: 'Une partie : le héros en gelée rose suspendu par un bras élastique à une boule en bonbon, entre abeilles, bonbons et barre qui tourne' },
+      { src: '/assets/elastichero-screen-gants.webp', alt: 'Un coup de poing élastique assomme une abeille : « BONK ! +50 », pendant le défi Boxeur' },
+      { src: '/assets/elastichero-screen-etoile.webp', alt: 'Le bonus étoile en action : « SCORE x2 ! » et un combo x6 en cours' },
+      { src: '/assets/elastichero-screen-boutique.webp', alt: 'La boutique : couleurs, chapeaux et traînées à débloquer avec les bonbons gagnés en jouant' },
+    ],
+    sdk: { ads: true, purchases: false, analytics: true, network: true, accounts: true },
+    privacyUpdated: '2026-09-25',
+  },
   /* Ding! sort le 21 septembre 2026 : passer `status` à 'available' ce jour-là.
      L'identifiant App Store (6810621313) est celui de la fiche déjà créée. */
   {

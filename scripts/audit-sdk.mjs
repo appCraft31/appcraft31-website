@@ -13,12 +13,16 @@
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { homedir } from 'node:os';
-import { join } from 'node:path';
+import { isAbsolute, join } from 'node:path';
 
 const PROJECTS = join(homedir(), 'StudioProjects');
 
-/** slug du site → dossier du projet. */
+/**
+ * slug du site → dossier du projet, relatif à `~/StudioProjects` ou absolu
+ * quand le projet vit ailleurs (Elastic Hero est sur le disque Appcraft).
+ */
 const SOURCES = {
+  elastichero: '/Volumes/Appcraft/MAQUETTES/Elastic_Hero',
   ding: 'ascenceur',
   glowmi: 'tamagotchi',
   zellige: 'Tectonic',
@@ -72,6 +76,9 @@ function scan(projectDir, pattern) {
       [
         '-rEl',
         ...EXCLUDED.flatMap((d) => ['--exclude-dir', d]),
+        // Fichiers AppleDouble (`._x.dart`) qu'un disque externe sème à côté
+        // de chaque source : des métadonnées, pas du code.
+        '--exclude=._*',
         '--include=*.dart',
         '--include=*.swift',
         '--include=*.kt',
@@ -98,7 +105,7 @@ for (const [slug, dir] of Object.entries(SOURCES)) {
     results[slug] = { error: 'projet source non identifié' };
     continue;
   }
-  const projectDir = join(PROJECTS, dir);
+  const projectDir = isAbsolute(dir) ? dir : join(PROJECTS, dir);
   if (!existsSync(projectDir)) {
     results[slug] = { error: `dossier absent : ${dir}` };
     continue;

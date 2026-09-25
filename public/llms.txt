@@ -14,6 +14,7 @@ Chaque produit a une page de présentation (`/apps/<slug>.html`) et une politiqu
 
 ## Jeux
 
+- [Elastic Hero](https://appcraft31.app/apps/elastichero.html) (iPhone, iPad, Android, bientôt disponible) : Un jeu d’escalade sans fin, gratuit sur iPhone, iPad et Android : étirez les bras et les jambes d’un héros en gelée, accrochez les boules en bonbon et catapultez-vous toujours plus haut. Cinq bonus, des défis et des classements mondiaux.
 - [Ding!](https://appcraft31.app/apps/ding.html) (iPhone, bientôt disponible) : Un jeu de gestion d’ascenseur gratuit sur iPhone : 30 missions dans trois immeubles, un défi chaque jour et un atelier pour améliorer votre cabine. Regroupez les destinations, surveillez la patience, évitez les détours.
 - [Glowmi](https://appcraft31.app/apps/glowmi.html) (iPhone) : Un animal virtuel gratuit sur iPhone et iPad : faites éclore l’une des 24 espèces, prenez soin d’elle jour après jour, jouez à 4 mini-jeux et habillez votre compagnon.
 - [Zellige](https://appcraft31.app/apps/zellige.html) (iPhone, Android) : Jeu de Tectonic (Suguru) en carreaux de faïence : grilles engendrées sur votre appareil et vérifiées à solution unique, du 5×5 au 12×12, grille du jour, notes, annulation, thème sombre. Sans compte, en 21 langues.

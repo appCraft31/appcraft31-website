@@ -1,4 +1,15 @@
 {
+  "elastichero": {
+    "source": "/Volumes/Appcraft/MAQUETTES/Elastic_Hero",
+    "hits": {
+      "ads": 4,
+      "purchases": 0,
+      "analytics": 6,
+      "network": 0,
+      "accounts": 0,
+      "consent": 1
+    }
+  },
   "ding": {
     "source": "ascenceur",
     "hits": {

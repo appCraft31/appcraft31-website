@@ -30,7 +30,7 @@ const ROOT = new URL('..', import.meta.url).pathname;
 const OUT = join(ROOT, 'out');
 
 /** Les apps dont les six langues sont écrites. À compléter lot par lot. */
-export const TRANSLATED = ['zellige'];
+export const TRANSLATED = ['zellige', 'elastichero'];
 
 /**
  * Les rubriques contrôlées.
