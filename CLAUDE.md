@@ -19,6 +19,12 @@ qui pointe dans le vide et un refus à la prochaine soumission.
   historique). L'URL fait foi.
 - Le produit s'appelle *SquareLink* mais son slug est `combo`.
 
+Les adresses des toutes premières versions (`tengo.html`, `binero-index.html`,
+`graviwords-privacy.html`…, à la racine) redirigent en 301 vers leur page
+actuelle : liste dans `scripts/urls-redirigees.txt`, règles dans `vercel.json`,
+contrôle par `check:live`. GraviWords et Mots Fléchés les citent encore dans
+leurs fiches store.
+
 Le `.html` est conservé sans effort : en export statique sans `trailingSlash`,
 la route `/apps/tengo` produit exactement `out/apps/tengo.html`.
 

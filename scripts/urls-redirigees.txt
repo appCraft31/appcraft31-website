@@ -1,0 +1,31 @@
+# Adresses des toutes premières versions du site (pages à la racine), avant
+# la réorganisation en apps/ et privacy/. Google les connaît encore et les
+# signalait en 404 dans Search Console ; certaines figurent dans des fiches
+# store (GraviWords, Mots Fléchés : appcraft31.vercel.app/…).
+#
+# Chaque ligne : ancienne adresse → nouvelle. Redirections permanentes
+# déclarées dans vercel.json, contrôlées par scripts/check-live.mjs.
+binero-index.html apps/binero.html
+binero-privacy.html privacy/binero.html
+combo.html apps/combo.html
+combo-privacy.html privacy/combo.html
+ecopompe.html apps/ecopompe.html
+privacy.html privacy/ecopompe.html
+glyphe-index.html apps/glyphe.html
+glyphe-policy.html privacy/glyphe.html
+graviwords.html apps/graviwords.html
+graviwords-privacy.html privacy/graviwords.html
+meliz.html apps/meliz.html
+meliz-privacy.html privacy/meliz.html
+motfleche.html apps/motfleche.html
+motfleche-privacy.html privacy/motfleche.html
+orbis.html apps/orbis.html
+orbis-privacy.html privacy/orbis.html
+poddroid-index.html apps/poddroid.html
+poddroid-privacy.html privacy/poddroid.html
+randompix.html apps/randompix.html
+randompix-privacy.html privacy/randompix.html
+tengo.html apps/tengo.html
+tengo-privacy.html privacy/tengo.html
+apps/solitaire.html apps/talon.html
+privacy/solitaire.html privacy/talon.html

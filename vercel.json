@@ -12,7 +12,31 @@
   ],
   "redirects": [
     { "source": "/:lang(en|ja|ko|es|de)", "destination": "/:lang.html", "permanent": true },
-    { "source": "/:lang(en|ja|ko|es|de)/", "destination": "/:lang.html", "permanent": true }
+    { "source": "/:lang(en|ja|ko|es|de)/", "destination": "/:lang.html", "permanent": true },
+    { "source": "/binero-index.html", "destination": "/apps/binero.html", "permanent": true },
+    { "source": "/binero-privacy.html", "destination": "/privacy/binero.html", "permanent": true },
+    { "source": "/combo.html", "destination": "/apps/combo.html", "permanent": true },
+    { "source": "/combo-privacy.html", "destination": "/privacy/combo.html", "permanent": true },
+    { "source": "/ecopompe.html", "destination": "/apps/ecopompe.html", "permanent": true },
+    { "source": "/privacy.html", "destination": "/privacy/ecopompe.html", "permanent": true },
+    { "source": "/glyphe-index.html", "destination": "/apps/glyphe.html", "permanent": true },
+    { "source": "/glyphe-policy.html", "destination": "/privacy/glyphe.html", "permanent": true },
+    { "source": "/graviwords.html", "destination": "/apps/graviwords.html", "permanent": true },
+    { "source": "/graviwords-privacy.html", "destination": "/privacy/graviwords.html", "permanent": true },
+    { "source": "/meliz.html", "destination": "/apps/meliz.html", "permanent": true },
+    { "source": "/meliz-privacy.html", "destination": "/privacy/meliz.html", "permanent": true },
+    { "source": "/motfleche.html", "destination": "/apps/motfleche.html", "permanent": true },
+    { "source": "/motfleche-privacy.html", "destination": "/privacy/motfleche.html", "permanent": true },
+    { "source": "/orbis.html", "destination": "/apps/orbis.html", "permanent": true },
+    { "source": "/orbis-privacy.html", "destination": "/privacy/orbis.html", "permanent": true },
+    { "source": "/poddroid-index.html", "destination": "/apps/poddroid.html", "permanent": true },
+    { "source": "/poddroid-privacy.html", "destination": "/privacy/poddroid.html", "permanent": true },
+    { "source": "/randompix.html", "destination": "/apps/randompix.html", "permanent": true },
+    { "source": "/randompix-privacy.html", "destination": "/privacy/randompix.html", "permanent": true },
+    { "source": "/tengo.html", "destination": "/apps/tengo.html", "permanent": true },
+    { "source": "/tengo-privacy.html", "destination": "/privacy/tengo.html", "permanent": true },
+    { "source": "/apps/solitaire.html", "destination": "/apps/talon.html", "permanent": true },
+    { "source": "/privacy/solitaire.html", "destination": "/privacy/talon.html", "permanent": true }
   ],
   "headers": [
     {

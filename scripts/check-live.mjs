@@ -75,9 +75,39 @@ if (suspects.length > 0) {
   console.warn('  (attendu sur l\'ancien site, dont certaines pages sont autonomes)');
 }
 
+/*
+ * Les adresses des toutes premières versions du site doivent, elles, rediriger
+ * en permanence vers leur page actuelle — et cette page répondre 200. Une 404
+ * ici, c'est une erreur dans Search Console et, pour certaines, une fiche store
+ * dont le lien de confidentialité ne mène nulle part.
+ */
+const moved = readFileSync(join(ROOT, 'scripts/urls-redirigees.txt'), 'utf8')
+  .split('\n')
+  .map((l) => l.trim())
+  .filter((l) => l && !l.startsWith('#'))
+  .map((l) => l.split(/\s+/));
+
+for (const [from, to] of moved) {
+  const url = `${base}/${from}`;
+  try {
+    const res = await fetch(url, { redirect: 'manual' });
+    const location = new URL(res.headers.get('location') ?? '', url).pathname;
+    if (res.status !== 301 && res.status !== 308) {
+      ko++;
+      console.error(`✗ ${url} — HTTP ${res.status}, redirection permanente attendue`);
+    } else if (location !== `/${to}`) {
+      ko++;
+      console.error(`✗ ${url} → ${location}, attendu /${to}`);
+    }
+  } catch (err) {
+    ko++;
+    console.error(`✗ ${url} — injoignable (${err.message})`);
+  }
+}
+
 if (ko > 0) {
-  console.error(`\n${ko} URL(s) ne répondent pas 200. Les fiches store qui les citent sont cassées.`);
+  console.error(`\n${ko} URL(s) en défaut. Les fiches store qui les citent sont cassées.`);
   process.exit(1);
 }
 
-console.log(`\n✓ Les ${urls.length} URLs répondent 200.`);
+console.log(`\n✓ Les ${urls.length} URLs répondent 200, les ${moved.length} anciennes adresses redirigent.`);
