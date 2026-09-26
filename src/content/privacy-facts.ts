@@ -684,15 +684,20 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
 
   tinta: {
     platforms: ['iOS'],
-    localData: ['progression des 300 niveaux', 'étoiles obtenues', 'réglages'],
+    localData: ['progression des 360 niveaux', 'étoiles obtenues', 'grilles du jour et série', 'indices du jour', 'réglages (dont le rappel)'],
     ads: adFunded(),
     purchases: [
       { kind: 'non-consumable', what: 'le retrait de la publicité', productId: 'com.appcraft31.tinta.removeads' },
-      { kind: 'consumable', what: 'des pièces (3 paliers)', productId: 'com.appcraft31.tinta.coins.small' },
     ],
     analytics: null,
     network: null,
     accounts: null,
+    notes: [
+      {
+        fr: "Le rappel quotidien est une notification locale : elle est programmée par l'appareil, sans serveur, et se coupe depuis les réglages du jeu.",
+        en: 'The daily reminder is a local notification: it is scheduled by the device itself, with no server involved, and can be turned off in the game settings.',
+      },
+    ],
     forChildren: false,
     updated: REVIEWED,
   },
