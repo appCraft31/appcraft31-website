@@ -1,4 +1,15 @@
 {
+  "capsulecollector": {
+    "source": "Capsule_collector",
+    "hits": {
+      "ads": 5,
+      "purchases": 0,
+      "analytics": 0,
+      "network": 0,
+      "accounts": 0,
+      "consent": 1
+    }
+  },
   "elastichero": {
     "source": "/Volumes/Appcraft/MAQUETTES/Elastic_Hero",
     "hits": {

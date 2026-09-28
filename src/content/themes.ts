@@ -37,9 +37,34 @@ const F = {
   bungee: 'var(--font-bungee), system-ui, sans-serif',
   rubik: 'var(--font-rubik), system-ui, sans-serif',
   fredoka: 'var(--font-fredoka), system-ui, sans-serif',
+  // M PLUS Rounded 1c, puis Jua pour le hangeul : la pile de repli de l'app.
+  mplusRounded: 'var(--font-mplusrounded), var(--font-jua), system-ui, sans-serif',
 } as const;
 
 export const THEMES: Record<string, AppTheme> = {
+  /* ── Capsule Collector : la palette « jouet en plastique » de
+     lib/core/theme.dart — crème #FFF6E8, encre chocolat #3B2F2F, rouge capsule
+     #F0605D (couleur de base du thème), jaune #F7B733 des capsules ; cadres
+     blancs comme les cartes du jeu, et les pois translucides de son fond en
+     bulles. M PLUS Rounded 1c et Jua, comme dans `pubspec.yaml`. ── */
+  capsulecollector: {
+    palette: {
+      ink: '#3B2F2F',
+      paper: '#FFF6E8',
+      surface: '#FFFFFF',
+      accent: '#F0605D',
+      accentAlt: '#F7B733',
+      // Le rouge capsule assombri d'un cran : lisible en petit sur la crème.
+      accentText: '#C43E3B',
+      glow: 'rgba(240, 96, 93, 0.26)',
+    },
+    fonts: { display: F.mplusRounded, body: F.mplusRounded },
+    backdrop: 'soft-bubbles',
+    shape: { radius: 22, border: 'soft' },
+    motion: 'medium',
+    layout: ['hero-split', 'stat-band', 'how-it-plays', 'gallery-device', 'features', 'privacy', 'cta'],
+  },
+
   /* ── Elastic Hero : les menus du jeu (lib/ui/menu_style.dart) — nuit violette
      #140F33 → #2E1B66, titre or → orange → rose — et le « Jelly Pop » de la
      partie (lib/game/theme/jelly_palette.dart) : héros rose #FF4F86, bonbon

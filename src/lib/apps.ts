@@ -7,6 +7,28 @@
 import type { AppData } from './types';
 
 export const APPS: AppData[] = [
+  /* Capsule Collector — pas encore publié (com.appcraft31.capsulecollector,
+     iPhone et Android). La fiche App Store (id 6817094000) est prête mais pas
+     en ligne : ajouter les liens store et passer `status` à 'available' le
+     jour de la sortie. L'app est déclarée iPhone uniquement (elle ne tourne
+     sur iPad qu'en mode compatibilité) : ne pas annoncer l'iPad. Captures
+     réelles (`build/store_raw/fr`, 1320×2868). */
+  {
+    slug: 'capsulecollector',
+    name: 'Capsule Collector',
+    category: 'game',
+    status: 'soon',
+    store: {},
+    icon: '/assets/icons/capsulecollector.webp',
+    screenshots: [
+      { src: '/assets/capsulecollector-screen-machine.webp', alt: 'L’accueil : la machine à capsules de la Collection Neko sous l’auvent rayé rouge et blanc, 10 figurines sur 12, et le bouton « Jouer · Niveau 11 »' },
+      { src: '/assets/capsulecollector-screen-puzzle.webp', alt: 'Le niveau 11 en cours : des capsules à trier entre les tubes, les mini-machines de chaque couleur en haut, Annuler et Recommencer en bas' },
+      { src: '/assets/capsulecollector-screen-ouverture.webp', alt: 'Une capsule ouverte : le Chat astronaute, super rare, marqué « Nouveau ! », avec +40 XP' },
+      { src: '/assets/capsulecollector-screen-chambre.webp', alt: 'Ma chambre au décor Bar à sushis : seize figurines exposées, et les boutons Décorer et Remplir' },
+    ],
+    sdk: { ads: true, purchases: false, analytics: false, network: false, accounts: false },
+    privacyUpdated: '2026-09-28',
+  },
   /* Elastic Hero — pas encore publié (com.appcraft31.elastichero, iPhone et
      Android). Ajouter les liens store et passer `status` à 'available' le jour
      de la sortie. Captures réelles du mode capture du jeu

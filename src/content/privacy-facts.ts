@@ -29,6 +29,119 @@ const adFunded = (removedBy?: string): PrivacyFacts['ads'] => ({
 });
 
 export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
+  // Capsule Collector — lu dans ~/StudioProjects/Capsule_collector le
+  // 28 septembre 2026 : `lib/ads/*` (AdMob 9.0.0, interstitiel et vidéo
+  // récompensée ; UMP au lancement puis ATT sur iOS, `showPrivacyOptionsForm`
+  // derrière « Choix de confidentialité des pubs » quand UMP l'exige ; aucun
+  // `maxAdContentRating` ni `tagForChildDirectedTreatment`), `AdPolicy` de
+  // `lib/ads/ad_config.dart` (interstitiel), `lib/models/save_data.dart` et
+  // `lib/state/game_controller.dart` (`shared_preferences`, clé `save_v1`).
+  // Aucun achat intégré, aucun outil de mesure d'audience, aucun compte, aucun
+  // service en ligne de jeu : le réseau ne sert qu'aux annonces. App iPhone
+  // (et non iPad) et Android.
+  capsulecollector: {
+    platforms: ['iOS', 'Android'],
+    localData: [
+      {
+        fr: 'pièces, points d’expérience et niveau de collectionneur',
+        en: 'coins, experience points and collector level',
+        ja: 'コイン、経験値、コレクターレベル',
+        ko: '코인, 경험치, 컬렉터 레벨',
+        es: 'monedas, puntos de experiencia y nivel de coleccionista',
+        de: 'Münzen, Erfahrungspunkte und Sammlerstufe',
+      },
+      {
+        fr: 'prochain niveau à jouer et meilleur nombre de coups de chaque niveau',
+        en: 'next level to play and best number of moves for each level',
+        ja: '次に遊ぶレベルと、各レベルの最少手数',
+        ko: '다음에 할 레벨과 레벨별 최소 이동 횟수',
+        es: 'siguiente nivel por jugar y mejor número de movimientos de cada nivel',
+        de: 'nächstes zu spielendes Level und beste Zugzahl jedes Levels',
+      },
+      {
+        fr: 'figurines obtenues, nombre d’exemplaires de chacune et figurines déjà vues',
+        en: 'figures obtained, number of copies of each and figures already seen',
+        ja: '手に入れたフィギュア、それぞれの個数、すでに見たフィギュア',
+        ko: '얻은 피규어, 피규어별 개수, 이미 본 피규어',
+        es: 'figuras conseguidas, número de ejemplares de cada una y figuras ya vistas',
+        de: 'erhaltene Figuren, Anzahl der Exemplare jeder Figur und bereits gesehene Figuren',
+      },
+      {
+        fr: 'compteurs de garantie des machines à capsules et nombre de tours',
+        en: 'capsule machine guarantee counters and number of spins',
+        ja: 'ガチャの保証カウンターと回した回数',
+        ko: '뽑기 기계의 보장 카운터와 돌린 횟수',
+        es: 'contadores de garantía de las máquinas de cápsulas y número de tiradas',
+        de: 'Garantiezähler der Kapselautomaten und Anzahl der Drehungen',
+      },
+      {
+        fr: 'disposition et décor de la chambre',
+        en: 'room layout and decor',
+        ja: 'おへやの配置と内装',
+        ko: '방의 배치와 테마',
+        es: 'disposición y decorado de la habitación',
+        de: 'Anordnung und Dekor des Zimmers',
+      },
+      {
+        fr: 'capsule offerte et tutoriel déjà utilisés',
+        en: 'whether the free capsule and the tutorial have been used',
+        ja: '無料カプセルとチュートリアルを使ったかどうか',
+        ko: '무료 캡슐과 튜토리얼 사용 여부',
+        es: 'si ya se usaron la cápsula de regalo y el tutorial',
+        de: 'ob die Gratiskapsel und das Tutorial schon genutzt wurden',
+      },
+      {
+        fr: 'réglages (musique, sons, vibrations)',
+        en: 'settings (music, sounds, vibrations)',
+        ja: '設定（音楽、効果音、振動）',
+        ko: '설정(음악, 효과음, 진동)',
+        es: 'ajustes (música, sonidos, vibraciones)',
+        de: 'Einstellungen (Musik, Töne, Vibrationen)',
+      },
+      {
+        fr: 'compteurs qui espacent les publicités (niveaux terminés depuis la dernière, heure de la dernière)',
+        en: 'counters that space out ads (levels completed since the last one, time of the last one)',
+        ja: '広告の間隔を空けるためのカウンター（前回から終えたレベル数、前回の時刻）',
+        ko: '광고 간격을 두기 위한 카운터(지난 광고 이후 끝낸 레벨 수, 지난 광고 시각)',
+        es: 'contadores que espacian los anuncios (niveles terminados desde el último, hora del último)',
+        de: 'Zähler, die Werbung zeitlich verteilen (seit der letzten beendete Level, Uhrzeit der letzten)',
+      },
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      familyContent: false,
+    },
+    purchases: [],
+    analytics: null,
+    // Le jeu se joue hors ligne ; le réseau ne sert qu'aux annonces et à leur
+    // formulaire de consentement, ce que dit la phrase type.
+    network: null,
+    accounts: null,
+    forChildren: false,
+    updated: '2026-09-28',
+    notes: [
+      {
+        fr: "Capsule Collector est financé par la publicité, sans aucun achat intégré. L'interstitiel ne s'affiche qu'en quittant l'écran de fin de niveau : jamais avant le niveau 6, au plus une fois tous les trois niveaux terminés et avec au moins deux minutes d'écart. La musique est coupée pendant les annonces. Les vidéos récompensées (doubler les pièces d'un niveau réussi, obtenir trois annulations de plus quand elles sont épuisées) ne se lancent que si vous appuyez vous-même sur leur bouton.",
+        en: 'Capsule Collector is funded by advertising, with no in-app purchases at all. The interstitial only appears when you leave the level complete screen: never before level 6, at most once every three completed levels and at least two minutes apart. Music is muted during ads. Rewarded videos (doubling the coins of a completed level, getting three more undos once they run out) only start if you tap their button yourself.',
+        ja: 'Capsule Collectorは広告で運営されており、アプリ内課金は一切ありません。インタースティシャル広告はレベルクリア画面を閉じるときにだけ表示され、レベル6より前には表示されず、クリアした3レベルに1回まで、間隔は2分以上あけます。広告のあいだ音楽は止まります。リワード動画（クリアしたレベルのコインを2倍にする、もどすを使い切ったときに3回ぶん追加する）は、あなた自身がボタンを押したときだけ始まります。',
+        ko: 'Capsule Collector는 광고로 운영되며, 인앱 구매는 전혀 없습니다. 전면 광고는 레벨 완료 화면을 나갈 때만 나타나며, 레벨 6 이전에는 나오지 않고, 끝낸 레벨 세 개에 한 번까지, 최소 2분 간격을 둡니다. 광고 중에는 음악이 꺼집니다. 보상형 영상(완료한 레벨의 코인 두 배, 되돌리기를 다 썼을 때 3회 추가)은 직접 버튼을 눌렀을 때만 시작됩니다.',
+        es: 'Capsule Collector se financia con publicidad, sin ninguna compra integrada. El anuncio intersticial solo aparece al salir de la pantalla de nivel superado: nunca antes del nivel 6, como mucho una vez cada tres niveles terminados y con al menos dos minutos de separación. La música se silencia durante los anuncios. Los vídeos con recompensa (doblar las monedas de un nivel superado, conseguir tres deshacer más cuando se agotan) solo se inician si tú mismo pulsas su botón.',
+        de: 'Capsule Collector finanziert sich durch Werbung und hat keinerlei In-App-Käufe. Die Vollbildwerbung erscheint nur beim Verlassen des Bildschirms „Level geschafft“: nie vor Level 6, höchstens einmal alle drei beendeten Level und mit mindestens zwei Minuten Abstand. Während der Werbung ist die Musik stumm. Belohnungsvideos (die Münzen eines geschafften Levels verdoppeln, drei zusätzliche Rückgängig-Züge, wenn sie aufgebraucht sind) starten nur, wenn du selbst auf ihre Schaltfläche tippst.',
+      },
+      {
+        fr: "L'écran de consentement publicitaire (UMP) puis, sur iPhone, la demande de suivi (ATT) sont présentés au lancement. Refuser le suivi ne bloque jamais le jeu : les annonces ne sont simplement pas personnalisées. Là où le consentement est requis, le bouton « Choix de confidentialité des pubs » des Réglages du jeu rouvre ce formulaire.",
+        en: 'The advertising consent form (UMP) and then, on iPhone, the tracking request (ATT) are shown at launch. Declining tracking never blocks the game: ads are simply not personalised. Where consent is required, the “Ad privacy choices” button in the game’s Settings reopens this form.',
+        ja: '起動時に広告の同意画面（UMP）が表示され、続いてiPhoneではトラッキングの許可（ATT）を求められます。トラッキングを拒否してもゲームが遊べなくなることはなく、広告がパーソナライズされないだけです。同意が必要な地域では、ゲームの設定にある「広告のプライバシー設定」ボタンからこの画面を開き直せます。',
+        ko: '실행 시 광고 동의 화면(UMP)이 표시되고, 이어서 iPhone에서는 추적 허용 요청(ATT)이 표시됩니다. 추적을 거부해도 게임이 막히지 않으며, 광고가 맞춤화되지 않을 뿐입니다. 동의가 필요한 지역에서는 게임 설정의 «광고 개인정보 설정» 버튼으로 이 화면을 다시 열 수 있습니다.',
+        es: 'Al iniciar se muestran la pantalla de consentimiento publicitario (UMP) y después, en iPhone, la solicitud de seguimiento (ATT). Rechazar el seguimiento nunca bloquea el juego: los anuncios simplemente no se personalizan. Donde el consentimiento es obligatorio, el botón «Ad privacy choices» de los Ajustes del juego vuelve a abrir ese formulario.',
+        de: 'Beim Start erscheinen das Werbe-Einwilligungsformular (UMP) und danach, auf dem iPhone, die Tracking-Anfrage (ATT). Eine Ablehnung des Trackings blockiert das Spiel nie: Die Werbung wird lediglich nicht personalisiert. Wo eine Einwilligung erforderlich ist, öffnet die Schaltfläche „Ad privacy choices“ in den Einstellungen des Spiels dieses Formular erneut.',
+      },
+    ],
+  },
+
   // Elastic Hero — lu dans /Volumes/Appcraft/MAQUETTES/Elastic_Hero le
   // 25 septembre 2026 : `lib/game/ads/*` (AdMob 9.x, interstitiel et vidéo
   // récompensée ; UMP puis ATT, `showPrivacyOptionsForm` derrière le bouton

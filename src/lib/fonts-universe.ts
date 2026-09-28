@@ -20,6 +20,8 @@ import {
   IBM_Plex_Sans_Condensed,
   Instrument_Serif,
   JetBrains_Mono,
+  Jua,
+  M_PLUS_Rounded_1c,
   Michroma,
   Newsreader,
   Nunito,
@@ -153,6 +155,26 @@ const fredoka = Fredoka({
   variable: '--font-fredoka',
 });
 
+// Les deux polices de Capsule Collector (`pubspec.yaml`, `lib/core/theme.dart`) :
+// M PLUS Rounded 1c en 700 et 800 pour tout le texte, Jua en repli pour le
+// coréen, absent de M PLUS Rounded. Ni l'une ni l'autre n'est variable : les
+// graisses sont nommées. Les glyphes japonais et coréens arrivent par tranches
+// `unicode-range`, téléchargées seulement si la page les affiche.
+const mplusRounded = M_PLUS_Rounded_1c({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  weight: ['700', '800'],
+  variable: '--font-mplusrounded',
+});
+const jua = Jua({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  weight: '400',
+  variable: '--font-jua',
+});
+
 /** Variable CSS → classe qui la définit. */
 const BY_VAR: Record<string, string> = {
   '--font-chakra': chakraPetch.variable,
@@ -172,6 +194,8 @@ const BY_VAR: Record<string, string> = {
   '--font-bungee': bungee.variable,
   '--font-rubik': rubik.variable,
   '--font-fredoka': fredoka.variable,
+  '--font-mplusrounded': mplusRounded.variable,
+  '--font-jua': jua.variable,
 };
 
 /**

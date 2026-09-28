@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Puzzle de tri et capsules à collectionner",
+    "desc": "Un puzzle de tri de capsules sur iPhone et Android : 200 niveaux, des pièces à gagner et une machine à capsules à la japonaise. Collectionnez 48 figurines kawaii en 4 séries et exposez-les dans votre chambre.",
+    "c1": "200 niveaux vérifiés",
+    "c2": "48 figurines",
+    "c3": "4 séries",
+    "c4": "Raretés N à SECRET",
+    "c5": "Une chambre à décorer",
+    "c6": "Se joue hors ligne"
+  },
+  "en": {
+    "tagline": "Sorting puzzle and capsules to collect",
+    "desc": "A capsule sorting puzzle for iPhone and Android: 200 levels, coins to earn and a Japanese-style capsule machine. Collect 48 kawaii figures across 4 series and display them in your room.",
+    "c1": "200 verified levels",
+    "c2": "48 figures",
+    "c3": "4 series",
+    "c4": "Rarities N to SECRET",
+    "c5": "A room to decorate",
+    "c6": "Plays offline"
+  },
+  "ja": {
+    "tagline": "カプセル仕分けパズルとコレクション",
+    "desc": "iPhone・Android向けのカプセル仕分けパズル。200のレベル、集めるコイン、そして日本のガチャガチャのようなカプセルマシン。4シリーズ48体のかわいいフィギュアを集めて、おへやに飾ろう。",
+    "c1": "検証済みの200レベル",
+    "c2": "フィギュア48体",
+    "c3": "4つのシリーズ",
+    "c4": "NからSECRETまでのレア度",
+    "c5": "飾れるおへや",
+    "c6": "オフラインで遊べる"
+  },
+  "ko": {
+    "tagline": "캡슐 정렬 퍼즐과 수집",
+    "desc": "iPhone과 Android용 캡슐 정렬 퍼즐. 200개의 레벨, 모으는 코인, 일본식 캡슐 뽑기 기계. 4개 시리즈 48종의 귀여운 피규어를 모아 내 방에 전시하세요.",
+    "c1": "검증된 200개 레벨",
+    "c2": "피규어 48종",
+    "c3": "4개 시리즈",
+    "c4": "N부터 SECRET까지 등급",
+    "c5": "꾸밀 수 있는 방",
+    "c6": "오프라인 플레이"
+  },
+  "es": {
+    "tagline": "Puzle de ordenar y cápsulas para coleccionar",
+    "desc": "Un puzle de ordenar cápsulas para iPhone y Android: 200 niveles, monedas por ganar y una máquina de cápsulas al estilo japonés. Colecciona 48 figuras kawaii en 4 series y exponlas en tu habitación.",
+    "c1": "200 niveles verificados",
+    "c2": "48 figuras",
+    "c3": "4 series",
+    "c4": "Rarezas de N a SECRET",
+    "c5": "Una habitación por decorar",
+    "c6": "Se juega sin conexión"
+  },
+  "de": {
+    "tagline": "Sortierpuzzle und Kapseln zum Sammeln",
+    "desc": "Ein Kapsel-Sortierpuzzle für iPhone und Android: 200 Level, Münzen zum Verdienen und ein Kapselautomat nach japanischem Vorbild. Sammle 48 Kawaii-Figuren in 4 Serien und stell sie in deinem Zimmer aus.",
+    "c1": "200 geprüfte Level",
+    "c2": "48 Figuren",
+    "c3": "4 Serien",
+    "c4": "Seltenheiten von N bis SECRET",
+    "c5": "Ein Zimmer zum Einrichten",
+    "c6": "Offline spielbar"
+  }
+}

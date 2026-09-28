@@ -7,6 +7,7 @@
  */
 
 import binero from '@/content/apps/binero/legacy-copy.json';
+import capsulecollector from '@/content/apps/capsulecollector/legacy-copy.json';
 import combo from '@/content/apps/combo/legacy-copy.json';
 import contree from '@/content/apps/contree/legacy-copy.json';
 import ding from '@/content/apps/ding/legacy-copy.json';
@@ -46,6 +47,7 @@ type ShortCopy = {
 
 const SHORT: Record<string, Partial<Record<Lang, ShortCopy>>> = {
   binero,
+  capsulecollector,
   combo,
   contree,
   ding,

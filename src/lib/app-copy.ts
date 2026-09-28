@@ -11,6 +11,7 @@
 
 import { pageCopy as admobCompanion } from '@/content/apps/admob-companion/page-copy';
 import { pageCopy as binero } from '@/content/apps/binero/page-copy';
+import { pageCopy as capsulecollector } from '@/content/apps/capsulecollector/page-copy';
 import { pageCopy as combo } from '@/content/apps/combo/page-copy';
 import { pageCopy as contree } from '@/content/apps/contree/page-copy';
 import { pageCopy as ding } from '@/content/apps/ding/page-copy';
@@ -43,6 +44,7 @@ type PerLang = Partial<Record<Lang, AppCopy>>;
 const FULL: Record<string, PerLang> = {
   'admob-companion': admobCompanion,
   binero,
+  capsulecollector,
   combo,
   contree,
   ding,

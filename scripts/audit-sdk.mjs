@@ -22,6 +22,7 @@ const PROJECTS = join(homedir(), 'StudioProjects');
  * quand le projet vit ailleurs (Elastic Hero est sur le disque Appcraft).
  */
 const SOURCES = {
+  capsulecollector: 'Capsule_collector',
   elastichero: '/Volumes/Appcraft/MAQUETTES/Elastic_Hero',
   ding: 'ascenceur',
   glowmi: 'tamagotchi',
