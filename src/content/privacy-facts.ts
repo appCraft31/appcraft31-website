@@ -817,11 +817,29 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
 
   contree: {
     platforms: ['iOS'],
-    localData: ['parties en cours', 'statistiques', 'réglages'],
+    localData: ['parties en cours', 'statistiques', 'réglages', 'pièces et dos de cartes'],
     ads: adFunded(),
-    purchases: [],
-    analytics: null,
-    network: null,
+    purchases: [
+      { kind: 'non-consumable', what: 'le retrait de la publicité', productId: 'com.appcraft31.contree.removeads' },
+      { kind: 'consumable', what: 'des pièces (3 packs)', productId: 'com.appcraft31.contree.coins.small' },
+    ],
+    // Firebase Analytics (avec IDFA si le suivi est accepté) et Crashlytics
+    // sont liés dans project.yml ; aucun réglage ne les coupe dans l'app.
+    analytics: {
+      vendors: ['Firebase Analytics', 'Firebase Crashlytics'],
+      optOut: false,
+      anonymous: false,
+      purpose: {
+        fr: "mesurer l'usage du jeu (parties jouées, manches, achats, vidéos regardées) et recevoir les rapports de plantage, pour l'améliorer. L'identifiant publicitaire de l'appareil n'est associé à ces mesures que si vous avez accepté la demande de suivi",
+        en: 'measure how the game is used (games and rounds played, purchases, videos watched) and receive crash reports, in order to improve it. The device advertising identifier is only associated with these measurements if you accepted the tracking request',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "le chargement des publicités et de leur écran de consentement, l'envoi des statistiques d'usage et des rapports de plantage à Firebase, et Game Center pour les parties en ligne et le classement. Le mode solo fonctionne hors ligne",
+        en: 'loading ads and their consent form, sending usage statistics and crash reports to Firebase, and Game Center for online games and the leaderboard. Solo mode works offline',
+      },
+    },
     accounts: { service: 'Game Center', what: 'le multijoueur et les parties entre amis' },
     forChildren: false,
     updated: REVIEWED,

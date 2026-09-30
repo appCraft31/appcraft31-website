@@ -10,13 +10,13 @@ const fr: AppCopy = {
   },
 
   intro:
-    'La belote contrée, aussi appelée coinche : enchères jusqu’au capot, contre, surcontre, belote et rebelote, dix de der. Rien n’a été simplifié : c’est la belote que l’on joue vraiment autour d’une table.',
+    'La belote contrée, aussi appelée coinche : enchères jusqu’au capot, contre, surcontre, belote et rebelote, dix de der. Rien n’a été simplifié : c’est la belote que l’on joue vraiment autour d’une table. Vous débutez ? Un tutoriel interactif vous apprend à jouer pas à pas.',
 
   stats: [
     { value: '162', label: 'points par donne' },
     { value: '80 → 250', label: 'des annonces au capot' },
     { value: '3', label: 'niveaux d’IA' },
-    { value: '×4', label: 'au surcontre' },
+    { value: '10', label: 'leçons pour apprendre' },
   ],
 
   sections: [
@@ -26,6 +26,10 @@ const fr: AppCopy = {
       title: 'Annoncez, contrez, surcontrez',
       body: 'Le vrai sel de la contrée. Montez de 80 à 160, tentez le capot, et si les adversaires y croient trop fort — contrez.',
       items: [
+        {
+          title: 'Un tutoriel pour apprendre',
+          body: 'Dix leçons courtes, sur de vraies cartes : l’atout, les enchères, fournir, couper, monter, charger son partenaire. Chaque réponse est expliquée, puis une première partie en Facile vous attend.',
+        },
         {
           title: 'Les annonces',
           body: 'De 80 à 160, puis Capot à 250, avec choix de l’atout. Chaque annonce doit dépasser la précédente ; fin après trois passes.',
@@ -71,6 +75,11 @@ const fr: AppCopy = {
 
   faq: [
     {
+      question: 'Peut-on apprendre la belote contrée avec Contrée ?',
+      answer:
+        'Oui. Le bouton « Apprendre à jouer » ouvre un tutoriel interactif de dix leçons : le but du jeu, l’atout, les enchères, fournir, couper, monter à l’atout, belote-rebelote et dix de der, contre et surcontre. Chaque exercice se fait sur de vraies cartes et chaque réponse est expliquée ; il se termine par une première partie en mode Facile.',
+    },
+    {
       question: 'Peut-on jouer à la coinche contre l’ordinateur ?',
       answer:
         'Oui. En solo, vous faites équipe avec un partenaire contre deux adversaires, tous trois tenus par l’IA : c’est une vraie partie de belote contrée (coinche) à quatre joueurs, en deux équipes.',
@@ -93,7 +102,7 @@ const fr: AppCopy = {
     {
       question: 'Contrée est-elle gratuite ?',
       answer:
-        'Oui. Contrée : Belote & Coinche est gratuite sur l’App Store, pour iPhone (il n’existe pas de version Android), et ne contient pas d’achat intégré. Elle est financée par la publicité : une bannière sur l’écran d’accueil et une publicité plein écran entre certaines manches, jamais pendant le jeu.',
+        'Oui. Contrée : Belote & Coinche est gratuite sur l’App Store, pour iPhone (il n’existe pas de version Android). Elle est financée par une publicité plein écran entre certaines manches, jamais pendant le jeu, et sans aucune bannière. Un achat intégré facultatif, « Sans publicité », la retire définitivement ; des packs de pièces sont aussi proposés pour la boutique de dos de cartes.',
     },
     {
       question: 'Peut-on jouer avec des amis en ligne ?',
@@ -111,6 +120,7 @@ const fr: AppCopy = {
     alternateName: ['Contrée : Belote & Coinche', 'Coinche', 'Belote contrée'],
     featureList: [
       'Belote contrée (coinche) à quatre joueurs, en deux équipes',
+      'Tutoriel interactif en dix leçons pour débutants',
       'Annonces de 80 à 160, puis capot à 250',
       'Contre (×2) et surcontre (×4)',
       'Obligations de fournir, couper et monter à l’atout',
@@ -147,13 +157,13 @@ const en: AppCopy = {
   },
 
   intro:
-    'Belote contrée, also known as coinche: bidding up to capot, contre, surcontre, belote and rebelote, ten of last. Nothing has been simplified: this is the belote people actually play around a table.',
+    'Belote contrée, also known as coinche: bidding up to capot, contre, surcontre, belote and rebelote, ten of last. Nothing has been simplified: this is the belote people actually play around a table. New to it? An interactive tutorial teaches you to play, step by step.',
 
   stats: [
     { value: '162', label: 'points per deal' },
     { value: '80 → 250', label: 'from bids to capot' },
     { value: '3', label: 'AI levels' },
-    { value: '×4', label: 'on surcontre' },
+    { value: '10', label: 'lessons to learn' },
   ],
 
   sections: [
@@ -163,6 +173,10 @@ const en: AppCopy = {
       title: 'Bid, double, redouble',
       body: 'The real spice of contrée. Climb from 80 to 160, go for capot, and if your opponents believe in it too hard — double them.',
       items: [
+        {
+          title: 'A tutorial to learn',
+          body: 'Ten short lessons with real cards: trumps, bidding, following suit, trumping, overtrumping, helping your partner. Every answer is explained, then a first game on Easy awaits.',
+        },
         {
           title: 'The bids',
           body: 'From 80 to 160, then Capot at 250, with choice of trump. Each bid must beat the previous one; bidding ends after three passes.',
@@ -205,6 +219,11 @@ const en: AppCopy = {
 
   faq: [
     {
+      question: 'Can I learn belote contrée with Contrée?',
+      answer:
+        'Yes. The “Learn to play” button opens an interactive ten-lesson tutorial: the aim of the game, trumps, bidding, following suit, trumping, overtrumping, belote-rebelote and ten of last, contre and surcontre. Every exercise uses real cards and every answer is explained; it ends with a first game on Easy.',
+    },
+    {
       question: 'Can I play coinche against the computer?',
       answer:
         'Yes. Playing solo, you team up with a partner against two opponents, all three played by the AI: a real four-player game of belote contrée (coinche), in two teams.',
@@ -227,7 +246,7 @@ const en: AppCopy = {
     {
       question: 'Is Contrée free?',
       answer:
-        'Yes. Contrée: Belote & Coinche is free on the App Store, for iPhone (there is no Android version), and has nothing to buy inside the app. It is funded by ads: a banner on the home screen and a full-screen ad between some rounds, never during play.',
+        'Yes. Contrée: Belote & Coinche is free on the App Store, for iPhone (there is no Android version). It is funded by a full-screen ad between some rounds, never during play, and has no banner ads. An optional “Ad-free” in-app purchase removes it for good; coin packs are also offered for the card back shop.',
     },
     {
       question: 'Can I play with friends online?',
@@ -245,6 +264,7 @@ const en: AppCopy = {
     alternateName: ['Contrée: Belote & Coinche', 'Coinche', 'Belote contrée'],
     featureList: [
       'Four-player belote contrée (coinche), in two teams',
+      'Interactive ten-lesson tutorial for beginners',
       'Bids from 80 to 160, then capot at 250',
       'Contre (×2) and surcontre (×4)',
       'Follow, trump and overtrump obligations enforced',

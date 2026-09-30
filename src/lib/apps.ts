@@ -259,12 +259,15 @@ export const APPS: AppData[] = [
     status: 'available',
     store: { ios: 'https://apps.apple.com/app/id6790448405' },
     icon: '/assets/icons/contree.svg',
-    screenshots: [],
-    sdk: { ads: true, purchases: false, analytics: true, network: false, accounts: true },
-    privacyUpdated: '2026-08-16',
-    // Gratuite, sans achat intégré : StoreKit n'y sert qu'à la demande d'avis
-    // (`requestReview`), aucun produit n'est déclaré.
-    free: true,
+    screenshots: [
+      { src: '/assets/contree-screen-table.webp', alt: 'Un pli en cours : As, 10 et 8 de pique sur le tapis, la main du joueur avec Valet, 9, As, Roi et Dame de cœur' },
+      { src: '/assets/contree-screen-tutoriel.webp', alt: 'Le tutoriel, leçon « Couper » : le 7 de cœur d’atout coupe l’As de trèfle, réponse validée' },
+      { src: '/assets/contree-screen-victoire.webp', alt: 'Fin de partie gagnée 1065 à 577 : contrat 120 cœur réussi, +20 pièces' },
+    ],
+    sdk: { ads: true, purchases: true, analytics: true, network: false, accounts: true },
+    privacyUpdated: '2026-09-30',
+    // Pas de `free` depuis la 1.3.2 : achats facultatifs « Sans publicité » et
+    // packs de pièces (Contree/Store/StoreManager.swift).
     privacySlug: 'contree-privacy',
   },
   {

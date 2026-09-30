@@ -36,7 +36,7 @@ const SOURCES = {
   binero: 'binero',
   glyphe: 'glyphe',
   zenkuro: 'zenkuro',
-  contree: 'contre',
+  contree: 'Contree',
   keeply: 'Keeply',
   combo: 'squareLink',
   randompix: 'randompix',
