@@ -107,7 +107,7 @@ const fr: AppCopy = {
     {
       question: 'Peut-on jouer avec des amis en ligne ?',
       answer:
-        'Oui, via Game Center : lancez une partie rapide ou invitez vos amis. Les sièges vides sont tenus par des bots, qui remplacent aussi un joueur qui quitte la partie.',
+        'Oui, via Game Center : lancez une partie rapide avec des joueurs du monde entier, ou créez une partie privée et partagez son code à vos amis. Les sièges vides sont tenus par l’ordinateur, qui remplace aussi un joueur qui quitte la partie. Il n’y a pas de chat entre joueurs : on joue, simplement.',
     },
     {
       question: 'Quelles règles de la belote contrée sont appliquées ?',
@@ -251,7 +251,7 @@ const en: AppCopy = {
     {
       question: 'Can I play with friends online?',
       answer:
-        'Yes, through Game Center: start a quick match or invite your friends. Empty seats are filled by bots, which also take over from a player who leaves.',
+        'Yes, through Game Center: start a quick match with players from around the world, or create a private game and share its code with your friends. Empty seats are played by the computer, which also takes over from a player who leaves. There is no chat between players: you just play.',
     },
     {
       question: 'Which belote contrée rules are used?',
