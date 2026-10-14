@@ -32,7 +32,6 @@ export interface DailyPuzzle {
 export type Cells = (Color | null)[];
 export type ChipStatus = 'open' | 'satisfied' | 'exceeded';
 
-export const PALETTE_EMOJI = ['🟩', '🟧', '🟥', '🟪'] as const;
 
 /** Date civile LOCALE du navigateur, `AAAA-MM-JJ`. */
 export function localDateKey(d: Date = new Date()): string {
@@ -126,7 +125,8 @@ export function stars(mistakes: number): number {
 
 /**
  * Résultat partageable, sans rien révéler de la solution :
- * « Tinta #44 · 6×6 · ★★★ · 🟩🟧🟥🟪 », la série éventuelle, puis l'URL.
+ * « Tinta #44 · 6×6 · ★★★ · 🔥3 », la ligne de `performanceLine`, puis
+ * l'URL. Même format que le partage de l'app iOS.
  */
 export function shareText(
   p: Pick<DailyPuzzle, 'number' | 'size' | 'colorCount'>,
@@ -139,10 +139,18 @@ export function shareText(
     `Tinta #${p.number}`,
     `${p.size}×${p.size}`,
     '★'.repeat(s) + '☆'.repeat(3 - s),
-    PALETTE_EMOJI.slice(0, p.colorCount).join(''),
   ];
   if (streak > 1) parts.push(`🔥${streak}`);
-  return `${parts.join(' · ')}\n${url}`;
+  return `${parts.join(' · ')}\n${performanceLine(p.size, mistakes)}\n${url}`;
+}
+
+/**
+ * Une case par colonne : 🟩 par défaut, 🟥 par erreur (plafonné à la
+ * largeur). Comme dans l'app, qui y ajoute 🟨 par indice utilisé.
+ */
+export function performanceLine(size: number, mistakes: number): string {
+  const red = Math.min(mistakes, size);
+  return '🟩'.repeat(size - red) + '🟥'.repeat(red);
 }
 
 /** Série en cours : jours consécutifs résolus, jusqu'à aujourd'hui (ou hier). */
