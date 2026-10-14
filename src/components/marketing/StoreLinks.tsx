@@ -26,7 +26,8 @@ export function StoreLinks({
   size?: 'default' | 'large' | 'compact';
   align?: 'start' | 'center';
 }) {
-  const { ios, android, web } = app.store;
+  const { ios, android } = app.store;
+  const web = typeof app.store.web === 'string' ? app.store.web : app.store.web?.[lang];
   const fr = lang === 'fr';
 
   // Un outil interne n'ira sur aucun store : annoncer « bientôt » y serait une
@@ -94,8 +95,8 @@ export function StoreLinks({
         </a>
       )}
 
-      {/* Le jeu web n'existe qu'à une seule adresse : il gère lui-même sa
-          langue, la préfixer donnerait un lien mort. */}
+      {/* Une adresse unique n'est jamais préfixée : le jeu gère lui-même sa
+          langue, et `/en/play/meliz/` serait un lien mort. */}
       {web && (
         <Link href={web} className={styles.web}>
           {fr ? 'Jouer dans le navigateur' : 'Play in your browser'}

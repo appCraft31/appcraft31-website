@@ -8,14 +8,22 @@ import { ThemeToggle } from './ThemeToggle';
  * En-tête du site. `path` est le chemin sans préfixe de langue (« / »,
  * « /apps/tengo.html »…) : il sert à proposer la même page dans les six langues.
  */
-export function Header({ lang, path }: { lang: Lang; path: string }) {
+export function Header({
+  lang,
+  path,
+  langUrls,
+}: {
+  lang: Lang;
+  path: string;
+  /** Adresses par langue, quand le chemin se traduit (jeu web Tinta). */
+  langUrls?: Record<Lang, string>;
+}) {
   const t = translator(lang);
   const home = localizedUrl(lang, '/');
 
-  const urls = Object.fromEntries(LANGS.map((l) => [l, localizedUrl(l, path)])) as Record<
-    Lang,
-    string
-  >;
+  const urls =
+    langUrls ??
+    (Object.fromEntries(LANGS.map((l) => [l, localizedUrl(l, path)])) as Record<Lang, string>);
 
   return (
     <header className="site-header">

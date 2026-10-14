@@ -111,8 +111,11 @@ export type SectionId =
 export interface StoreLinks {
   ios?: string;
   android?: string;
-  /** Version jouable dans le navigateur, s'il y en a une. */
-  web?: string;
+  /**
+   * Version jouable dans le navigateur, s'il y en a une : une adresse unique
+   * (le jeu gère sa langue) ou une adresse par langue.
+   */
+  web?: string | Record<Lang, string>;
 }
 
 export interface Screenshot {

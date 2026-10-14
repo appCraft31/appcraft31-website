@@ -1,0 +1,848 @@
+/*
+ * Tinta, grille du jour — l'identité « Studio chaud » de l'app iOS.
+ * Couleurs lues dans `GridCipher/Assets.xcassets/*.colorset` (clair + sombre),
+ * relief des pièces, alvéoles et marqueurs portés de `Components.swift` et
+ * `Theme.swift` (TileFace, WellBackground, RelationMarker, CountChip).
+ */
+
+.root {
+  --canvas: #f6efe2;
+  --tray: #e7dac3;
+  --tile-shadow: rgba(120, 88, 50, 0.36);
+  --well: #bfb39f;
+  --marker-well: #6a645a;
+  --marker-glyph: #f3eadb;
+  --surface: #fffdf8;
+  --ink: #2b2724;
+  --ink-2: #6e655b;
+  --ink-muted: #a59b8e;
+  --accent: #c8613d;
+  --accent-pressed: #a94e2f;
+  --accent-tint: #f6e4db;
+  --hairline: #dccfb6;
+  --teal: #1f9c7c;
+  --amber: #e09220;
+  --rose: #d14a6c;
+  --violet: #6f55be;
+  --dim: 0.5;
+
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-nunito), ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+:global(html[data-theme='dark']) .root {
+  --canvas: #17130f;
+  --tray: #241d17;
+  --tile-shadow: rgba(0, 0, 0, 0.5);
+  --well: #1d1712;
+  --marker-well: #100d0a;
+  --marker-glyph: #f3eadb;
+  --surface: #251f19;
+  --ink: #f1e9db;
+  --ink-2: #b7ad9e;
+  --ink-muted: #857c6f;
+  --accent: #e4622f;
+  --accent-pressed: #c04f20;
+  --accent-tint: #3a2a22;
+  --hairline: #332b23;
+  --teal: #2fb08f;
+  --amber: #f0a73a;
+  --rose: #e15c7c;
+  --violet: #8a6fd6;
+  --dim: 0.66;
+}
+
+.teal { --c: var(--teal); }
+.amber { --c: var(--amber); }
+.rose { --c: var(--rose); }
+.violet { --c: var(--violet); }
+
+/* ---------------------------------------------------------------- page */
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 20px 16px 64px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.kicker {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.title {
+  margin: 4px 0 6px;
+  font-size: clamp(30px, 8vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.intro {
+  margin: 0 auto;
+  max-width: 34em;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* ---------------------------------------------------------------- jeu */
+
+.game {
+  position: relative;
+}
+
+.gameHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 2px 8px;
+}
+
+.number {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.format {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.headRight {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mistakes {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink-muted);
+}
+
+.hasMistakes {
+  color: var(--accent);
+}
+
+.iconBtn,
+.close {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 2px 0 var(--tile-shadow), inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.iconBtn svg,
+.close svg,
+.tool svg,
+.primary svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Plateau creusé dans le fond (TrayBackground). */
+.tray {
+  position: relative;
+  border-radius: 20px;
+  padding: 14px 10px 16px;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0, transparent 26px),
+    var(--tray);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.16);
+  min-height: 220px;
+}
+
+.status {
+  margin: 0;
+  padding: 80px 12px;
+  text-align: center;
+  color: var(--ink-2);
+  font-weight: 700;
+}
+
+.boardWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.boardWrap[data-shake] {
+  animation: shake 0.42s ease-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-7px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(2px); }
+}
+
+.board {
+  display: flex;
+  align-items: flex-start;
+}
+
+.rowChips {
+  display: flex;
+  flex-direction: column;
+}
+
+.rowChipCell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+}
+
+.chipLine {
+  display: flex;
+  gap: 3px;
+}
+
+.colChips {
+  display: flex;
+}
+
+.colChipCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+}
+
+.grid {
+  position: relative;
+  display: grid;
+}
+
+/* Case : bouton transparent ; la matière est portée par la pièce ou l'alvéole. */
+.cell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.12s ease-out;
+}
+
+.cell > * {
+  grid-area: 1 / 1;
+}
+
+.cell:not(:disabled):active {
+  transform: scale(0.96);
+}
+
+.cell:disabled {
+  cursor: default;
+}
+
+.cell:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Alvéole : la place d'une pièce encore absente (WellBackground). */
+.well {
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.34) 0%,
+      transparent 30%,
+      rgba(255, 255, 255, 0.14) 100%
+    ),
+    var(--well);
+}
+
+/* Pièce en relief : face haute éclairée, tranche sombre franche à 84 %. */
+.tile {
+  display: block;
+  border-radius: 26%;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(255, 255, 255, 0.1) 10%,
+      transparent 34%,
+      rgba(0, 0, 0, 0.06) 70%,
+      rgba(0, 0, 0, 0.08) 84%,
+      rgba(0, 0, 0, 0.3) 85%,
+      rgba(0, 0, 0, 0.3) 100%
+    ),
+    var(--c);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.14),
+    0 calc(var(--s, 40px) * 0.09) 0 var(--tile-shadow);
+  animation: pop 0.22s cubic-bezier(0.3, 1.5, 0.6, 1);
+}
+
+.dimmed {
+  opacity: var(--dim);
+  animation: none;
+}
+
+@keyframes pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.lock {
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.lockIcon {
+  width: 100%;
+  height: auto;
+  fill: var(--ink);
+  opacity: 0.6;
+}
+
+/* Marques crayon : couleurs éliminées, barrées, en 2×2. */
+.marks {
+  display: grid;
+  grid-template-columns: auto auto;
+  pointer-events: none;
+}
+
+.markDot {
+  position: relative;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.markDot::after {
+  content: '';
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  top: 50%;
+  height: 1.2px;
+  background: var(--ink);
+  opacity: 0.7;
+  transform: rotate(-45deg);
+}
+
+/* Marqueur = / ≠ encastré (RelationMarker). */
+.markerPos {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.marker {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--marker-glyph);
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.45) 0%,
+      transparent 55%,
+      rgba(255, 255, 255, 0.18) 100%
+    ),
+    var(--marker-well);
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.violated {
+  color: #fff;
+  background-color: var(--accent);
+  background-image: none;
+  box-shadow: 0 0 0 3px var(--canvas), 0 0 0 5px var(--accent);
+}
+
+/* Pastille de comptage (CountChip). */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 5px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+  white-space: nowrap;
+  color: var(--ink);
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.55) 0%,
+      transparent 52%,
+      rgba(0, 0, 0, 0.12) 100%
+    ),
+    var(--surface);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 0 var(--tile-shadow);
+  transition: opacity 0.2s;
+}
+
+:global(html[data-theme='dark']) .chip {
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, transparent 52%, rgba(0, 0, 0, 0.2) 100%),
+    var(--surface);
+}
+
+.chipDot {
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.open {
+  opacity: 1;
+}
+
+.satisfied {
+  opacity: 0.38;
+}
+
+.exceeded {
+  color: #fff;
+  background: var(--accent);
+}
+
+.exceeded .chipDot {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
+.wrong {
+  margin: 10px 0 6px;
+  min-height: 1.4em;
+  text-align: center;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* ---------------------------------------------------------------- barre d'outils */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 6px 16px rgba(43, 39, 36, 0.08), inset 0 0 0 1px var(--hairline);
+  flex-wrap: nowrap;
+  max-width: 100%;
+}
+
+.palette {
+  display: flex;
+  gap: 2px;
+}
+
+.paletteBtn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 4px;
+  border: 0;
+  border-radius: 16px;
+  background: none;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2.5px transparent;
+  transition: transform 0.18s, box-shadow 0.18s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.paletteBtn .tile {
+  animation: none;
+}
+
+.selected {
+  box-shadow: inset 0 0 0 2.5px var(--ink);
+  transform: scale(1.06);
+}
+
+.pencilBadge {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  inset: 0;
+  color: #fff;
+  pointer-events: none;
+}
+
+.pencilBadge svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.35));
+}
+
+.sep {
+  width: 1px;
+  align-self: stretch;
+  margin: 4px 2px;
+  background: var(--hairline);
+}
+
+.tool {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--canvas);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px var(--hairline);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tool:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.toolActive {
+  background: var(--ink);
+  color: var(--canvas);
+}
+
+.toolPencil {
+  background: var(--accent-tint);
+  box-shadow: inset 0 0 0 2.5px var(--amber);
+}
+
+@media (max-width: 380px) {
+  .tool { width: 38px; height: 38px; }
+  .paletteBtn { padding: 3px; }
+  .toolbar { gap: 3px; padding: 6px; }
+}
+
+.reopen {
+  display: block;
+  margin: 14px auto 0;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* ---------------------------------------------------------------- fenêtres */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(23, 19, 15, 0.45);
+  backdrop-filter: blur(3px);
+  animation: fade 0.2s ease-out;
+  overflow-y: auto;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+}
+
+.sheet {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  padding: 24px 20px 20px;
+  border-radius: 24px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  animation: rise 0.28s cubic-bezier(0.2, 1.2, 0.4, 1);
+}
+
+@keyframes rise {
+  from { transform: translateY(24px) scale(0.97); opacity: 0; }
+}
+
+.sheetTitle {
+  margin: 0 0 14px;
+  font-size: 24px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.tutoList {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.tutoList li {
+  display: grid;
+  grid-template-columns: 104px 1fr;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.tutoVisual {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 10px 16px;
+  margin-bottom: 18px;
+  border-radius: 16px;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.18) 0, transparent 18px),
+    var(--tray);
+}
+
+.exampleRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exampleMarker {
+  width: 0;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 52px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--accent);
+  color: var(--canvas);
+  font: inherit;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.12s, background-color 0.12s;
+}
+
+.primary:active {
+  background: var(--accent-pressed);
+  transform: scale(0.98);
+}
+
+.winSheet {
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  box-shadow: none;
+  background: transparent;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 8px 0 2px;
+  font-size: 44px;
+  line-height: 1;
+}
+
+.starOn {
+  color: var(--amber);
+  text-shadow: 0 3px 0 var(--tile-shadow);
+  animation: pop 0.4s cubic-bezier(0.3, 1.6, 0.6, 1) both;
+}
+
+.starOn:nth-child(2) { animation-delay: 0.12s; }
+.starOn:nth-child(3) { animation-delay: 0.24s; }
+
+.starOff {
+  color: var(--ink-muted);
+  opacity: 0.4;
+}
+
+.winMeta {
+  margin: -6px 0 16px;
+  color: var(--ink-2);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.countdown {
+  margin: 10px 0 0;
+  color: var(--ink-2);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.winCta {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 18px;
+  background: var(--accent-tint);
+}
+
+.winCtaTitle {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.winCtaBody {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+
+.badge {
+  display: inline-block;
+  line-height: 0;
+}
+
+.badge img {
+  height: 54px;
+  width: auto;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 120;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--canvas);
+  font-weight: 800;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------------------------------------------------------------- sous le jeu */
+
+.cta {
+  margin-top: 36px;
+  padding: 24px 20px;
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: 0 6px 16px rgba(43, 39, 36, 0.08), inset 0 0 0 1px var(--hairline);
+  text-align: center;
+}
+
+.ctaTitle {
+  margin: 0 0 6px;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.ctaBody {
+  margin: 0 auto 16px;
+  max-width: 30em;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+
+.rules {
+  margin-top: 32px;
+}
+
+.rules h2 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.rules ul {
+  margin: 0;
+  padding-left: 1.2em;
+  display: grid;
+  gap: 8px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.aboutLink {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--accent);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.aboutLink:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .starOn,
+  .sheet,
+  .overlay,
+  .boardWrap[data-shake] {
+    animation: none;
+  }
+}

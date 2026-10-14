@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { VISIBLE_APPS, appPath, getApp, privacyPath } from '@/lib/apps';
 import { alternates, localizedUrl } from '@/lib/i18n';
+import { tintaPlayUrls } from '@/lib/play';
 import { DEFAULT_LANG, type AppData } from '@/lib/types';
 
 const SITE = 'https://appcraft31.app';
@@ -54,6 +55,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: dateOf(getApp('meliz')!),
       changeFrequency: 'daily' as const,
       priority: 0.9,
+    },
+    // La grille du jour de Tinta : un chemin traduit par langue.
+    {
+      url: `${SITE}${tintaPlayUrls().fr}`,
+      lastModified: new Date('2026-10-14'),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+      alternates: {
+        languages: Object.fromEntries([
+          ...Object.entries(tintaPlayUrls()).map(([lang, url]) => [lang, `${SITE}${url}`]),
+          ['x-default', `${SITE}${tintaPlayUrls().fr}`],
+        ]),
+      },
     },
     {
       url: `${SITE}/holdfire/event/`,

@@ -91,3 +91,48 @@ export function privacyMetadata(app: AppData, lang: Lang): Metadata {
     robots: robots(app.unlisted),
   };
 }
+
+/**
+ * Le jeu web Tinta (grille du jour). Son chemin se traduit (`/jouer/…`,
+ * `/en/play/…`) : `base()` ne sait que préfixer, on pose donc les adresses
+ * à la main — mais toujours ici, avec la même structure que les autres pages.
+ */
+export function tintaPlayMetadata(
+  lang: Lang,
+  copy: { metaTitle: string; metaDescription: string },
+  urls: Record<Lang, string>,
+): Metadata {
+  const url = urls[lang];
+  const image = {
+    url: '/assets/tinta-play-og.png',
+    width: 1200,
+    height: 630,
+    alt: copy.metaTitle,
+  };
+  return {
+    // `absolute` : le titre se suffit, sans « · AppCraft31 » qui le tronquerait
+    // dans un aperçu de message.
+    title: { absolute: copy.metaTitle },
+    description: copy.metaDescription,
+    alternates: {
+      canonical: url,
+      languages: { ...urls, 'x-default': urls.fr },
+    },
+    openGraph: {
+      title: copy.metaTitle,
+      description: copy.metaDescription,
+      url,
+      siteName: SITE_NAME,
+      locale: LANG_META[lang].ogLocale,
+      type: 'website',
+      images: [image],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: copy.metaTitle,
+      description: copy.metaDescription,
+      images: [image.url],
+    },
+    robots: robots(false),
+  };
+}

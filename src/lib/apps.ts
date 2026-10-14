@@ -5,6 +5,7 @@
  */
 
 import type { AppData } from './types';
+import { tintaPlayUrls } from './play';
 
 export const APPS: AppData[] = [
   /* Capsule Collector — pas encore publié (com.appcraft31.capsulecollector,
@@ -202,7 +203,11 @@ export const APPS: AppData[] = [
     name: 'Tinta',
     category: 'game',
     status: 'available',
-    store: { ios: 'https://apps.apple.com/us/app/tinta-color-sudoku-logic/id6787122341' },
+    store: {
+      ios: 'https://apps.apple.com/us/app/tinta-color-sudoku-logic/id6787122341',
+      // La grille du jour, jouable dans le navigateur (`/jouer/tinta.html`).
+      web: tintaPlayUrls(),
+    },
     icon: '/assets/icons/tinta.svg',
     screenshots: [],
     sdk: { ads: true, purchases: true, analytics: false, network: false, accounts: false },

@@ -14,7 +14,16 @@ import { SocialLinks } from './SocialLinks';
  */
 export const CONTACT_EMAIL = 'appcraft31@gmail.com';
 
-export function Footer({ lang, path }: { lang: Lang; path: string }) {
+export function Footer({
+  lang,
+  path,
+  langUrls,
+}: {
+  lang: Lang;
+  path: string;
+  /** Adresses par langue, quand le chemin se traduit (jeu web Tinta). */
+  langUrls?: Record<Lang, string>;
+}) {
   const t = translator(lang);
   const year = 2026;
 
@@ -67,7 +76,7 @@ export function Footer({ lang, path }: { lang: Lang; path: string }) {
             {LANGS.map((l) => (
               <li key={l}>
                 <Link
-                  href={localizedUrl(l, path)}
+                  href={langUrls?.[l] ?? localizedUrl(l, path)}
                   hrefLang={l}
                   lang={l}
                   aria-current={l === lang ? 'true' : undefined}
