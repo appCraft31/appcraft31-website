@@ -8,19 +8,19 @@ import type { AppData } from './types';
 import { tintaPlayUrls } from './play';
 
 export const APPS: AppData[] = [
-  /* Perfect Demolition — pas encore publié (com.appcraft31.perfectdemolition,
-     jeu Godot 4). Distribué sur iPhone et iPad : l'export Android existe mais
-     la publicité y est désactivée (`[admob]` de project.godot) et aucune
-     fiche Google Play n'est branchée. Ajouter le lien App Store et passer
-     `status` à 'available' le jour de la sortie. Captures réelles
-     (`fastlane/screenshots_raw/fr-FR`, 1320×2868). */
+  /* Perfect Demolition — sur l'App Store depuis octobre 2026
+     (com.appcraft31.perfectdemolition, jeu Godot 4, iPhone et iPad). L'export
+     Android existe mais la publicité y est désactivée (`[admob]` de
+     project.godot) et aucune fiche Google Play n'est branchée. Captures
+     réelles (`fastlane/screenshots_raw/fr-FR`, 1320×2868). */
   {
     slug: 'perfectdemolition',
     name: 'Perfect Demolition',
     category: 'game',
-    status: 'soon',
-    store: {},
-    soonOn: 'ios',
+    status: 'available',
+    store: {
+      ios: 'https://apps.apple.com/us/app/perfect-demolition-casse-tout/id6819319367',
+    },
     icon: '/assets/icons/perfectdemolition.webp',
     screenshots: [
       { src: '/assets/perfectdemolition-screen-explosion.webp', alt: 'Le niveau 1, Petite tour : une bombe fait éclater la tour de briques, « EFFICACE ! sur la brique », 100 % détruit, et la barre des douze outils en bas' },

@@ -98,8 +98,8 @@ const fr: AppCopy = {
   ],
 
   cta: {
-    title: 'Bientôt sur l’App Store',
-    body: 'Perfect Demolition arrive sur iPhone et iPad. En attendant, découvrez nos autres jeux.',
+    title: 'La première tour vous attend',
+    body: 'Perfect Demolition est disponible gratuitement sur l’App Store, pour iPhone et iPad, en 15 langues.',
   },
 
   meta: {
@@ -199,8 +199,8 @@ const en: AppCopy = {
   ],
 
   cta: {
-    title: 'Coming soon to the App Store',
-    body: 'Perfect Demolition is coming to iPhone and iPad. Meanwhile, discover our other games.',
+    title: 'The first tower is waiting',
+    body: 'Perfect Demolition is available for free on the App Store, for iPhone and iPad, in 15 languages.',
   },
 
   meta: {
