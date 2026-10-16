@@ -2,6 +2,13 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <!-- Sans la barre finale, « js/main.js » et « data/… » se résolvent sous /play/
+       et répondent 404 : le jeu reste figé. On rejoint l'adresse canonique. -->
+  <script>
+    if (!location.pathname.endsWith('/')) {
+      location.replace(location.pathname + '/' + location.search + location.hash);
+    }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Mots mêlés en ligne gratuits — Jouer à Mêliz sans inscription</title>
   <meta name="description" content="Jouez aux mots mêlés en ligne gratuitement : défi du jour, 9 thèmes et 3 niveaux de difficulté. Jeu de mots cachés directement dans le navigateur, sans téléchargement ni inscription." />
