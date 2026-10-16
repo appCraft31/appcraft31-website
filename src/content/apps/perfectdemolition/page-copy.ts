@@ -92,8 +92,8 @@ const fr: AppCopy = {
     {
       id: 'privacy',
       kicker: 'Vie privée',
-      title: 'Pas de compte, pas de mesure d’audience',
-      body: 'Progression, pièces, outils, étoiles et trophées sont enregistrés sur l’appareil. Le jeu se joue entièrement hors ligne : la connexion ne sert qu’à charger les publicités (Google AdMob, avec Unity Ads et Liftoff en médiation) et leur formulaire de consentement. Aucun achat intégré, aucun outil de statistiques. Les vidéos publicitaires ne se lancent que si vous appuyez sur leur bouton.',
+      title: 'Pas de compte',
+      body: 'Votre progression reste sur l’appareil. Le jeu se joue hors ligne : la connexion ne sert qu’aux publicités (Google AdMob). Aucun achat intégré, aucune statistique.',
     },
   ],
 
@@ -193,8 +193,8 @@ const en: AppCopy = {
     {
       id: 'privacy',
       kicker: 'Privacy',
-      title: 'No account, no analytics',
-      body: 'Progress, coins, tools, stars and trophies are stored on the device. The game plays entirely offline: the connection is only used to load ads (Google AdMob, with Unity Ads and Liftoff through mediation) and their consent form. No in-app purchases, no analytics tools. Ad videos only start if you tap their button.',
+      title: 'No account',
+      body: 'Your progress stays on the device. The game plays offline: the connection is only used for ads (Google AdMob). No in-app purchases, no analytics.',
     },
   ],
 
