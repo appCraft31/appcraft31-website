@@ -22,6 +22,7 @@ const PROJECTS = join(homedir(), 'StudioProjects');
  * quand le projet vit ailleurs (Elastic Hero est sur le disque Appcraft).
  */
 const SOURCES = {
+  perfectdemolition: 'PerfectDemolition',
   capsulecollector: 'Capsule_collector',
   elastichero: '/Volumes/Appcraft/MAQUETTES/Elastic_Hero',
   ding: 'ascenceur',
@@ -68,7 +69,7 @@ const MARKERS = {
  * `Contree/`, `EcoPompe_iOS/`…). On balaie donc tout le projet, en écartant
  * ce qui n'est pas du code source écrit à la main.
  */
-const EXCLUDED = ['build', 'DerivedData', 'Pods', 'node_modules', '.git', '.dart_tool', 'Carthage'];
+const EXCLUDED = ['build', 'DerivedData', 'Pods', 'node_modules', '.git', '.dart_tool', 'Carthage', '.godot', 'addons'];
 
 function scan(projectDir, pattern) {
   try {
@@ -88,6 +89,10 @@ function scan(projectDir, pattern) {
         '--include=*.gradle',
         '--include=*.kts',
         '--include=*.pbxproj',
+        // Godot (Perfect Demolition) : GDScript, et project.godot qui déclare
+        // AdMob et sa médiation. Les greffons tiers (`addons/`) sont exclus.
+        '--include=*.gd',
+        '--include=*.godot',
         pattern,
         projectDir,
       ],

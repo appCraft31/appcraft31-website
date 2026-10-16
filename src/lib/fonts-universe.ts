@@ -21,6 +21,7 @@ import {
   Instrument_Serif,
   JetBrains_Mono,
   Jua,
+  Lilita_One,
   M_PLUS_Rounded_1c,
   Michroma,
   Newsreader,
@@ -175,6 +176,17 @@ const jua = Jua({
   variable: '--font-jua',
 });
 
+// Perfect Demolition : Lilita One pour les titres et les boutons (`TITLE_FONT`
+// de scripts/ui.gd), Nunito pour le texte courant, déjà déclarée plus haut.
+// Lilita One n'existe qu'en une graisse.
+const lilitaOne = Lilita_One({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  weight: '400',
+  variable: '--font-lilita',
+});
+
 /** Variable CSS → classe qui la définit. */
 const BY_VAR: Record<string, string> = {
   '--font-chakra': chakraPetch.variable,
@@ -196,6 +208,7 @@ const BY_VAR: Record<string, string> = {
   '--font-fredoka': fredoka.variable,
   '--font-mplusrounded': mplusRounded.variable,
   '--font-jua': jua.variable,
+  '--font-lilita': lilitaOne.variable,
 };
 
 /**

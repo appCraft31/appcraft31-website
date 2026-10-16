@@ -38,10 +38,36 @@ const F = {
   rubik: 'var(--font-rubik), system-ui, sans-serif',
   fredoka: 'var(--font-fredoka), system-ui, sans-serif',
   // M PLUS Rounded 1c, puis Jua pour le hangeul : la pile de repli de l'app.
+  // Lilita One : la police des titres et des boutons de Perfect Demolition.
+  lilita: 'var(--font-lilita), system-ui, sans-serif',
   mplusRounded: 'var(--font-mplusrounded), var(--font-jua), system-ui, sans-serif',
 } as const;
 
 export const THEMES: Record<string, AppTheme> = {
+  /* ── Perfect Demolition : la palette de scripts/ui.gd — marine #1F2A44 pour
+     le texte et les contours, crème #FFF8EA des cartes, orange #FF8A3D des
+     boutons, jaune #FFD23F de « DEMOLITION » et des étoiles, bleu ciel
+     #3FA9F5 du chantier et de l'écran de lancement. Lilita One pour les
+     titres, Nunito pour le texte, comme dans le jeu ; les bulles évoquent
+     les éclats qui volent. ── */
+  perfectdemolition: {
+    palette: {
+      ink: '#1F2A44',
+      paper: '#FFF8EA',
+      surface: '#FFFFFF',
+      accent: '#FF8A3D',
+      accentAlt: '#FFD23F',
+      // L'orange des boutons assombri : lisible en petit sur la crème.
+      accentText: '#C2541A',
+      glow: 'rgba(255, 138, 61, 0.28)',
+      line: '#3FA9F5',
+    },
+    fonts: { display: F.lilita, body: F.roundedBody },
+    backdrop: 'soft-bubbles',
+    shape: { radius: 24, border: 'soft' },
+    motion: 'high',
+    layout: ['hero-split', 'stat-band', 'how-it-plays', 'gallery-device', 'features', 'privacy', 'cta'],
+  },
   /* ── Capsule Collector : la palette « jouet en plastique » de
      lib/core/theme.dart — crème #FFF6E8, encre chocolat #3B2F2F, rouge capsule
      #F0605D (couleur de base du thème), jaune #F7B733 des capsules ; cadres

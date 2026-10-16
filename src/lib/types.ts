@@ -137,6 +137,12 @@ export interface AppData {
   category: Category;
   status: Status;
   store: StoreLinks;
+  /**
+   * Store unique visé par une app pas encore publiée. Sans lui, le message
+   * d'attente annonce « l'App Store et Google Play » ; une app réservée à
+   * l'iPhone ne doit pas promettre une version Android.
+   */
+  soonOn?: 'ios' | 'android';
   icon: string;
   /** Image de partage (Open Graph), quand l'app en a une dessinée. */
   ogImage?: string;

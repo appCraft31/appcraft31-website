@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Démolition en 3D, un coup après l’autre",
+    "desc": "Un jeu de démolition en 3D gratuit sur iPhone et iPad : 203 niveaux, 12 outils, du marteau au canon à chats, et 14 matières qui réagissent chacune à leur façon. Visez le point faible et réduisez tours et châteaux en miettes.",
+    "c1": "203 niveaux",
+    "c2": "12 outils",
+    "c3": "14 matières",
+    "c4": "Physique 3D",
+    "c5": "Défi du jour",
+    "c6": "Se joue hors ligne"
+  },
+  "en": {
+    "tagline": "3D demolition, one strike at a time",
+    "desc": "A free 3D demolition game for iPhone and iPad: 203 levels, 12 tools from the hammer to the cat cannon, and 14 materials that each react their own way. Find the weak spot and smash towers and castles to pieces.",
+    "c1": "203 levels",
+    "c2": "12 tools",
+    "c3": "14 materials",
+    "c4": "3D physics",
+    "c5": "Daily challenge",
+    "c6": "Plays offline"
+  },
+  "ja": {
+    "tagline": "一撃ずつ崩す3D解体ゲーム",
+    "desc": "iPhone・iPad向けの無料3D解体ゲーム。203のレベル、ハンマーからネコ大砲まで12の道具、それぞれ違う反応をする14の素材。弱点をねらって、塔もお城も粉々にしよう。",
+    "c1": "203レベル",
+    "c2": "12の道具",
+    "c3": "14の素材",
+    "c4": "3D物理演算",
+    "c5": "デイリーチャレンジ",
+    "c6": "オフラインで遊べる"
+  },
+  "ko": {
+    "tagline": "한 방씩 무너뜨리는 3D 철거",
+    "desc": "iPhone과 iPad용 무료 3D 철거 게임. 203개의 레벨, 망치부터 고양이 대포까지 12가지 도구, 저마다 다르게 반응하는 14가지 재질. 약점을 노려 탑과 성을 산산조각 내세요.",
+    "c1": "203개 레벨",
+    "c2": "도구 12가지",
+    "c3": "재질 14가지",
+    "c4": "3D 물리",
+    "c5": "오늘의 도전",
+    "c6": "오프라인 플레이"
+  },
+  "es": {
+    "tagline": "Demolición en 3D, golpe a golpe",
+    "desc": "Un juego de demolición en 3D gratis para iPhone y iPad: 203 niveles, 12 herramientas, del martillo al cañón de gatos, y 14 materiales que reaccionan cada uno a su manera. Apunta al punto débil y reduce torres y castillos a escombros.",
+    "c1": "203 niveles",
+    "c2": "12 herramientas",
+    "c3": "14 materiales",
+    "c4": "Física 3D",
+    "c5": "Desafío diario",
+    "c6": "Se juega sin conexión"
+  },
+  "de": {
+    "tagline": "3D-Abriss, Schlag für Schlag",
+    "desc": "Ein kostenloses 3D-Abrissspiel für iPhone und iPad: 203 Level, 12 Werkzeuge vom Hammer bis zur Katzenkanone und 14 Materialien, die jeweils anders reagieren. Triff die Schwachstelle und leg Türme und Burgen in Schutt und Asche.",
+    "c1": "203 Level",
+    "c2": "12 Werkzeuge",
+    "c3": "14 Materialien",
+    "c4": "3D-Physik",
+    "c5": "Tägliche Herausforderung",
+    "c6": "Offline spielbar"
+  }
+}

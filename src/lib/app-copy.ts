@@ -25,6 +25,7 @@ import { pageCopy as keeply } from '@/content/apps/keeply/page-copy';
 import { pageCopy as meliz } from '@/content/apps/meliz/page-copy';
 import { pageCopy as motfleche } from '@/content/apps/motfleche/page-copy';
 import { pageCopy as orbis } from '@/content/apps/orbis/page-copy';
+import { pageCopy as perfectdemolition } from '@/content/apps/perfectdemolition/page-copy';
 import { pageCopy as pixelcraft } from '@/content/apps/pixelcraft/page-copy';
 import { pageCopy as poddroid } from '@/content/apps/poddroid/page-copy';
 import { pageCopy as randompix } from '@/content/apps/randompix/page-copy';
@@ -58,6 +59,7 @@ const FULL: Record<string, PerLang> = {
   meliz,
   motfleche,
   orbis,
+  perfectdemolition,
   pixelcraft,
   poddroid,
   randompix,

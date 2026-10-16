@@ -47,7 +47,11 @@ export function StoreLinks({
   if (!ios && !android && !web) {
     return (
       <p className={`${styles.soon} ${styles[align]}`}>
-        {fr ? 'Bientôt sur l’App Store et Google Play' : 'Coming soon to the App Store and Google Play'}
+        {app.soonOn === 'ios'
+          ? fr ? 'Bientôt sur l’App Store' : 'Coming soon to the App Store'
+          : app.soonOn === 'android'
+            ? fr ? 'Bientôt sur Google Play' : 'Coming soon to Google Play'
+            : fr ? 'Bientôt sur l’App Store et Google Play' : 'Coming soon to the App Store and Google Play'}
       </p>
     );
   }

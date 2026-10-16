@@ -29,6 +29,68 @@ const adFunded = (removedBy?: string): PrivacyFacts['ads'] => ({
 });
 
 export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
+  // Perfect Demolition — lu dans ~/StudioProjects/PerfectDemolition le
+  // 16 octobre 2026. `scripts/ads.gd` : greffon Poing Studios AdMob 5.1.0,
+  // interstitiel et vidéo récompensée, formulaire UMP avant toute demande.
+  // Médiation Unity Ads et Liftoff (`[admob]` de project.godot :
+  // `mediation/unity_ads`, `mediation/vungle`). Aucun appel ATT dans le code
+  // du jeu (seule la clé NSUserTrackingUsageDescription est déclarée), d'où
+  // `att: false` ; aucun `showPrivacyOptionsForm` (`umpReopen: false`), aucune
+  // restriction de contenu (`familyContent: false`). Publicité active sur iOS
+  // seulement (`general/android/enabled=false`). Sauvegarde : `user://save.json`
+  // écrit par `GameState.save_game()`. Aucun achat intégré, aucune mesure
+  // d'audience, aucun compte, aucune requête réseau du jeu lui-même.
+  perfectdemolition: {
+    platforms: ['iOS'],
+    localData: [
+      {
+        fr: 'pièces gagnées et niveau de chaque outil',
+        en: 'coins earned and the level of each tool',
+      },
+      {
+        fr: 'étoiles et meilleur score de chaque niveau, trophées et médailles de défi',
+        en: 'stars and best score for each level, trophies and challenge medals',
+      },
+      {
+        fr: 'date du dernier défi du jour et série de jours consécutifs',
+        en: 'date of the last daily challenge and streak of consecutive days',
+      },
+      {
+        fr: 'matières déjà rencontrées, pour ne les présenter qu’une fois',
+        en: 'materials already encountered, so they are only introduced once',
+      },
+      {
+        fr: 'réglages (langue, sons, musique)',
+        en: 'settings (language, sounds, music)',
+      },
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: false,
+      umpReopen: false,
+      familyContent: false,
+      mediation: [
+        { name: 'Unity Ads', privacyUrl: 'https://unity.com/legal/game-player-and-app-user-privacy-policy' },
+        { name: 'Liftoff Monetize (VungleAdsSDK)', privacyUrl: 'https://liftoff.ai/privacy-policy/' },
+      ],
+    },
+    purchases: [],
+    analytics: null,
+    // Le jeu se joue hors ligne ; le réseau ne sert qu'aux annonces et à leur
+    // formulaire de consentement, ce que dit la phrase type.
+    network: null,
+    accounts: null,
+    forChildren: false,
+    updated: '2026-10-16',
+    notes: [
+      {
+        fr: "Perfect Demolition est gratuit grâce à la publicité, sans aucun achat intégré. L'interstitiel ne s'affiche qu'en quittant l'écran de résultat d'un niveau : jamais avant d'avoir réussi trois niveaux, et au moins deux minutes après une autre annonce. Le son du jeu est coupé pendant les annonces. Les vidéos récompensées (doubler les gains d'un niveau réussi, recevoir des pièces à l'atelier) ne se lancent que si vous appuyez vous-même sur leur bouton.",
+        en: 'Perfect Demolition is free thanks to advertising, with no in-app purchases at all. The interstitial only appears when you leave a level’s result screen: never before you have cleared three levels, and at least two minutes after another ad. The game’s sound is muted during ads. Rewarded videos (doubling the winnings of a cleared level, receiving coins in the workshop) only start if you tap their button yourself.',
+      },
+    ],
+  },
   // Capsule Collector — lu dans ~/StudioProjects/Capsule_collector le
   // 28 septembre 2026 : `lib/ads/*` (AdMob 9.0.0, interstitiel et vidéo
   // récompensée ; UMP au lancement puis ATT sur iOS, `showPrivacyOptionsForm`
