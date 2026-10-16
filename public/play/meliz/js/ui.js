@@ -132,9 +132,15 @@ export function renderWords(container, game) {
 export function renderHud(refs, game, t) {
   refs.timer.textContent = formatTime(game.elapsedSeconds);
   refs.progress.textContent = `${game.foundCount}/${game.words.length}`;
-  refs.hintCount.textContent = t('game.hints_left', { n: game.hintsLeft });
+  // Les boutons portent une icône : on ne touche qu'à leur libellé, jamais à
+  // leur textContent, qui effacerait le SVG.
+  refs.hintCount.textContent = game.hintsLeft;
+  refs.hintButton.title = t('game.hints_left', { n: game.hintsLeft });
   refs.hintButton.disabled = game.hintsLeft <= 0 || game.isFinished;
-  refs.pauseButton.textContent = game.isPaused ? t('game.resume') : t('game.pause');
+  const pauseLabel = game.isPaused ? t('game.resume') : t('game.pause');
+  refs.pauseButton.querySelector('.sr').textContent = pauseLabel;
+  refs.pauseButton.title = pauseLabel;
+  refs.pauseButton.classList.toggle('is-paused', game.isPaused);
   refs.pauseButton.disabled = game.isFinished;
   refs.board.classList.toggle('paused', game.isPaused);
 }
