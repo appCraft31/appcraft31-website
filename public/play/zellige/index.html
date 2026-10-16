@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Sans la barre finale, « js/main.js » et « fonts/… » se résolvent sous /play/
+       et répondent 404 : le jeu reste figé. On rejoint l'adresse canonique. -->
+  <script>
+    if (!location.pathname.endsWith('/')) {
+      location.replace(location.pathname + '/' + location.search + location.hash);
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tectonic en ligne gratuit — Suguru et grille du jour | Zellige</title>
+  <meta name="description" content="Jouez au Tectonic (Suguru) en ligne gratuitement : la grille du jour en 12×12, la même que dans l’app Zellige, et des parties libres du 5×5 au 9×9, toutes à solution unique. Directement dans le navigateur, sans téléchargement ni inscription." />
+  <link rel="canonical" href="https://appcraft31.app/play/zellige/" />
+  <link rel="alternate" hreflang="fr" href="https://appcraft31.app/play/zellige/" />
+  <link rel="alternate" hreflang="en" href="https://appcraft31.app/play/zellige/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://appcraft31.app/play/zellige/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="icon" type="image/svg+xml" href="../../assets/icons/zellige.svg" />
+  <meta property="og:title" content="Tectonic en ligne — la grille du jour, gratuite" />
+  <meta property="og:description" content="Suguru en carreaux de faïence : des blocs, des chiffres de 1 à 5, jamais deux pareils côte à côte. La grille du jour de l’app Zellige, jouable dans le navigateur." />
+  <meta property="og:image" content="https://appcraft31.app/assets/zellige-play-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://appcraft31.app/play/zellige/" />
+  <meta property="og:site_name" content="AppCraft31" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tectonic en ligne — la grille du jour, gratuite" />
+  <meta name="twitter:description" content="Suguru en ligne : la grille du jour de l’app Zellige, jouable dans le navigateur." />
+  <meta name="twitter:image" content="https://appcraft31.app/assets/zellige-play-og.png" />
+  <meta name="theme-color" content="#F1EDE6" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#131B24" media="(prefers-color-scheme: dark)" />
+  <style>
+    /* Outfit, la police de l'app (GoogleFonts.outfit côté Flutter), servie depuis
+       le site : aucune requête vers un tiers. Licence : fonts/OFL.txt. */
+    @font-face {
+      font-family: "Outfit";
+      src: url("fonts/outfit.ttf") format("truetype");
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
+    /* Palette de lib/ui/theme/tectonic_theme.dart (TectonicPalette.light / .dark). */
+    :root {
+      --bg:          #F1EDE6;
+      --surface:     #FBF9F5;
+      --raised:      #EBE5DA;
+      --ink:         #1E2F44;
+      --ink-soft:    #546578;
+      --accent:      #1B4A7A;
+      --accent-soft: #DCE7F1;
+      --on-accent:   #F3F7FB;
+      --disabled:    #767D8B;
+      --grout:       #FBF9F5;
+      --given:       #1E2F44;
+      --entered:     #1B4A7A;
+      --selection:   #F2C97D;
+      --highlight:   #E3DACA;
+      --focus:       #1B4A7A;
+      --danger:      #8E2818;
+      --danger-soft: #F6DCD6;
+      --success:     #2E6B4F;
+      --t0: #C9DCEA; --t1: #EADFC8; --t2: #CFDCCB; --t3: #E8CFC4; --t4: #DAD3E4;
+      --line:        rgba(30, 47, 68, 0.12);
+      --pattern:     rgba(251, 249, 245, 0.9);
+      --shadow:      0 18px 40px -24px rgba(30, 47, 68, 0.35);
+      --shadow-sm:   0 4px 10px -6px rgba(30, 47, 68, 0.35);
+      --radius-card: 20px;
+      --radius-btn:  16px;
+      color-scheme: light;
+    }
+
+    /* En sombre, le joint n'est plus un trait clair mais l'ombre entre les carreaux. */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:          #131B24;
+        --surface:     #1B2530;
+        --raised:      #223040;
+        --ink:         #EAF1F7;
+        --ink-soft:    #93A6B8;
+        --accent:      #79B6E8;
+        --accent-soft: #1D3244;
+        --on-accent:   #081119;
+        --disabled:    #8A94A0;
+        --grout:       #0D141B;
+        --given:       #EAF1F7;
+        --entered:     #79B6E8;
+        --selection:   #4A3A14;
+        --highlight:   #2B3A46;
+        --focus:       #79B6E8;
+        --danger:      #F0968A;
+        --danger-soft: #40201A;
+        --success:     #6FBE97;
+        --t0: #23465F; --t1: #4A4029; --t2: #2C4436; --t3: #4E3229; --t4: #38334E;
+        --line:        rgba(234, 241, 247, 0.12);
+        --pattern:     rgba(13, 20, 27, 0.55);
+        --shadow:      0 18px 40px -22px rgba(0, 0, 0, 0.7);
+        --shadow-sm:   0 4px 10px -6px rgba(0, 0, 0, 0.6);
+        color-scheme: dark;
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Outfit", -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100dvh;
+      padding-bottom: 48px;
+      overflow-x: hidden;
+    }
+
+    /* Fond : le carrelage d'un mur, joints compris, qui s'efface vers le bas. */
+    body::before {
+      content: "";
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background-image:
+        linear-gradient(var(--pattern) 3px, transparent 3px),
+        linear-gradient(90deg, var(--pattern) 3px, transparent 3px);
+      background-size: 64px 64px;
+      -webkit-mask-image: linear-gradient(to bottom, #000, transparent 65%);
+      mask-image: linear-gradient(to bottom, #000, transparent 65%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; cursor: pointer; border: none; background: none; }
+    button:disabled { cursor: default; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    [hidden] { display: none !important; }
+    svg.icon { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: butt; stroke-linejoin: miter; }
+
+    .wrap { max-width: 640px; margin: 0 auto; padding: 18px 16px 0; }
+
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 22px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.25rem; letter-spacing: 0.01em; }
+    .brand img { width: 38px; height: 38px; border-radius: 9px; box-shadow: var(--shadow-sm); }
+    .topbar a { color: var(--ink-soft); font-weight: 600; font-size: 0.92rem; }
+    .topbar a:hover { color: var(--ink); }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .card h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.01em; }
+    .muted { color: var(--ink-soft); font-size: 0.95rem; }
+
+    /* ------------------------------------------------------- carrelage */
+
+    /* Une case = un carreau. Son bord est le joint : 1 px vers une case du même
+       bloc, 3 px vers un autre bloc ou le bord (TectonicMetrics). Deux cases
+       voisines additionnent leurs bords : 2 px dans un bloc, 6 px entre blocs. */
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(var(--w), 1fr);
+      grid-template-rows: repeat(var(--h), 1fr);
+      aspect-ratio: var(--w) / var(--h);
+      background: var(--grout);
+      padding: 2px;
+      border-radius: 8px;
+      container-type: inline-size;
+      user-select: none; -webkit-user-select: none;
+    }
+    .cell {
+      display: grid; place-items: center; min-width: 0; min-height: 0;
+      border: 1px solid var(--grout);
+      border-radius: 4px;
+      background-color: var(--tint, var(--t0));
+      background-clip: padding-box;
+      color: var(--entered);
+      font-weight: 500;
+      font-size: calc(100cqw / var(--w) * 0.5);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .cell[data-tint="1"] { --tint: var(--t1); }
+    .cell[data-tint="2"] { --tint: var(--t2); }
+    .cell[data-tint="3"] { --tint: var(--t3); }
+    .cell[data-tint="4"] { --tint: var(--t4); }
+    .cell.bt { border-top-width: 3px; }
+    .cell.br { border-right-width: 3px; }
+    .cell.bb { border-bottom-width: 3px; }
+    .cell.bl { border-left-width: 3px; }
+    .cell.given { color: var(--given); font-weight: 800; }
+
+    #grid { touch-action: manipulation; border-radius: 10px; }
+    #grid:focus { outline: none; }
+    #grid:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+    #grid .cell { cursor: pointer; transition: background-color 0.12s ease, border-color 0.12s ease; }
+    #grid .cell.same { background-color: var(--highlight); }
+    #grid .cell.sel { background-color: var(--selection); }
+    #grid .cell.bad { color: var(--danger); background-color: var(--danger-soft); }
+    /* Le bloc de la sélection : c'est son joint qu'on colore, pas ses carreaux. */
+    #grid .cell.focus.bt { border-top-color: var(--focus); }
+    #grid .cell.focus.br { border-right-color: var(--focus); }
+    #grid .cell.focus.bb { border-bottom-color: var(--focus); }
+    #grid .cell.focus.bl { border-left-color: var(--focus); }
+    #grid .cell:not(.given)[data-key^="v"] { animation: place 0.16s ease-out; }
+    @keyframes place { from { transform: scale(0.85); } }
+    #grid .cell.hinted { animation: hinted 1.4s ease; }
+    @keyframes hinted { 0%, 55% { background-color: var(--selection); transform: scale(1.1); } }
+    #grid.solved .cell { animation: wave 0.6s ease calc(var(--d, 0) * 1ms); }
+    @keyframes wave { 40% { transform: scale(1.1); filter: brightness(1.08); } }
+
+    .notes {
+      display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; height: 100%;
+      padding: 8% 10%; align-items: center; justify-items: center;
+      font-size: calc(100cqw / var(--w) * 0.21); font-weight: 600; color: var(--ink-soft);
+    }
+    .notes i { font-style: normal; }
+    .notes i.off { visibility: hidden; }
+
+    /* Petites figures : emblème, règles. */
+    .mini { width: var(--mw); --w: 1; }
+    .mini .cell { font-size: calc(100cqw / var(--w) * 0.46); color: var(--given); font-weight: 700; }
+    .mini .cell.bad { color: var(--danger); background-color: var(--danger-soft); }
+    .mini .cell.ghost { color: color-mix(in srgb, var(--ink) 35%, transparent); font-weight: 600; }
+
+    /* ------------------------------------------------------------ menu */
+
+    .intro { display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; margin-bottom: 22px; }
+    .intro h1 { font-size: clamp(2rem, 6.5vw, 2.9rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+    .intro p { margin-top: 10px; max-width: 58ch; }
+    #emblem { --mw: 132px; box-shadow: var(--shadow-sm); transform: rotate(-3deg); }
+
+    .menu-grid { display: grid; gap: 16px; margin-bottom: 16px; }
+    .menu-grid .card { margin-bottom: 0; }
+
+    /* La grille du jour, en bleu de Delft plein comme le bloc « Continuer » de l'accueil. */
+    .card.daily { background: var(--accent); color: var(--on-accent); }
+    .card.daily .muted { color: color-mix(in srgb, currentColor 78%, transparent); }
+    .card.daily h2 { font-size: 1.65rem; display: flex; align-items: center; gap: 10px; }
+    .card.daily h2 svg { width: 24px; height: 24px; }
+    .daily-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 12px; }
+    .tag {
+      display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 6px;
+      font-size: 0.82rem; font-weight: 700; background: color-mix(in srgb, currentColor 14%, transparent);
+    }
+    .tag.done { background: var(--t2); color: var(--ink); }
+    .tag.streak { background: var(--selection); color: var(--ink); }
+    .daily-size { display: flex; gap: 10px; align-items: baseline; margin-top: 18px; font-weight: 700; }
+    .daily-size strong { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+    .card.daily .btn { background: var(--on-accent); color: var(--accent); box-shadow: 0 4px 0 color-mix(in srgb, var(--on-accent) 55%, var(--accent)); }
+    .card.daily .btn:active:not(:disabled) { box-shadow: 0 1px 0 color-mix(in srgb, var(--on-accent) 55%, var(--accent)); }
+
+    .seg-list { display: grid; gap: 8px; margin-top: 14px; grid-template-columns: repeat(3, 1fr); }
+    .seg {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      padding: 11px 6px; border-radius: 12px;
+      border: 2px solid var(--line); background: var(--bg); text-align: center;
+      transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.12s ease;
+    }
+    .seg:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+    .seg:active { transform: scale(0.97); }
+    .seg strong { font-size: 1rem; font-weight: 700; }
+    .seg span { font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); }
+    .seg.active { border-color: var(--accent); background: var(--accent-soft); }
+    .seg.locked { border-style: dashed; color: var(--ink-soft); }
+    .seg.locked:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; margin-top: 18px; padding: 15px 22px; border-radius: var(--radius-btn);
+      background: var(--accent); color: var(--on-accent); font-weight: 700; font-size: 1.08rem;
+      box-shadow: 0 4px 0 color-mix(in srgb, var(--accent) 70%, #000);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
+    .btn:hover:not(:disabled) { filter: brightness(1.06); }
+    .btn:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 color-mix(in srgb, var(--accent) 70%, #000); }
+    .btn.ghost {
+      background: var(--raised); color: var(--ink); font-size: 1rem; margin-top: 10px;
+      box-shadow: none;
+    }
+    .btn.ghost:active:not(:disabled) { transform: translateY(1px); box-shadow: none; }
+
+    .switch-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; }
+    .switch-row strong { display: block; font-weight: 700; }
+    .switch { position: relative; flex: none; width: 52px; height: 30px; }
+    .switch input { position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; }
+    .switch span {
+      position: absolute; inset: 0; border-radius: 8px; background: var(--raised);
+      box-shadow: inset 0 0 0 1.5px var(--line); transition: background-color 0.2s ease; pointer-events: none;
+    }
+    .switch span::after {
+      content: ""; position: absolute; top: 4px; left: 4px; width: 22px; height: 22px; border-radius: 5px;
+      background: var(--surface); box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25); transition: transform 0.2s ease;
+    }
+    .switch input:checked + span { background: var(--accent); box-shadow: none; }
+    .switch input:checked + span::after { transform: translateX(22px); }
+    .switch input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+    .field {
+      display: block; font-size: 0.78rem; font-weight: 800; color: var(--ink-soft);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-top: 20px;
+    }
+    .record-row {
+      display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid var(--line); font-weight: 600;
+    }
+    .record-row:last-child { border-bottom: none; }
+    .record-row strong {
+      font-weight: 800; font-variant-numeric: tabular-nums;
+      background: var(--accent-soft); color: var(--ink); padding: 2px 12px; border-radius: 6px;
+    }
+
+    .rules { display: grid; gap: 16px; margin-top: 14px; }
+    .rule { display: grid; grid-template-columns: 76px 1fr; gap: 16px; align-items: center; }
+    .rule .mini { justify-self: center; }
+    .rule p { font-weight: 600; }
+
+    .seo { color: var(--ink-soft); font-size: 0.97rem; }
+    .seo h2 { color: var(--ink); margin-top: 22px; }
+    .seo h2:first-child { margin-top: 0; }
+    .seo p, .seo ul { margin-top: 6px; }
+    .seo ul { padding-left: 20px; }
+    .seo li { margin-top: 4px; }
+    .seo strong { color: var(--ink); }
+    .seo dt { font-weight: 700; color: var(--ink); margin-top: 14px; }
+    .seo dd { margin-top: 4px; }
+    .seo a { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ---------------------------------------------------------- partie */
+
+    .hud { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+    .hud .spacer { flex: 1; }
+    .chip, .square {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 46px; border-radius: 12px; background: var(--raised); color: var(--ink);
+      font-weight: 700; font-size: 1.02rem; font-variant-numeric: tabular-nums;
+      white-space: nowrap; flex: none;
+    }
+    .chip { padding: 0 14px; }
+    .square { width: 46px; position: relative; transition: transform 0.12s ease, background-color 0.12s ease; }
+    .square:hover:not(:disabled) { background: color-mix(in srgb, var(--raised) 80%, var(--ink)); }
+    .square:active:not(:disabled) { transform: scale(0.93); }
+    .square:disabled { color: var(--disabled); }
+    .square.pause .icon-play { display: none; }
+    .square.pause.is-paused .icon-pause { display: none; }
+    .square.pause.is-paused .icon-play { display: block; }
+    #hint-count {
+      position: absolute; top: -5px; right: -5px; min-width: 20px; height: 20px; padding: 0 5px;
+      display: grid; place-items: center; border-radius: 6px;
+      background: var(--accent); color: var(--on-accent); font-size: 0.74rem; font-weight: 800;
+      box-shadow: 0 0 0 2px var(--bg);
+    }
+    .square.hint:disabled #hint-count { display: none; }
+
+    .board-head { text-align: center; margin-bottom: 14px; }
+    #board-title { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.2; }
+    #board-subtitle { color: var(--ink-soft); font-weight: 600; }
+
+    .board-layout { display: grid; gap: 16px; justify-items: center; }
+    .board-panel {
+      position: relative; width: 100%;
+      max-width: max(300px, calc((100dvh - 330px) * var(--w, 1) / var(--h, 1)));
+    }
+    #loading {
+      display: grid; place-items: center; aspect-ratio: 1; border-radius: 10px;
+      background: var(--raised); color: var(--ink-soft); font-weight: 700;
+    }
+    #loading span { animation: breathe 1.2s ease-in-out infinite alternate; }
+    @keyframes breathe { to { opacity: 0.4; } }
+    #board.is-loading #grid { display: none; }
+    #status {
+      position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+      background: var(--ink); color: var(--bg); padding: 8px 16px; border-radius: 8px;
+      font-weight: 700; font-size: 0.92rem; white-space: nowrap; box-shadow: var(--shadow-sm);
+      pointer-events: none;
+    }
+
+    #board.paused #grid { filter: blur(10px); }
+    #pause-overlay {
+      position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; justify-content: center;
+      background: color-mix(in srgb, var(--bg) 55%, transparent);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); cursor: pointer;
+    }
+    #pause-overlay span {
+      background: var(--surface); box-shadow: var(--shadow);
+      padding: 18px 30px; border-radius: 12px; font-weight: 800; font-size: 1.25rem;
+    }
+
+    .side { width: 100%; max-width: 560px; display: grid; gap: 10px; }
+    .pad { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+    .pad button {
+      position: relative; height: 62px; border-radius: 14px; background: var(--surface);
+      box-shadow: inset 0 0 0 1.5px var(--line), var(--shadow-sm);
+      font-size: 1.6rem; font-weight: 600; color: var(--ink);
+      transition: transform 0.1s ease, background-color 0.12s ease;
+    }
+    .pad button:hover:not(:disabled) { background: var(--accent-soft); }
+    .pad button:active:not(:disabled) { transform: scale(0.94); }
+    .pad button:disabled { color: var(--disabled); background: transparent; box-shadow: inset 0 0 0 1.5px var(--line); }
+    .pad.note-mode button:not(:disabled) { font-size: 1.15rem; color: var(--ink-soft); }
+    .pad.note-mode button.noted { background: var(--accent-soft); color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
+    .actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .actions button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 46px; border-radius: 12px; background: var(--surface);
+      box-shadow: inset 0 0 0 1.5px var(--line); font-weight: 600; font-size: 0.98rem;
+    }
+    .actions button:hover:not(:disabled) { background: var(--accent-soft); }
+    .actions button:disabled { color: var(--disabled); }
+    .actions button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); box-shadow: none; }
+    .keys { display: none; color: var(--ink-soft); font-size: 0.85rem; }
+    .side-actions { display: flex; justify-content: center; }
+    .side-actions .btn { width: auto; margin-top: 4px; padding: 11px 22px; }
+
+    /* -------------------------------------------------------- victoire */
+
+    #victory { text-align: center; }
+    #victory .card:first-child { animation: card-in 0.5s cubic-bezier(.3,1.4,.5,1); }
+    #victory .card:first-child h2 { font-size: 2.2rem; letter-spacing: -0.02em; }
+    @keyframes card-in { from { transform: translateY(16px) scale(0.96); opacity: 0; } }
+    .victory-tiles { --mw: 150px; margin: 0 auto 16px; }
+    .badge { display: inline-block; margin-top: 8px; padding: 4px 14px; border-radius: 6px; background: var(--selection); color: var(--ink); font-weight: 800; font-size: 0.85rem; }
+    .result-grid { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 20px 0 6px; }
+    .result-grid > div { display: flex; flex-direction: column; min-width: 100px; padding: 12px 18px; border-radius: 12px; color: #1E2F44; }
+    .result-grid .r-time { background: var(--t0); }
+    .result-grid .r-hints { background: var(--t1); }
+    .result-grid .r-streak, .result-grid .r-best { background: var(--t2); }
+    @media (prefers-color-scheme: dark) { .result-grid > div { color: var(--ink); } }
+    .result-grid .label { font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.75; }
+    .result-grid .value { font-size: 1.8rem; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.2; }
+
+    .stores { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+    .stores a {
+      display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 12px;
+      font-weight: 800; font-size: 0.95rem; background: var(--ink); color: var(--bg); transition: transform 0.12s ease;
+    }
+    .stores a:hover { transform: translateY(-2px); }
+    .stores a.play { background: var(--accent); color: var(--on-accent); }
+
+    /* ----------------------------------------------------- grand écran */
+
+    @media (min-width: 900px) {
+      .wrap { max-width: 1000px; padding-top: 28px; }
+      .menu-grid { grid-template-columns: 1fr 1fr; }
+      .menu-grid .card.daily { display: flex; flex-direction: column; }
+      .menu-grid .card.daily .btn { margin-top: auto; }
+      .menu-grid .card.daily .daily-size { margin-bottom: 22px; }
+      #emblem { --mw: 170px; }
+
+      #board { width: fit-content; margin: 0 auto; }
+      .board-layout { grid-template-columns: auto 320px; align-items: start; justify-items: stretch; gap: 22px; }
+      .board-panel {
+        width: min(660px, calc((100dvh - 300px) * var(--w, 1) / var(--h, 1)));
+        max-width: none; min-width: 360px;
+      }
+      .side {
+        background: var(--surface); border-radius: var(--radius-card); box-shadow: var(--shadow);
+        padding: 18px; gap: 12px;
+      }
+      .pad button { background: var(--bg); }
+      .actions button { background: var(--bg); }
+      .keys { display: block; }
+      #victory { max-width: 640px; margin: 0 auto; }
+    }
+
+    @media (max-width: 480px) {
+      .wrap { padding: 14px 12px 0; }
+      .card { padding: 20px; border-radius: 18px; }
+      .intro { grid-template-columns: 1fr; }
+      #emblem { display: none; }
+      .hud { gap: 6px; }
+      .chip, .square { height: 42px; font-size: 0.95rem; }
+      .square { width: 42px; }
+      .chip { padding: 0 10px; gap: 6px; }
+      .pad button { height: 54px; }
+      .actions button { font-size: 0.9rem; gap: 6px; }
+      .seg strong { font-size: 0.92rem; }
+    }
+    @media (max-width: 380px) {
+      .chip svg { display: none; }
+      .actions svg { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+<!-- Bandeau AppCraft31 (ac31-gamebar) — ajouté par scripts/wrap-games.mjs -->
+<style>
+  .ac31-gamebar{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:14px;
+    padding:8px clamp(14px,4vw,28px);background:#0c0a10;color:#f6f1ea;
+    font:500 14px/1.4 Inter,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    border-bottom:1px solid rgba(246,241,234,.14)}
+  .ac31-gamebar a{color:inherit;text-decoration:none}
+  .ac31-gamebar a:hover{color:#79B6E8}
+  .ac31-gamebar-brand{font-weight:800;letter-spacing:-.03em}
+  .ac31-gamebar-brand i{font-style:normal;color:#ff7a4d}
+  .ac31-gamebar-sep{opacity:.35}
+  .ac31-gamebar-back{margin-inline-start:auto;color:#79B6E8}
+</style>
+<nav class="ac31-gamebar" aria-label="AppCraft31">
+  <a class="ac31-gamebar-brand" href="/">AppCraft<i>31</i></a>
+  <span class="ac31-gamebar-sep" aria-hidden="true">/</span>
+  <span>Zellige</span>
+  <a class="ac31-gamebar-back" href="/apps/zellige.html">À propos du jeu →</a>
+</nav>
+
+
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="brand">
+        <img src="../../assets/icons/zellige.svg" alt="Zellige" />
+        <span>Zellige</span>
+      </div>
+      <a href="../../apps/zellige.html" data-i18n="back.site">Retour au site</a>
+    </div>
+
+    <!-- ------------------------------------------------------------ menu -->
+    <main id="menu">
+      <header class="intro">
+        <div>
+          <h1 data-i18n="seo.h1">Tectonic en ligne</h1>
+          <p class="muted" data-i18n="seo.intro">Le Tectonic — aussi appelé Suguru — se joue ici gratuitement,
+            dans le navigateur, sans téléchargement ni inscription. Une grille découpée en blocs, des chiffres
+            de 1 à 5 à poser par pure déduction : chaque grille a une solution unique, jamais besoin de deviner.</p>
+        </div>
+        <div class="tiles mini" id="emblem" aria-hidden="true"></div>
+      </header>
+
+      <div class="menu-grid">
+        <section class="card daily">
+          <h2>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter" aria-hidden="true"><path d="M3 5h18v16H3zM3 10h18M8 2v5M16 2v5"/><path d="M7 14h4v4H7z" fill="currentColor" stroke="none"/></svg>
+            <span data-i18n="menu.daily">Grille du jour</span>
+          </h2>
+          <p class="muted" data-i18n="menu.daily_sub">La même grille que dans l’app, pour tout le monde. Une nouvelle chaque jour à minuit.</p>
+          <div class="daily-meta">
+            <span class="tag" id="daily-date"></span>
+            <span class="tag" id="daily-status"></span>
+            <span class="tag streak" id="daily-streak" hidden></span>
+          </div>
+          <p class="daily-size"><strong>12×12</strong><span data-i18n="tier.expert">Expert</span></p>
+          <button class="btn" id="daily-play" type="button">Jouer</button>
+        </section>
+
+        <section class="card">
+          <h2 data-i18n="menu.free">Partie libre</h2>
+          <p class="muted" data-i18n="menu.free_sub">Une grille neuve à chaque partie, toujours à solution unique.</p>
+          <div class="seg-list" id="free-list"></div>
+          <button class="btn" id="free-play" type="button">Jouer</button>
+        </section>
+      </div>
+
+      <div class="menu-grid">
+        <section class="card">
+          <h2 data-i18n="rules.title">Les règles, en trois points</h2>
+          <div class="rules">
+            <div class="rule">
+              <div class="tiles mini" style="--w:2;--h:2;--mw:64px" aria-hidden="true">
+                <i class="cell bt bl">1</i><i class="cell bt br">3</i>
+                <i class="cell bb bl">4</i><i class="cell bb br">2</i>
+              </div>
+              <p data-i18n="rules.1">Chaque bloc de N cases contient les chiffres de 1 à N, une fois chacun.</p>
+            </div>
+            <div class="rule">
+              <div class="tiles mini" style="--w:2;--h:2;--mw:64px" aria-hidden="true">
+                <i class="cell bt bl br bad" data-tint="1">2</i><i class="cell bt br bl" data-tint="3"></i>
+                <i class="cell bb bl br" data-tint="1">1</i><i class="cell bb br bl bad" data-tint="3">2</i>
+              </div>
+              <p data-i18n="rules.2">Deux cases voisines ne portent jamais le même chiffre — diagonales comprises.</p>
+            </div>
+            <div class="rule">
+              <div class="tiles mini" style="--w:3;--h:1;--mw:76px" aria-hidden="true">
+                <i class="cell bt bb bl br" data-tint="2">1</i><i class="cell bt bb bl" data-tint="4">2</i><i class="cell bt bb br" data-tint="4">1</i>
+              </div>
+              <p data-i18n="rules.3">Chaque grille a une solution unique. Nul besoin de deviner.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 data-i18n="menu.options">Options</h2>
+          <div class="switch-row">
+            <div>
+              <strong id="opt-help-label" data-i18n="menu.help">Signaler les conflits</strong>
+              <span class="muted" data-i18n="menu.help_sub">Deux chiffres qui se gênent passent en rouge.</span>
+            </div>
+            <label class="switch"><input type="checkbox" id="opt-help" aria-labelledby="opt-help-label" /><span></span></label>
+          </div>
+          <span class="field" data-i18n="menu.records">Meilleurs temps</span>
+          <div id="records"></div>
+        </section>
+      </div>
+
+      <!-- Contenu éditorial : décrit le jeu à qui arrive par une recherche, et
+           donne aux moteurs un texte à indexer, le jeu étant construit en JS. -->
+      <section class="card seo">
+        <h2 data-i18n="seo.how_title">Comment jouer au Tectonic</h2>
+        <p data-i18n="seo.how_body">Touchez une case, puis un chiffre du pavé pour l’y poser ; touchez de nouveau
+          le même chiffre pour l’effacer. Le pavé grise les chiffres trop grands pour le bloc de la case. Le mode
+          Notes permet d’annoter plusieurs candidats dans une case vide. Les chiffres de départ, en gras, ne
+          bougent pas. La grille est résolue quand elle est pleine et respecte les règles : un bloc de N cases
+          contient les chiffres de 1 à N, et deux cases qui se touchent — même par un coin — ne portent jamais
+          le même chiffre.</p>
+
+        <h2 data-i18n="seo.tips_title">Trois techniques pour avancer</h2>
+        <ul>
+          <li><strong data-i18n="seo.tip1_t">Les blocs d’une case :</strong> <span data-i18n="seo.tip1">ils contiennent forcément un 1. Commencez par eux.</span></li>
+          <li><strong data-i18n="seo.tip2_t">Le voisinage :</strong> <span data-i18n="seo.tip2">un chiffre posé interdit ce même chiffre aux huit cases qui l’entourent. Cherchez, dans un bloc, la seule case où un chiffre peut encore aller.</span></li>
+          <li><strong data-i18n="seo.tip3_t">Les notes :</strong> <span data-i18n="seo.tip3">dans un bloc de deux cases, notez « 1 2 » partout ; dès qu’une des deux touche un 1, elle porte le 2.</span></li>
+        </ul>
+
+        <h2 data-i18n="seo.daily_title">La grille du jour</h2>
+        <p data-i18n="seo.daily_body">Chaque jour, une grille 12×12 de niveau Expert, la même pour tous les joueurs,
+          sur ce site comme dans l’app Zellige. Elle change à minuit, à votre heure. Terminez-la plusieurs jours
+          d’affilée pour faire grimper votre série.</p>
+
+        <h2 data-i18n="seo.faq_title">Questions fréquentes</h2>
+        <dl>
+          <dt data-i18n="seo.q1">Tectonic, Suguru : quelle différence ?</dt>
+          <dd data-i18n="seo.a1">Aucune : Suguru est le nom japonais d’origine du jeu, Tectonic celui sous lequel
+            on le trouve dans les magazines de jeux en France et en Belgique.</dd>
+          <dt data-i18n="seo.q2">Le jeu est-il gratuit ?</dt>
+          <dd data-i18n="seo.a2">Oui, entièrement gratuit, sans inscription et sans publicité sur cette page.
+            Vos temps et votre série restent dans votre navigateur : rien n’est envoyé à un serveur.</dd>
+          <dt data-i18n="seo.q3">Faut-il deviner ?</dt>
+          <dd data-i18n="seo.a3">Jamais. Chaque grille est générée puis vérifiée par un solveur pour n’avoir
+            qu’une seule solution : il existe toujours une case qui se déduit.</dd>
+          <dt data-i18n="seo.q4">Puis-je jouer hors connexion ?</dt>
+          <dd data-i18n="seo.a4">La version web demande une connexion pour charger la page. L’app iPhone et Android se joue hors ligne et ajoute le mode histoire, dont les grilles grandissent du 5×5 jusqu’au 12×12, et les classements.</dd>
+        </dl>
+        <p class="muted" style="margin-top:16px"><a href="../../apps/zellige.html" data-i18n="seo.more">En savoir plus sur l’application Zellige</a></p>
+      </section>
+    </main>
+
+    <!-- ---------------------------------------------------------- partie -->
+    <main id="board" hidden>
+      <div class="hud">
+        <button class="square quit" id="quit" type="button">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H5M11 5l-7 7 7 7"/></svg>
+          <span class="sr" data-i18n="game.quit">Menu</span>
+        </button>
+        <span class="chip">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4.5l3 2M9 2h6"/></svg>
+          <span id="timer">00:00</span>
+        </span>
+        <span class="chip" id="remaining-chip">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8v8H3zM13 3h8v8h-8zM3 13h8v8H3zM13 13h8v8h-8z"/></svg>
+          <span id="remaining">0</span><span class="sr" data-i18n="game.remaining">cases à remplir</span>
+        </span>
+        <span class="spacer"></span>
+        <button class="square hint" id="hint" type="button">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21.5h4M12 2.5a6.5 6.5 0 0 0-3.8 11.8c.5.4.8 1 .8 1.7V18h6v-2c0-.7.3-1.3.8-1.7A6.5 6.5 0 0 0 12 2.5Z"/></svg>
+          <span class="sr" data-i18n="game.hint">Indice</span>
+          <span id="hint-count"></span>
+        </button>
+        <button class="square pause" id="pause" type="button">
+          <svg class="icon icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" stroke-width="3.2"/></svg>
+          <svg class="icon icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15L19 12Z" fill="currentColor"/></svg>
+          <span class="sr">Pause</span>
+        </button>
+      </div>
+
+      <div class="board-head">
+        <h2 id="board-title"></h2>
+        <p id="board-subtitle"></p>
+      </div>
+
+      <div class="board-layout">
+        <div class="board-panel">
+          <div id="loading"><span data-i18n="game.loading">Génération de la grille…</span></div>
+          <div id="grid" class="tiles" role="grid" tabindex="0" aria-label="Zellige"></div>
+          <p id="status" role="status" hidden></p>
+        </div>
+        <aside class="side">
+          <div class="pad" id="pad">
+            <button type="button" data-value="1">1</button><button type="button" data-value="2">2</button><button type="button" data-value="3">3</button><button type="button" data-value="4">4</button><button type="button" data-value="5">5</button>
+          </div>
+          <div class="actions">
+            <button type="button" id="undo">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-4"/></svg>
+              <span data-i18n="game.undo">Annuler</span>
+            </button>
+            <button type="button" id="clear">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h13v14H8l-6-7Z"/><path d="m11 9 6 6M17 9l-6 6"/></svg>
+              <span data-i18n="game.clear">Effacer</span>
+            </button>
+            <button type="button" id="notes" aria-pressed="false">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20v-4L16 4l4 4L8 20ZM13 7l4 4"/></svg>
+              <span data-i18n="game.notes">Notes</span>
+            </button>
+          </div>
+          <p class="keys" data-i18n="game.keys"></p>
+          <div class="side-actions">
+            <button class="btn ghost" id="restart" type="button" data-i18n="game.restart">Recommencer</button>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <div id="pause-overlay" hidden><span data-i18n="game.paused">Partie en pause</span></div>
+
+    <!-- -------------------------------------------------------- victoire -->
+    <main id="victory" hidden>
+      <section class="card">
+        <div class="tiles mini victory-tiles" style="--w:4;--h:1" aria-hidden="true">
+          <i class="cell bt bb bl" data-tint="0">1</i><i class="cell bt bb br" data-tint="0">2</i><i class="cell bt bb bl" data-tint="3">3</i><i class="cell bt bb br" data-tint="3">1</i>
+        </div>
+        <h2 data-i18n="victory.title">Grille résolue !</h2>
+        <span class="badge" id="victory-badge" data-i18n="victory.new_best" hidden>Nouveau record !</span>
+        <div class="result-grid">
+          <div class="r-time"><span class="label" data-i18n="victory.time">Temps</span><span class="value" id="victory-time">00:00</span></div>
+          <div class="r-hints"><span class="label" data-i18n="victory.hints">Indices</span><span class="value" id="victory-hints">0</span></div>
+          <div class="r-streak" id="victory-streak-row"><span class="label" data-i18n="victory.streak">Série</span><span class="value" id="victory-streak">0</span></div>
+          <div class="r-best" id="victory-best-row"><span class="label" data-i18n="victory.best">Record</span><span class="value" id="victory-best">—</span></div>
+        </div>
+        <button class="btn" id="victory-next" type="button" data-i18n="victory.next">Grille suivante</button>
+        <button class="btn" id="share" type="button" data-i18n="victory.share">Partager</button>
+        <button class="btn ghost" id="victory-menu" type="button" data-i18n="victory.menu">Menu</button>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="cta.title">Envie d’aller plus loin ?</h2>
+        <p class="muted" data-i18n="cta.sub"></p>
+        <div class="stores">
+          <a href="https://apps.apple.com/fr/app/zellige-tectonic-suguru/id6806969470" target="_blank" rel="noopener">App Store</a>
+          <a class="play" href="https://play.google.com/store/apps/details?id=com.appcraft31.zellige" target="_blank" rel="noopener">Google Play</a>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Données structurées : le jeu, le fil d'Ariane et la FAQ affichée plus
+       haut (les réponses doivent rester visibles sur la page). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["VideoGame", "WebApplication"],
+        "@id": "https://appcraft31.app/play/zellige/#game",
+        "name": "Zellige — Tectonic en ligne",
+        "alternateName": ["Zellige", "Tectonic", "Suguru"],
+        "url": "https://appcraft31.app/play/zellige/",
+        "description": "Tectonic (Suguru) gratuit jouable dans le navigateur : la grille du jour en 12×12, identique à celle de l’app Zellige, et des parties libres du 5×5 au 9×9 à solution unique, sans téléchargement ni inscription.",
+        "image": "https://appcraft31.app/assets/zellige-play-og.png",
+        "inLanguage": ["fr", "en"],
+        "genre": ["Puzzle", "Jeu de logique", "Tectonic"],
+        "playMode": "SinglePlayer",
+        "gamePlatform": ["Navigateur web", "iOS", "Android"],
+        "applicationCategory": "GameApplication",
+        "browserRequirements": "Navigateur moderne avec JavaScript activé",
+        "operatingSystem": "Tout système avec un navigateur web",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "author": { "@type": "Organization", "name": "AppCraft31", "url": "https://appcraft31.app/" },
+        "publisher": { "@type": "Organization", "name": "AppCraft31", "url": "https://appcraft31.app/" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "AppCraft31", "item": "https://appcraft31.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Zellige", "item": "https://appcraft31.app/apps/zellige.html" },
+          { "@type": "ListItem", "position": 3, "name": "Jouer en ligne", "item": "https://appcraft31.app/play/zellige/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Tectonic, Suguru : quelle différence ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Aucune : Suguru est le nom japonais d’origine du jeu, Tectonic celui sous lequel on le trouve dans les magazines de jeux en France et en Belgique." }
+          },
+          {
+            "@type": "Question",
+            "name": "Le jeu est-il gratuit ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Oui, entièrement gratuit, sans inscription et sans publicité sur cette page. Vos temps et votre série restent dans votre navigateur : rien n’est envoyé à un serveur." }
+          },
+          {
+            "@type": "Question",
+            "name": "Faut-il deviner ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Jamais. Chaque grille est générée puis vérifiée par un solveur pour n’avoir qu’une seule solution : il existe toujours une case qui se déduit." }
+          },
+          {
+            "@type": "Question",
+            "name": "Puis-je jouer hors connexion ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "La version web demande une connexion pour charger la page. L’app iPhone et Android se joue hors ligne et ajoute le mode histoire, dont les grilles grandissent du 5×5 jusqu’au 12×12, et les classements." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

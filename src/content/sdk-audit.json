@@ -55,10 +55,10 @@
     }
   },
   "zellige": {
-    "source": "Tectonic",
+    "source": "Zellige",
     "hits": {
       "ads": 7,
-      "purchases": 0,
+      "purchases": 7,
       "analytics": 4,
       "network": 0,
       "accounts": 8,

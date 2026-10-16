@@ -27,7 +27,7 @@ const SOURCES = {
   elastichero: '/Volumes/Appcraft/MAQUETTES/Elastic_Hero',
   ding: 'ascenceur',
   glowmi: 'tamagotchi',
-  zellige: 'Tectonic',
+  zellige: 'Zellige',
   pixelcraft: 'pixel_art',
   remindo: 'rappel',
   holdfire: 'Hold_fire',

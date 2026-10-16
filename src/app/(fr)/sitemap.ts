@@ -70,6 +70,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
+    // Zellige : la grille du jour, la même que dans l'app ; langue par `?lang=`.
+    {
+      url: `${SITE}/play/zellige/`,
+      lastModified: new Date('2026-10-16'),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          fr: `${SITE}/play/zellige/`,
+          en: `${SITE}/play/zellige/?lang=en`,
+          'x-default': `${SITE}/play/zellige/`,
+        },
+      },
+    },
     // La grille du jour de Tinta : un chemin traduit par langue.
     {
       url: `${SITE}${tintaPlayUrls().fr}`,

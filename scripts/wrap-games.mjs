@@ -2,7 +2,7 @@
 /**
  * Raccorde les jeux web au site.
  *
- * `/play/meliz/`, `/play/binero/` et `/holdfire/event/` sont des pages autonomes dont le
+ * `/play/meliz/`, `/play/binero/`, `/play/zellige/` et `/holdfire/event/` sont des pages autonomes dont le
  * JavaScript pilote un DOM précis : les réécrire en composants React les
  * casserait pour un gain nul. On leur ajoute donc le strict nécessaire — un
  * bandeau aux couleurs du site, qui ramène à la page du produit — sans toucher
@@ -30,6 +30,12 @@ const GAMES = [
     label: 'Binero',
     back: '/apps/binero.html',
     accent: '#A8DCC0',
+  },
+  {
+    file: 'public/play/zellige/index.html',
+    label: 'Zellige',
+    back: '/apps/zellige.html',
+    accent: '#79B6E8',
   },
   {
     file: 'public/holdfire/event/index.html',

@@ -118,6 +118,7 @@ export const APPS: AppData[] = [
     store: {
       ios: 'https://apps.apple.com/fr/app/zellige-tectonic-suguru/id6806969470',
       android: 'https://play.google.com/store/apps/details?id=com.appcraft31.zellige',
+      web: '/play/zellige/',
     },
     icon: '/assets/icons/zellige.svg',
     screenshots: [
