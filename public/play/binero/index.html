@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Sans la barre finale, « js/main.js » et « fonts/… » se résolvent sous /play/
+       et répondent 404 : le jeu reste figé. On rejoint l'adresse canonique. -->
+  <script>
+    if (!location.pathname.endsWith('/')) {
+      location.replace(location.pathname + '/' + location.search + location.hash);
+    }
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Binero en ligne gratuit — Takuzu et grille du jour, sans inscription</title>
+  <meta name="description" content="Jouez au Binero (Takuzu, Binairo) en ligne gratuitement : la grille du jour en 6×6, 10×10 ou 14×14, la même que dans l’app, et des parties libres à solution unique. Directement dans le navigateur, sans téléchargement ni inscription." />
+  <link rel="canonical" href="https://appcraft31.app/play/binero/" />
+  <link rel="alternate" hreflang="fr" href="https://appcraft31.app/play/binero/" />
+  <link rel="alternate" hreflang="en" href="https://appcraft31.app/play/binero/?lang=en" />
+  <link rel="alternate" hreflang="x-default" href="https://appcraft31.app/play/binero/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="icon" type="image/svg+xml" href="../../assets/icons/binero.svg" />
+  <meta property="og:title" content="Binero en ligne — la grille du jour, gratuite" />
+  <meta property="og:description" content="Takuzu en ligne : autant de 0 que de 1, jamais trois pareils à la suite. La grille du jour, la même que dans l’app, jouable dans le navigateur." />
+  <meta property="og:image" content="https://appcraft31.app/assets/binero-play-og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://appcraft31.app/play/binero/" />
+  <meta property="og:site_name" content="AppCraft31" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Binero en ligne — la grille du jour, gratuite" />
+  <meta name="twitter:description" content="Takuzu en ligne : la grille du jour, la même que dans l’app, jouable dans le navigateur." />
+  <meta name="twitter:image" content="https://appcraft31.app/assets/binero-play-og.png" />
+  <meta name="theme-color" content="#FBFCF9" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1C2422" media="(prefers-color-scheme: dark)" />
+  <style>
+    /* Nunito, la police de l'app (GoogleFonts.nunito côté Flutter), servie depuis
+       le site : aucune requête vers un tiers. */
+    @font-face {
+      font-family: "Nunito";
+      src: url("fonts/nunito.ttf") format("truetype");
+      font-weight: 200 1000;
+      font-display: swap;
+    }
+
+    /* Palette de DesignSystem/Theme.swift. */
+    :root {
+      --bg:         #FBFCF9;
+      --surface:    #FFFFFF;
+      --ink:        #2B3A36;
+      --ink-soft:   #6B7B76;
+      --mint:       #A8DCC0;
+      --mint-deep:  #6FC59B;
+      --mint-soft:  #E3F3EA;
+      --peach:      #F7C9A6;
+      --peach-soft: #FCE9D8;
+      --lavender:   #C9B8E8;
+      --sunny:      #F4D06F;
+      --danger:     #E8908F;
+      --danger-soft:#FBE2E1;
+      --tile-ink:   #2B3A36;
+      --empty:      #FFFFFF;
+      --empty-line: #DCEFE4;
+      --black:      #2B3A36;
+      --line:       rgba(43, 58, 54, 0.10);
+      --shadow:     0 18px 40px -20px rgba(43, 58, 54, 0.30);
+      --shadow-sm:  0 6px 14px -8px rgba(43, 58, 54, 0.30);
+      --radius-lg:  26px;
+      --radius-md:  16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:         #1C2422;
+        --surface:    #26302D;
+        --ink:        #ECF3EF;
+        --ink-soft:   #A3B3AD;
+        --mint:       #8FCFAE;
+        --mint-deep:  #6FC59B;
+        --mint-soft:  #233A30;
+        --peach:      #E9B48D;
+        --peach-soft: #3A2E25;
+        --lavender:   #B3A0DA;
+        --sunny:      #E6C25F;
+        --danger:     #E8908F;
+        --danger-soft:#4A2B2C;
+        --empty:      #2E3A36;
+        --empty-line: #3A4A45;
+        --black:      #0F1513;
+        --line:       rgba(255, 255, 255, 0.10);
+        --shadow:     0 18px 40px -20px rgba(0, 0, 0, 0.65);
+        --shadow-sm:  0 6px 14px -8px rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Nunito", -apple-system, "SF Pro Rounded", BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100dvh;
+      padding-bottom: 48px;
+      overflow-x: hidden;
+    }
+
+    /* Fond : un damier de 0 et de 1 très pâle, qui s'efface vers le bas. */
+    body::before {
+      content: "";
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background:
+        radial-gradient(60% 50% at 0% 0%, color-mix(in srgb, var(--mint) 45%, transparent), transparent 70%),
+        radial-gradient(50% 45% at 100% 100%, color-mix(in srgb, var(--peach) 40%, transparent), transparent 70%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; cursor: pointer; border: none; background: none; }
+    button:disabled { opacity: 0.4; cursor: default; }
+    :focus-visible { outline: 3px solid var(--mint-deep); outline-offset: 3px; border-radius: 12px; }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    [hidden] { display: none !important; }
+
+    .wrap { max-width: 640px; margin: 0 auto; padding: 18px 16px 0; }
+
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 22px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.2rem; letter-spacing: 0.04em; }
+    .brand img { width: 38px; height: 38px; border-radius: 11px; box-shadow: var(--shadow-sm); }
+    .topbar a { color: var(--ink-soft); font-weight: 700; font-size: 0.9rem; }
+    .topbar a:hover { color: var(--ink); }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .card h2 { font-size: 1.25rem; font-weight: 900; margin-bottom: 4px; }
+    .muted { color: var(--ink-soft); font-size: 0.95rem; }
+
+    /* ------------------------------------------------------------------ menu */
+
+    .intro { margin-bottom: 22px; }
+    .intro h1 { font-size: clamp(1.9rem, 6vw, 2.8rem); font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; }
+    .intro p { margin-top: 10px; max-width: 58ch; }
+
+    /* Le logo de l'accueil de l'app : une 4×4 de tuiles menthe et pêche. */
+    .logo-grid {
+      display: grid; grid-template-columns: repeat(6, 34px); gap: 5px; margin-bottom: 16px;
+    }
+    .logo-grid i {
+      display: grid; place-items: center; height: 34px; border-radius: 9px;
+      font-style: normal; font-weight: 900; color: var(--tile-ink);
+      box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.07);
+      animation: tile-in 0.45s cubic-bezier(.3,1.6,.5,1) backwards;
+    }
+    .logo-grid i.v0 { background: var(--peach); }
+    .logo-grid i.v1 { background: var(--mint); }
+    .logo-grid i:nth-child(2) { animation-delay: 0.05s; } .logo-grid i:nth-child(3) { animation-delay: 0.10s; }
+    .logo-grid i:nth-child(4) { animation-delay: 0.15s; } .logo-grid i:nth-child(5) { animation-delay: 0.20s; }
+    .logo-grid i:nth-child(6) { animation-delay: 0.25s; }
+    @keyframes tile-in { from { transform: translateY(10px) scale(0.6); opacity: 0; } }
+
+    .menu-grid { display: grid; gap: 16px; margin-bottom: 16px; }
+    .menu-grid .card { margin-bottom: 0; }
+
+    /* La grille du jour, en ardoise comme sur l'accueil de l'app. */
+    .card.daily { background: var(--ink); color: var(--bg); position: relative; overflow: hidden; }
+    @media (prefers-color-scheme: dark) { .card.daily { background: #0F1513; color: var(--ink); } }
+    .card.daily::after {
+      content: "0 1 1 0 1 0\A 1 0 0 1 0 1\A 0 1 0 1 1 0";
+      white-space: pre; position: absolute; right: -6px; top: 10px;
+      font-weight: 900; font-size: 1.5rem; line-height: 1.5; letter-spacing: 0.2em;
+      color: currentColor; opacity: 0.07; pointer-events: none;
+    }
+    .card.daily .muted { color: color-mix(in srgb, currentColor 70%, transparent); }
+    .card.daily h2 { font-size: 1.6rem; display: flex; align-items: center; gap: 10px; }
+    .card.daily h2 svg { width: 26px; height: 26px; color: var(--sunny); flex: none; }
+    .daily-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+    .tag {
+      display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 999px;
+      font-size: 0.8rem; font-weight: 800; background: color-mix(in srgb, currentColor 12%, transparent);
+    }
+    .tag.done { background: var(--mint); color: var(--tile-ink); }
+    .tag.streak { background: var(--sunny); color: var(--tile-ink); }
+    .card.daily .seg { background: color-mix(in srgb, currentColor 8%, transparent); border-color: transparent; color: inherit; }
+    .card.daily .seg span { color: color-mix(in srgb, currentColor 65%, transparent); }
+    .card.daily .seg.active { background: color-mix(in srgb, var(--mint) 25%, transparent); border-color: var(--mint); }
+    .card.daily .seg:hover:not(.active) { border-color: color-mix(in srgb, currentColor 25%, transparent); }
+
+    .field {
+      display: block; font-size: 0.78rem; font-weight: 900; color: var(--ink-soft);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-top: 18px;
+    }
+
+    .seg-list { display: grid; gap: 8px; margin-top: 10px; }
+    #daily-list { grid-template-columns: repeat(3, 1fr); }
+    #free-list { grid-template-columns: repeat(3, 1fr); }
+    #look-list { grid-template-columns: repeat(3, 1fr); }
+    .seg {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      padding: 11px 6px; border-radius: var(--radius-md);
+      border: 2px solid var(--line); background: var(--bg); text-align: center;
+      transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.12s ease;
+    }
+    .seg:hover { border-color: color-mix(in srgb, var(--mint-deep) 55%, var(--line)); }
+    .seg:active { transform: scale(0.97); }
+    .seg strong { font-size: 0.98rem; font-weight: 900; }
+    .seg span { font-size: 0.74rem; font-weight: 700; color: var(--ink-soft); display: flex; gap: 4px; align-items: center; }
+    .seg.active { border-color: var(--mint-deep); background: color-mix(in srgb, var(--mint) 30%, var(--surface)); }
+    .seg.locked { opacity: 0.65; border-style: dashed; }
+    .seg.locked:hover { opacity: 0.9; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; margin-top: 18px; padding: 15px 22px; border-radius: 999px;
+      background: var(--mint-deep); color: #fff; font-weight: 900; font-size: 1.05rem;
+      box-shadow: 0 5px 0 #4FA67C, 0 14px 24px -12px #4FA67C;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
+    .btn:hover:not(:disabled) { filter: brightness(1.05); transform: translateY(-1px); }
+    .btn:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 1px 0 #4FA67C; }
+    .btn.ghost {
+      background: transparent; color: var(--ink); font-size: 1rem; margin-top: 10px;
+      box-shadow: inset 0 0 0 2px var(--line);
+    }
+    .btn.ghost:active:not(:disabled) { transform: translateY(1px); box-shadow: inset 0 0 0 2px var(--line); }
+
+    .switch-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; }
+    .switch-row strong { display: block; font-weight: 800; }
+    .switch { position: relative; flex: none; width: 52px; height: 30px; }
+    .switch input { position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; }
+    .switch span {
+      position: absolute; inset: 0; border-radius: 999px; background: var(--line);
+      transition: background-color 0.2s ease; pointer-events: none;
+    }
+    .switch span::after {
+      content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%;
+      background: #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); transition: transform 0.2s ease;
+    }
+    .switch input:checked + span { background: var(--mint-deep); }
+    .switch input:checked + span::after { transform: translateX(22px); }
+    .switch input:focus-visible + span { outline: 3px solid var(--mint-deep); outline-offset: 3px; }
+
+    /* Petites tuiles d'exemple : options d'apparence, règles, légende. */
+    .sample {
+      display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 6px;
+      font-style: normal; font-weight: 900; font-size: 0.72rem; color: var(--tile-ink);
+    }
+    .sample.v0 { background: var(--peach); }
+    .sample.v1 { background: var(--mint); }
+    .sample.look-bw.v0 { background: #fff; box-shadow: inset 0 0 0 1.5px var(--ink-soft); }
+    .sample.look-bw.v1 { background: var(--black); }
+
+    .record-row {
+      display: grid; grid-template-columns: 1fr auto auto; gap: 14px; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid var(--line); font-weight: 700;
+    }
+    .record-row:last-child { border-bottom: none; }
+    .record-row strong {
+      font-weight: 900; font-variant-numeric: tabular-nums;
+      background: var(--mint); color: var(--tile-ink); padding: 2px 12px; border-radius: 999px;
+    }
+
+    .rules { display: grid; gap: 14px; margin-top: 12px; }
+    .rule { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; }
+    .rule-demo { display: flex; gap: 3px; padding: 6px; border-radius: 12px; background: var(--bg); }
+    .rule-demo.stack { flex-direction: column; }
+    .rule-demo .row { display: flex; gap: 3px; }
+    .rule-demo .sample.x { background: var(--danger-soft); color: var(--danger); box-shadow: inset 0 0 0 1.5px var(--danger); }
+    .rule p { font-weight: 700; }
+
+    .seo { color: var(--ink-soft); font-size: 0.95rem; }
+    .seo h2 { color: var(--ink); margin-top: 22px; }
+    .seo h2:first-child { margin-top: 0; }
+    .seo p, .seo ul { margin-top: 6px; }
+    .seo ul { padding-left: 20px; }
+    .seo li { margin-top: 4px; }
+    .seo strong { color: var(--ink); }
+    .seo dt { font-weight: 800; color: var(--ink); margin-top: 14px; }
+    .seo dd { margin-top: 4px; }
+    .seo a { text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ---------------------------------------------------------------- partie */
+
+    .hud { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .hud .spacer { flex: 1; }
+    .chip, .round {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; border-radius: 999px; color: var(--tile-ink);
+      font-weight: 900; font-size: 1.05rem; font-variant-numeric: tabular-nums;
+      box-shadow: var(--shadow-sm); white-space: nowrap; flex: none;
+    }
+    .chip { padding: 0 18px; }
+    .chip svg, .round svg { width: 20px; height: 20px; flex: none; }
+    .chip.timer { background: var(--peach-soft); color: var(--ink); }
+    .chip.progress { background: var(--mint-soft); color: var(--ink); }
+    .round { width: 48px; position: relative; transition: transform 0.12s ease, filter 0.12s ease; }
+    .round:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.04); }
+    .round:active:not(:disabled) { transform: scale(0.93); }
+    .round.quit, .round.undo { background: var(--surface); color: var(--ink); }
+    .round.hint  { background: var(--sunny); }
+    .round.pause { background: var(--lavender); }
+    .round.pause .icon-play { display: none; }
+    .round.pause.is-paused .icon-pause { display: none; }
+    .round.pause.is-paused .icon-play { display: block; }
+    #hint-count {
+      position: absolute; top: -4px; right: -4px; min-width: 20px; height: 20px; padding: 0 5px;
+      display: grid; place-items: center; border-radius: 999px;
+      background: var(--ink); color: var(--bg); font-size: 0.72rem; font-weight: 900;
+      box-shadow: 0 0 0 2px var(--bg);
+    }
+    .round.hint:disabled #hint-count { display: none; }
+
+    .board-head { text-align: center; margin-bottom: 16px; }
+    #board-title { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.01em; line-height: 1.2; }
+    #board-subtitle { color: var(--ink-soft); font-weight: 700; }
+
+    .board-layout { display: grid; gap: 18px; justify-items: center; }
+    .board-panel {
+      width: 100%; max-width: max(300px, calc(100dvh - 260px));
+      padding: 10px; border-radius: 24px; background: var(--surface); box-shadow: var(--shadow);
+      container-type: inline-size;
+    }
+
+    #grid {
+      --gap: clamp(3px, 1.1cqw, 7px);
+      display: grid; grid-template-columns: repeat(var(--n, 6), 1fr); gap: var(--gap);
+      aspect-ratio: 1; user-select: none; -webkit-user-select: none;
+      touch-action: manipulation; border-radius: 14px;
+    }
+    #grid:focus { outline: none; }
+    #grid:focus-visible { outline: 3px solid var(--mint-deep); outline-offset: 6px; }
+
+    .cell {
+      display: grid; place-items: center; cursor: pointer;
+      border-radius: clamp(5px, calc(100cqw / var(--n) * 0.2), 12px);
+      background: var(--empty); box-shadow: inset 0 0 0 1.5px var(--empty-line);
+      font-weight: 700; font-size: calc((100cqw - 20px) / var(--n) * 0.44);
+      color: color-mix(in srgb, var(--tile-ink) 60%, transparent);
+      transition: background-color 0.12s ease, box-shadow 0.12s ease, transform 0.1s ease;
+    }
+    .cell.given { cursor: default; font-weight: 900; color: var(--tile-ink); }
+    @media (hover: hover) {
+      .cell:not(.given):hover { box-shadow: inset 0 0 0 2px var(--mint-deep); }
+    }
+    .cell:not(.given):active { transform: scale(0.92); }
+    .cell.v0 { background: var(--peach); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.07); }
+    .cell.v1 { background: var(--mint);  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.07); }
+    .cell.v0:not(.given), .cell.v1:not(.given) { animation: place 0.18s ease-out; }
+    @keyframes place { from { transform: scale(0.82); } }
+
+    /* Apparence « couleurs » : pas de chiffre. Les indices de départ gardent un point. */
+    #grid[data-look="colors"] .cell { font-size: 0; }
+    #grid[data-look="colors"] .cell.given::after,
+    #grid[data-look="bw"] .cell.given::after {
+      content: ""; width: 18%; aspect-ratio: 1; border-radius: 50%;
+      background: currentColor; opacity: 0.35;
+    }
+    #grid[data-look="bw"] .cell { font-size: 0; }
+    #grid[data-look="bw"] .cell.v0 { background: #fff; box-shadow: inset 0 0 0 1.5px var(--ink-soft); color: var(--tile-ink); }
+    #grid[data-look="bw"] .cell.v1 { background: var(--black); color: #fff; }
+
+    .cell.cursor { box-shadow: inset 0 0 0 3px var(--mint-deep); }
+    .cell.bad {
+      background: var(--danger-soft) !important; color: var(--danger) !important;
+      box-shadow: inset 0 0 0 2px var(--danger) !important;
+      animation: wobble 0.3s ease;
+    }
+    .cell.hinted { animation: hinted 1.4s ease; }
+    @keyframes wobble { 25% { transform: rotate(-6deg); } 75% { transform: rotate(6deg); } }
+    @keyframes hinted {
+      0%, 60% { box-shadow: inset 0 0 0 3px var(--sunny), 0 0 0 4px color-mix(in srgb, var(--sunny) 50%, transparent); transform: scale(1.08); }
+    }
+
+    /* Grille résolue : une vague de rebonds en diagonale. */
+    #grid.solved .cell { animation: wave 0.6s ease calc((var(--d, 0)) * 1ms); }
+    @keyframes wave { 40% { transform: scale(1.12); filter: brightness(1.08); } }
+
+    #board.paused #grid { filter: blur(9px); }
+    #pause-overlay {
+      position: fixed; inset: 0; z-index: 10; display: flex; align-items: center; justify-content: center;
+      background: color-mix(in srgb, var(--bg) 55%, transparent);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); cursor: pointer;
+    }
+    #pause-overlay span {
+      background: var(--surface); box-shadow: var(--shadow);
+      padding: 18px 30px; border-radius: 999px; font-weight: 900; font-size: 1.25rem;
+    }
+
+    .side { width: 100%; max-width: 640px; display: grid; gap: 12px; }
+    .legend {
+      display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap;
+      color: var(--ink-soft); font-weight: 700; font-size: 0.92rem; text-align: center;
+    }
+    .legend .sample { width: 30px; height: 30px; border-radius: 9px; font-size: 0.95rem; }
+    .legend[data-look="colors"] .sample, .legend[data-look="bw"] .sample { font-size: 0; }
+    .legend[data-look="bw"] .sample.v0 { background: #fff; box-shadow: inset 0 0 0 1.5px var(--ink-soft); }
+    .legend[data-look="bw"] .sample.v1 { background: var(--black); }
+    .keys { display: none; color: var(--ink-soft); font-size: 0.82rem; text-align: center; }
+    .note {
+      text-align: center; font-weight: 800; font-size: 0.88rem;
+      color: var(--ink); background: var(--peach-soft); border-radius: 999px; padding: 8px 14px;
+    }
+    .side-actions { display: flex; justify-content: center; }
+    .side-actions .btn { width: auto; margin-top: 0; padding: 11px 22px; }
+
+    /* -------------------------------------------------------------- victoire */
+
+    #victory { text-align: center; }
+    #victory .card:first-child { animation: card-in 0.5s cubic-bezier(.3,1.4,.5,1); }
+    #victory .card:first-child h2 { font-size: 2.2rem; letter-spacing: -0.02em; }
+    @keyframes card-in { from { transform: translateY(16px) scale(0.96); opacity: 0; } }
+    .victory-tiles { display: flex; justify-content: center; gap: 6px; margin-bottom: 14px; }
+    .victory-tiles i {
+      width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center;
+      font-style: normal; font-weight: 900; color: var(--tile-ink);
+      animation: tile-in 0.45s cubic-bezier(.3,1.6,.5,1) backwards;
+    }
+    .victory-tiles i:nth-child(odd) { background: var(--mint); }
+    .victory-tiles i:nth-child(even) { background: var(--peach); }
+    .victory-tiles i:nth-child(2) { animation-delay: 0.06s; } .victory-tiles i:nth-child(3) { animation-delay: 0.12s; }
+    .victory-tiles i:nth-child(4) { animation-delay: 0.18s; }
+    .badge { display: inline-block; margin-top: 8px; padding: 4px 14px; border-radius: 999px; background: var(--sunny); color: var(--tile-ink); font-weight: 900; font-size: 0.85rem; }
+    .result-grid { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 20px 0 6px; }
+    .result-grid > div { display: flex; flex-direction: column; min-width: 100px; padding: 12px 18px; border-radius: var(--radius-md); color: var(--tile-ink); }
+    .result-grid .r-time { background: var(--peach); }
+    .result-grid .r-hints { background: var(--sunny); }
+    .result-grid .r-streak, .result-grid .r-best { background: var(--mint); }
+    .result-grid .label { font-size: 0.72rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.75; }
+    .result-grid .value { font-size: 1.8rem; font-weight: 900; font-variant-numeric: tabular-nums; line-height: 1.2; }
+
+    .stores { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+    .stores a {
+      display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px;
+      font-weight: 900; font-size: 0.95rem; background: var(--ink); color: var(--bg); transition: transform 0.12s ease;
+    }
+    .stores a:hover { transform: translateY(-2px); }
+    .stores a.play { background: var(--mint-deep); color: #fff; }
+
+    /* ----------------------------------------------------------- grand écran */
+
+    @media (min-width: 900px) {
+      .wrap { max-width: 1000px; padding-top: 28px; }
+      .menu-grid { grid-template-columns: 1fr 1fr; }
+      .menu-grid .card.daily { display: flex; flex-direction: column; }
+      .menu-grid .card.daily .btn { margin-top: auto; }
+      .menu-grid .card.daily #daily-list { margin-bottom: 22px; }
+
+      #board { width: fit-content; margin: 0 auto; }
+      .board-layout { grid-template-columns: auto 260px; align-items: start; justify-items: stretch; }
+      .board-panel { width: min(640px, calc(100dvh - 290px)); max-width: none; min-width: 380px; }
+      .side {
+        background: var(--surface); border-radius: var(--radius-lg); box-shadow: var(--shadow);
+        padding: 20px; gap: 16px;
+      }
+      .side .legend { justify-content: flex-start; text-align: left; }
+      .keys { display: block; text-align: left; }
+      .side-actions { justify-content: flex-start; }
+      #victory { max-width: 640px; margin: 0 auto; }
+    }
+
+    @media (max-width: 480px) {
+      .wrap { padding: 14px 12px 0; }
+      .card { padding: 20px; border-radius: 22px; }
+      .hud { gap: 6px; }
+      .chip, .round { height: 42px; font-size: 0.95rem; }
+      .round { width: 42px; }
+      .chip { padding: 0 12px; gap: 6px; }
+      .chip svg, .round svg { width: 17px; height: 17px; }
+      .board-panel { padding: 6px; border-radius: 18px; }
+      #free-list .seg strong { font-size: 0.88rem; }
+    }
+    @media (max-width: 400px) {
+      .chip svg { display: none; }
+      .chip { padding: 0 11px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+<!-- Bandeau AppCraft31 (ac31-gamebar) — ajouté par scripts/wrap-games.mjs -->
+<style>
+  .ac31-gamebar{position:sticky;top:0;z-index:9999;display:flex;align-items:center;gap:14px;
+    padding:8px clamp(14px,4vw,28px);background:#0c0a10;color:#f6f1ea;
+    font:500 14px/1.4 Inter,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    border-bottom:1px solid rgba(246,241,234,.14)}
+  .ac31-gamebar a{color:inherit;text-decoration:none}
+  .ac31-gamebar a:hover{color:#A8DCC0}
+  .ac31-gamebar-brand{font-weight:800;letter-spacing:-.03em}
+  .ac31-gamebar-brand i{font-style:normal;color:#ff7a4d}
+  .ac31-gamebar-sep{opacity:.35}
+  .ac31-gamebar-back{margin-inline-start:auto;color:#A8DCC0}
+</style>
+<nav class="ac31-gamebar" aria-label="AppCraft31">
+  <a class="ac31-gamebar-brand" href="/">AppCraft<i>31</i></a>
+  <span class="ac31-gamebar-sep" aria-hidden="true">/</span>
+  <span>Binero</span>
+  <a class="ac31-gamebar-back" href="/apps/binero.html">À propos du jeu →</a>
+</nav>
+
+
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="brand">
+        <img src="../../assets/icons/binero.svg" alt="Binero" />
+        <span>BINERO</span>
+      </div>
+      <a href="../../apps/binero.html" data-i18n="back.site">Retour au site</a>
+    </div>
+
+    <!-- ------------------------------------------------------------ menu -->
+    <main id="menu">
+      <header class="intro">
+        <div class="logo-grid" aria-hidden="true"><i class="v1">1</i><i class="v0">0</i><i class="v0">0</i><i class="v1">1</i><i class="v1">1</i><i class="v0">0</i></div>
+        <h1 data-i18n="seo.h1">Binero en ligne</h1>
+        <p class="muted" data-i18n="seo.intro">Le Binero — aussi appelé Takuzu ou Binairo — se joue ici
+          gratuitement, dans le navigateur, sans téléchargement ni inscription. Remplissez la grille de 0
+          et de 1 par pure déduction : chaque grille a une solution unique, et jamais besoin de deviner.</p>
+      </header>
+
+      <div class="menu-grid">
+        <section class="card daily">
+          <h2>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 14.5A9 9 0 0 1 9.5 3a.5.5 0 0 0-.6-.6A10 10 0 1 0 21.6 15.1a.5.5 0 0 0-.6-.6Z"/></svg>
+            <span data-i18n="menu.daily">Grille du jour</span>
+          </h2>
+          <p class="muted" id="daily-sub"></p>
+          <div class="daily-meta">
+            <span class="tag" id="daily-date"></span>
+            <span class="tag" id="daily-status"></span>
+            <span class="tag streak" id="daily-streak" hidden></span>
+          </div>
+          <div class="seg-list" id="daily-list"></div>
+          <button class="btn" id="daily-play" type="button">Jouer</button>
+        </section>
+
+        <section class="card">
+          <h2 data-i18n="menu.free">Partie libre</h2>
+          <p class="muted" data-i18n="menu.free_sub">Une grille neuve à chaque partie, toujours à solution unique.</p>
+          <div class="seg-list" id="free-list"></div>
+          <button class="btn" id="free-play" type="button">Jouer</button>
+        </section>
+      </div>
+
+      <div class="menu-grid">
+        <section class="card">
+          <h2 data-i18n="rules.title">Les trois règles</h2>
+          <div class="rules">
+            <div class="rule">
+              <div class="rule-demo" aria-hidden="true"><i class="sample v1">1</i><i class="sample v0">0</i><i class="sample v1">1</i><i class="sample v0">0</i><i class="sample v0">0</i><i class="sample v1">1</i></div>
+              <p data-i18n="rules.1">Autant de 0 que de 1 dans chaque ligne et chaque colonne.</p>
+            </div>
+            <div class="rule">
+              <div class="rule-demo" aria-hidden="true"><i class="sample v1">1</i><i class="sample x">0</i><i class="sample x">0</i><i class="sample x">0</i><i class="sample v1">1</i><i class="sample v1">1</i></div>
+              <p data-i18n="rules.2">Jamais plus de deux chiffres identiques côte à côte.</p>
+            </div>
+            <div class="rule">
+              <div class="rule-demo stack" aria-hidden="true">
+                <div class="row"><i class="sample x">1</i><i class="sample x">0</i><i class="sample x">0</i><i class="sample x">1</i><i class="sample x">1</i><i class="sample x">0</i></div>
+                <div class="row"><i class="sample x">1</i><i class="sample x">0</i><i class="sample x">0</i><i class="sample x">1</i><i class="sample x">1</i><i class="sample x">0</i></div>
+              </div>
+              <p data-i18n="rules.3">Deux lignes, ou deux colonnes, ne sont jamais identiques.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 data-i18n="menu.options">Options</h2>
+          <div class="switch-row">
+            <div>
+              <strong id="opt-help-label" data-i18n="menu.help">Signaler les erreurs</strong>
+              <span class="muted" data-i18n="menu.help_sub">Les cases qui enfreignent une règle passent en rouge (jamais en Expert).</span>
+            </div>
+            <label class="switch"><input type="checkbox" id="opt-help" aria-labelledby="opt-help-label" /><span></span></label>
+          </div>
+          <span class="field" data-i18n="menu.look">Apparence des cases</span>
+          <div class="seg-list" id="look-list"></div>
+
+          <span class="field" data-i18n="menu.records">Meilleurs temps</span>
+          <div id="records"></div>
+        </section>
+      </div>
+
+      <!-- Contenu éditorial : décrit le jeu à qui arrive par une recherche, et
+           donne aux moteurs un texte à indexer, le jeu étant construit en JS. -->
+      <section class="card seo">
+        <h2 data-i18n="seo.how_title">Comment jouer au Binero</h2>
+        <p data-i18n="seo.how_body">Touchez une case vide pour y poser un 0, touchez-la encore pour un 1,
+          une troisième fois pour la vider. Les cases de départ, en gras, ne bougent pas. La grille est
+          résolue quand elle est pleine et respecte les trois règles : autant de 0 que de 1 dans chaque
+          ligne et chaque colonne, jamais trois chiffres identiques à la suite, et aucune ligne ni colonne
+          en double.</p>
+
+        <h2 data-i18n="seo.tips_title">Trois techniques pour avancer</h2>
+        <ul>
+          <li><strong data-i18n="seo.tip1_t">Les paires :</strong> <span data-i18n="seo.tip1">deux 0 côte à côte sont forcément encadrés par des 1 (et inversement).</span></li>
+          <li><strong data-i18n="seo.tip2_t">Le trou :</strong> <span data-i18n="seo.tip2">entre deux chiffres identiques séparés d’une case, la case du milieu prend l’autre chiffre.</span></li>
+          <li><strong data-i18n="seo.tip3_t">Le compte :</strong> <span data-i18n="seo.tip3">dès qu’une ligne a sa moitié de 0, toutes ses cases vides sont des 1.</span></li>
+        </ul>
+
+        <h2 data-i18n="seo.daily_title">La grille du jour</h2>
+        <p data-i18n="seo.daily_body">Chaque jour, trois grilles du jour — Facile en 6×6, Normal en 10×10 et
+          Expert en 14×14 — identiques pour tous les joueurs, sur ce site comme dans l’app Binero. En Expert,
+          aucune erreur n’est signalée : un vrai défi de logique pure. Terminez une grille du jour plusieurs
+          jours d’affilée pour faire grimper votre série.</p>
+
+        <h2 data-i18n="seo.faq_title">Questions fréquentes</h2>
+        <dl>
+          <dt data-i18n="seo.q1">Binero, Takuzu, Binairo : quelle différence ?</dt>
+          <dd data-i18n="seo.a1">Aucune : ce sont trois noms du même casse-tête de logique binaire, parfois
+            aussi appelé Tic-Tac-Logic ou 0h h1.</dd>
+          <dt data-i18n="seo.q2">Le jeu est-il gratuit ?</dt>
+          <dd data-i18n="seo.a2">Oui, entièrement gratuit, sans inscription et sans publicité sur cette page.
+            Vos temps et votre série restent dans votre navigateur : rien n’est envoyé à un serveur.</dd>
+          <dt data-i18n="seo.q3">Faut-il deviner ?</dt>
+          <dd data-i18n="seo.a3">Jamais. Chaque grille est générée puis vérifiée par un solveur pour n’avoir
+            qu’une seule solution : il existe toujours une case qui se déduit logiquement.</dd>
+          <dt data-i18n="seo.q4">Puis-je jouer hors connexion ?</dt>
+          <dd data-i18n="seo.a4">La version web demande une connexion pour charger la page. L’app iPhone et Android se joue hors ligne et ajoute le mode histoire, jusqu’aux grilles 14×14, et le classement mondial.</dd>
+        </dl>
+        <p class="muted" style="margin-top:16px"><a href="../../apps/binero.html" data-i18n="seo.more">En savoir plus sur l’application Binero</a></p>
+      </section>
+    </main>
+
+    <!-- ---------------------------------------------------------- partie -->
+    <main id="board" hidden>
+      <div class="hud">
+        <button class="round quit" id="quit" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          <span class="sr" data-i18n="game.quit">Menu</span>
+        </button>
+        <span class="chip timer">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 5v4.6l3.2 3.2-1.4 1.4L11 12.4V7h2Z"/></svg>
+          <span id="timer">00:00</span>
+        </span>
+        <span class="chip progress">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="2.5"/><rect x="13" y="3" width="8" height="8" rx="2.5" opacity=".45"/><rect x="3" y="13" width="8" height="8" rx="2.5" opacity=".45"/><rect x="13" y="13" width="8" height="8" rx="2.5"/></svg>
+          <span id="progress">0 %</span>
+        </span>
+        <span class="spacer"></span>
+        <button class="round undo" id="undo" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+          <span class="sr" data-i18n="game.undo">Annuler</span>
+        </button>
+        <button class="round hint" id="hint" type="button">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-4 12.7V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.3A7 7 0 0 0 12 2ZM9 20h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1Z"/></svg>
+          <span class="sr" data-i18n="game.hint">Indice</span>
+          <span id="hint-count"></span>
+        </button>
+        <button class="round pause" id="pause" type="button">
+          <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.5"/><rect x="14" y="5" width="4" height="14" rx="1.5"/></svg>
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.2-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5Z"/></svg>
+          <span class="sr">Pause</span>
+        </button>
+      </div>
+
+      <div class="board-head">
+        <h2 id="board-title"></h2>
+        <p id="board-subtitle"></p>
+      </div>
+
+      <div class="board-layout">
+        <div class="board-panel">
+          <div id="grid" role="grid" tabindex="0" aria-label="Binero"></div>
+        </div>
+        <aside class="side">
+          <div class="legend">
+            <i class="sample v0">0</i><i class="sample v1">1</i>
+            <span data-i18n="game.legend">Touchez une case pour la changer</span>
+          </div>
+          <p class="keys" data-i18n="game.legend_keys"></p>
+          <p class="note" id="help-note" data-i18n="game.no_help" hidden></p>
+          <div class="side-actions">
+            <button class="btn ghost" id="restart" type="button" data-i18n="game.restart">Recommencer</button>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <div id="pause-overlay" hidden><span data-i18n="game.paused">Partie en pause</span></div>
+
+    <!-- -------------------------------------------------------- victoire -->
+    <main id="victory" hidden>
+      <section class="card">
+        <div class="victory-tiles" aria-hidden="true"><i>1</i><i>0</i><i>1</i><i>0</i></div>
+        <h2 data-i18n="victory.title">Grille résolue !</h2>
+        <span class="badge" id="victory-badge" data-i18n="victory.new_best" hidden>Nouveau record !</span>
+        <div class="result-grid">
+          <div class="r-time"><span class="label" data-i18n="victory.time">Temps</span><span class="value" id="victory-time">00:00</span></div>
+          <div class="r-hints"><span class="label" data-i18n="victory.hints">Indices</span><span class="value" id="victory-hints">0</span></div>
+          <div class="r-streak" id="victory-streak-row"><span class="label" data-i18n="victory.streak">Série</span><span class="value" id="victory-streak">0</span></div>
+          <div class="r-best" id="victory-best-row"><span class="label" data-i18n="victory.best">Record</span><span class="value" id="victory-best">—</span></div>
+        </div>
+        <button class="btn" id="victory-next" type="button" data-i18n="victory.next">Grille suivante</button>
+        <button class="btn" id="share" type="button" data-i18n="victory.share">Partager</button>
+        <button class="btn ghost" id="victory-menu" type="button" data-i18n="victory.menu">Menu</button>
+      </section>
+
+      <section class="card">
+        <h2 data-i18n="cta.title">Envie d’aller plus loin ?</h2>
+        <p class="muted" data-i18n="cta.sub"></p>
+        <div class="stores">
+          <a href="https://apps.apple.com/fr/app/binero-takuzu-binairo/id6782013644" target="_blank" rel="noopener">App Store</a>
+          <a class="play" href="https://play.google.com/store/apps/details?id=com.appcraft31.binero" target="_blank" rel="noopener">Google Play</a>
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <!-- Données structurées : le jeu, le fil d'Ariane et la FAQ affichée plus
+       haut (les réponses doivent rester visibles sur la page). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["VideoGame", "WebApplication"],
+        "@id": "https://appcraft31.app/play/binero/#game",
+        "name": "Binero — Takuzu en ligne",
+        "alternateName": ["Binero", "Takuzu", "Binairo"],
+        "url": "https://appcraft31.app/play/binero/",
+        "description": "Binero (Takuzu, Binairo) gratuit jouable dans le navigateur : la grille du jour en 6×6, 10×10 et 14×14, identique à celle de l’app, et des parties libres à solution unique, sans téléchargement ni inscription.",
+        "image": "https://appcraft31.app/assets/binero-play-og.png",
+        "inLanguage": ["fr", "en"],
+        "genre": ["Puzzle", "Jeu de logique", "Takuzu"],
+        "playMode": "SinglePlayer",
+        "gamePlatform": ["Navigateur web", "iOS", "Android"],
+        "applicationCategory": "GameApplication",
+        "browserRequirements": "Navigateur moderne avec JavaScript activé",
+        "operatingSystem": "Tout système avec un navigateur web",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "author": { "@type": "Organization", "name": "AppCraft31", "url": "https://appcraft31.app/" },
+        "publisher": { "@type": "Organization", "name": "AppCraft31", "url": "https://appcraft31.app/" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "AppCraft31", "item": "https://appcraft31.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Binero", "item": "https://appcraft31.app/apps/binero.html" },
+          { "@type": "ListItem", "position": 3, "name": "Jouer en ligne", "item": "https://appcraft31.app/play/binero/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Binero, Takuzu, Binairo : quelle différence ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Aucune : ce sont trois noms du même casse-tête de logique binaire, parfois aussi appelé Tic-Tac-Logic ou 0h h1." }
+          },
+          {
+            "@type": "Question",
+            "name": "Le jeu est-il gratuit ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Oui, entièrement gratuit, sans inscription et sans publicité sur cette page. Vos temps et votre série restent dans votre navigateur : rien n’est envoyé à un serveur." }
+          },
+          {
+            "@type": "Question",
+            "name": "Faut-il deviner ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Jamais. Chaque grille est générée puis vérifiée par un solveur pour n’avoir qu’une seule solution : il existe toujours une case qui se déduit logiquement." }
+          },
+          {
+            "@type": "Question",
+            "name": "Puis-je jouer hors connexion ?",
+            "acceptedAnswer": { "@type": "Answer", "text": "La version web demande une connexion pour charger la page. L’app iPhone et Android se joue hors ligne et ajoute le mode histoire, jusqu’aux grilles 14×14, et le classement mondial." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

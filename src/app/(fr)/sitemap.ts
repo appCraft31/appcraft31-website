@@ -56,6 +56,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily' as const,
       priority: 0.9,
     },
+    // Binero : la grille du jour, la même que dans l'app ; langue par `?lang=`.
+    {
+      url: `${SITE}/play/binero/`,
+      lastModified: new Date('2026-10-16'),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+      alternates: {
+        languages: {
+          fr: `${SITE}/play/binero/`,
+          en: `${SITE}/play/binero/?lang=en`,
+          'x-default': `${SITE}/play/binero/`,
+        },
+      },
+    },
     // La grille du jour de Tinta : un chemin traduit par langue.
     {
       url: `${SITE}${tintaPlayUrls().fr}`,

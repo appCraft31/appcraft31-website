@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * Raccorde les deux jeux web au site.
+ * Raccorde les jeux web au site.
  *
- * `/play/meliz/` et `/holdfire/event/` sont des pages autonomes dont le
+ * `/play/meliz/`, `/play/binero/` et `/holdfire/event/` sont des pages autonomes dont le
  * JavaScript pilote un DOM précis : les réécrire en composants React les
  * casserait pour un gain nul. On leur ajoute donc le strict nécessaire — un
  * bandeau aux couleurs du site, qui ramène à la page du produit — sans toucher
@@ -24,6 +24,12 @@ const GAMES = [
     label: 'Mêliz',
     back: '/apps/meliz.html',
     accent: '#FFB5C5',
+  },
+  {
+    file: 'public/play/binero/index.html',
+    label: 'Binero',
+    back: '/apps/binero.html',
+    accent: '#A8DCC0',
   },
   {
     file: 'public/holdfire/event/index.html',

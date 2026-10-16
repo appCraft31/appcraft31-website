@@ -244,6 +244,7 @@ export const APPS: AppData[] = [
     store: {
       ios: 'https://apps.apple.com/fr/app/binero-takuzu-binairo/id6782013644',
       android: 'https://play.google.com/store/apps/details?id=com.appcraft31.binero',
+      web: '/play/binero/',
     },
     icon: '/assets/icons/binero.svg',
     // Captures réelles de l'app iOS (`binero_IOS/marketing/screens-real`, `screens-v3`).
