@@ -29,6 +29,8 @@ export interface PrivacyStrings {
   adsProcessing: string;
   adsMediation: (partners: string) => string;
   adsMediationConsent: string;
+  /** Variante quand l'app refuse le consentement aux régies de médiation (RGPD). */
+  adsMediationNoConsent: string;
   adsAtt: string;
   adsUmp: string;
   adsUmpNoReopen: string;

@@ -8,6 +8,29 @@ import type { AppData } from './types';
 import { tintaPlayUrls } from './play';
 
 export const APPS: AppData[] = [
+  /* Vroomics — pas encore publié (com.appcraft31.vroomics, jeu Godot 4.7,
+     iPhone en paysage ; build 1.0 (1) envoyé à App Store Connect le
+     16 octobre 2026). Android viendra ensuite : l'export existe mais l'app
+     AdMob Android n'est pas encore créée (`ANDROID_APP_ID` vide dans
+     scripts/ads.gd). Ajouter les liens store et passer `status` à
+     'available' le jour de la sortie. Captures réelles en paysage
+     (`store/app_store/screenshots/raw`, 2868×1320, fr). */
+  {
+    slug: 'vroomics',
+    name: 'Vroomics',
+    category: 'game',
+    status: 'soon',
+    store: {},
+    icon: '/assets/icons/vroomics.webp',
+    screenshots: [
+      { src: '/assets/vroomics-screen-course.webp', alt: 'En pleine course sur la planète volcanique : « PAF ! », une explosion, 430 km/h au compteur, 5e sur 12, et les boutons BOOST et TIR', landscape: true },
+      { src: '/assets/vroomics-screen-coupes.webp', alt: 'L’écran Compétition : Coupe Bronze, Coupe Argent, Coupe Comète et Grand Tour, avec leurs courses et leurs primes', landscape: true },
+      { src: '/assets/vroomics-screen-podium.webp', alt: 'Le podium d’arrivée : « DEUXIÈME ! » à la Jungle alien, +470 crédits, duel gagné contre le rival', landscape: true },
+      { src: '/assets/vroomics-screen-garage.webp', alt: 'Le garage : le vaisseau Rapière, ses caractéristiques, et les onglets Vaisseaux, Moteur, Ailes, Arme, Peinture et Autocollants', landscape: true },
+    ],
+    sdk: { ads: true, purchases: false, analytics: true, network: true, accounts: true },
+    privacyUpdated: '2026-10-18',
+  },
   /* Perfect Demolition — sur l'App Store depuis octobre 2026
      (com.appcraft31.perfectdemolition, jeu Godot 4, iPhone et iPad). L'export
      Android existe mais la publicité y est désactivée (`[admob]` de

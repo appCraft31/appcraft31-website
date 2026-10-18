@@ -58,6 +58,11 @@ export interface AdsFacts {
    */
   mediation?: MediationPartner[];
   /**
+   * L'app refuse d'office le consentement RGPD aux régies de médiation
+   * (`has_gdpr_consent=false`) au lieu de leur relayer le choix du joueur.
+   */
+  mediationNoConsent?: boolean;
+  /**
    * Les annonces sont-elles restreintes au contenu familial
    * (`maxAdContentRating`, `tagForChildDirectedTreatment`…) ? Non renseigné
    * vaut oui, comme avant l'ajout du champ. À mettre à `false` quand le code

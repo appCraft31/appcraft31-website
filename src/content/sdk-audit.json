@@ -1,8 +1,19 @@
 {
+  "vroomics": {
+    "source": "/Users/nicolas/essaies_dev/kart",
+    "hits": {
+      "ads": 1,
+      "purchases": 0,
+      "analytics": 0,
+      "network": 2,
+      "accounts": 1,
+      "consent": 1
+    }
+  },
   "perfectdemolition": {
     "source": "PerfectDemolition",
     "hits": {
-      "ads": 2,
+      "ads": 3,
       "purchases": 0,
       "analytics": 0,
       "network": 0,
@@ -134,12 +145,12 @@
   "binero": {
     "source": "binero",
     "hits": {
-      "ads": 14,
-      "purchases": 10,
-      "analytics": 75,
-      "network": 58,
-      "accounts": 361,
-      "consent": 1
+      "ads": 17,
+      "purchases": 8,
+      "analytics": 7,
+      "network": 0,
+      "accounts": 8,
+      "consent": 3
     }
   },
   "glyphe": {
@@ -149,7 +160,7 @@
       "purchases": 3,
       "analytics": 3,
       "network": 0,
-      "accounts": 7,
+      "accounts": 8,
       "consent": 1
     }
   },
@@ -167,9 +178,9 @@
   "contree": {
     "source": "Contree",
     "hits": {
-      "ads": 5,
+      "ads": 7,
       "purchases": 6,
-      "analytics": 4,
+      "analytics": 5,
       "network": 0,
       "accounts": 8,
       "consent": 2
@@ -179,11 +190,11 @@
     "source": "Keeply",
     "hits": {
       "ads": 0,
-      "purchases": 9,
-      "analytics": 40,
-      "network": 42,
+      "purchases": 36,
+      "analytics": 55,
+      "network": 56,
       "accounts": 183,
-      "consent": 1
+      "consent": 8
     }
   },
   "combo": {
@@ -200,8 +211,8 @@
   "randompix": {
     "source": "randompix",
     "hits": {
-      "ads": 9,
-      "purchases": 7,
+      "ads": 10,
+      "purchases": 8,
       "analytics": 8,
       "network": 0,
       "accounts": 0,
@@ -215,7 +226,7 @@
       "purchases": 5,
       "analytics": 2,
       "network": 0,
-      "accounts": 10,
+      "accounts": 12,
       "consent": 1
     }
   },
@@ -267,7 +278,7 @@
     "source": "timer_café",
     "hits": {
       "ads": 0,
-      "purchases": 2,
+      "purchases": 3,
       "analytics": 0,
       "network": 0,
       "accounts": 0,

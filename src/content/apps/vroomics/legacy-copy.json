@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Course de vaisseaux anti-gravité en BD",
+    "desc": "Une course de vaisseaux anti-gravité gratuite sur iPhone, dans un monde de bande dessinée : 4 coupes, 11 circuits, des roquettes et des météores, un rival attitré, des courses en ligne et un garage pour construire votre bolide.",
+    "c1": "11 circuits",
+    "c2": "4 coupes",
+    "c3": "Courses en ligne",
+    "c4": "Contre-la-montre",
+    "c5": "Garage et peintures",
+    "c6": "Sans compte"
+  },
+  "en": {
+    "tagline": "Comic book anti-gravity racing",
+    "desc": "A free anti-gravity ship racing game for iPhone, set in a comic book world: 4 cups, 11 tracks, rockets and meteors, a sworn rival, online races and a garage to build your racer.",
+    "c1": "11 tracks",
+    "c2": "4 cups",
+    "c3": "Online races",
+    "c4": "Time trial",
+    "c5": "Garage and paint jobs",
+    "c6": "No account"
+  },
+  "ja": {
+    "tagline": "コミック風・反重力宇宙レース",
+    "desc": "マンガの世界を駆けるiPhone向けの無料反重力宇宙船レース。4つのカップ、11のコース、ロケットとメテオ、因縁のライバル、オンラインレース、そして自分のマシンを組み立てるガレージ。",
+    "c1": "11コース",
+    "c2": "4つのカップ",
+    "c3": "オンラインレース",
+    "c4": "タイムアタック",
+    "c5": "ガレージとペイント",
+    "c6": "アカウント不要"
+  },
+  "ko": {
+    "tagline": "코믹 스타일 반중력 우주 레이싱",
+    "desc": "만화 세계를 달리는 iPhone용 무료 반중력 우주선 레이싱. 컵 4개, 트랙 11개, 로켓과 운석, 전담 라이벌, 온라인 레이스, 그리고 나만의 머신을 만드는 차고.",
+    "c1": "트랙 11개",
+    "c2": "컵 4개",
+    "c3": "온라인 레이스",
+    "c4": "타임 어택",
+    "c5": "차고와 페인트",
+    "c6": "계정 불필요"
+  },
+  "es": {
+    "tagline": "Carreras de naves antigravedad de cómic",
+    "desc": "Un juego gratuito de carreras de naves antigravedad para iPhone, en un mundo de cómic: 4 copas, 11 circuitos, cohetes y meteoritos, un rival que no te suelta, carreras online y un garaje para construir tu bólido.",
+    "c1": "11 circuitos",
+    "c2": "4 copas",
+    "c3": "Carreras online",
+    "c4": "Contrarreloj",
+    "c5": "Garaje y pinturas",
+    "c6": "Sin cuenta"
+  },
+  "de": {
+    "tagline": "Antigravitations-Rennen im Comic-Stil",
+    "desc": "Ein kostenloses Antigravitations-Raumschiffrennen für das iPhone in einer Comicwelt: 4 Pokale, 11 Strecken, Raketen und Meteore, ein Erzrivale, Online-Rennen und eine Garage, in der du deinen Flitzer baust.",
+    "c1": "11 Strecken",
+    "c2": "4 Pokale",
+    "c3": "Online-Rennen",
+    "c4": "Zeitfahren",
+    "c5": "Garage und Lackierungen",
+    "c6": "Ohne Konto"
+  }
+}

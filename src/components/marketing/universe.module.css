@@ -142,6 +142,13 @@
   box-shadow: 0 26px 64px color-mix(in srgb, var(--u-ink) 28%, transparent);
 }
 
+/* Une capture en paysage (jeu tenu à l'horizontale) : plus large, coins
+   d'écran de téléphone couché. */
+.heroVisual :global(img[data-shot='landscape']) {
+  max-width: min(100%, 760px);
+  border-radius: 22px;
+}
+
 /* Dans une composition décalée, elle se pose à droite du texte plutôt que
    de s'étaler sous lui. */
 @media (min-width: 900px) {
@@ -354,6 +361,11 @@
 .galleryStack .shots {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 28px;
+}
+
+/* Captures en paysage : des colonnes assez larges pour qu'elles se lisent. */
+.shots:has(figure[data-landscape]) {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
 }
 
 /* gallery-device : les captures sont cadrées comme un écran de téléphone. */
@@ -913,4 +925,38 @@
     border-inline-start: 0;
     padding-inline-start: 0;
   }
+}
+
+/* Un téléphone couché a des coins moins ronds, à l'échelle de sa largeur. */
+.galleryDevice .shots figure[data-landscape] :global(img) {
+  border-radius: 20px;
+  border-width: 6px;
+}
+
+/* ── Une display de bande dessinée, en un seul poids (Bangers) ─────────────
+   Ses capitales sont déjà serrées et grasses : un faux gras du navigateur et
+   l'interlettrage négatif des titres les feraient se chevaucher. */
+[data-display='bangers'] .heroTitle,
+[data-display='bangers'] .sectionTitle,
+[data-display='bangers'] .ctaTitle,
+[data-display='bangers'] .items h3,
+[data-display='bangers'] .stats dd {
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* Le tableau de score reste dans la nuit : sur une bande crème, le jaune
+   des chiffres ne se lirait pas. */
+[data-display='bangers'][data-category='game'] .statBand {
+  background: var(--u-surface);
+  color: var(--u-ink);
+  border-block: 2px solid color-mix(in srgb, var(--u-line, var(--u-accent)) 45%, transparent);
+}
+
+[data-display='bangers'][data-category='game'] .stats > div {
+  border-inline-start-color: color-mix(in srgb, var(--u-line, var(--u-accent)) 40%, transparent);
+}
+
+[data-display='bangers'][data-category='game'] .stats dt {
+  color: color-mix(in srgb, var(--u-ink) 70%, transparent);
 }

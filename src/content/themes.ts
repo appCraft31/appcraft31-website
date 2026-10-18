@@ -40,10 +40,34 @@ const F = {
   // M PLUS Rounded 1c, puis Jua pour le hangeul : la pile de repli de l'app.
   // Lilita One : la police des titres et des boutons de Perfect Demolition.
   lilita: 'var(--font-lilita), system-ui, sans-serif',
+  // Bangers : la police BD de Vroomics, titres et boutons.
+  bangers: 'var(--font-bangers), system-ui, sans-serif',
   mplusRounded: 'var(--font-mplusrounded), var(--font-jua), system-ui, sans-serif',
 } as const;
 
 export const THEMES: Record<string, AppTheme> = {
+  /* ── Vroomics : la palette BD du jeu — violet nuit #12002E du ciel de la
+     Mégapole néon (`Catalog.PLANETS.neon.sky_top`), crème #FFFDF2 de
+     l'encre claire, jaune #FFD23F du bouton COMPÉTITION et du logo, rose
+     #FF5FA2 de MULTIJOUEUR, cyan #5EE6FF de MODE LIBRE (scripts/main.gd),
+     orange #FF8A3D des flammes. Bangers pour les titres, comme dans le jeu ;
+     la grille néon évoque la piste anti-gravité. ── */
+  vroomics: {
+    palette: {
+      ink: '#FFFDF2',
+      paper: '#12002E',
+      surface: '#22104A',
+      accent: '#FFD23F',
+      accentAlt: '#FF5FA2',
+      glow: 'rgba(255, 95, 162, 0.34)',
+      line: '#5EE6FF',
+    },
+    fonts: { display: F.bangers, body: F.rubik },
+    backdrop: 'neon-grid',
+    shape: { radius: 6, border: 'hard' },
+    motion: 'high',
+    layout: ['hero-full', 'stat-band', 'how-it-plays', 'gallery-device', 'features', 'privacy', 'cta'],
+  },
   /* ── Perfect Demolition : la palette de scripts/ui.gd — marine #1F2A44 pour
      le texte et les contours, crème #FFF8EA des cartes, orange #FF8A3D des
      boutons, jaune #FFD23F de « DEMOLITION » et des étoiles, bleu ciel

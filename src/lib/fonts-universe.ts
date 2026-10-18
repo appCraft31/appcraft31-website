@@ -13,6 +13,7 @@
 
 import {
   Baloo_2,
+  Bangers,
   Bungee,
   Chakra_Petch,
   Fredoka,
@@ -187,6 +188,18 @@ const lilitaOne = Lilita_One({
   variable: '--font-lilita',
 });
 
+// Vroomics : Bangers, la police de bande dessinée de tout le jeu
+// (`assets/fonts/Bangers-Regular.ttf`, chargée par scripts/game.gd et
+// scripts/main.gd). Une seule graisse, latin seulement : les titres japonais
+// et coréens retombent sur la police système.
+const bangers = Bangers({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  weight: '400',
+  variable: '--font-bangers',
+});
+
 /** Variable CSS → classe qui la définit. */
 const BY_VAR: Record<string, string> = {
   '--font-chakra': chakraPetch.variable,
@@ -209,6 +222,7 @@ const BY_VAR: Record<string, string> = {
   '--font-mplusrounded': mplusRounded.variable,
   '--font-jua': jua.variable,
   '--font-lilita': lilitaOne.variable,
+  '--font-bangers': bangers.variable,
 };
 
 /**

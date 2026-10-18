@@ -30,6 +30,8 @@ export const strings: PrivacyStrings = {
     `Werbeanfragen werden über die AdMob-Vermittlung verteilt und können an andere Werbenetzwerke gehen, deren SDK in der App eingebunden ist: ${partners}. Erhält eines davon den Zuschlag, verarbeitet auch dieses Netzwerk die Werbekennung, app-bezogene Kennungen und Interaktionsdaten — nach seiner eigenen Datenschutzerklärung.`,
   adsMediationConsent:
     'Ihre Entscheidung im Einwilligungsdialog gilt für diese Netzwerke ebenso wie für Google: Sie wird mit jeder Werbeanfrage weitergegeben.',
+  adsMediationNoConsent:
+    'Im Europäischen Wirtschaftsraum, im Vereinigten Königreich und in der Schweiz erhalten diese Netzwerke nie eine Einwilligung zur Personalisierung, unabhängig von Ihrer Wahl im Einwilligungsdialog: Ihre Anzeigen sind dort stets nicht personalisiert.',
   adsAtt:
     'Unter iOS fragt das System beim ersten Start, ob Sie die Verfolgung Ihrer Aktivität erlauben. Lehnen Sie ab, wird keine Werbekennung (IDFA) weitergegeben und die Anzeigen werden nicht personalisiert.',
   adsUmp:

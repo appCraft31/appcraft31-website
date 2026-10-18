@@ -103,7 +103,7 @@ export function privacySections(
     if (facts.ads.mediation?.length) {
       const partners = facts.ads.mediation.map((m) => `${m.name} (${m.privacyUrl})`);
       body.push(s.adsMediation(list(lang, partners)));
-      body.push(s.adsMediationConsent);
+      body.push(facts.ads.mediationNoConsent ? s.adsMediationNoConsent : s.adsMediationConsent);
     }
     if (facts.ads.att) body.push(s.adsAtt);
     if (facts.ads.ump) {

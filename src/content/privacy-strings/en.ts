@@ -30,6 +30,8 @@ export const strings: PrivacyStrings = {
     `Ad requests are arbitrated by AdMob mediation, which may hand them to other networks whose SDK is embedded in the app: ${partners}. When an ad is awarded to them, those networks in turn process the advertising identifier, app-related identifiers and ad interaction data, under their own privacy policy.`,
   adsMediationConsent:
     'The choice you make in the consent screen applies to those networks just as it does to Google: it is passed along with every ad request.',
+  adsMediationNoConsent:
+    'In the European Economic Area, the United Kingdom and Switzerland, those networks never receive consent to personalise, whatever you choose in the consent screen: their ads there are always non-personalised.',
   adsAtt:
     'On iOS, the system asks at first launch whether you allow tracking of your activity. If you decline, no advertising identifier (IDFA) is shared and ads are not personalised.',
   adsUmp:

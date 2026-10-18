@@ -63,15 +63,16 @@ export function HeroVisual({ app }: { app: AppData }) {
 
   // Une capture d'écran est un portrait de téléphone : affichée sur toute la
   // largeur du hero, elle écrase la page. Le CSS la borne via `data-shot`.
+  // Une capture en paysage reçoit `data-shot="landscape"`, bornée plus large.
   return (
     <Image
       src={shot.src}
       alt={shot.alt}
-      width={420}
-      height={910}
+      width={shot.landscape ? 700 : 420}
+      height={shot.landscape ? 322 : 910}
       priority
       unoptimized
-      data-shot=""
+      data-shot={shot.landscape ? 'landscape' : ''}
     />
   );
 }

@@ -172,18 +172,22 @@ export function Gallery({
             // Une scène dessinée est en paysage : lui imposer le cadre d'une
             // capture de téléphone la déforme et la cadre comme un écran.
             const isArtwork = shot.src.endsWith('.svg');
+            // Une capture en paysage (2868×1320) garde ses proportions : la
+            // grille lui donne des colonnes plus larges (`data-landscape`).
+            const isLandscape = Boolean(shot.landscape);
             return (
               <figure
                 key={shot.src}
                 className="reveal"
                 data-artwork={isArtwork ? '' : undefined}
+                data-landscape={isLandscape ? '' : undefined}
                 style={{ '--reveal-delay': `${Math.min(i, 5) * 70}ms`, '--i': i } as never}
               >
                 <Image
                   src={shot.src}
                   alt={shot.alt}
-                  width={isArtwork ? 660 : 420}
-                  height={isArtwork ? 220 : 910}
+                  width={isArtwork ? 660 : isLandscape ? 700 : 420}
+                  height={isArtwork ? 220 : isLandscape ? 322 : 910}
                   unoptimized
                 />
               </figure>
@@ -218,7 +222,9 @@ export function PrivacyBlock({
           <h2 className={styles.sectionTitle}>{section.title}</h2>
           {section.body && <p className={styles.sectionBody}>{section.body}</p>}
 
-          <p className={styles.privacyLinks}>
+          {/* `#support` : l'ancre que les fiches store peuvent viser comme URL
+              d'assistance (contact du studio pour cette app). */}
+          <p className={styles.privacyLinks} id="support">
             <Link href={localizedUrl(lang, privacyPath(app))}>{linkLabel}</Link>
             <span aria-hidden="true"> · </span>
             <a href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(app.name)}`}>

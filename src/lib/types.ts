@@ -122,6 +122,11 @@ export interface Screenshot {
   src: string;
   /** Description de ce que montre la capture, pour l'attribut alt. */
   alt: string;
+  /**
+   * Capture prise en paysage (jeu tenu à l'horizontale, comme Vroomics).
+   * Sans ce drapeau, la capture est cadrée comme un portrait de téléphone.
+   */
+  landscape?: boolean;
 }
 
 /** Un chiffre vérifié dans le code de l'app (niveaux, modes, thèmes…). */

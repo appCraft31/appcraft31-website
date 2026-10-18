@@ -21,7 +21,7 @@ const slugs = [...apps.matchAll(/^\s*slug: '([a-z0-9-]+)',$/gm)].map((m) => m[1]
 const wired = readFileSync(join(ROOT, 'src/lib/app-copy.ts'), 'utf8');
 
 /** Les apps dont les six langues sont écrites — même cliquet que check:lang. */
-const TRANSLATED = ['zellige'];
+const TRANSLATED = ['zellige', 'vroomics'];
 
 let problems = 0;
 

@@ -22,6 +22,8 @@ const PROJECTS = join(homedir(), 'StudioProjects');
  * quand le projet vit ailleurs (Elastic Hero est sur le disque Appcraft).
  */
 const SOURCES = {
+  // Vroomics vit hors de ~/StudioProjects (jeu Godot 4.7).
+  vroomics: join(homedir(), 'essaies_dev', 'kart'),
   perfectdemolition: 'PerfectDemolition',
   capsulecollector: 'Capsule_collector',
   elastichero: '/Volumes/Appcraft/MAQUETTES/Elastic_Hero',
@@ -58,10 +60,16 @@ const MARKERS = {
   // régie sans en intégrer aucune. Un SDK réellement lié se nomme, lui.
   ads: 'AdMob|GADMobileAds|google_mobile_ads|GoogleMobileAds|com\\.google\\.android\\.gms\\.ads|play-services-ads|AppLovin|applovin|admob',
   purchases: 'in_app_purchase|StoreKit|SKProduct|Purchases\\.|RevenueCat|purchaseProduct',
-  analytics: 'FirebaseAnalytics|Crashlytics|Sentry|firebase_analytics|Amplitude|Mixpanel',
-  network: 'URLSession|http\\.get|Dio\\(|dart:io.*HttpClient|fetch\\(|Alamofire',
-  accounts: 'GameCenter|GKLocalPlayer|SignInWithApple|FirebaseAuth|GoogleSignIn',
-  consent: 'ConsentInformation|UMPConsent|ATTrackingManager|AppTrackingTransparency',
+  // `collect.analytics.unity3d.com` : Unity Analytics en REST (Vroomics).
+  analytics: 'FirebaseAnalytics|Crashlytics|Sentry|firebase_analytics|Amplitude|Mixpanel|collect\\.analytics\\.unity3d\\.com',
+  // `HTTPRequest` et `PacketPeerUDP` : le réseau d'un jeu Godot (Vroomics).
+  network: 'URLSession|http\\.get|Dio\\(|dart:io.*HttpClient|fetch\\(|Alamofire|HTTPRequest\\.new|PacketPeerUDP',
+  // `player-auth.services.api.unity.com` : l'authentification Unity Gaming
+  // Services appelée en REST depuis le GDScript (Vroomics).
+  accounts: 'GameCenter|GKLocalPlayer|SignInWithApple|FirebaseAuth|GoogleSignIn|player-auth\\.services\\.api\\.unity\\.com',
+  // `update_consent_info` / `request_tracking_authorization` : UMP et ATT
+  // vus du greffon godot-admob.
+  consent: 'ConsentInformation|UMPConsent|ATTrackingManager|AppTrackingTransparency|update_consent_info|request_tracking_authorization',
 };
 
 /**
@@ -93,6 +101,9 @@ function scan(projectDir, pattern) {
         // AdMob et sa médiation. Les greffons tiers (`addons/`) sont exclus.
         '--include=*.gd',
         '--include=*.godot',
+        // export_presets.cfg : greffons activés à l'export (AdMob chez
+        // Vroomics). Les .cfg des greffons restent exclus avec `addons/`.
+        '--include=*.cfg',
         pattern,
         projectDir,
       ],

@@ -30,6 +30,8 @@ export const strings: PrivacyStrings = {
     `La demande publicitaire est arbitrée par la médiation AdMob, qui peut la confier à d'autres régies dont le SDK est embarqué dans l'application : ${partners}. Lorsqu'une annonce leur est attribuée, ces régies traitent à leur tour l'identifiant publicitaire, des identifiants liés à l'application et les données d'interaction avec l'annonce, selon leur propre politique de confidentialité.`,
   adsMediationConsent:
     "Le choix que vous exprimez dans l'écran de consentement s'applique à ces régies comme à Google : il leur est transmis avec chaque demande d'annonce.",
+  adsMediationNoConsent:
+    "Dans l'Espace économique européen, au Royaume-Uni et en Suisse, ces régies ne reçoivent jamais d'accord de personnalisation, quel que soit votre choix dans l'écran de consentement : leurs annonces y sont toujours non personnalisées.",
   adsAtt:
     "Sur iOS, le système vous demande au premier lancement si vous autorisez le suivi de votre activité. Si vous refusez, aucun identifiant publicitaire (IDFA) n'est partagé et les annonces ne sont pas personnalisées.",
   adsUmp:

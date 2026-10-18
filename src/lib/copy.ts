@@ -33,6 +33,7 @@ import tengo from '@/content/apps/tengo/legacy-copy.json';
 import tinta from '@/content/apps/tinta/legacy-copy.json';
 import zenkuro from '@/content/apps/zenkuro/legacy-copy.json';
 import { DEFAULT_LANG, type Lang } from './types';
+import vroomics from '@/content/apps/vroomics/legacy-copy.json';
 import zellige from '@/content/apps/zellige/legacy-copy.json';
 
 type ShortCopy = {
@@ -72,6 +73,7 @@ const SHORT: Record<string, Partial<Record<Lang, ShortCopy>>> = {
   talon,
   tengo,
   tinta,
+  vroomics,
   zellige,
   zenkuro,
 };

@@ -30,6 +30,8 @@ export const strings: PrivacyStrings = {
     `Las solicitudes de anuncios las arbitra la mediación de AdMob, que puede confiarlas a otras redes cuyo SDK está integrado en la aplicación: ${partners}. Cuando se les adjudica un anuncio, esas redes tratan a su vez el identificador publicitario, los identificadores vinculados a la aplicación y los datos de interacción con el anuncio, según su propia política de privacidad.`,
   adsMediationConsent:
     'La elección que hagas en la pantalla de consentimiento se aplica a esas redes igual que a Google: se les transmite con cada solicitud de anuncio.',
+  adsMediationNoConsent:
+    'En el Espacio Económico Europeo, el Reino Unido y Suiza, esas redes nunca reciben consentimiento para personalizar, sea cual sea tu elección en la pantalla de consentimiento: allí sus anuncios no son nunca personalizados.',
   adsAtt:
     'En iOS, el sistema te pregunta en el primer arranque si autorizas el seguimiento de tu actividad. Si lo rechazas, no se comparte ningún identificador publicitario (IDFA) y los anuncios no se personalizan.',
   adsUmp:

@@ -29,6 +29,168 @@ const adFunded = (removedBy?: string): PrivacyFacts['ads'] => ({
 });
 
 export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
+  // Vroomics — lu dans ~/essaies_dev/kart (Godot 4.7) le 18 octobre 2026.
+  // `scripts/ads.gd` : greffon godot-admob v7 (`addons/AdmobPlugin`),
+  // interstitiel et vidéo récompensée « ×2 CRÉDITS » ; formulaire UMP au
+  // lancement puis, sur iOS, demande ATT (`request_tracking_authorization`,
+  // texte dans addons/AdmobPlugin/ios_export.cfg) ; bouton « MES CHOIX » de
+  // PARAMÈTRES → PUBLICITÉS qui rouvre le formulaire là où il est requis
+  // (`edit_consent`) ; `max_ad_content_rating = PG`, pas de traitement
+  // « enfants » (d'où `familyContent: false`) ; aucune médiation. Pas encore
+  // d'app AdMob Android (`ANDROID_APP_ID` vide). `scripts/online.gd` :
+  // Unity Gaming Services en REST — authentification anonyme, classements
+  // `chrono_<planète>` (temps + métadonnées nom de pilote et coque), fantôme
+  // du meilleur tour en Cloud Save public (`ghost_<planète>`), Lobby et Relay
+  // pour les courses en direct (`scripts/net.gd`, UDP via un serveur Relay,
+  // région europe-west4). `scripts/analytics.gd` : Unity Analytics par l'API
+  // REST « Collect », sans SDK — identifiant aléatoire (UUID) propre à
+  // l'installation, file d'attente `user://analytics_queue.json`, événements
+  // gameStarted, raceStarted / raceFinished / raceAbandoned, cupFinished,
+  // adWatched, garagePurchase, levelUp. Là où le consentement est requis
+  // (`Ads.consent_required` : EEE, Royaume-Uni, Suisse), rien ne part sans le
+  // OUI de la question du premier lancement ; ailleurs, actif par défaut.
+  // PARAMÈTRES → STATISTIQUES coupe l'envoi et envoie `ddnaForgetMe`
+  // (effacement chez Unity sous 7 jours), d'où `optOut: true`. Seules les
+  // versions publiées envoient. `scripts/save_data.gd` : `user://save.json`.
+  // Aucun achat intégré, aucun compte à créer.
+  vroomics: {
+    platforms: ['iOS', 'Android'],
+    localData: [
+      {
+        fr: 'crédits, vaisseaux et pièces possédés, niveau de chaque pièce, peintures et autocollants',
+        en: 'credits, ships and parts owned, the level of each part, paint jobs and stickers',
+        ja: 'クレジット、所有している機体とパーツ、各パーツのレベル、ペイントとステッカー',
+        ko: '크레딧, 보유한 우주선과 부품, 각 부품의 레벨, 페인트와 스티커',
+        es: 'créditos, naves y piezas que posees, nivel de cada pieza, pinturas y pegatinas',
+        de: 'Credits, Schiffe und Teile in deinem Besitz, Stufe jedes Teils, Lackierungen und Sticker',
+      },
+      {
+        fr: 'meilleurs temps, médailles du contre-la-montre, résultats des coupes, étoiles, expérience et progression face aux rivaux',
+        en: 'best times, time trial medals, cup results, stars, experience and progress against rivals',
+        ja: 'ベストタイム、タイムアタックのメダル、カップの成績、星、経験値、ライバルとの対戦状況',
+        ko: '최고 기록, 타임 어택 메달, 컵 성적, 별, 경험치, 라이벌과의 진행 상황',
+        es: 'mejores tiempos, medallas de contrarreloj, resultados de las copas, estrellas, experiencia y progreso frente a los rivales',
+        de: 'Bestzeiten, Zeitfahr-Medaillen, Pokalergebnisse, Sterne, Erfahrung und Fortschritt gegen die Rivalen',
+      },
+      {
+        fr: 'réglages (langue, vibrations)',
+        en: 'settings (language, vibrations)',
+        ja: '設定（言語、振動）',
+        ko: '설정(언어, 진동)',
+        es: 'ajustes (idioma, vibraciones)',
+        de: 'Einstellungen (Sprache, Vibration)',
+      },
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      familyContent: false,
+      // Médiation AdMob : `[Mediation] enabled_networks=["unity"]` dans
+      // `addons/AdmobPlugin/*_export.cfg` embarque le SDK Unity Ads et son
+      // adaptateur Google ; Unity Ads enchérit sur les deux blocs.
+      mediation: [
+        { name: 'Unity Ads', privacyUrl: 'https://unity.com/legal/game-player-and-app-user-privacy-policy' },
+      ],
+      // `_after_consent()` de scripts/ads.gd : là où le RGPD s'applique,
+      // Unity reçoit `set_has_gdpr_consent(false)`, quel que soit le choix.
+      mediationNoConsent: true,
+    },
+    purchases: [],
+    // La phrase type ajoute « Vroomics remonte Unity Analytics, pour … » : la
+    // finalité doit s'y raccorder (ja : avant « ために », ko : avant « 위해 »).
+    // Identifiant, consentement et effacement sont détaillés dans `notes`.
+    analytics: {
+      vendors: ['Unity Analytics'],
+      optOut: true,
+      purpose: {
+        fr: "améliorer le jeu grâce à des statistiques d'usage anonymes : démarrage du jeu, courses lancées, terminées ou abandonnées (mode, planète, vaisseau, place, temps), coupes terminées, publicités vues, achats au garage avec les crédits du jeu et passages de niveau, accompagnés de la plateforme, de la version du jeu et de la langue de l'appareil. Ces statistiques ne servent jamais à la publicité",
+        en: 'improve the game with anonymous usage statistics: game launches, races started, finished or abandoned (mode, planet, ship, position, time), cups completed, ads watched, garage purchases made with in-game credits and level-ups, along with the platform, the game version and the device language. These statistics are never used for advertising',
+        ja: 'ゲームの起動、レースの開始・完走・途中棄権（モード、惑星、機体、順位、タイム）、カップの完了、広告の視聴、ゲーム内クレジットによるガレージでの購入、レベルアップといった匿名の利用統計を、プラットフォーム、ゲームのバージョン、端末の言語とあわせて集め、広告には一切使わずにゲームの改善だけに役立てる',
+        ko: '게임 실행, 레이스 시작·완주·중도 포기(모드, 행성, 우주선, 순위, 기록), 컵 완료, 광고 시청, 게임 내 크레딧으로 한 차고 구매, 레벨 업 같은 익명 사용 통계를 플랫폼, 게임 버전, 기기 언어와 함께 모아 광고에는 전혀 쓰지 않고 게임을 개선하는 데에만 활용하기',
+        es: 'mejorar el juego con estadísticas de uso anónimas: inicio del juego, carreras empezadas, terminadas o abandonadas (modo, planeta, nave, posición, tiempo), copas completadas, anuncios vistos, compras en el garaje con los créditos del juego y subidas de nivel, junto con la plataforma, la versión del juego y el idioma del dispositivo. Estas estadísticas nunca se usan con fines publicitarios',
+        de: 'das Spiel anhand anonymer Nutzungsstatistiken zu verbessern: Spielstart, begonnene, beendete oder abgebrochene Rennen (Modus, Planet, Schiff, Platzierung, Zeit), abgeschlossene Pokale, angesehene Werbung, Käufe in der Garage mit den Credits des Spiels und Stufenaufstiege, jeweils mit Plattform, Spielversion und Gerätesprache. Diese Statistiken werden nie für Werbung genutzt',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "le chargement des publicités (Google et, par la médiation, Unity Ads) et de leur écran de consentement, l'envoi des statistiques d'usage anonymes (Unity Analytics), ainsi que les classements mondiaux, les fantômes partagés et les courses en ligne (Unity Gaming Services). Aucun autre serveur n'est contacté. Les courses en solo se jouent hors ligne : sans connexion, seuls les classements, les fantômes des autres joueurs et le multijoueur sont indisponibles",
+        en: 'loading ads (Google and, through mediation, Unity Ads) and their consent form, sending anonymous usage statistics (Unity Analytics), and for the global leaderboards, shared ghosts and online races (Unity Gaming Services). No other server is contacted. Solo races can be played offline: without a connection, only the leaderboards, other players’ ghosts and multiplayer are unavailable',
+        ja: '広告（Google、およびメディエーション経由のUnity Ads）とその同意画面の読み込み、匿名の利用統計の送信（Unity Analytics）、そして世界ランキング、共有ゴースト、オンラインレース（Unity Gaming Services）。それ以外のサーバーには接続しません。ソロのレースはオフラインでも遊べ、接続がないときに使えないのはランキング、ほかのプレイヤーのゴースト、マルチプレイだけです',
+        ko: '광고(Google 및 미디에이션을 통한 Unity Ads)와 동의 화면 불러오기, 익명 사용 통계 전송(Unity Analytics), 그리고 세계 순위표, 공유 고스트, 온라인 레이스(Unity Gaming Services). 그 밖의 서버에는 접속하지 않습니다. 솔로 레이스는 오프라인으로도 할 수 있으며, 연결이 없으면 순위표, 다른 플레이어의 고스트, 멀티플레이만 이용할 수 없습니다',
+        es: 'cargar los anuncios (Google y, mediante la mediación, Unity Ads) y su pantalla de consentimiento, enviar las estadísticas de uso anónimas (Unity Analytics), así como las clasificaciones mundiales, los fantasmas compartidos y las carreras online (Unity Gaming Services). No se contacta con ningún otro servidor. Las carreras en solitario se juegan sin conexión: sin red solo dejan de estar disponibles las clasificaciones, los fantasmas de otros jugadores y el multijugador',
+        de: 'das Laden der Werbung (Google und, über die Mediation, Unity Ads) und ihres Einwilligungsformulars, das Senden anonymer Nutzungsstatistiken (Unity Analytics) sowie für die weltweiten Bestenlisten, geteilten Geister und Online-Rennen (Unity Gaming Services). Kein anderer Server wird kontaktiert. Solo-Rennen laufen offline: Ohne Verbindung sind nur die Bestenlisten, die Geister anderer Spieler und der Mehrspielermodus nicht verfügbar',
+      },
+    },
+    accounts: {
+      service: 'Unity Gaming Services',
+      what: 'les classements, les fantômes et les courses en ligne',
+      bodyTitle: 'service',
+      body: [
+        {
+          fr: "Vroomics ne vous demande ni compte, ni adresse e-mail, ni numéro de téléphone. Pour les classements mondiaux du contre-la-montre, le partage des fantômes et les courses en ligne, le jeu ouvre une session anonyme auprès de Unity Gaming Services, un service de Unity Technologies : un identifiant de joueur créé automatiquement, sans lien avec votre identité. L'appareil garde le jeton de cette session pour vous reconnaître d'une partie à l'autre.",
+          en: 'Vroomics never asks for an account, an email address or a phone number. For the global time trial leaderboards, shared ghosts and online races, the game opens an anonymous session with Unity Gaming Services, a Unity Technologies service: a player identifier created automatically, with no link to your identity. The device keeps this session’s token so you are recognised from one race to the next.',
+          ja: 'Vroomicsがアカウント、メールアドレス、電話番号を求めることはありません。タイムアタックの世界ランキング、ゴーストの共有、オンラインレースのために、ゲームはUnity Technologiesのサービス、Unity Gaming Servicesで匿名のセッションを開きます。自動で作られるプレイヤーIDで、あなたの身元とは結びついていません。端末はこのセッションのトークンを保存し、レースをまたいであなたを識別します。',
+          ko: 'Vroomics는 계정, 이메일 주소, 전화번호를 요구하지 않습니다. 타임 어택 세계 순위표, 고스트 공유, 온라인 레이스를 위해 게임은 Unity Technologies의 서비스인 Unity Gaming Services에 익명 세션을 엽니다. 자동으로 만들어지는 플레이어 식별자로, 당신의 신원과 연결되어 있지 않습니다. 기기는 레이스가 바뀌어도 당신을 알아볼 수 있도록 이 세션의 토큰을 보관합니다.',
+          es: 'Vroomics nunca te pide una cuenta, una dirección de correo ni un número de teléfono. Para las clasificaciones mundiales de contrarreloj, el intercambio de fantasmas y las carreras online, el juego abre una sesión anónima en Unity Gaming Services, un servicio de Unity Technologies: un identificador de jugador creado automáticamente, sin relación con tu identidad. El dispositivo guarda el token de esa sesión para reconocerte de una carrera a otra.',
+          de: 'Vroomics verlangt weder ein Konto noch eine E-Mail-Adresse oder Telefonnummer. Für die weltweiten Zeitfahr-Bestenlisten, das Teilen von Geistern und die Online-Rennen eröffnet das Spiel eine anonyme Sitzung bei Unity Gaming Services, einem Dienst von Unity Technologies: eine automatisch erzeugte Spieler-ID ohne Bezug zu deiner Identität. Das Gerät speichert das Token dieser Sitzung, damit du von Rennen zu Rennen wiedererkannt wirst.',
+        },
+        {
+          fr: "Sont transmis à Unity et visibles des autres joueurs : le nom de pilote que vous choisissez (par défaut « PILOTE-xxxx », 14 caractères au plus), votre vaisseau et vos meilleurs temps, dans les classements ; le fantôme de votre meilleur tour (la trajectoire de votre vaisseau), que les autres joueurs peuvent défier. Pendant une course en ligne, les joueurs du salon reçoivent votre nom de pilote et l'apparence de votre vaisseau, et votre adresse IP est utilisée par Unity Relay et Unity Lobby le temps de relayer la partie entre les joueurs.",
+          en: 'Sent to Unity and visible to other players: the pilot name you choose (“PILOTE-xxxx” by default, 14 characters at most), your ship and your best times, in the leaderboards; the ghost of your best lap (your ship’s trajectory), which other players can race against. During an online race, the players in the lobby receive your pilot name and your ship’s appearance, and your IP address is used by Unity Relay and Unity Lobby for as long as it takes to relay the race between players.',
+          ja: 'Unityに送られ、ほかのプレイヤーに表示されるのは、ランキングでのあなたが選んだパイロット名（初期設定は「PILOTE-xxxx」、14文字まで）、機体、ベストタイム、そしてほかのプレイヤーが挑戦できるベストラップのゴースト（機体の走行軌跡）です。オンラインレース中は、ルームのプレイヤーにパイロット名と機体の外観が送られ、プレイヤー間でレースを中継するあいだだけ、Unity RelayとUnity LobbyがあなたのIPアドレスを使用します。',
+          ko: 'Unity로 전송되어 다른 플레이어에게 보이는 것은 순위표의 직접 고른 파일럿 이름(기본값 «PILOTE-xxxx», 최대 14자), 우주선, 최고 기록, 그리고 다른 플레이어가 도전할 수 있는 최고 랩의 고스트(우주선의 주행 궤적)입니다. 온라인 레이스 중에는 방에 있는 플레이어에게 파일럿 이름과 우주선의 외관이 전달되며, 플레이어 사이에 레이스를 중계하는 동안에만 Unity Relay와 Unity Lobby가 IP 주소를 사용합니다.',
+          es: 'Se envían a Unity y son visibles para los demás jugadores: el nombre de piloto que eliges («PILOTE-xxxx» por defecto, 14 caracteres como máximo), tu nave y tus mejores tiempos, en las clasificaciones; el fantasma de tu mejor vuelta (la trayectoria de tu nave), que otros jugadores pueden desafiar. Durante una carrera online, los jugadores de la sala reciben tu nombre de piloto y el aspecto de tu nave, y Unity Relay y Unity Lobby usan tu dirección IP mientras dura el relevo de la partida entre los jugadores.',
+          de: 'An Unity übermittelt und für andere Spieler sichtbar sind: der von dir gewählte Pilotenname (standardmäßig „PILOTE-xxxx“, höchstens 14 Zeichen), dein Schiff und deine Bestzeiten in den Bestenlisten; der Geist deiner besten Runde (die Flugbahn deines Schiffs), gegen den andere Spieler antreten können. Während eines Online-Rennens erhalten die Spieler der Lobby deinen Pilotennamen und das Aussehen deines Schiffs, und Unity Relay und Unity Lobby verwenden deine IP-Adresse, solange das Rennen zwischen den Spielern weitergeleitet wird.',
+        },
+        {
+          fr: "Ces données servent uniquement au fonctionnement du jeu et sont traitées par Unity Technologies pour le compte du studio (politique de Unity : https://unity.com/legal/game-player-and-app-user-privacy-policy). Pour faire supprimer vos données en ligne (nom de pilote, temps, fantômes), écrivez-nous en indiquant votre nom de pilote : elles seront effacées sous 30 jours.",
+          en: 'This data is used solely to run the game and is processed by Unity Technologies on the studio’s behalf (Unity’s policy: https://unity.com/legal/game-player-and-app-user-privacy-policy). To have your online data deleted (pilot name, times, ghosts), write to us with your pilot name: it will be erased within 30 days.',
+          ja: 'これらのデータはゲームの動作のためだけに使われ、スタジオに代わってUnity Technologiesが処理します（Unityのポリシー：https://unity.com/legal/game-player-and-app-user-privacy-policy）。オンラインのデータ（パイロット名、タイム、ゴースト）の削除を希望する場合は、パイロット名を添えてご連絡ください。30日以内に削除します。',
+          ko: '이 데이터는 게임 운영에만 사용되며, 스튜디오를 대신해 Unity Technologies가 처리합니다(Unity 정책: https://unity.com/legal/game-player-and-app-user-privacy-policy). 온라인 데이터(파일럿 이름, 기록, 고스트) 삭제를 원하시면 파일럿 이름을 적어 연락해 주세요. 30일 이내에 삭제됩니다.',
+          es: 'Estos datos solo sirven para el funcionamiento del juego y los trata Unity Technologies por cuenta del estudio (política de Unity: https://unity.com/legal/game-player-and-app-user-privacy-policy). Para que borremos tus datos en línea (nombre de piloto, tiempos, fantasmas), escríbenos indicando tu nombre de piloto: se eliminarán en un plazo de 30 días.',
+          de: 'Diese Daten dienen ausschließlich dem Betrieb des Spiels und werden von Unity Technologies im Auftrag des Studios verarbeitet (Datenschutzrichtlinie von Unity: https://unity.com/legal/game-player-and-app-user-privacy-policy). Wenn deine Online-Daten (Pilotenname, Zeiten, Geister) gelöscht werden sollen, schreib uns mit deinem Pilotennamen: Sie werden innerhalb von 30 Tagen gelöscht.',
+        },
+      ],
+    },
+    forChildren: false,
+    updated: '2026-10-18',
+    notes: [
+      {
+        fr: "Pour les services en ligne, l'appareil garde aussi le jeton de session, l'identifiant de joueur anonyme et votre nom de pilote : ceux-là, comme les meilleurs temps du contre-la-montre et le fantôme de votre meilleur tour, sont envoyés à Unity Gaming Services, comme décrit à la rubrique « Comptes et services de jeu ». Vroomics n'a accès ni à vos contacts, ni à vos photos, ni au micro, ni à la caméra, ni à votre position précise, et nous ne vendons pas vos données.",
+        en: 'For the online services, the device also keeps the session token, the anonymous player identifier and your pilot name: these, like your time trial best times and the ghost of your best lap, are sent to Unity Gaming Services, as described under “Accounts and game services”. Vroomics has no access to your contacts, photos, microphone, camera or precise location, and we do not sell your data.',
+        ja: 'オンラインサービスのために、端末はセッショントークン、匿名のプレイヤーID、パイロット名も保存します。これらは、タイムアタックのベストタイムやベストラップのゴーストと同じく、「アカウントとゲームサービス」の項で説明するとおりUnity Gaming Servicesに送られます。Vroomicsは連絡先、写真、マイク、カメラ、正確な位置情報にアクセスせず、私たちがあなたのデータを販売することもありません。',
+        ko: '온라인 서비스를 위해 기기는 세션 토큰, 익명 플레이어 식별자, 파일럿 이름도 보관합니다. 이것들은 타임 어택 최고 기록, 최고 랩의 고스트와 마찬가지로 «계정과 게임 서비스» 항목에서 설명하듯 Unity Gaming Services로 전송됩니다. Vroomics는 연락처, 사진, 마이크, 카메라, 정확한 위치에 접근하지 않으며, 저희는 당신의 데이터를 판매하지 않습니다.',
+        es: 'Para los servicios en línea, el dispositivo guarda también el token de sesión, el identificador de jugador anónimo y tu nombre de piloto: estos datos, igual que tus mejores tiempos de contrarreloj y el fantasma de tu mejor vuelta, se envían a Unity Gaming Services, como se describe en el apartado «Cuentas y servicios de juego». Vroomics no tiene acceso a tus contactos, fotos, micrófono, cámara ni a tu ubicación precisa, y no vendemos tus datos.',
+        de: 'Für die Online-Dienste speichert das Gerät außerdem das Sitzungstoken, die anonyme Spieler-ID und deinen Pilotennamen: Diese werden, wie deine Zeitfahr-Bestzeiten und der Geist deiner besten Runde, an Unity Gaming Services gesendet, wie im Abschnitt „Konten und Spieldienste“ beschrieben. Vroomics hat keinen Zugriff auf deine Kontakte, Fotos, dein Mikrofon, deine Kamera oder deinen genauen Standort, und wir verkaufen deine Daten nicht.',
+      },
+      {
+        fr: "Les statistiques envoyées à Unity Analytics (Unity Technologies) passent par son API web, sans kit tiers intégré au jeu. Elles sont liées à un identifiant aléatoire créé à l'installation, sans lien avec votre identité ni avec l'identifiant publicitaire ; Unity en déduit le pays à partir de l'adresse IP. Dans l'Espace économique européen, au Royaume-Uni et en Suisse, rien n'est envoyé sans votre accord, demandé au premier lancement par une question OUI / NON. Ailleurs, l'envoi est actif par défaut. Vous pouvez le couper à tout moment dans PARAMÈTRES → STATISTIQUES : le jeu demande alors à Unity d'effacer les statistiques déjà envoyées, ce qui est fait sous 7 jours. L'appareil garde cet identifiant, votre choix et les statistiques pas encore envoyées.",
+        en: 'The statistics sent to Unity Analytics (Unity Technologies) go through its web API, with no third-party kit built into the game. They are tied to a random identifier created at installation, with no link to your identity or to the advertising identifier; Unity infers the country from the IP address. In the European Economic Area, the United Kingdom and Switzerland, nothing is sent without your agreement, asked at first launch with a yes-or-no question. Elsewhere, sending is on by default. You can turn it off at any time under SETTINGS → STATISTICS: the game then asks Unity to erase the statistics already sent, which is done within 7 days. The device keeps this identifier, your choice and any statistics not yet sent.',
+        ja: 'Unity Analytics（Unity Technologies）への統計は、ゲームに外部のSDKを組み込まず、そのWeb APIを通じて送られます。統計はインストール時に作られるランダムなIDに結びつけられ、あなたの身元や広告IDとは関係ありません。UnityはIPアドレスから国を推定します。欧州経済領域、イギリス、スイスでは、初回起動時に同意するかどうかを確認し、同意がなければ何も送信しません。それ以外の地域では、送信は初期設定で有効です。「設定」→「統計」からいつでも停止でき、そのときゲームはUnityに送信済みの統計の削除を依頼し、7日以内に削除されます。端末はこのID、あなたの選択、まだ送信していない統計を保存します。',
+        ko: 'Unity Analytics(Unity Technologies)로 보내는 통계는 게임에 외부 SDK를 넣지 않고 그 웹 API를 통해 전송됩니다. 통계는 설치할 때 만들어지는 무작위 식별자와 연결되며, 당신의 신원이나 광고 식별자와는 관계가 없습니다. Unity는 IP 주소로 국가를 추정합니다. 유럽 경제 지역, 영국, 스위스에서는 첫 실행 때 동의 여부를 묻고, 동의하지 않으면 아무것도 보내지 않습니다. 그 밖의 지역에서는 기본으로 전송이 켜져 있습니다. «설정» → «통계»에서 언제든지 끌 수 있으며, 그러면 게임이 Unity에 이미 보낸 통계의 삭제를 요청하고, 7일 이내에 삭제됩니다. 기기는 이 식별자, 당신의 선택, 아직 보내지 않은 통계를 보관합니다.',
+        es: 'Las estadísticas enviadas a Unity Analytics (Unity Technologies) pasan por su API web, sin ningún kit de terceros integrado en el juego. Están vinculadas a un identificador aleatorio creado en la instalación, sin relación con tu identidad ni con el identificador publicitario; Unity deduce el país a partir de la dirección IP. En el Espacio Económico Europeo, el Reino Unido y Suiza, no se envía nada sin tu consentimiento, que se pide en el primer inicio con una pregunta SÍ / NO. En el resto del mundo, el envío está activado por defecto. Puedes desactivarlo en cualquier momento en AJUSTES → ESTADÍSTICAS: el juego pide entonces a Unity que borre las estadísticas ya enviadas, lo que se hace en un plazo de 7 días. El dispositivo guarda ese identificador, tu elección y las estadísticas aún no enviadas.',
+        de: 'Die an Unity Analytics (Unity Technologies) gesendeten Statistiken laufen über dessen Web-API, ohne ein im Spiel eingebautes Fremd-SDK. Sie sind mit einer zufälligen, bei der Installation erzeugten Kennung verknüpft, ohne Bezug zu deiner Identität oder zur Werbe-ID; Unity leitet das Land aus der IP-Adresse ab. Im Europäischen Wirtschaftsraum, im Vereinigten Königreich und in der Schweiz wird nichts ohne deine Zustimmung gesendet, die beim ersten Start mit einer JA/NEIN-Frage eingeholt wird. Anderswo ist das Senden standardmäßig aktiv. Du kannst es jederzeit unter OPTIONEN → STATISTIKEN abschalten: Das Spiel bittet Unity dann, die bereits gesendeten Statistiken zu löschen, was innerhalb von 7 Tagen geschieht. Das Gerät speichert diese Kennung, deine Wahl und noch nicht gesendete Statistiken.',
+      },
+      {
+        fr: "Vroomics est gratuit grâce à la publicité, sans aucun achat intégré. L'interstitiel ne s'affiche qu'en quittant l'écran d'arrivée : jamais avant la troisième course de la session, jamais entre deux courses d'une coupe, au plus une fois toutes les trois courses et au moins deux minutes et demie après le précédent. La vidéo récompensée (« ×2 CRÉDITS » à l'arrivée) ne se lance que si vous appuyez vous-même sur son bouton.",
+        en: 'Vroomics is free thanks to advertising, with no in-app purchases at all. The interstitial only appears when you leave the finish screen: never before the third race of the session, never between two races of a cup, at most once every three races and at least two and a half minutes after the previous one. The rewarded video (“×2 CREDITS” at the finish) only starts if you tap its button yourself.',
+        ja: 'Vroomicsは広告によって無料で、アプリ内課金は一切ありません。インタースティシャル広告はゴール画面を閉じるときにだけ表示されます。セッションの3レース目より前や、カップのレースとレースのあいだには表示されず、3レースに1回まで、前回から2分30秒以上あけて表示されます。リワード動画（ゴール時の「クレジット2倍」）は、あなた自身がボタンを押したときだけ始まります。',
+        ko: 'Vroomics는 광고 덕분에 무료이며, 인앱 구매는 전혀 없습니다. 전면 광고는 결승 화면을 나갈 때만 나타납니다. 세션의 세 번째 레이스 이전이나 컵의 레이스 사이에는 나오지 않고, 세 레이스에 한 번까지이며, 이전 광고로부터 최소 2분 30초가 지나야 합니다. 보상형 영상(결승 때의 «크레딧 2배»)은 직접 버튼을 눌렀을 때만 시작됩니다.',
+        es: 'Vroomics es gratuito gracias a la publicidad, sin ninguna compra integrada. El anuncio intersticial solo aparece al salir de la pantalla de llegada: nunca antes de la tercera carrera de la sesión, nunca entre dos carreras de una copa, como mucho una vez cada tres carreras y al menos dos minutos y medio después del anterior. El vídeo con recompensa («×2 CRÉDITOS» en la meta) solo se inicia si tú mismo pulsas su botón.',
+        de: 'Vroomics ist dank Werbung kostenlos und hat keinerlei In-App-Käufe. Die Vollbildwerbung erscheint nur beim Verlassen des Zielbildschirms: nie vor dem dritten Rennen der Sitzung, nie zwischen zwei Rennen eines Pokals, höchstens einmal alle drei Rennen und mindestens zweieinhalb Minuten nach der vorherigen. Das Belohnungsvideo („×2 CREDITS“ im Ziel) startet nur, wenn du selbst auf seine Schaltfläche tippst.',
+      },
+      {
+        fr: "L'écran de consentement publicitaire (UMP) puis, sur iPhone, la demande de suivi (ATT) sont présentés au lancement. Refuser le suivi ne bloque jamais le jeu : les annonces ne sont simplement pas personnalisées. Là où le consentement est requis, le bouton MES CHOIX de PARAMÈTRES → PUBLICITÉS rouvre ce formulaire. Sur iPhone, l'autorisation de suivi se retire aussi dans Réglages → Confidentialité et sécurité → Suivi.",
+        en: 'The advertising consent form (UMP) and then, on iPhone, the tracking request (ATT) are shown at launch. Declining tracking never blocks the game: ads are simply not personalised. Where consent is required, the MY CHOICES button under SETTINGS → ADS reopens this form. On iPhone, tracking permission can also be withdrawn in Settings → Privacy & Security → Tracking.',
+        ja: '起動時に広告の同意画面（UMP）が表示され、続いてiPhoneではトラッキングの許可（ATT）を求められます。トラッキングを拒否してもゲームが遊べなくなることはなく、広告がパーソナライズされないだけです。同意が必要な地域では、「設定」→「広告」の「同意設定」ボタンからこの画面を開き直せます。iPhoneでは、「設定」→「プライバシーとセキュリティ」→「トラッキング」から許可を取り消すこともできます。',
+        ko: '실행 시 광고 동의 화면(UMP)이 표시되고, 이어서 iPhone에서는 추적 허용 요청(ATT)이 표시됩니다. 추적을 거부해도 게임이 막히지 않으며, 광고가 맞춤화되지 않을 뿐입니다. 동의가 필요한 지역에서는 «설정» → «광고»의 «내 선택» 버튼으로 이 화면을 다시 열 수 있습니다. iPhone에서는 설정 → 개인정보 보호 및 보안 → 추적에서 추적 허용을 철회할 수도 있습니다.',
+        es: 'Al iniciar se muestran la pantalla de consentimiento publicitario (UMP) y después, en iPhone, la solicitud de seguimiento (ATT). Rechazar el seguimiento nunca bloquea el juego: los anuncios simplemente no se personalizan. Donde el consentimiento es obligatorio, el botón MIS OPCIONES de AJUSTES → ANUNCIOS vuelve a abrir ese formulario. En iPhone, el permiso de seguimiento también se retira en Ajustes → Privacidad y seguridad → Rastreo.',
+        de: 'Beim Start erscheinen das Werbe-Einwilligungsformular (UMP) und danach, auf dem iPhone, die Tracking-Anfrage (ATT). Eine Ablehnung des Trackings blockiert das Spiel nie: Die Werbung wird lediglich nicht personalisiert. Wo eine Einwilligung erforderlich ist, öffnet die Schaltfläche MEINE WAHL unter OPTIONEN → WERBUNG dieses Formular erneut. Auf dem iPhone lässt sich die Tracking-Erlaubnis auch unter Einstellungen → Datenschutz & Sicherheit → Tracking widerrufen.',
+      },
+    ],
+  },
   // Perfect Demolition — lu dans ~/StudioProjects/PerfectDemolition le
   // 16 octobre 2026. `scripts/ads.gd` : greffon Poing Studios AdMob 5.1.0,
   // interstitiel et vidéo récompensée, formulaire UMP avant toute demande.

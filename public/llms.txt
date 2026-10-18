@@ -14,6 +14,7 @@ Chaque produit a une page de présentation (`/apps/<slug>.html`) et une politiqu
 
 ## Jeux
 
+- [Vroomics](https://appcraft31.app/apps/vroomics.html) (iPhone, bientôt disponible) : Une course de vaisseaux anti-gravité gratuite sur iPhone, dans un monde de bande dessinée : 4 coupes, 11 circuits, des roquettes et des météores, un rival attitré, des courses en ligne et un garage pour construire votre bolide.
 - [Perfect Demolition](https://appcraft31.app/apps/perfectdemolition.html) (iPhone, iPad) : Un jeu de démolition en 3D gratuit sur iPhone et iPad : 203 niveaux, 12 outils, du marteau au canon à chats, et 14 matières qui réagissent chacune à leur façon. Visez le point faible et réduisez tours et châteaux en miettes.
 - [Capsule Collector](https://appcraft31.app/apps/capsulecollector.html) (iPhone, Android, bientôt disponible) : Un puzzle de tri de capsules sur iPhone et Android : 200 niveaux, des pièces à gagner et une machine à capsules à la japonaise. Collectionnez 48 figurines kawaii en 4 séries et exposez-les dans votre chambre.
 - [Elastic Hero](https://appcraft31.app/apps/elastichero.html) (iPhone, iPad, Android, bientôt disponible) : Un jeu d’escalade sans fin, gratuit sur iPhone, iPad et Android : étirez les bras et les jambes d’un héros en gelée, accrochez les boules en bonbon et catapultez-vous toujours plus haut. Cinq bonus, des défis et des classements mondiaux.
