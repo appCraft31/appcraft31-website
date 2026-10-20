@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Analytics } from '@vercel/analytics/next';
 import { siteFontVars } from '@/lib/fonts';
 import { LANG_META, type Lang } from '@/lib/types';
 import { ThemeScript } from './ThemeScript';
@@ -15,7 +16,11 @@ export function SiteShell({ lang, children }: { lang: Lang; children: ReactNode 
       <head>
         <ThemeScript />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Vercel Web Analytics : mesure d'audience sans cookie, servie par Vercel. */}
+        <Analytics />
+      </body>
     </html>
   );
 }
