@@ -22,6 +22,8 @@ const PROJECTS = join(homedir(), 'StudioProjects');
  * quand le projet vit ailleurs (Elastic Hero est sur le disque Appcraft).
  */
 const SOURCES = {
+  // Fioles & Poisons (jeu Godot 4.7), encore dans le dossier des projets en cours.
+  fioleetpoison: join('En_developpement', 'sort_bottle'),
   // Vroomics vit hors de ~/StudioProjects (jeu Godot 4.7).
   vroomics: join(homedir(), 'essaies_dev', 'kart'),
   perfectdemolition: 'PerfectDemolition',
@@ -63,7 +65,9 @@ const MARKERS = {
   // `collect.analytics.unity3d.com` : Unity Analytics en REST (Vroomics).
   analytics: 'FirebaseAnalytics|Crashlytics|Sentry|firebase_analytics|Amplitude|Mixpanel|collect\\.analytics\\.unity3d\\.com',
   // `HTTPRequest` et `PacketPeerUDP` : le réseau d'un jeu Godot (Vroomics).
-  network: 'URLSession|http\\.get|Dio\\(|dart:io.*HttpClient|fetch\\(|Alamofire|HTTPRequest\\.new|PacketPeerUDP',
+  // `\bfetch` : sans la borne, `LevelGen.prefetch(` (Fioles & Poisons) comptait
+  // pour une requête réseau.
+  network: 'URLSession|http\\.get|Dio\\(|dart:io.*HttpClient|\\bfetch\\(|Alamofire|HTTPRequest\\.new|PacketPeerUDP',
   // `player-auth.services.api.unity.com` : l'authentification Unity Gaming
   // Services appelée en REST depuis le GDScript (Vroomics).
   accounts: 'GameCenter|GKLocalPlayer|SignInWithApple|FirebaseAuth|GoogleSignIn|player-auth\\.services\\.api\\.unity\\.com',

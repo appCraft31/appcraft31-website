@@ -8,6 +8,32 @@ import type { AppData } from './types';
 import { tintaPlayUrls } from './play';
 
 export const APPS: AppData[] = [
+  /* Fioles & Poisons — pas encore publié (com.appcraft31.fioleetpoison, jeu
+     Godot 4.7, iPhone seulement : `targeted_device_family=0` dans
+     export_presets.cfg). La fiche App Store (id 6828982573) existe mais
+     n'est pas en ligne : ajouter le lien store et passer `status` à
+     'available' le jour de la sortie. L'export Android
+     (com.appcraft31.fioles) existe mais la publicité y est désactivée
+     (`general/android/enabled=false`) et aucune fiche Google Play n'est
+     branchée. Captures réelles du jeu en français (540×1170, accueil
+     1080×2340), prises le 30 octobre 2026. */
+  {
+    slug: 'fioleetpoison',
+    name: 'Fioles & Poisons',
+    category: 'game',
+    status: 'soon',
+    soonOn: 'ios',
+    store: {},
+    icon: '/assets/icons/fioleetpoison.webp',
+    screenshots: [
+      { src: '/assets/fioleetpoison-screen-apprenti.webp', alt: 'Le niveau 2, L’apprenti : sept fioles sur les étagères du laboratoire, le chaudron au centre et la recette rouge + bleu = violet' },
+      { src: '/assets/fioleetpoison-screen-poison.webp', alt: 'Le niveau 13, La cave du maître : une fiole marquée d’une tête de mort contient du poison, à purifier au chaudron avec du vert' },
+      { src: '/assets/fioleetpoison-screen-aube.webp', alt: 'Le niveau 30, Le Grand Œuvre : « Aube dans 75 coups », deux fioles jumelles nouées d’un ruban et des couches mystère' },
+      { src: '/assets/fioleetpoison-screen-accueil.webp', alt: 'L’accueil : le titre Fioles & Poisons sous la pleine lune, « Le grimoire de l’apprentie sorcière » et le bouton « Jouer · Niveau 4 »' },
+    ],
+    sdk: { ads: true, purchases: false, analytics: false, network: false, accounts: false },
+    privacyUpdated: '2026-10-30',
+  },
   /* Vroomics — pas encore publié (com.appcraft31.vroomics, jeu Godot 4.7,
      iPhone en paysage ; build 1.0 (1) envoyé à App Store Connect le
      16 octobre 2026). Android viendra ensuite : l'export existe mais l'app

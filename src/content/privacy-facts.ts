@@ -191,6 +191,63 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
       },
     ],
   },
+  // Fioles & Poisons — lu dans ~/StudioProjects/En_developpement/sort_bottle
+  // (Godot 4.7) le 30 octobre 2026. `scripts/ads.gd` : greffon Poing Studios
+  // AdMob 5.1.0, interstitiel entre deux niveaux et vidéo récompensée qui
+  // rend un antidote ; formulaire UMP au lancement, avant toute demande de
+  // pub. Médiation Unity Ads et Liftoff (`[admob]` de project.godot :
+  // `mediation/unity_ads`, `mediation/vungle`). Aucun appel ATT dans le code
+  // du jeu ni dans le greffon (seule la clé NSUserTrackingUsageDescription
+  // est déclarée dans export_presets.cfg), d'où `att: false` ; aucun
+  // `showPrivacyOptionsForm` (`umpReopen: false`), aucune restriction de
+  // contenu (`familyContent: false`). Publicité sur iOS seulement
+  // (`general/android/enabled=false`, `Ads.supported()`). Sauvegardes :
+  // `user://save.cfg` (`_save_progress` de scripts/main.gd) et
+  // `user://settings.cfg` (scripts/settings.gd). Aucun achat intégré, aucune
+  // mesure d'audience, aucun compte, aucune requête réseau du jeu lui-même.
+  fioleetpoison: {
+    platforms: ['iOS'],
+    localData: [
+      {
+        fr: 'dernier niveau débloqué et étoiles obtenues à chaque niveau',
+        en: 'last unlocked level and the stars earned in each level',
+      },
+      {
+        fr: 'tutoriel terminé ou non',
+        en: 'whether the tutorial has been completed',
+      },
+      {
+        fr: 'réglages (vibrations)',
+        en: 'settings (vibrations)',
+      },
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: false,
+      umpReopen: false,
+      familyContent: false,
+      mediation: [
+        { name: 'Unity Ads', privacyUrl: 'https://unity.com/legal/game-player-and-app-user-privacy-policy' },
+        { name: 'Liftoff Monetize (VungleAdsSDK)', privacyUrl: 'https://liftoff.ai/privacy-policy/' },
+      ],
+    },
+    purchases: [],
+    analytics: null,
+    // Le jeu se joue hors ligne ; le réseau ne sert qu'aux annonces et à leur
+    // formulaire de consentement, ce que dit la phrase type.
+    network: null,
+    accounts: null,
+    forChildren: false,
+    updated: '2026-10-30',
+    notes: [
+      {
+        fr: "Fioles & Poisons est gratuit grâce à la publicité, sans aucun achat intégré. L'interstitiel ne s'affiche qu'en passant d'un niveau au suivant : jamais avant d'avoir réussi trois niveaux, et au moins deux minutes après une autre annonce. Le son du jeu est coupé pendant les annonces. La vidéo récompensée, qui rend un antidote quand vous n'en avez plus, ne se lance que si vous appuyez vous-même sur son bouton.",
+        en: 'Fioles & Poisons is free thanks to advertising, with no in-app purchases at all. The interstitial only appears when you move from one level to the next: never before you have cleared three levels, and at least two minutes after another ad. The game’s sound is muted during ads. The rewarded video, which gives you an antidote when you have run out, only starts if you tap its button yourself.',
+      },
+    ],
+  },
   // Perfect Demolition — lu dans ~/StudioProjects/PerfectDemolition le
   // 16 octobre 2026. `scripts/ads.gd` : greffon Poing Studios AdMob 5.1.0,
   // interstitiel et vidéo récompensée, formulaire UMP avant toute demande.

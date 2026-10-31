@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Le grimoire de l’apprentie sorcière",
+    "desc": "Un puzzle de tri de couleurs gratuit sur iPhone, dans le laboratoire d’une apprentie sorcière : versez les potions, mélangez les couleurs au chaudron, purifiez le poison et déjouez fioles givrées, caméléons et corbeau. Des niveaux sans fin, jouables hors ligne.",
+    "c1": "Niveaux sans fin",
+    "c2": "Chaudron magique",
+    "c3": "Poison à purifier",
+    "c4": "3 étoiles par niveau",
+    "c5": "Tutoriel guidé",
+    "c6": "Se joue hors ligne"
+  },
+  "en": {
+    "tagline": "The apprentice witch’s grimoire",
+    "desc": "A free color sorting puzzle for iPhone, set in an apprentice witch’s laboratory: pour the potions, mix colors in the cauldron, purify the poison and outwit frozen flasks, chameleons and the raven. Endless levels, playable offline.",
+    "c1": "Endless levels",
+    "c2": "Magic cauldron",
+    "c3": "Poison to purify",
+    "c4": "3 stars per level",
+    "c5": "Guided tutorial",
+    "c6": "Plays offline"
+  },
+  "ja": {
+    "tagline": "見習い魔女の魔法書",
+    "desc": "見習い魔女の実験室を舞台にした、iPhone向けの無料の色分けパズル。ポーションを注ぎ分け、大鍋で色を混ぜ、毒を浄化し、凍ったフラスコやカメレオン、カラスを出し抜こう。レベルは無限、オフラインで遊べます。",
+    "c1": "無限のレベル",
+    "c2": "魔法の大鍋",
+    "c3": "毒を浄化",
+    "c4": "各レベル星3つ",
+    "c5": "ガイド付きチュートリアル",
+    "c6": "オフラインで遊べる"
+  },
+  "ko": {
+    "tagline": "견습 마녀의 마법서",
+    "desc": "견습 마녀의 실험실에서 펼쳐지는 iPhone용 무료 색깔 분류 퍼즐. 물약을 따르고, 가마솥에서 색을 섞고, 독을 정화하고, 얼어붙은 플라스크와 카멜레온, 까마귀를 따돌리세요. 끝없는 레벨, 오프라인 플레이.",
+    "c1": "끝없는 레벨",
+    "c2": "마법의 가마솥",
+    "c3": "정화할 독",
+    "c4": "레벨마다 별 3개",
+    "c5": "안내 튜토리얼",
+    "c6": "오프라인 플레이"
+  },
+  "es": {
+    "tagline": "El grimorio de la aprendiz de bruja",
+    "desc": "Un puzle de ordenar colores gratis para iPhone, en el laboratorio de una aprendiz de bruja: vierte las pociones, mezcla colores en el caldero, purifica el veneno y supera frascos helados, camaleones y el cuervo. Niveles infinitos, se juega sin conexión.",
+    "c1": "Niveles infinitos",
+    "c2": "Caldero mágico",
+    "c3": "Veneno que purificar",
+    "c4": "3 estrellas por nivel",
+    "c5": "Tutorial guiado",
+    "c6": "Se juega sin conexión"
+  },
+  "de": {
+    "tagline": "Das Zauberbuch der jungen Hexe",
+    "desc": "Ein kostenloses Farbsortier-Puzzle für das iPhone im Labor einer jungen Hexe: Gieße die Tränke um, mische Farben im Kessel, reinige das Gift und überliste gefrorene Fläschchen, Chamäleons und den Raben. Endlose Level, offline spielbar.",
+    "c1": "Endlose Level",
+    "c2": "Zauberkessel",
+    "c3": "Gift reinigen",
+    "c4": "3 Sterne pro Level",
+    "c5": "Geführtes Tutorial",
+    "c6": "Offline spielbar"
+  }
+}

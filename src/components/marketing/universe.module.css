@@ -946,17 +946,21 @@
 }
 
 /* Le tableau de score reste dans la nuit : sur une bande crème, le jaune
-   des chiffres ne se lirait pas. */
-[data-display='bangers'][data-category='game'] .statBand {
+   des chiffres ne se lirait pas. Même cas pour Lilita One sous un ciel
+   étoilé (l'or des fioles sur la nuit du laboratoire). */
+[data-display='bangers'][data-category='game'] .statBand,
+[data-display='lilita'][data-backdrop='starfield'][data-category='game'] .statBand {
   background: var(--u-surface);
   color: var(--u-ink);
   border-block: 2px solid color-mix(in srgb, var(--u-line, var(--u-accent)) 45%, transparent);
 }
 
-[data-display='bangers'][data-category='game'] .stats > div {
+[data-display='bangers'][data-category='game'] .stats > div,
+[data-display='lilita'][data-backdrop='starfield'][data-category='game'] .stats > div {
   border-inline-start-color: color-mix(in srgb, var(--u-line, var(--u-accent)) 40%, transparent);
 }
 
-[data-display='bangers'][data-category='game'] .stats dt {
+[data-display='bangers'][data-category='game'] .stats dt,
+[data-display='lilita'][data-backdrop='starfield'][data-category='game'] .stats dt {
   color: color-mix(in srgb, var(--u-ink) 70%, transparent);
 }

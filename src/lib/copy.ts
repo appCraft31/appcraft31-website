@@ -12,6 +12,7 @@ import combo from '@/content/apps/combo/legacy-copy.json';
 import contree from '@/content/apps/contree/legacy-copy.json';
 import ding from '@/content/apps/ding/legacy-copy.json';
 import elastichero from '@/content/apps/elastichero/legacy-copy.json';
+import fioleetpoison from '@/content/apps/fioleetpoison/legacy-copy.json';
 import glowmi from '@/content/apps/glowmi/legacy-copy.json';
 import ecopompe from '@/content/apps/ecopompe/legacy-copy.json';
 import glyphe from '@/content/apps/glyphe/legacy-copy.json';
@@ -54,6 +55,7 @@ const SHORT: Record<string, Partial<Record<Lang, ShortCopy>>> = {
   contree,
   ding,
   elastichero,
+  fioleetpoison,
   glowmi,
   ecopompe,
   glyphe,

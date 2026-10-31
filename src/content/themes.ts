@@ -46,6 +46,29 @@ const F = {
 } as const;
 
 export const THEMES: Record<string, AppTheme> = {
+  /* ── Fioles & Poisons : la palette de scripts/ui_style.gd — violet nuit
+     #1C0A33 de l'écran de lancement (`boot_splash/bg_color` de
+     project.godot), contour violet très foncé #2B0F45 (`OUTLINE`), crème
+     #FFF7E6 (`CREAM`), or #FFD640 (`GOLD`) des titres et des étoiles,
+     violet #8A40D1 des boutons, élixir #FFC733 en halo. Lilita One pour les
+     titres et Fredoka pour le texte, comme dans le jeu (`assets/fonts`) ;
+     le ciel étoilé reprend la nuit du laboratoire et sa pleine lune. ── */
+  fioleetpoison: {
+    palette: {
+      ink: '#FFF7E6',
+      paper: '#1C0A33',
+      surface: '#2B0F45',
+      accent: '#FFD640',
+      accentAlt: '#8A40D1',
+      glow: 'rgba(255, 199, 51, 0.30)',
+      line: '#8A40D1',
+    },
+    fonts: { display: F.lilita, body: F.fredoka },
+    backdrop: 'starfield',
+    shape: { radius: 24, border: 'soft' },
+    motion: 'medium',
+    layout: ['hero-split', 'stat-band', 'how-it-plays', 'gallery-device', 'features', 'privacy', 'cta'],
+  },
   /* ── Vroomics : la palette BD du jeu — violet nuit #12002E du ciel de la
      Mégapole néon (`Catalog.PLANETS.neon.sky_top`), crème #FFFDF2 de
      l'encre claire, jaune #FFD23F du bouton COMPÉTITION et du logo, rose

@@ -14,6 +14,7 @@ Chaque produit a une page de présentation (`/apps/<slug>.html`) et une politiqu
 
 ## Jeux
 
+- [Fioles & Poisons](https://appcraft31.app/apps/fioleetpoison.html) (iPhone, bientôt disponible) : Un puzzle de tri de couleurs gratuit sur iPhone, dans le laboratoire d’une apprentie sorcière : versez les potions, mélangez les couleurs au chaudron, purifiez le poison et déjouez fioles givrées, caméléons et corbeau. Des niveaux sans fin, jouables hors ligne.
 - [Vroomics](https://appcraft31.app/apps/vroomics.html) (iPhone, bientôt disponible) : Une course de vaisseaux anti-gravité gratuite sur iPhone, dans un monde de bande dessinée : 4 coupes, 11 circuits, des roquettes et des météores, un rival attitré, des courses en ligne et un garage pour construire votre bolide.
 - [Perfect Demolition](https://appcraft31.app/apps/perfectdemolition.html) (iPhone, iPad) : Un jeu de démolition en 3D gratuit sur iPhone et iPad : 203 niveaux, 12 outils, du marteau au canon à chats, et 14 matières qui réagissent chacune à leur façon. Visez le point faible et réduisez tours et châteaux en miettes.
 - [Capsule Collector](https://appcraft31.app/apps/capsulecollector.html) (iPhone, Android, bientôt disponible) : Un puzzle de tri de capsules sur iPhone et Android : 200 niveaux, des pièces à gagner et une machine à capsules à la japonaise. Collectionnez 48 figurines kawaii en 4 séries et exposez-les dans votre chambre.
