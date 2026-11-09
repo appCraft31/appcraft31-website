@@ -29,7 +29,7 @@ const SOURCES = {
   perfectdemolition: 'PerfectDemolition',
   capsulecollector: 'Capsule_collector',
   elastichero: '/Volumes/Appcraft/MAQUETTES/Elastic_Hero',
-  ding: 'ascenceur',
+  ding: join('AppStore', 'Ding'),
   glowmi: 'tamagotchi',
   zellige: 'Zellige',
   pixelcraft: 'pixel_art',
