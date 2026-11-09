@@ -587,9 +587,14 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
   // bilans de carrière réussis), `lib/analytics/*` (Firebase Analytics soumis
   // au consentement IAB dans l'EEE, jamais à des fins publicitaires ;
   // Crashlytics), `lib/progress/*` et `lib/ui/settings_store.dart` (données
-  // locales). Aucun achat intégré, aucun compte. App iPhone uniquement.
+  // locales). Aucun achat intégré, aucun compte.
+  // Relu le 2 novembre 2026 pour la sortie Android (~/StudioProjects/Multistore/Ding,
+  // package com.appcraft31.ding) : mêmes SDK (AdMob, UMP, Firebase Analytics,
+  // Crashlytics) ; `_requestTracking` sort tout de suite hors iOS, donc pas
+  // d'ATT sur Android ; le manifeste fusionné déclare
+  // `com.google.android.gms.permission.AD_ID` (apporté par play-services-ads).
   ding: {
-    platforms: ['iOS'],
+    platforms: ['iOS', 'Android'],
     localData: [
       {
         fr: 'progression de la carrière (missions réussies, distinctions, crédits)',
@@ -653,7 +658,7 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     },
     accounts: null,
     forChildren: false,
-    updated: '2026-09-11',
+    updated: '2026-11-02',
     notes: [
       {
         fr: "Ding! est gratuit grâce à la publicité, et aucun achat intégré ne la retire. L'interstitiel ne s'affiche qu'après une mission de carrière réussie, au moment de continuer ou de revenir à l'accueil — jamais pendant une partie, jamais sur le défi du jour ni l'entraînement libre —, au plus une fois toutes les trois victoires et toutes les cinq minutes. Pour une partie des joueurs, il est remplacé par une vidéo récompensée, précédée d'un écran qui laisse le choix de la regarder ou de continuer. La vidéo récompensée du bilan (+25 crédits) ne se lance que si vous appuyez vous-même sur son bouton.",
@@ -666,6 +671,12 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
         en: 'The advertising consent form (UMP) and then, on iPhone, the tracking request (ATT) are shown at launch. Declining never blocks the game: ads are still shown, without personalisation.',
         es: 'La pantalla de consentimiento publicitario (UMP) y después, en el iPhone, la solicitud de seguimiento (ATT) se muestran al iniciar. Rechazarlas nunca bloquea el juego: los anuncios se siguen mostrando, sin personalización.',
         de: 'Das Werbe-Einwilligungsformular (UMP) und danach, auf dem iPhone, die Tracking-Anfrage (ATT) erscheinen beim Start. Eine Ablehnung blockiert das Spiel nie: Die Werbung wird weiter angezeigt, nur ohne Personalisierung.',
+      },
+      {
+        fr: "Sur Android, il n'y a pas de demande de suivi : Google AdMob peut utiliser l'identifiant publicitaire de l'appareil, selon vos choix dans l'écran de consentement. Vous pouvez le réinitialiser ou le supprimer à tout moment dans les paramètres d'Android (Google › Annonces, ou Confidentialité › Annonces).",
+        en: 'On Android there is no tracking request: Google AdMob may use the device’s advertising ID, according to your choices in the consent form. You can reset or delete it at any time in Android settings (Google › Ads, or Privacy › Ads).',
+        es: 'En Android no hay solicitud de seguimiento: Google AdMob puede usar el identificador de publicidad del dispositivo, según lo que elijas en la pantalla de consentimiento. Puedes restablecerlo o eliminarlo cuando quieras en los ajustes de Android (Google › Anuncios, o Privacidad › Anuncios).',
+        de: 'Unter Android gibt es keine Tracking-Anfrage: Google AdMob kann die Werbe-ID des Geräts nutzen, entsprechend deiner Auswahl im Einwilligungsformular. Du kannst sie jederzeit in den Android-Einstellungen zurücksetzen oder löschen (Google › Anzeigen oder Datenschutz › Anzeigen).',
       },
     ],
   },
@@ -1204,26 +1215,83 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     updated: REVIEWED,
   },
 
+  // randompix — relu le 9 novembre 2026 pour la 2.3.0 (~/StudioProjects/Multistore/randompix,
+  // iOS + Android `com.appcraft31.randompix`). `supabase_flutter` : connexion
+  // anonyme (`signInAnonymously`), profil de jeu, amis, salons, défi quotidien
+  // des groupes (migration 0013, photos ≤ 24 h) et duel du jour entre amis
+  // (migration 0015, bucket privé `duels`, photos ≤ 48 h, purge par
+  // `storage-purge`). `firebase_messaging` + edge function `send-push` :
+  // notifications. `firebase_analytics` (collecte activée après l'ATT, pas
+  // d'interrupteur) et `firebase_crashlytics`. AdMob : bannière, interstitiel,
+  // vidéo récompensée (rallumer la flamme d'un duel, `rewarded_ad_service.dart`),
+  // médiation Unity Ads et Liftoff (`gma_mediation_*`), UMP par
+  // `loadAndShowConsentFormIfRequired` seulement — aucun appel à
+  // `showPrivacyOptionsForm`, d'où `umpReopen: false`. Achats via RevenueCat
+  // (`purchases_flutter`).
   randompix: {
-    platforms: ['iOS'],
+    platforms: ['iOS', 'Android'],
     localData: ['pseudonyme choisi pour la partie', 'réglages'],
-    ads: adFunded(),
+    ads: {
+      network: 'Google AdMob',
+      formats: ['banner', 'interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      umpReopen: false,
+      removedBy: 'Sans publicité',
+      mediation: [
+        { name: 'Unity Ads', privacyUrl: 'https://unity.com/legal/game-player-and-app-user-privacy-policy' },
+        { name: 'Liftoff Monetize (VungleAdsSDK)', privacyUrl: 'https://liftoff.io/privacy-policy/' },
+      ],
+    },
     purchases: [
       { kind: 'non-consumable', what: 'le retrait de la publicité', productId: 'com.appcraft31.randompix.noads' },
       { kind: 'non-consumable', what: 'des packs d’emojis', productId: 'com.appcraft31.randompix.emojis.fete' },
     ],
-    analytics: null,
+    analytics: {
+      vendors: ['Firebase Analytics', 'Firebase Crashlytics'],
+      optOut: false,
+      purpose: {
+        fr: "comprendre l'usage de l'application (écrans visités, événements de jeu, achats) et recevoir les rapports de plantage pour corriger les erreurs. Sur iPhone, la mesure ne démarre qu'après votre réponse à la demande de suivi. Ces statistiques sont rattachées à un identifiant d'installation, jamais à votre identité",
+        en: 'understand how the app is used (screens viewed, game events, purchases) and receive crash reports to fix errors. On iPhone, analytics only start after you answer the tracking request. These statistics are tied to an installation identifier, never to your identity',
+        es: 'entender el uso de la aplicación (pantallas vistas, eventos de juego, compras) y recibir los informes de errores para corregirlos. En el iPhone, la medición solo empieza después de que respondas a la solicitud de seguimiento. Estas estadísticas se vinculan a un identificador de instalación, nunca a tu identidad',
+        de: 'die Nutzung der App zu verstehen (aufgerufene Bildschirme, Spielereignisse, Käufe) und Absturzberichte zu erhalten, um Fehler zu beheben. Auf dem iPhone beginnt die Messung erst nach deiner Antwort auf die Tracking-Anfrage. Diese Statistiken sind an eine Installations-ID gebunden, nie an deine Identität',
+      },
+    },
     network: {
-      purpose:
-        'la partie en réseau : le code de salon, les votes et les photos de la manche en cours transitent entre les joueurs',
+      purpose: {
+        fr: "les parties en réseau (code de salon, votes et photos de la manche en cours), le profil de jeu anonyme, les amis, le défi quotidien des groupes et le duel du jour (Supabase), les notifications (Firebase Cloud Messaging), le chargement des publicités et de leur écran de consentement, et l'envoi des statistiques d'usage et des rapports de plantage à Firebase",
+        en: 'online games (room code, votes and the photos of the current round), the anonymous game profile, friends, the groups’ daily challenge and the daily duel (Supabase), notifications (Firebase Cloud Messaging), loading ads and their consent form, and sending usage statistics and crash reports to Firebase',
+        es: 'las partidas en red (código de sala, votos y fotos de la ronda en curso), el perfil de juego anónimo, los amigos, el reto diario de los grupos y el duelo del día (Supabase), las notificaciones (Firebase Cloud Messaging), la carga de los anuncios y de su pantalla de consentimiento, y el envío de estadísticas de uso e informes de errores a Firebase',
+        de: 'Online-Partien (Raumcode, Stimmen und Fotos der laufenden Runde), das anonyme Spielprofil, Freunde, die tägliche Herausforderung der Gruppen und das Duell des Tages (Supabase), Benachrichtigungen (Firebase Cloud Messaging), das Laden der Werbung und ihres Einwilligungsformulars sowie das Senden von Nutzungsstatistiken und Absturzberichten an Firebase',
+      },
     },
     accounts: null,
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-11-09',
     notes: [
       {
-        fr: 'Les photos que vous validez sont chiffrées le temps de la partie, puis supprimées automatiquement. Elles ne servent qu’à la manche en cours et ne sont jamais conservées après.',
-        en: 'The photos you approve are encrypted for the duration of the game, then deleted automatically. They serve only the round being played and are never kept afterwards.',
+        fr: "Aucun compte, aucun e-mail : au premier lancement, l'application crée un identifiant anonyme (Supabase) qui porte votre profil de jeu — pseudo, avatar emoji, code ami, amis, statistiques de parties. Le bouton « Supprimer mon profil » de l'écran Amis efface immédiatement de nos serveurs ce profil, vos amis, vos groupes, vos duels, vos jetons de notification et l'identifiant lui-même.",
+        en: 'No account, no email: at first launch the app creates an anonymous identifier (Supabase) that holds your game profile — nickname, emoji avatar, friend code, friends, game statistics. The “Delete my profile” button on the Friends screen immediately erases from our servers this profile, your friends, your groups, your duels, your notification tokens and the identifier itself.',
+        es: 'Sin cuenta ni correo: en el primer inicio, la aplicación crea un identificador anónimo (Supabase) que guarda tu perfil de juego — apodo, avatar emoji, código de amigo, amigos, estadísticas de partidas. El botón «Eliminar mi perfil» de la pantalla Amigos borra al instante de nuestros servidores ese perfil, tus amigos, tus grupos, tus duelos, tus tokens de notificación y el propio identificador.',
+        de: 'Kein Konto, keine E-Mail: Beim ersten Start erstellt die App eine anonyme Kennung (Supabase), an der dein Spielprofil hängt — Spitzname, Emoji-Avatar, Freundescode, Freunde, Spielstatistiken. Die Schaltfläche „Mein Profil löschen“ auf dem Freunde-Bildschirm löscht sofort dieses Profil, deine Freunde, Gruppen, Duelle, Benachrichtigungs-Tokens und die Kennung selbst von unseren Servern.',
+      },
+      {
+        fr: "Partie entre amis : les photos que vous validez sont recompressées, débarrassées de leurs métadonnées (dont la géolocalisation) et chiffrées le temps de la partie, puis supprimées automatiquement à sa fin, au plus tard 2 heures après la création du salon. En mode « Chronologie », seuls le mois et l'année de prise de vue sont partagés avec les joueurs du salon.",
+        en: 'Games with friends: the photos you approve are recompressed, stripped of their metadata (including location) and encrypted for the duration of the game, then deleted automatically when it ends, at the latest 2 hours after the room was created. In “Timeline” mode, only the month and year the photo was taken are shared with the players in the room.',
+        es: 'Partidas entre amigos: las fotos que validas se recomprimen, se les quitan los metadatos (incluida la ubicación) y se cifran mientras dura la partida; después se eliminan automáticamente al terminar, como muy tarde 2 horas después de crear la sala. En el modo «Cronología», solo se comparten el mes y el año en que se tomó la foto con los jugadores de la sala.',
+        de: 'Spiele mit Freunden: Die Fotos, die du bestätigst, werden neu komprimiert, von ihren Metadaten (auch dem Standort) befreit und für die Dauer der Partie verschlüsselt, dann an ihrem Ende automatisch gelöscht, spätestens 2 Stunden nach dem Erstellen des Raums. Im Modus „Chronologie“ werden nur Monat und Jahr der Aufnahme mit den Spielern im Raum geteilt.',
+      },
+      {
+        fr: "Duel du jour : la photo que vous choisissez dans votre galerie pour un ami est recompressée et débarrassée de ses métadonnées (elle n'est pas envoyée si ce retrait échoue), stockée dans un espace privé visible uniquement par cet ami, puis supprimée automatiquement au plus tard 48 heures après l'envoi. Seuls le mois et l'année de prise de vue sont transmis, puisque c'est la réponse à deviner. Nous gardons ensuite les réponses (mois proposé, points, réaction) et la série de jours joués ensemble.",
+        en: 'Daily duel: the photo you pick from your gallery for a friend is recompressed and stripped of its metadata (it is not sent if this fails), stored in a private space visible only to that friend, then deleted automatically at the latest 48 hours after it was sent. Only the month and year it was taken are transmitted, since that is the answer to guess. We then keep the answers (month guessed, points, reaction) and the streak of days played together.',
+        es: 'Duelo del día: la foto que eliges de tu galería para un amigo se recomprime y se le quitan los metadatos (no se envía si esto falla), se guarda en un espacio privado visible solo para ese amigo y se elimina automáticamente como muy tarde 48 horas después del envío. Solo se transmiten el mes y el año en que se tomó, porque es la respuesta que hay que adivinar. Después conservamos las respuestas (mes propuesto, puntos, reacción) y la racha de días jugados juntos.',
+        de: 'Duell des Tages: Das Foto, das du für einen Freund aus deiner Galerie wählst, wird neu komprimiert und von seinen Metadaten befreit (schlägt das fehl, wird es nicht gesendet), in einem privaten Bereich gespeichert, den nur dieser Freund sieht, und spätestens 48 Stunden nach dem Senden automatisch gelöscht. Übertragen werden nur Monat und Jahr der Aufnahme, denn das ist die Antwort, die erraten werden soll. Danach behalten wir die Antworten (geratener Monat, Punkte, Reaktion) und die Serie gemeinsam gespielter Tage.',
+      },
+      {
+        fr: "Défi quotidien des groupes : la photo du jour (appareil photo ou galerie) n'est visible que des membres du groupe et supprimée au plus tard 24 heures après l'ouverture du défi. Les notifications, si vous les acceptez, s'appuient sur un jeton Firebase Cloud Messaging et la langue de l'appareil. La vidéo récompensée, qui rallume la flamme d'un duel, ne se lance que si vous appuyez vous-même sur son bouton.",
+        en: 'Groups’ daily challenge: the photo of the day (camera or gallery) is visible only to group members and deleted at the latest 24 hours after the challenge opens. Notifications, if you accept them, rely on a Firebase Cloud Messaging token and the device language. The rewarded video, which relights a duel’s streak, only starts if you tap its button yourself.',
+        es: 'Reto diario de los grupos: la foto del día (cámara o galería) solo la ven los miembros del grupo y se elimina como muy tarde 24 horas después de abrirse el reto. Las notificaciones, si las aceptas, usan un token de Firebase Cloud Messaging y el idioma del dispositivo. El vídeo con recompensa, que reaviva la racha de un duelo, solo se inicia si tú mismo pulsas su botón.',
+        de: 'Tägliche Herausforderung der Gruppen: Das Foto des Tages (Kamera oder Galerie) sehen nur die Gruppenmitglieder, und es wird spätestens 24 Stunden nach Öffnen der Herausforderung gelöscht. Benachrichtigungen nutzen, wenn du sie erlaubst, ein Firebase-Cloud-Messaging-Token und die Gerätesprache. Das Video mit Belohnung, das die Serie eines Duells wieder entfacht, startet nur, wenn du selbst auf seine Schaltfläche tippst.',
       },
     ],
   },
