@@ -170,11 +170,12 @@ export const APPS: AppData[] = [
       web: '/play/zellige/',
     },
     icon: '/assets/icons/zellige.svg',
+    // Captures de la version Unity (`Zellige.Editor.Captures.StoreShots`, fr, iPhone 1320×2868).
     screenshots: [
       { src: '/assets/zellige-screen-accueil.webp', alt: "L'accueil est lui-même une grille de Tectonic : Continuer, Grille du jour et Comment jouer sont des blocs" },
-      { src: '/assets/zellige-screen-partie.webp', alt: 'Une grille 7×8 en cours, niveau 15, avec des annotations et le bloc sélectionné cerné de bleu' },
-      { src: '/assets/zellige-screen-sombre.webp', alt: 'La même grille en thème sombre : le joint devient l’ombre entre les carreaux' },
-      { src: '/assets/zellige-screen-jour.webp', alt: 'La grille du jour, une 12×12 experte' },
+      { src: '/assets/zellige-screen-partie.webp', alt: 'Le niveau 24, une grille 9×9 à moitié remplie, le bloc de la case sélectionnée cerné de bleu' },
+      { src: '/assets/zellige-screen-indice.webp', alt: 'Un indice expliqué : « Ce bloc n’a plus qu’une case vide : il lui manque le 4 »' },
+      { src: '/assets/zellige-screen-sombre.webp', alt: 'Le niveau 60 en thème sombre, une grande grille 12×12' },
     ],
     sdk: { ads: true, purchases: false, analytics: true, network: false, accounts: true },
     privacyUpdated: '2026-08-31',
@@ -297,11 +298,12 @@ export const APPS: AppData[] = [
       web: '/play/binero/',
     },
     icon: '/assets/icons/binero.svg',
-    // Captures réelles de l'app iOS (`binero_IOS/marketing/screens-real`, `screens-v3`).
+    // Captures de la version Unity 2.2 (pilote `ScreenshotDriver`, simulateur iPhone, fr).
     screenshots: [
-      { src: '/assets/binero-screen-partie.webp', alt: 'Une grille 6×6 du niveau 1 en cours : des 0 orange et des 1 verts, quelques cases encore vides' },
-      { src: '/assets/binero-screen-accueil.webp', alt: "L'accueil : la grille du jour en mode cauchemar, Jouer et le classement mondial" },
-      { src: '/assets/binero-screen-jour.webp', alt: 'La grille du jour, une 14×14 en mode cauchemar' },
+      { src: '/assets/binero-screen-partie.webp', alt: 'Le niveau 12, une grille 8×8 en cours : des 0 orange et des 1 verts, des cases encore vides' },
+      { src: '/assets/binero-screen-defis.webp', alt: 'Trois défis chaque jour : Facile 6×6, Normal 10×10 et Expert 14×14' },
+      { src: '/assets/binero-screen-jour.webp', alt: 'La grille du jour en Expert, une 14×14' },
+      { src: '/assets/binero-screen-victoire.webp', alt: 'Grille du jour résolue : temps, indices, pièces gagnées et une série de 6 jours' },
     ],
     sdk: { ads: true, purchases: true, analytics: true, network: true, accounts: true },
     privacyUpdated: '2026-08-16',
@@ -440,12 +442,12 @@ export const APPS: AppData[] = [
       android: 'https://play.google.com/store/apps/details?id=com.appcraft31.tengo',
     },
     icon: '/assets/icons/tengo.svg',
+    // Captures de la version Unity 4.0 (`TenGo.Editor.StoreShots`, fr, iPhone 1320×2868).
     screenshots: [
-      { src: '/assets/tengo-menu.webp', alt: "Le menu de tenGO" },
-      { src: '/assets/tengo-grid.webp', alt: "Une grille de bulles en cours de partie" },
-      { src: '/assets/tengo-combo.webp', alt: "Un combo qui rapporte plus de cent points" },
-      { src: '/assets/tengo-play.webp', alt: "Un chemin tracé entre plusieurs bulles" },
-      { src: '/assets/tengo-leaderboard.webp', alt: "Les dix meilleurs scores, conservés sur l'appareil" },
+      { src: '/assets/tengo-menu.webp', alt: "L'accueil : Jouer, le défi du jour, et les modes Rush, Duel et Puzzles" },
+      { src: '/assets/tengo-chain.webp', alt: 'Une chaîne de bulles reliées dont la somme fait 10 : +200 points' },
+      { src: '/assets/tengo-flower.webp', alt: 'Une longue chaîne fait éclore une fleur qui multiplie les points par trois' },
+      { src: '/assets/tengo-brain.webp', alt: 'Ton cerveau : coup d’œil, vision, anticipation et le carnet des 41 façons de faire 10' },
     ],
     sdk: { ads: true, purchases: true, analytics: true, network: false, accounts: true },
     privacyUpdated: '2026-08-16',
