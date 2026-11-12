@@ -59,7 +59,7 @@ const fr: AppCopy = {
       id: 'privacy',
       kicker: 'Vie privée',
       title: 'Vos notes ne sortent pas de votre téléphone',
-      body: 'Remindo n’a ni compte, ni cloud, ni publicité. Vos notes vivent dans une base de données locale et ne sont jamais envoyées nulle part — l’application fonctionne intégralement sans réseau. Seules des statistiques d’usage anonymes et les rapports de plantage remontent, pour corriger les bugs, et vous pouvez les couper dans les réglages.',
+      body: 'Remindo n’a ni compte, ni cloud, ni publicité. Vos notes vivent dans une base de données locale et ne sont jamais envoyées nulle part. Aucune statistique d’usage, aucun rapport de plantage : la seule connexion sert à valider l’achat de Remindo Plus.',
     },
   ],
 
@@ -135,7 +135,7 @@ const en: AppCopy = {
       id: 'privacy',
       kicker: 'Privacy',
       title: 'Your notes never leave your phone',
-      body: 'Remindo has no account, no cloud and no advertising. Your notes live in a local database and are never sent anywhere — the app works entirely without a network. Only anonymous usage statistics and crash reports are sent, to fix bugs, and you can switch them off in settings.',
+      body: 'Remindo has no account, no cloud and no advertising. Your notes live in a local database and are never sent anywhere. No usage statistics, no crash reports: the only connection is used to validate the Remindo Plus purchase.',
     },
   ],
 
