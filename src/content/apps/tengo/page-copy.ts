@@ -1,11 +1,12 @@
 import type { AppCopy, Lang } from '@/lib/types';
 
 /**
- * Textes repris de l'ancienne page `apps/tengo.html`.
- * Le barème de score est celui affiché dans le jeu.
+ * Textes de la page tenGO, revus pour la version 4.0 (Unity) le 12 novembre 2026.
+ * Barème : `Core/Grid/Scoring.cs` ; bonus de grille vide : `GameRules.WinBonus` ;
+ * modes, fleurs et duels : `strings.json` du jeu.
  */
 const fr: AppCopy = {
-  tagline: 'Puzzle de bulles · iPhone',
+  tagline: 'Puzzle de bulles · iPhone et Android',
 
   headline: {
     lead: 'Relie les bulles,',
@@ -19,7 +20,7 @@ const fr: AppCopy = {
     { value: '10', label: 'la somme à faire' },
     { value: '+1000', label: 'bonus grille vide' },
     { value: '10', label: 'langues' },
-    { value: '0', label: 'compte à créer' },
+    { value: '4', label: 'modes de jeu' },
   ],
 
   sections: [
@@ -41,16 +42,28 @@ const fr: AppCopy = {
           body: 'Les bulles éclatent, la grille s’effondre par gravité, de nouvelles combinaisons apparaissent. Enchaîne.',
         },
         {
-          title: 'Scoring progressif',
-          body: '2 bulles = 10 points. 3 bulles = 30. 4 bulles = 100. Au-delà, chaque bulle supplémentaire rapporte 50. Les longues chaînes paient.',
+          title: 'Les longues chaînes paient',
+          body: '2 bulles = 10 points, 3 = 30, 4 = 100, 5 = 200… et 10 bulles = 1 450. Plus la chaîne est longue, plus chaque bulle vaut cher.',
         },
         {
           title: 'Perfect Clear',
-          body: 'Vider entièrement la grille déclenche un bonus de +1000 points. Le Graal des joueurs aguerris.',
+          body: 'Vider entièrement la grille rapporte un bonus de +1000 points — en Rush, à chaque grille vidée. Le Graal des joueurs aguerris.',
         },
         {
           title: 'Reprise instantanée',
           body: 'Ta partie est sauvegardée automatiquement. Ferme l’app, reprends plus tard exactement où tu en étais.',
+        },
+        {
+          title: 'Quatre façons de jouer',
+          body: 'La partie classique, le Rush en 60 secondes, le Duel en 1 contre 1 sur la même grille, et 20 puzzles à résoudre.',
+        },
+        {
+          title: 'Un défi par jour',
+          body: 'Chaque jour, la même grille pour tout le monde, un classement du jour et une série à entretenir.',
+        },
+        {
+          title: 'Fleurs de dix',
+          body: 'Ta plus longue chaîne plante une graine. Quatre heures plus tard, elle éclot en fleur : fais passer une chaîne par elle pour multiplier les points.',
         },
       ],
     },
@@ -61,8 +74,8 @@ const fr: AppCopy = {
     {
       id: 'privacy',
       kicker: 'Vie privée',
-      title: 'Pas de compte, pas de profil',
-      body: 'Tes dix meilleurs scores sont conservés sur l’appareil, avec mise en avant du record. Le jeu est gratuit et financé par la publicité : le SDK Google AdMob est intégré, et une bannière de consentement s’affiche dans l’Espace économique européen, au Royaume-Uni et en Suisse.',
+      title: 'Pas de compte à créer',
+      body: 'Ta progression reste sur l’appareil. Les classements passent par Game Center ou Google Play Jeux, et les duels par une session anonyme Firebase, sans e-mail : seuls ton pseudo et tes scores y figurent. Le jeu est gratuit et financé par la publicité (Google AdMob, avec Unity Ads et Liftoff en médiation) ; Firebase Analytics mesure l’usage du jeu. Le détail figure dans la politique de confidentialité.',
     },
   ],
 
@@ -74,14 +87,14 @@ const fr: AppCopy = {
   meta: {
     title: 'tenGO — puzzle de bulles, relie pour faire 10',
     description:
-      'Trace un chemin dont la somme fait exactement 10 : les bulles éclatent, la grille s’effondre, les combos s’enchaînent. Gratuit sur iPhone, en dix langues.',
+      'Trace un chemin dont la somme fait exactement 10 : les bulles éclatent, la grille s’effondre, les combos s’enchaînent. Rush, Duel, puzzles et défi du jour. Gratuit sur iPhone et Android, en dix langues.',
   },
 
   chips: [],
 };
 
 const en: AppCopy = {
-  tagline: 'Bubble puzzle · iPhone',
+  tagline: 'Bubble puzzle · iPhone and Android',
 
   headline: {
     lead: 'Link the bubbles,',
@@ -95,7 +108,7 @@ const en: AppCopy = {
     { value: '10', label: 'the sum to reach' },
     { value: '+1000', label: 'perfect clear bonus' },
     { value: '10', label: 'languages' },
-    { value: '0', label: 'account to create' },
+    { value: '4', label: 'game modes' },
   ],
 
   sections: [
@@ -117,16 +130,28 @@ const en: AppCopy = {
           body: 'The bubbles pop, the grid collapses under gravity, new combinations appear. Keep going.',
         },
         {
-          title: 'Progressive scoring',
-          body: '2 bubbles = 10 points. 3 bubbles = 30. 4 bubbles = 100. Beyond that, each extra bubble is worth 50. Long chains pay.',
+          title: 'Long chains pay',
+          body: '2 bubbles = 10 points, 3 = 30, 4 = 100, 5 = 200… and 10 bubbles = 1,450. The longer the chain, the more each bubble is worth.',
         },
         {
           title: 'Perfect Clear',
-          body: 'Emptying the grid completely triggers a +1000 point bonus. The seasoned player’s grail.',
+          body: 'Emptying the grid completely earns a +1000 point bonus — in Rush, for every grid you clear. The seasoned player’s grail.',
         },
         {
           title: 'Instant resume',
           body: 'Your game is saved automatically. Close the app, come back later exactly where you left off.',
+        },
+        {
+          title: 'Four ways to play',
+          body: 'The classic game, 60-second Rush, one-on-one Duel on the same grid, and 20 puzzles to solve.',
+        },
+        {
+          title: 'One challenge a day',
+          body: 'Every day, the same grid for everyone, a daily leaderboard and a streak to keep alive.',
+        },
+        {
+          title: 'Flowers of ten',
+          body: 'Your longest chain plants a seed. Four hours later it blooms into a flower: run a chain through it to multiply the points.',
         },
       ],
     },
@@ -137,8 +162,8 @@ const en: AppCopy = {
     {
       id: 'privacy',
       kicker: 'Privacy',
-      title: 'No account, no profile',
-      body: 'Your ten best scores are kept on the device, with the record highlighted. The game is free and ad-funded: the Google AdMob SDK is included, and a consent banner is shown in the European Economic Area, the United Kingdom and Switzerland.',
+      title: 'No account to create',
+      body: 'Your progress stays on the device. Leaderboards go through Game Center or Google Play Games, and duels through an anonymous Firebase session with no email: only your nickname and your scores appear there. The game is free and ad-funded (Google AdMob, with Unity Ads and Liftoff through mediation); Firebase Analytics measures how the game is used. The details are in the privacy policy.',
     },
   ],
 
@@ -150,7 +175,7 @@ const en: AppCopy = {
   meta: {
     title: 'tenGO — bubble puzzle, link to make 10',
     description:
-      'Trace a path that adds up to exactly 10: the bubbles pop, the grid collapses, the combos chain. Free on iPhone, in ten languages.',
+      'Trace a path that adds up to exactly 10: the bubbles pop, the grid collapses, the combos chain. Rush, Duel, puzzles and a daily challenge. Free on iPhone and Android, in ten languages.',
   },
 
   chips: [],

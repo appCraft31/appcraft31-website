@@ -114,6 +114,7 @@ export function privacySections(
       body.push(facts.ads.umpReopen === false ? s.adsUmpNoReopen : s.adsUmpReopen);
     }
     if (facts.ads.removedBy) body.push(s.adsRemovedBy(facts.ads.removedBy));
+    body.push(...(facts.ads.notes ?? []).map((n) => loc(lang, n)));
 
     sections.push({ id: 'publicite', title: s.adsTitle, body });
   } else {

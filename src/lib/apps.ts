@@ -449,7 +449,7 @@ export const APPS: AppData[] = [
       { src: '/assets/tengo-flower.webp', alt: 'Une longue chaîne fait éclore une fleur qui multiplie les points par trois' },
       { src: '/assets/tengo-brain.webp', alt: 'Ton cerveau : coup d’œil, vision, anticipation et le carnet des 41 façons de faire 10' },
     ],
-    sdk: { ads: true, purchases: true, analytics: true, network: false, accounts: true },
+    sdk: { ads: true, purchases: true, analytics: true, network: true, accounts: true },
     privacyUpdated: '2026-08-16',
   },
   {
