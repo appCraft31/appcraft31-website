@@ -69,6 +69,12 @@ export interface AdsFacts {
    * ne configure rien de tel.
    */
   familyContent?: boolean;
+  /**
+   * Précisions propres à l'app, ajoutées en fin de rubrique « Publicité » :
+   * par exemple un consentement qui diffère selon la plateforme (tenGO : UMP
+   * sur Android, ATT seul sur iOS), que les phrases types ne savent pas dire.
+   */
+  notes?: Localized[];
 }
 
 /** Un réseau de médiation, avec le lien vers sa propre politique. */
@@ -80,8 +86,8 @@ export interface MediationPartner {
 
 export interface PurchaseFacts {
   kind: 'non-consumable' | 'consumable' | 'subscription';
-  /** Ce que l'achat débloque, en clair. */
-  what: string;
+  /** Ce que l'achat débloque, en clair (une chaîne, ou une phrase par langue). */
+  what: Localized;
   /**
    * Identifiant du produit tel que déclaré dans le code de l'app.
    * On le note pour que le fait reste vérifiable : `…​.noads` ne laisse aucun

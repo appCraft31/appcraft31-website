@@ -1009,19 +1009,93 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     ],
   },
 
+  // tenGO 4.0 (Unity) — lu dans ~/StudioProjects/Multistore/tenGO/unity le
+  // 12 novembre 2026. Symboles TENGO_ADMOB, TENGO_FIREBASE et TENGO_IAP posés
+  // pour iOS et Android (ProjectSettings) ; câblage dans App/RealServices.cs.
   tengo: {
-    platforms: ['iOS'],
-    localData: ['dix meilleurs scores', 'partie en cours', 'pièces', 'réglages'],
-    ads: adFunded(),
-    purchases: [
-      { kind: 'non-consumable', what: 'le retrait de la publicité', productId: 'com.tengo.noads' },
-      { kind: 'consumable', what: 'des pièces (4 paliers)', productId: 'com.tengo.coins.tier1' },
+    platforms: ['iOS', 'Android'],
+    localData: [
+      { fr: 'partie en cours, meilleurs scores et records par mode (vos scores sont aussi envoyés aux classements, voir « Comptes et services de jeu »)', en: 'game in progress, best scores and records for each mode (your scores are also sent to the leaderboards, see “Accounts and game services”)' },
+      { fr: 'niveau, expérience, missions et succès', en: 'level, experience, missions and achievements' },
+      { fr: 'pièces, thèmes et objets débloqués, achat « Sans pub »', en: 'coins, unlocked themes and items, the “No ads” purchase' },
+      { fr: 'défi du jour et série, progression des puzzles, graine en cours', en: 'daily challenge and streak, puzzle progress, the seed currently growing' },
+      { fr: 'statistiques de jeu (écran « Ton cerveau ») et historique de vos duels', en: 'game statistics (the “Your brain” screen) and your duel history' },
+      { fr: 'réglages (sons, vibrations, effets réduits) et thème choisi', en: 'settings (sounds, vibrations, reduced effects) and chosen theme' },
     ],
-    analytics: null,
-    network: null,
-    accounts: { service: 'Game Center', what: 'le classement' },
+    // AdMobAds.cs : interstitiel et vidéo récompensée (interstitiel récompensé
+    // sur iOS), pas de bannière. Médiation : paquets
+    // com.google.ads.mobile.mediation.unity et .liftoffmonetize (manifest).
+    // Consentement (NativeConsentFlow.cs) : ATT seul sur iOS, UMP sur Android ;
+    // « Options de confidentialité » rouvre le formulaire UMP sur Android et les
+    // réglages de l'app sur iOS. Aucun réglage de contenu familial.
+    // L'achat « Sans pub » ne coupe que les interstitiels (isAdFree) : la vidéo
+    // récompensée reste proposée, d'où l'absence de `removedBy`.
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      familyContent: false,
+      mediation: [
+        { name: 'Unity Ads', privacyUrl: 'https://unity.com/legal/game-player-and-app-user-privacy-policy' },
+        { name: 'Liftoff Monetize (VungleAdsSDK)', privacyUrl: 'https://liftoff.io/privacy-policy/' },
+      ],
+      notes: [
+        {
+          fr: "Sur Android, cet écran de consentement s'affiche via Google User Messaging Platform dans les pays où il est requis ; sur iPhone, seule la demande de suivi d'Apple est présentée, et vous changez ce choix dans les réglages de l'appareil, que le bouton « Options de confidentialité » du jeu ouvre directement.",
+          en: 'On Android, this consent screen is shown through Google User Messaging Platform in the countries where it is required; on iPhone only Apple’s tracking request is shown, and you change that choice in the device settings, which the game’s “Privacy options” button opens directly.',
+        },
+      ],
+    },
+    purchases: [
+      { kind: 'non-consumable', what: { fr: 'le retrait des publicités interstitielles (« Sans pub ») ; les vidéos récompensées restent proposées, à votre initiative', en: 'the removal of interstitial ads (“No ads”); rewarded videos remain available, at your initiative' }, productId: 'com.tengo.noads' },
+      { kind: 'consumable', what: { fr: 'des pièces (4 paliers)', en: 'coins (4 tiers)' }, productId: 'com.tengo.coins.tier1' },
+    ],
+    // FirebaseAnalyticsService.cs : événements d'AnalyticsCatalog ; consent
+    // mode aligné sur la réponse ATT (signaux publicitaires accordés seulement
+    // en mode personnalisé). Aucun interrupteur dans les réglages.
+    analytics: {
+      vendors: ['Firebase Analytics'],
+      optOut: false,
+      anonymous: false,
+      purpose: {
+        fr: "comprendre comment le jeu est joué et l'améliorer : début et fin de partie (mode, score), tutoriel, défi du jour, boosters et fleurs utilisés, pièces gagnées et dépensées, visites de la boutique, achats et publicités affichées, ainsi que les données automatiques de Firebase (identifiant d'instance de l'application, modèle et système de l'appareil, version de l'app, pays, langue, sessions). Sur iPhone, l'identifiant publicitaire n'est associé à ces mesures que si vous avez accepté la demande de suivi",
+        en: 'understand how the game is played and improve it: games started and finished (mode, score), the tutorial, the daily challenge, boosters and flowers used, coins earned and spent, shop visits, purchases and ads shown, along with Firebase’s automatic data (app instance identifier, device model and operating system, app version, country, language, sessions). On iPhone, the advertising identifier is only associated with these measurements if you accepted the tracking request',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "les duels (Firebase Authentication et Cloud Firestore, de Google), les classements (Game Center sur iPhone, Google Play Jeux sur Android), le chargement des publicités et de leur écran de consentement, et l'envoi des statistiques d'usage à Firebase. Les parties en solo, le défi du jour, le Rush et les puzzles se jouent hors ligne",
+        en: 'duels (Firebase Authentication and Cloud Firestore, from Google), leaderboards (Game Center on iPhone, Google Play Games on Android), loading ads and their consent form, and sending usage statistics to Firebase. Solo games, the daily challenge, Rush and puzzles can be played offline',
+      },
+    },
+    accounts: {
+      service: 'Game Center',
+      what: 'les classements',
+      bodyTitle: 'service',
+      body: [
+        {
+          fr: "tenGO ne vous demande jamais de créer un compte. Les classements passent par Game Center sur iPhone et par Google Play Jeux sur Android : seuls votre pseudo de joueur et vos scores y sont transmis, par le service d'Apple ou de Google.",
+          en: 'tenGO never asks you to create an account. Leaderboards go through Game Center on iPhone and Google Play Games on Android: only your player nickname and your scores are sent to them, through Apple’s or Google’s service.',
+        },
+        {
+          fr: "Duels : la première fois que vous lancez ou relevez un duel, le jeu ouvre une session anonyme auprès de Firebase Authentication (Google) — un identifiant créé automatiquement, sans e-mail ni lien avec votre identité, que l'appareil garde ensuite. Chaque duel est enregistré dans Cloud Firestore sous un code que vous partagez vous-même : la grille de départ, l'identifiant anonyme, le nom affiché et le score de chaque joueur, la date de création et l'échéance (7 jours pour y répondre). Le nom affiché est votre pseudo Game Center ou Google Play Jeux, limité à 40 caractères, ou « Joueur » si vous n'êtes pas connecté ; il est visible de la personne qui connaît le code.",
+          en: 'Duels: the first time you start or accept a duel, the game opens an anonymous session with Firebase Authentication (Google) — an identifier created automatically, with no email and no link to your identity, which the device then keeps. Each duel is stored in Cloud Firestore under a code you share yourself: the starting grid, each player’s anonymous identifier, display name and score, the creation date and the deadline (7 days to respond). The display name is your Game Center or Google Play Games nickname, limited to 40 characters, or “Player” if you are not signed in; it is visible to whoever has the code.',
+        },
+        {
+          fr: "Les duels ne sont pas effacés automatiquement. Pour faire supprimer les vôtres, écrivez-nous en indiquant leurs codes (l'écran Duel les liste).",
+          en: 'Duels are not deleted automatically. To have yours deleted, write to us with their codes (the Duel screen lists them).',
+        },
+      ],
+    },
+    notes: [
+      {
+        fr: "Les rappels (défi du jour, série) sont des notifications locales : programmées par l'appareil, sans serveur. L'autorisation vous est demandée, et vous pouvez la retirer à tout moment dans les réglages de l'appareil.",
+        en: 'Reminders (daily challenge, streak) are local notifications: scheduled by the device, with no server involved. You are asked for permission, and you can withdraw it at any time in the device settings.',
+      },
+    ],
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-11-12',
   },
 
   glyphe: {
