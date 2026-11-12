@@ -22,37 +22,40 @@ const PROJECTS = join(homedir(), 'StudioProjects');
  * quand le projet vit ailleurs (Elastic Hero est sur le disque Appcraft).
  */
 const SOURCES = {
+  // Rangement de ~/StudioProjects par distribution (novembre 2026) :
+  // `AppStore/` (iOS seul), `Multistore/` (iOS et Android), `PlayStore/`,
+  // `En_developpement/`. tenGO, Binero et Zellige y sont des projets Unity.
   // Fioles & Poisons (jeu Godot 4.7), encore dans le dossier des projets en cours.
   fioleetpoison: join('En_developpement', 'sort_bottle'),
-  // Vroomics vit hors de ~/StudioProjects (jeu Godot 4.7).
-  vroomics: join(homedir(), 'essaies_dev', 'kart'),
-  perfectdemolition: 'PerfectDemolition',
-  capsulecollector: 'Capsule_collector',
-  elastichero: '/Volumes/Appcraft/MAQUETTES/Elastic_Hero',
-  ding: join('AppStore', 'Ding'),
-  glowmi: 'tamagotchi',
-  zellige: 'Zellige',
-  pixelcraft: 'pixel_art',
-  remindo: 'rappel',
-  holdfire: 'Hold_fire',
-  sudoku: 'sudoku',
-  talon: 'solitaire',
-  tinta: 'Tinta',
-  binero: 'binero',
-  glyphe: 'glyphe',
-  zenkuro: 'zenkuro',
-  contree: 'Contree',
-  keeply: 'Keeply',
-  combo: 'squareLink',
-  randompix: 'randompix',
-  graviwords: 'GraviWord',
-  orbis: 'Orbis',
-  tengo: 'tenGO',
-  meliz: 'meliz',
-  motfleche: 'mot_fleche',
-  shizuku: 'timer_café',
-  poddroid: 'poddroid',
-  ecopompe: 'Ecopompe',
+  vroomics: join('AppStore', 'vroomics'),
+  perfectdemolition: join('AppStore', 'PerfectDemolition'),
+  capsulecollector: join('Multistore', 'Capsule_collector'),
+  elastichero: join('AppStore', 'Elastic_Hero'),
+  ding: join('Multistore', 'Ding'),
+  // L'app publiée (Swift) ; `Multistore/Glowmi` est la version Unity en cours.
+  glowmi: join('AppStore', 'Glowmi'),
+  zellige: join('Multistore', 'Zellige'),
+  pixelcraft: join('Multistore', 'pixel_art'),
+  remindo: join('Multistore', 'Remindo'),
+  holdfire: join('Multistore', 'Hold_fire'),
+  sudoku: join('Multistore', 'sudoku'),
+  talon: join('Multistore', 'solitaire'),
+  tinta: join('AppStore', 'Tinta'),
+  binero: join('Multistore', 'binero'),
+  glyphe: join('AppStore', 'glyphe'),
+  zenkuro: join('AppStore', 'zenkuro'),
+  contree: join('AppStore', 'Contree'),
+  keeply: join('AppStore', 'Keeply'),
+  combo: join('AppStore', 'squareLink'),
+  randompix: join('Multistore', 'randompix'),
+  graviwords: join('AppStore', 'GraviWord'),
+  orbis: join('AppStore', 'Orbis'),
+  tengo: join('Multistore', 'tenGO'),
+  meliz: join('Multistore', 'meliz'),
+  motfleche: join('AppStore', 'mot_fleche'),
+  shizuku: join('AppStore', 'timer_café'),
+  poddroid: join('PlayStore', 'poddroid'),
+  ecopompe: join('Multistore', 'Ecopompe'),
 };
 
 /** Marqueurs recherchés dans le code, par catégorie. */
@@ -61,16 +64,21 @@ const MARKERS = {
   // les noms qu'une app donne à sa propre abstraction quand elle prépare une
   // régie sans en intégrer aucune. Un SDK réellement lié se nomme, lui.
   ads: 'AdMob|GADMobileAds|google_mobile_ads|GoogleMobileAds|com\\.google\\.android\\.gms\\.ads|play-services-ads|AppLovin|applovin|admob',
-  purchases: 'in_app_purchase|StoreKit|SKProduct|Purchases\\.|RevenueCat|purchaseProduct',
+  // `UnityEngine.Purchasing` : Unity IAP (tenGO, Binero et Zellige en C#).
+  purchases: 'in_app_purchase|StoreKit|SKProduct|Purchases\\.|RevenueCat|purchaseProduct|UnityEngine\\.Purchasing',
   // `collect.analytics.unity3d.com` : Unity Analytics en REST (Vroomics).
   analytics: 'FirebaseAnalytics|Crashlytics|Sentry|firebase_analytics|Amplitude|Mixpanel|collect\\.analytics\\.unity3d\\.com',
   // `HTTPRequest` et `PacketPeerUDP` : le réseau d'un jeu Godot (Vroomics).
   // `\bfetch` : sans la borne, `LevelGen.prefetch(` (Fioles & Poisons) comptait
   // pour une requête réseau.
-  network: 'URLSession|http\\.get|Dio\\(|dart:io.*HttpClient|\\bfetch\\(|Alamofire|HTTPRequest\\.new|PacketPeerUDP',
+  // `Firebase.Firestore` et `UnityWebRequest` : le réseau d'une app Unity
+  // (les duels de tenGO passent par Firestore).
+  network: 'URLSession|http\\.get|Dio\\(|dart:io.*HttpClient|\\bfetch\\(|Alamofire|HTTPRequest\\.new|PacketPeerUDP|Firebase\\.Firestore|UnityWebRequest',
   // `player-auth.services.api.unity.com` : l'authentification Unity Gaming
   // Services appelée en REST depuis le GDScript (Vroomics).
-  accounts: 'GameCenter|GKLocalPlayer|SignInWithApple|FirebaseAuth|GoogleSignIn|player-auth\\.services\\.api\\.unity\\.com',
+  // `Social.localUser` : Game Center vu d'Unity ; `Firebase.Auth` : la connexion
+  // anonyme des duels de tenGO.
+  accounts: 'GameCenter|GKLocalPlayer|SignInWithApple|FirebaseAuth|Firebase\\.Auth|GoogleSignIn|Social\\.localUser|player-auth\\.services\\.api\\.unity\\.com',
   // `update_consent_info` / `request_tracking_authorization` : UMP et ATT
   // vus du greffon godot-admob.
   consent: 'ConsentInformation|UMPConsent|ATTrackingManager|AppTrackingTransparency|update_consent_info|request_tracking_authorization',
@@ -81,7 +89,9 @@ const MARKERS = {
  * `Contree/`, `EcoPompe_iOS/`…). On balaie donc tout le projet, en écartant
  * ce qui n'est pas du code source écrit à la main.
  */
-const EXCLUDED = ['build', 'DerivedData', 'Pods', 'node_modules', '.git', '.dart_tool', 'Carthage', '.godot', 'addons'];
+// Unity : `Library`, `Temp`, `Logs`, `obj` et `Builds` (projets Xcode et
+// Gradle exportés) sont générés.
+const EXCLUDED = ['build', 'DerivedData', 'Pods', 'node_modules', '.git', '.dart_tool', 'Carthage', '.godot', 'addons', 'Library', 'Temp', 'Logs', 'obj', 'Builds'];
 
 function scan(projectDir, pattern) {
   try {
@@ -100,6 +110,8 @@ function scan(projectDir, pattern) {
         '--include=*.yaml',
         '--include=*.gradle',
         '--include=*.kts',
+        // Unity (tenGO, Binero, Zellige) : le code C# des Assets.
+        '--include=*.cs',
         '--include=*.pbxproj',
         // Godot (Perfect Demolition) : GDScript, et project.godot qui déclare
         // AdMob et sa médiation. Les greffons tiers (`addons/`) sont exclus.
