@@ -107,6 +107,14 @@ export function StoreLinks({
           <span aria-hidden="true">→</span>
         </Link>
       )}
+
+      {app.soonAlso && !(app.soonAlso === 'android' ? android : ios) && (
+        <p className={styles.soonAlso}>
+          {app.soonAlso === 'android'
+            ? fr ? 'Bientôt sur Google Play' : 'Coming soon to Google Play'
+            : fr ? 'Bientôt sur l’App Store' : 'Coming soon to the App Store'}
+        </p>
+      )}
     </div>
   );
 }

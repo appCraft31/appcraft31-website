@@ -325,6 +325,10 @@ export const APPS: AppData[] = [
     category: 'game',
     status: 'available',
     store: { ios: 'https://apps.apple.com/app/id6787019507' },
+    /* Version Android 2.0.0 envoyée en examen Google le 13 novembre 2026 :
+       remplacer `soonAlso` par `android: 'https://play.google.com/store/apps/details?id=com.appcraft31.kakuro'`
+       dès que la fiche est publique. */
+    soonAlso: 'android',
     icon: '/assets/icons/zenkuro.svg',
     screenshots: [],
     sdk: { ads: true, purchases: true, analytics: true, network: true, accounts: false },
