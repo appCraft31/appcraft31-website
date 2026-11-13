@@ -148,6 +148,12 @@ export interface AppData {
    * l'iPhone ne doit pas promettre une version Android.
    */
   soonOn?: 'ios' | 'android';
+  /**
+   * Second store annoncé pour une app déjà publiée sur l'autre : un court
+   * « Bientôt sur Google Play » s'affiche sous le badge existant. À retirer
+   * dès que le lien `store` correspondant est ajouté.
+   */
+  soonAlso?: 'ios' | 'android';
   icon: string;
   /** Image de partage (Open Graph), quand l'app en a une dessinée. */
   ogImage?: string;

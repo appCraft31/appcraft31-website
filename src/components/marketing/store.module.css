@@ -112,3 +112,18 @@
 .soon.center {
   margin-inline: auto;
 }
+
+/* Le second store annoncé, à côté d'un badge déjà actif : même liseré en
+   pointillés que l'attente, à la hauteur du badge, sans marge propre. */
+.soonAlso {
+  display: inline-flex;
+  align-items: center;
+  height: var(--badge-h);
+  margin: 0;
+  padding: 0 18px;
+  border: 2px dashed color-mix(in srgb, var(--u-accent) 55%, transparent);
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--u-ink);
+}

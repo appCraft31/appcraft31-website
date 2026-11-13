@@ -1,13 +1,16 @@
 import type { AppCopy, Lang } from '@/lib/types';
 
 /**
- * Textes repris de l'ancienne page `apps/zenkuto.html`.
+ * Textes de la version 2.0 (13 novembre 2026) : jardin de Momo (5 chapitres de
+ * 12 niveaux, `Garden.cs`), partie libre, 9 langues, iPhone et iPad ; Android
+ * en examen Google (voir `soonAlso` dans `lib/apps.ts`).
+ * À l'origine repris de l'ancienne page `apps/zenkuto.html`.
  * Ce slug portait une coquille : l'adresse canonique est désormais
  * `apps/zenkuro.html`. L'ancienne reste servie (voir `legacySlugs`), car elle
  * figure dans une fiche store validée.
  */
 const fr: AppCopy = {
-  tagline: 'Kakuro · pastel · zen · iPhone',
+  tagline: 'Kakuro · pastel · zen · iPhone & iPad',
 
   headline: {
     lead: 'Le kakuro,',
@@ -15,12 +18,12 @@ const fr: AppCopy = {
   },
 
   intro:
-    'Des grilles de chiffres infinies, toujours une solution unique. Respire, réfléchis, résous — accompagné de Momo.',
+    'Fais pousser le jardin de Momo au fil de 60 niveaux, ou joue des grilles infinies en partie libre — toujours une solution unique. Respire, réfléchis, résous.',
 
   stats: [
-    { value: '∞', label: 'grilles générées' },
-    { value: '1', label: 'solution par grille' },
-    { value: '2', label: 'langues' },
+    { value: '60', label: 'niveaux au jardin' },
+    { value: '∞', label: 'grilles en partie libre' },
+    { value: '9', label: 'langues' },
   ],
 
   sections: [
@@ -30,16 +33,20 @@ const fr: AppCopy = {
       title: 'Pensé pour le calme, taillé pour l’esprit',
       items: [
         {
+          title: 'Le jardin de Momo',
+          body: '60 niveaux en 5 chapitres, du sentier de mousse au pavillon de thé. Chaque grille réussie fait pousser le jardin et rapporte jusqu’à 3 étoiles.',
+        },
+        {
           title: 'Des grilles infinies',
-          body: 'Générées aléatoirement, chacune avec une solution unique garantie. Jamais deux fois la même.',
+          body: 'En partie libre, des grilles générées à la demande, chacune avec une solution unique garantie. Jamais deux fois la même.',
         },
         {
           title: 'Un design zen',
           body: 'Palette pastel, animations douces, retours haptiques : un vrai moment de calme.',
         },
         {
-          title: 'Indices & mode crayon',
-          body: 'Un coup de pouce quand tu bloques, et des notes de candidats dans chaque case.',
+          title: 'Indices, crayon & annulation',
+          body: 'Un coup de pouce quand tu bloques, des notes de candidats dans chaque case, et un retour en arrière à tout moment.',
         },
         {
           title: 'Momo t’accompagne',
@@ -50,8 +57,8 @@ const fr: AppCopy = {
           body: 'Ton meilleur temps est gardé pour chaque difficulté. Bats-toi contre toi-même.',
         },
         {
-          title: 'Français & anglais',
-          body: 'Entièrement localisé, jouable hors-ligne, du plus doux au vrai défi.',
+          title: '9 langues, hors ligne',
+          body: 'Français, anglais, allemand, espagnol, italien, portugais, japonais, coréen et chinois. Jouable sans connexion, du plus doux au vrai défi.',
         },
       ],
     },
@@ -59,26 +66,26 @@ const fr: AppCopy = {
       id: 'privacy',
       kicker: 'Vie privée',
       title: 'Ce que Zenkuro enregistre',
-      body: 'Tes records et tes réglages restent sur l’appareil, et le jeu se joue hors ligne. Le détail des SDK intégrés figure dans la politique de confidentialité.',
+      body: 'Ta progression, tes records et tes réglages restent sur l’appareil, et le jeu se joue hors ligne. Des statistiques d’usage anonymes et des rapports de plantage (Firebase) nous aident à l’améliorer, et la publicité respecte ton choix de consentement. Le détail figure dans la politique de confidentialité.',
     },
   ],
 
   cta: {
     title: 'Prends une grande inspiration',
-    body: 'Ta prochaine grille t’attend. Zenkuro est disponible sur l’App Store.',
+    body: 'Ta prochaine grille t’attend. Zenkuro est disponible sur l’App Store, et bientôt sur Google Play.',
   },
 
   meta: {
     title: 'Zenkuro — le kakuro, en douceur',
     description:
-      'Des grilles de kakuro générées à l’infini, chacune avec une solution unique. Design pastel, mode crayon, indices, chrono et records — jouable hors ligne.',
+      'Le kakuro en douceur : le jardin de Momo et ses 60 niveaux, des grilles infinies à solution unique, mode crayon, indices et records — jouable hors ligne, en 9 langues.',
   },
 
   chips: [],
 };
 
 const en: AppCopy = {
-  tagline: 'Kakuro · pastel · zen · iPhone',
+  tagline: 'Kakuro · pastel · zen · iPhone & iPad',
 
   headline: {
     lead: 'Kakuro,',
@@ -86,12 +93,12 @@ const en: AppCopy = {
   },
 
   intro:
-    'Endless number grids, always with a single solution. Breathe, think, solve — with Momo by your side.',
+    'Grow Momo’s garden across 60 levels, or play endless grids in free play — always with a single solution. Breathe, think, solve.',
 
   stats: [
-    { value: '∞', label: 'generated grids' },
-    { value: '1', label: 'solution per grid' },
-    { value: '2', label: 'languages' },
+    { value: '60', label: 'garden levels' },
+    { value: '∞', label: 'free-play grids' },
+    { value: '9', label: 'languages' },
   ],
 
   sections: [
@@ -101,16 +108,20 @@ const en: AppCopy = {
       title: 'Built for calm, cut for the mind',
       items: [
         {
+          title: 'Momo’s garden',
+          body: '60 levels across 5 chapters, from the moss path to the tea pavilion. Every solved grid makes the garden grow and earns up to 3 stars.',
+        },
+        {
           title: 'Endless grids',
-          body: 'Randomly generated, each with a guaranteed unique solution. Never the same one twice.',
+          body: 'In free play, grids are generated on demand, each with a guaranteed unique solution. Never the same one twice.',
         },
         {
           title: 'A zen design',
           body: 'Pastel palette, soft animations, haptic feedback: a genuine moment of calm.',
         },
         {
-          title: 'Hints & pencil mode',
-          body: 'A nudge when you are stuck, and candidate notes in every cell.',
+          title: 'Hints, pencil & undo',
+          body: 'A nudge when you are stuck, candidate notes in every cell, and undo whenever you need it.',
         },
         {
           title: 'Momo keeps you company',
@@ -121,8 +132,8 @@ const en: AppCopy = {
           body: 'Your best time is kept for each difficulty. Compete against yourself.',
         },
         {
-          title: 'French & English',
-          body: 'Fully localised, playable offline, from the gentlest to a real challenge.',
+          title: '9 languages, offline',
+          body: 'English, French, German, Spanish, Italian, Portuguese, Japanese, Korean and Chinese. Playable offline, from the gentlest to a real challenge.',
         },
       ],
     },
@@ -130,19 +141,19 @@ const en: AppCopy = {
       id: 'privacy',
       kicker: 'Privacy',
       title: 'What Zenkuro stores',
-      body: 'Your records and settings stay on the device, and the game runs offline. The full list of included SDKs is in the privacy policy.',
+      body: 'Your progress, records and settings stay on the device, and the game runs offline. Anonymous usage statistics and crash reports (Firebase) help us improve it, and ads respect your consent choice. Full details are in the privacy policy.',
     },
   ],
 
   cta: {
     title: 'Take a deep breath',
-    body: 'Your next grid is waiting. Zenkuro is available on the App Store.',
+    body: 'Your next grid is waiting. Zenkuro is available on the App Store, and coming soon to Google Play.',
   },
 
   meta: {
     title: 'Zenkuro — kakuro, gently',
     description:
-      'Endlessly generated kakuro grids, each with a unique solution. Pastel design, pencil mode, hints, timer and records — playable offline.',
+      'Kakuro, gently: Momo’s garden and its 60 levels, endless grids with a unique solution, pencil mode, hints and records — playable offline, in 9 languages.',
   },
 
   chips: [],
