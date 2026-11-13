@@ -69,11 +69,11 @@
     "source": "AppStore/Glowmi",
     "hits": {
       "ads": 2,
-      "purchases": 7,
+      "purchases": 8,
       "analytics": 2,
-      "network": 1,
+      "network": 2,
       "accounts": 6,
-      "consent": 3
+      "consent": 4
     }
   },
   "zellige": {
@@ -112,12 +112,12 @@
   "holdfire": {
     "source": "Multistore/Hold_fire",
     "hits": {
-      "ads": 6,
+      "ads": 16,
       "purchases": 0,
-      "analytics": 4,
+      "analytics": 11,
       "network": 0,
       "accounts": 0,
-      "consent": 1
+      "consent": 3
     }
   },
   "sudoku": {
@@ -132,11 +132,11 @@
     }
   },
   "talon": {
-    "source": "Multistore/solitaire",
+    "source": "Multistore/talon_Unity",
     "hits": {
-      "ads": 4,
-      "purchases": 4,
-      "analytics": 4,
+      "ads": 8,
+      "purchases": 2,
+      "analytics": 2,
       "network": 0,
       "accounts": 0,
       "consent": 2
@@ -178,12 +178,12 @@
   "zenkuro": {
     "source": "AppStore/zenkuro",
     "hits": {
-      "ads": 2,
-      "purchases": 3,
-      "analytics": 0,
+      "ads": 10,
+      "purchases": 9,
+      "analytics": 3,
       "network": 0,
       "accounts": 0,
-      "consent": 1
+      "consent": 3
     }
   },
   "contree": {
@@ -266,12 +266,12 @@
   "meliz": {
     "source": "Multistore/meliz",
     "hits": {
-      "ads": 12,
-      "purchases": 10,
-      "analytics": 4,
+      "ads": 23,
+      "purchases": 13,
+      "analytics": 5,
       "network": 0,
       "accounts": 0,
-      "consent": 2
+      "consent": 4
     }
   },
   "motfleche": {

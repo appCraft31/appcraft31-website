@@ -1413,7 +1413,7 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
 
   talon: {
     platforms: ['iOS', 'Android'],
-    localData: ['parties en cours', 'statistiques', 'donne du jour', 'réglages'],
+    localData: ['parties en cours', 'statistiques', 'donne du jour', 'réglages (dont les rappels)'],
     // Pas d'`adFunded()` ici : l'aide déclare les trois formats, or Talon
     // n'affiche aucune bannière — c'est une promesse tenue par le code
     // (`lib/services/ads_service.dart`), pas une intention.
@@ -1443,11 +1443,15 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     },
     accounts: null,
     forChildren: false,
-    updated: '2026-08-17',
+    updated: '2026-11-13',
     notes: [
       {
         fr: 'Le jeu lui-même reste hors ligne : les donnes, la donne du jour et les codes de défi sont calculés sur l’appareil, et une partie se joue entièrement sans réseau. Seules la publicité et la mesure d’audience communiquent — une annonce entre deux parties, jamais pendant, jamais sur la donne du jour, et aucune bannière. L’achat « Sans publicité » retire définitivement la publicité, et un interrupteur des réglages coupe la mesure.',
         en: 'The game itself stays offline: deals, the daily deal and challenge codes are computed on the device, and a game is played entirely without a network. Only advertising and analytics communicate — one ad between two games, never during play, never on the daily deal, and no banners. The “Remove ads” purchase permanently removes advertising, and a switch in the settings turns analytics off.',
+      },
+      {
+        fr: "Les rappels (après quelques jours sans jouer) sont des notifications locales : programmées par l'appareil, sans serveur. Ils ne sont proposés qu'avec votre accord, et l'autorisation se retire à tout moment dans les réglages de l'appareil.",
+        en: 'Reminders (after a few days without playing) are local notifications: scheduled by the device, with no server involved. They are only offered with your consent, and permission can be withdrawn at any time in the device settings.',
       },
     ],
   },

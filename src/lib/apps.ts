@@ -266,11 +266,11 @@ export const APPS: AppData[] = [
     icon: '/assets/icons/talon.svg',
     screenshots: [
       { src: '/assets/talon-screen-accueil.webp', alt: "L'accueil de Talon" },
-      { src: '/assets/talon-screen-par.webp', alt: "Une donne en cours, avec le par affiché" },
-      { src: '/assets/talon-screen-victoire.webp', alt: "L'écran de victoire" },
+      { src: '/assets/talon-screen-par.webp', alt: "Une partie de Solitaire en cours, avec le par affiché" },
+      { src: '/assets/talon-screen-victoire.webp', alt: "Une victoire, huit coups sous le par" },
     ],
     sdk: { ads: true, purchases: true, analytics: true, network: true, accounts: false },
-    privacyUpdated: '2026-08-17',
+    privacyUpdated: '2026-11-13',
   },
   {
     slug: 'tinta',
