@@ -59,8 +59,8 @@ const fr: AppCopy = {
     {
       id: 'privacy',
       kicker: 'Vie privée',
-      title: 'Tes scores restent sur ton téléphone',
-      body: 'Aucune collecte de données personnelles : tes scores et tes réglages sont stockés sur l’appareil. Le jeu est gratuit et financé par la publicité, avec un écran de consentement clair et révisable à tout moment.',
+      title: 'Ni compte ni e-mail',
+      body: 'Ta progression reste sur ton téléphone, et le jeu ne te demande ni compte ni adresse e-mail : les classements passent par un pseudo anonyme. Le jeu est gratuit et financé par la publicité, avec un écran de consentement clair et révisable à tout moment.',
     },
   ],
 
@@ -136,8 +136,8 @@ const en: AppCopy = {
     {
       id: 'privacy',
       kicker: 'Privacy',
-      title: 'Your scores stay on your phone',
-      body: 'No personal data is collected: your scores and settings are stored on the device. The game is free and ad-funded, with a clear consent screen you can revisit at any time.',
+      title: 'No account, no email',
+      body: 'Your progress stays on your phone, and the game never asks for an account or an email address: leaderboards use an anonymous nickname. The game is free and ad-funded, with a clear consent screen you can revisit at any time.',
     },
   ],
 

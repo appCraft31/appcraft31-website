@@ -1294,20 +1294,96 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     updated: REVIEWED,
   },
 
+  // Mêliz 3.0 — relu le 13 novembre 2026 dans ~/StudioProjects/Multistore/meliz/unity
+  // (Unity 6, remplace les apps natives 2.5 iOS et Android, `com.appcraft31.meliz`).
+  // `App/Services/Native/AdMobAds.cs` : interstitiel et vidéo récompensée (pas de bannière),
+  // UMP puis ATT non bloquante, `ShowPrivacyOptionsForm` dans Réglages → Confidentialité,
+  // aucun `MaxAdContentRating` ni traitement enfants ; médiation Liftoff (Vungle) et Unity Ads,
+  // consentement relayé par la TCF. `FirebaseSink.cs` + `UgsAnalyticsSink` : Firebase
+  // Analytics et Unity Analytics reçoivent les mêmes 44 événements, après UMP ; « Effacer mes
+  // statistiques d'usage » (là où UMP exige le bouton Confidentialité) coupe les deux et
+  // demande l'effacement à Unity. `UgsLeaderboards.cs` / `UgsDailyOnline.cs` : session
+  // anonyme Unity Authentication, pseudo généré par UGS et modifiable, classements (étoiles,
+  // contre-la-montre Labymel, défi du jour par OS), Cloud Code `daily-*` et Cloud Save
+  // protégé (temps, indices, heure de départ, décalage horaire, OS), Remote Config.
+  // Achats : Unity IAP (RevenueCat retiré en 3.0). Notifications locales uniquement.
   meliz: {
     platforms: ['iOS', 'Android', 'Web'],
-    localData: ['meilleurs scores par thème et difficulté', 'partie en cours', 'réglages'],
-    ads: adFunded(),
+    localData: [
+      { fr: 'progression, étoiles, pièces, chapitres débloqués et partie en cours', en: 'progress, stars, coins, unlocked chapters and the game in progress' },
+      { fr: 'meilleurs scores, statistiques et réalisations', en: 'best scores, statistics and achievements' },
+      { fr: 'carnet de mots', en: 'word book' },
+      { fr: 'réglages et rappels programmés', en: 'settings and scheduled reminders' },
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      removedBy: 'Sans publicité',
+      familyContent: false,
+      mediation: [
+        { name: 'Liftoff Monetize (VungleAdsSDK)', privacyUrl: 'https://liftoff.ai/privacy-policy/' },
+        { name: 'Unity Ads', privacyUrl: 'https://unity.com/legal/game-player-and-app-user-privacy-policy' },
+      ],
+    },
     purchases: [
       { kind: 'non-consumable', what: 'le retrait de la publicité', productId: 'com.appcraft31.meliz.removeads' },
       { kind: 'consumable', what: 'des pièces (3 paliers)', productId: 'com.appcraft31.meliz.coins.small' },
     ],
-    analytics: null,
-    network: null,
-    accounts: null,
+    analytics: {
+      vendors: ['Firebase Analytics', 'Unity Analytics'],
+      optOut: false,
+      anonymous: false,
+      purpose: {
+        fr: "comprendre comment le jeu est utilisé et l'améliorer : écrans vus, parties lancées et terminées (mode, thème, difficulté, durée, score), mots mystère, carnet, défi du jour (rang et nombre de participants), réalisations, pièces gagnées ou dépensées, rappels, publicités proposées, vues ou indisponibles, achats et choix de consentement, accompagnés du modèle et du système de l'appareil, de la langue, du pays déduit de l'adresse IP et de la version du jeu",
+        en: 'understand how the game is used and improve it: screens viewed, games started and finished (mode, theme, difficulty, duration, score), mystery words, word book, daily challenge (rank and number of players), achievements, coins earned or spent, reminders, ads offered, watched or unavailable, purchases and consent choices, along with the device model and operating system, language, country inferred from the IP address and game version',
+        es: 'entender cómo se usa el juego y mejorarlo: pantallas vistas, partidas iniciadas y terminadas (modo, tema, dificultad, duración, puntuación), palabras misteriosas, cuaderno, reto diario (puesto y número de participantes), logros, monedas ganadas o gastadas, recordatorios, anuncios ofrecidos, vistos o no disponibles, compras y elecciones de consentimiento, junto con el modelo y el sistema del dispositivo, el idioma, el país deducido de la dirección IP y la versión del juego',
+        de: 'zu verstehen, wie das Spiel genutzt wird, und es zu verbessern: aufgerufene Bildschirme, begonnene und beendete Partien (Modus, Thema, Schwierigkeit, Dauer, Punktzahl), Lösungswörter, Wörterheft, tägliches Rätsel (Platz und Teilnehmerzahl), Erfolge, verdiente oder ausgegebene Münzen, Erinnerungen, angebotene, angesehene oder nicht verfügbare Werbung, Käufe und Einwilligungsentscheidungen, jeweils mit Gerätemodell und Betriebssystem, Sprache, aus der IP-Adresse abgeleitetem Land und Spielversion',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "le chargement des publicités (Google et, par la médiation, Liftoff et Unity Ads) et de leur écran de consentement, l'envoi des statistiques d'usage (Firebase Analytics et Unity Analytics), la vérification des achats par l'App Store ou Google Play, ainsi que les classements et le défi du jour (Unity Gaming Services). Aucun autre serveur n'est contacté. Les grilles se jouent hors ligne : sans connexion, seuls les classements et le défi du jour classé sont indisponibles",
+        en: 'loading ads (Google and, through mediation, Liftoff and Unity Ads) and their consent form, sending usage statistics (Firebase Analytics and Unity Analytics), verifying purchases with the App Store or Google Play, and for the leaderboards and the daily challenge (Unity Gaming Services). No other server is contacted. Grids can be played offline: without a connection, only the leaderboards and the ranked daily challenge are unavailable',
+        es: 'cargar los anuncios (Google y, mediante la mediación, Liftoff y Unity Ads) y su pantalla de consentimiento, enviar las estadísticas de uso (Firebase Analytics y Unity Analytics), verificar las compras con App Store o Google Play, así como las clasificaciones y el reto diario (Unity Gaming Services). No se contacta con ningún otro servidor. Las sopas de letras se juegan sin conexión: sin red solo dejan de estar disponibles las clasificaciones y el reto diario con clasificación',
+        de: 'das Laden der Werbung (Google und, über die Mediation, Liftoff und Unity Ads) und ihres Einwilligungsformulars, das Senden von Nutzungsstatistiken (Firebase Analytics und Unity Analytics), die Prüfung der Käufe über den App Store oder Google Play sowie für die Bestenlisten und das tägliche Rätsel (Unity Gaming Services). Kein anderer Server wird kontaktiert. Die Gitter laufen offline: Ohne Verbindung sind nur die Bestenlisten und das tägliche Rätsel mit Rangliste nicht verfügbar',
+      },
+    },
+    accounts: {
+      service: 'Unity Gaming Services',
+      what: 'les classements et le défi du jour',
+      bodyTitle: 'service',
+      body: [
+        {
+          fr: "Mêliz ne vous demande ni compte, ni adresse e-mail, ni numéro de téléphone. Pour les classements et le défi du jour, le jeu ouvre une session anonyme auprès de Unity Gaming Services, un service de Unity Technologies : un identifiant de joueur créé automatiquement, sans lien avec votre identité. L'appareil garde le jeton de cette session pour vous reconnaître d'une partie à l'autre.",
+          en: 'Mêliz never asks for an account, an email address or a phone number. For the leaderboards and the daily challenge, the game opens an anonymous session with Unity Gaming Services, a Unity Technologies service: a player identifier created automatically, with no link to your identity. The device keeps this session’s token so you are recognised from one game to the next.',
+          es: 'Mêliz nunca te pide una cuenta, una dirección de correo ni un número de teléfono. Para las clasificaciones y el reto diario, el juego abre una sesión anónima en Unity Gaming Services, un servicio de Unity Technologies: un identificador de jugador creado automáticamente, sin relación con tu identidad. El dispositivo guarda el token de esa sesión para reconocerte de una partida a otra.',
+          de: 'Mêliz verlangt weder ein Konto noch eine E-Mail-Adresse oder Telefonnummer. Für die Bestenlisten und das tägliche Rätsel eröffnet das Spiel eine anonyme Sitzung bei Unity Gaming Services, einem Dienst von Unity Technologies: eine automatisch erzeugte Spieler-ID ohne Bezug zu deiner Identität. Das Gerät speichert das Token dieser Sitzung, damit du von Partie zu Partie wiedererkannt wirst.',
+        },
+        {
+          fr: "Sont transmis à Unity et visibles des autres joueurs, dans les classements : votre pseudo (tiré au hasard par Unity, modifiable dans l'écran des classements), votre total d'étoiles, vos scores au contre-la-montre Labymel et votre temps au défi du jour, classé avec les joueurs du même système (iPhone et iPad, ou Android). Pour vérifier chaque défi du jour, le jeu envoie aussi l'heure de début, la durée, le nombre d'indices et de mots, la date et le décalage horaire de l'appareil ; le serveur garde ce résultat et les pièces gagnées pour éviter qu'une récompense soit versée deux fois.",
+          en: 'Sent to Unity and visible to other players, in the leaderboards: your nickname (picked at random by Unity, editable on the leaderboards screen), your star total, your Labymel time attack scores and your daily challenge time, ranked with players on the same system (iPhone and iPad, or Android). To check each daily challenge, the game also sends the start time, duration, number of hints and words, the date and the device’s time zone offset; the server keeps this result and the coins earned so that a reward is never paid twice.',
+          es: 'Se envían a Unity y son visibles para los demás jugadores, en las clasificaciones: tu apodo (elegido al azar por Unity, modificable en la pantalla de clasificaciones), tu total de estrellas, tus puntuaciones en la contrarreloj de Labymel y tu tiempo en el reto diario, clasificado con los jugadores del mismo sistema (iPhone y iPad, o Android). Para verificar cada reto diario, el juego envía también la hora de inicio, la duración, el número de pistas y de palabras, la fecha y la diferencia horaria del dispositivo; el servidor guarda ese resultado y las monedas ganadas para que una recompensa nunca se pague dos veces.',
+          de: 'An Unity übermittelt und für andere Spieler in den Bestenlisten sichtbar sind: dein Spitzname (von Unity zufällig gewählt, im Bestenlisten-Bildschirm änderbar), deine Sternesumme, deine Punktzahlen im Labymel-Zeitrennen und deine Zeit beim täglichen Rätsel, gewertet mit Spielern desselben Systems (iPhone und iPad oder Android). Zur Prüfung jedes täglichen Rätsels sendet das Spiel außerdem Startzeit, Dauer, Anzahl der Hinweise und Wörter, das Datum und die Zeitverschiebung des Geräts; der Server speichert dieses Ergebnis und die verdienten Münzen, damit eine Belohnung nie doppelt ausgezahlt wird.',
+        },
+        {
+          fr: "Ces données servent uniquement au fonctionnement du jeu et sont traitées par Unity Technologies pour le compte du studio (politique de Unity : https://unity.com/legal/game-player-and-app-user-privacy-policy). Pour faire supprimer vos données en ligne (pseudo, scores, résultats du défi), écrivez-nous en indiquant votre pseudo : elles seront effacées sous 30 jours.",
+          en: 'This data is used solely to run the game and is processed by Unity Technologies on the studio’s behalf (Unity’s policy: https://unity.com/legal/game-player-and-app-user-privacy-policy). To have your online data deleted (nickname, scores, challenge results), write to us with your nickname: it will be erased within 30 days.',
+          es: 'Estos datos solo sirven para el funcionamiento del juego y los trata Unity Technologies por cuenta del estudio (política de Unity: https://unity.com/legal/game-player-and-app-user-privacy-policy). Para que borremos tus datos en línea (apodo, puntuaciones, resultados del reto), escríbenos indicando tu apodo: se eliminarán en un plazo de 30 días.',
+          de: 'Diese Daten dienen ausschließlich dem Betrieb des Spiels und werden von Unity Technologies im Auftrag des Studios verarbeitet (Datenschutzrichtlinie von Unity: https://unity.com/legal/game-player-and-app-user-privacy-policy). Wenn deine Online-Daten (Spitzname, Punktzahlen, Rätselergebnisse) gelöscht werden sollen, schreib uns mit deinem Spitznamen: Sie werden innerhalb von 30 Tagen gelöscht.',
+        },
+      ],
+    },
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-11-13',
     notes: [
+      {
+        fr: "Les statistiques d'usage ne partent qu'après la réponse à l'écran de consentement. Dans l'Espace économique européen et au Royaume-Uni, Unity Analytics n'est activé que si vous acceptez la mesure d'audience. Firebase Analytics et Unity Analytics peuvent associer ces statistiques à l'identifiant publicitaire de l'appareil si vous l'avez autorisé. Là où l'écran de consentement est requis, Réglages → Confidentialité propose « Effacer mes statistiques d'usage » : le jeu coupe alors les deux services et demande à Unity d'effacer les statistiques déjà envoyées. Mêliz n'a accès ni à vos contacts, ni à vos photos, ni au micro, ni à la caméra, ni à votre position, et nous ne vendons pas vos données. Les rappels sont des notifications programmées sur l'appareil, sans serveur.",
+        en: 'Usage statistics are only sent after you answer the consent form. In the European Economic Area and the United Kingdom, Unity Analytics is only turned on if you accept audience measurement. Firebase Analytics and Unity Analytics may link these statistics to the device’s advertising identifier if you have allowed it. Where the consent form is required, Settings → Privacy offers “Delete my usage statistics”: the game then turns both services off and asks Unity to erase the statistics already sent. Mêliz has no access to your contacts, photos, microphone, camera or location, and we do not sell your data. Reminders are notifications scheduled on the device, with no server.',
+        es: 'Las estadísticas de uso solo se envían después de responder a la pantalla de consentimiento. En el Espacio Económico Europeo y el Reino Unido, Unity Analytics solo se activa si aceptas la medición de audiencia. Firebase Analytics y Unity Analytics pueden asociar estas estadísticas al identificador publicitario del dispositivo si lo has autorizado. Donde la pantalla de consentimiento es obligatoria, Ajustes → Privacidad ofrece «Borrar mis estadísticas de uso»: el juego desactiva entonces los dos servicios y pide a Unity que borre las estadísticas ya enviadas. Mêliz no tiene acceso a tus contactos, fotos, micrófono, cámara ni a tu ubicación, y no vendemos tus datos. Los recordatorios son notificaciones programadas en el dispositivo, sin servidor.',
+        de: 'Nutzungsstatistiken werden erst nach deiner Antwort auf das Einwilligungsformular gesendet. Im Europäischen Wirtschaftsraum und im Vereinigten Königreich wird Unity Analytics nur aktiviert, wenn du der Reichweitenmessung zustimmst. Firebase Analytics und Unity Analytics können diese Statistiken mit der Werbe-ID des Geräts verknüpfen, wenn du das erlaubt hast. Wo das Einwilligungsformular erforderlich ist, bietet Einstellungen → Datenschutz „Meine Nutzungsstatistiken löschen“: Das Spiel schaltet dann beide Dienste ab und bittet Unity, die bereits gesendeten Statistiken zu löschen. Mêliz hat keinen Zugriff auf deine Kontakte, Fotos, dein Mikrofon, deine Kamera oder deinen Standort, und wir verkaufen deine Daten nicht. Erinnerungen sind auf dem Gerät geplante Benachrichtigungen, ohne Server.',
+      },
       {
         fr: 'La version jouable dans le navigateur conserve vos scores dans le stockage local de votre navigateur, et nulle part ailleurs.',
         en: 'The browser version keeps your scores in your browser’s local storage, and nowhere else.',
