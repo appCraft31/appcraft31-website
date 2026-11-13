@@ -1147,18 +1147,59 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     updated: '2026-08-18',
   },
 
+  // Zenkuro 2.0 — lu dans AppStore/zenkuro/unity (Unity 6) le 13 novembre 2026.
+  // `NativeAds.cs` : AdMob interstitiel + vidéo récompensée (indice), formulaire
+  // UMP préchargé pendant les règles puis ATT sur iOS, lien « Confidentialité »
+  // de l'accueil qui appelle `ShowPrivacyOptionsForm` ; aucune
+  // `RequestConfiguration` (pas de filtre de contenu, d'où `familyContent: false`).
+  // `NativePurchases.cs` : Unity IAP, `com.appcraft31.kakuro.removeads`.
+  // `NativeAnalytics.cs` : Firebase Analytics + Crashlytics (projet
+  // zenkuro-50445), collecte active seulement dans l'app publiée, aucun réglage
+  // pour la couper. Événements : tutorial_begin/complete, game_start, game_win,
+  // game_leave, game_restart, hint_used, rules_open, garden_reward, ad_show,
+  // remove_ads_*. iOS et Android (Google Play, même identifiant).
   zenkuro: {
-    platforms: ['iOS'],
-    localData: ['records par difficulté', 'grille en cours', 'réglages'],
-    ads: adFunded(),
+    platforms: ['iOS', 'Android'],
+    localData: [
+      {
+        fr: 'progression du jardin de Momo (étoiles des 60 niveaux)',
+        en: "progress in Momo's garden (stars for the 60 levels)",
+      },
+      { fr: 'records par difficulté', en: 'best times by difficulty' },
+      { fr: 'grille en cours', en: 'grid in progress' },
+      { fr: 'indices du jour et indices offerts', en: "today's hints and bonus hints" },
+      { fr: 'réglages (sons, vibrations)', en: 'settings (sounds, vibrations)' },
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      umpReopen: true,
+      removedBy: 'Sans publicité',
+      familyContent: false,
+    },
     purchases: [
       { kind: 'non-consumable', what: 'le retrait de la publicité', productId: 'com.appcraft31.kakuro.removeads' },
     ],
-    analytics: null,
-    network: null,
+    analytics: {
+      vendors: ['Firebase Analytics', 'Firebase Crashlytics'],
+      optOut: false,
+      anonymous: false,
+      purpose: {
+        fr: "mesurer l'usage du jeu (grilles commencées, terminées ou abandonnées, niveaux du jardin, indices utilisés, publicités vues, consultation de l'offre « Sans publicité ») et recevoir les rapports de plantage, pour l'améliorer. L'identifiant publicitaire de l'appareil n'est associé à ces mesures que si vous avez accepté la demande de suivi (iOS) ou si votre appareil Android le partage",
+        en: "measure how the game is used (grids started, finished or abandoned, garden levels, hints used, ads watched, views of the “No ads” offer) and receive crash reports, in order to improve it. The device advertising identifier is only associated with these measurements if you accepted the tracking request (iOS) or if your Android device shares it",
+      },
+    },
+    network: {
+      purpose: {
+        fr: "le chargement des publicités et de leur écran de consentement, et l'envoi des statistiques d'usage et des rapports de plantage à Firebase. Les grilles sont générées sur l'appareil : le jeu fonctionne hors ligne",
+        en: 'loading ads and their consent form, and sending usage statistics and crash reports to Firebase. Grids are generated on the device: the game works offline',
+      },
+    },
     accounts: null,
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-11-13',
   },
 
   tinta: {
