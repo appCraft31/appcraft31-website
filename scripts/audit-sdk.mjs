@@ -39,7 +39,8 @@ const SOURCES = {
   remindo: join('Multistore', 'Remindo'),
   holdfire: join('Multistore', 'Hold_fire'),
   sudoku: join('Multistore', 'sudoku'),
-  talon: join('Multistore', 'solitaire'),
+  // Talon 2.0 est le portage Unity ; le dépôt Flutter (`solitaire`) est la 1.3.3, remplacée.
+  talon: join('Multistore', 'talon_Unity'),
   tinta: join('AppStore', 'Tinta'),
   binero: join('Multistore', 'binero'),
   glyphe: join('AppStore', 'glyphe'),
