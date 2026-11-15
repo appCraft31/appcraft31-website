@@ -23,5 +23,17 @@
         "BF:FB:80:2B:D0:EC:40:34:81:16:31:51:55:C6:4E:8A:EE:40:14:89:70:CE:74:D8:8D:EC:A5:C8:45:F9:16:DE"
       ]
     }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.appcraft31.tengo",
+      "sha256_cert_fingerprints": [
+        "C7:13:37:0B:E8:24:9B:63:C4:87:3A:70:D3:22:BC:14:04:BC:FF:67:A0:2A:7C:30:AE:8E:B0:94:D3:3B:1E:FF"
+      ]
+    }
   }
 ]
