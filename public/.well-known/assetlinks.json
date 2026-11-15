@@ -11,5 +11,17 @@
         "CF:F2:6E:11:EC:AB:FB:6C:F3:93:BE:15:98:C3:44:1A:1E:C3:B9:77:30:63:BC:CC:15:14:BB:86:EA:0F:7B:49"
       ]
     }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.appcraft31.binero",
+      "sha256_cert_fingerprints": [
+        "BF:FB:80:2B:D0:EC:40:34:81:16:31:51:55:C6:4E:8A:EE:40:14:89:70:CE:74:D8:8D:EC:A5:C8:45:F9:16:DE"
+      ]
+    }
   }
 ]
