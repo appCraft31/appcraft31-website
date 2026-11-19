@@ -995,8 +995,9 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
   // `App/Services/Native/AdMobLoader.cs` : interstitiel et vidéo récompensée
   // (indice), pas de bannière ni de médiation ; ATT d'abord, puis UMP seulement
   // si le suivi n'est pas refusé, sinon annonces non personnalisées (`npa=1`) ;
-  // aucun `ShowPrivacyOptionsForm` (d'où `umpReopen: false`), aucun réglage de
-  // contenu familial. Achat `…noads` (Unity IAP) : plus d'annonce, l'indice est
+  // Paramètres → « Choix publicitaires » rouvre le formulaire
+  // (`ShowPrivacyOptionsForm`, d'où `umpReopen: true`), ligne visible seulement
+  // si UMP l'exige (EEE, Royaume-Uni, Suisse) ; aucun réglage de contenu familial. Achat `…noads` (Unity IAP) : plus d'annonce, l'indice est
   // accordé sans vidéo. `FirebaseAnalyticsBackend.cs` : Firebase Analytics,
   // collecte active dans les versions publiées, sans interrupteur ; propriété
   // `groupe_rappel`. `UgsOnlineBackend.cs` : session anonyme Unity
@@ -1038,17 +1039,17 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
       formats: ['interstitial', 'rewarded'],
       ump: true,
       att: true,
-      umpReopen: false,
+      umpReopen: true,
       removedBy: 'Sans publicité',
       familyContent: false,
       notes: [
         {
-          fr: "Sur iPhone, la demande de suivi d'Apple est présentée en premier. Si vous la refusez, l'écran de consentement publicitaire n'est pas affiché : les annonces sont alors demandées sans personnalisation. La vidéo récompensée ne se lance que si vous la choisissez pour obtenir un indice.",
-          en: 'On iPhone, Apple’s tracking request is shown first. If you decline it, the advertising consent form is not shown: ads are then requested without personalisation. The rewarded video only starts if you choose it to get a hint.',
-          es: 'En iPhone se muestra primero la solicitud de seguimiento de Apple. Si la rechazas, no aparece la pantalla de consentimiento publicitario: los anuncios se piden entonces sin personalización. El vídeo con recompensa solo se inicia si lo eliges para obtener una pista.',
-          de: 'Auf dem iPhone wird zuerst Apples Tracking-Anfrage angezeigt. Lehnst du sie ab, erscheint das Werbe-Einwilligungsformular nicht: Die Anzeigen werden dann ohne Personalisierung angefordert. Das Belohnungsvideo startet nur, wenn du es wählst, um einen Hinweis zu erhalten.',
-          ja: 'iPhoneでは、まずAppleのトラッキング許可のリクエストが表示されます。これを拒否すると広告の同意画面は表示されず、広告はパーソナライズなしで配信されます。リワード動画は、ヒントを得るためにあなたが選んだときだけ再生されます。',
-          ko: 'iPhone에서는 Apple의 추적 요청이 먼저 표시됩니다. 이를 거부하면 광고 동의 화면은 표시되지 않고, 광고는 개인 맞춤 없이 요청됩니다. 보상형 동영상은 힌트를 얻기 위해 직접 선택할 때만 재생됩니다.',
+          fr: "Sur iPhone, la demande de suivi d'Apple est présentée en premier. Si vous la refusez, l'écran de consentement publicitaire n'est pas affiché : les annonces sont alors demandées sans personnalisation. La vidéo récompensée ne se lance que si vous la choisissez pour obtenir un indice. Dans les Paramètres du jeu, « Choix publicitaires » rouvre l'écran de consentement ; cette ligne n'apparaît que dans les pays où ce consentement est exigé (Espace économique européen, Royaume-Uni, Suisse).",
+          en: 'On iPhone, Apple’s tracking request is shown first. If you decline it, the advertising consent form is not shown: ads are then requested without personalisation. The rewarded video only starts if you choose it to get a hint. In the game’s Settings, “Ad choices” reopens the consent form; this line only appears in the countries where that consent is required (European Economic Area, United Kingdom, Switzerland).',
+          es: 'En iPhone se muestra primero la solicitud de seguimiento de Apple. Si la rechazas, no aparece la pantalla de consentimiento publicitario: los anuncios se piden entonces sin personalización. El vídeo con recompensa solo se inicia si lo eliges para obtener una pista. En los Ajustes del juego, «Preferencias de anuncios» vuelve a abrir la pantalla de consentimiento; esta opción solo aparece en los países donde se exige ese consentimiento (Espacio Económico Europeo, Reino Unido, Suiza).',
+          de: 'Auf dem iPhone wird zuerst Apples Tracking-Anfrage angezeigt. Lehnst du sie ab, erscheint das Werbe-Einwilligungsformular nicht: Die Anzeigen werden dann ohne Personalisierung angefordert. Das Belohnungsvideo startet nur, wenn du es wählst, um einen Hinweis zu erhalten. In den Einstellungen des Spiels öffnet „Werbeeinstellungen“ das Einwilligungsformular erneut; dieser Eintrag erscheint nur in Ländern, in denen diese Einwilligung erforderlich ist (Europäischer Wirtschaftsraum, Vereinigtes Königreich, Schweiz).',
+          ja: 'iPhoneでは、まずAppleのトラッキング許可のリクエストが表示されます。これを拒否すると広告の同意画面は表示されず、広告はパーソナライズなしで配信されます。リワード動画は、ヒントを得るためにあなたが選んだときだけ再生されます。 ゲームの「設定」にある「広告の設定」から同意画面をもう一度開けます。この項目は、同意が必要な国（欧州経済領域、英国、スイス）でのみ表示されます。',
+          ko: 'iPhone에서는 Apple의 추적 요청이 먼저 표시됩니다. 이를 거부하면 광고 동의 화면은 표시되지 않고, 광고는 개인 맞춤 없이 요청됩니다. 보상형 동영상은 힌트를 얻기 위해 직접 선택할 때만 재생됩니다. 게임의 설정에서 «광고 설정»을 누르면 동의 화면이 다시 열립니다. 이 항목은 동의가 필요한 국가(유럽 경제 지역, 영국, 스위스)에서만 표시됩니다.',
         },
       ],
     },
