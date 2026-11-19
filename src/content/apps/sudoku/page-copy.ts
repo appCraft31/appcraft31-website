@@ -5,7 +5,7 @@ import type { AppCopy, Lang } from '@/lib/types';
  * Les cinq variantes et leur rotation sont celles du code du jeu.
  */
 const fr: AppCopy = {
-  tagline: 'Un journal de grilles · iOS',
+  tagline: 'Un journal de grilles · iOS et Android',
 
   headline: {
     lead: 'Chaque matin, une grille.',
@@ -75,7 +75,7 @@ const fr: AppCopy = {
       id: 'privacy',
       kicker: 'Vie privée',
       title: 'Aucun compte à créer, rien à configurer',
-      body: 'Les grilles se génèrent directement sur votre appareil et la partie se joue même sans connexion. Votre carnet de tampons, vos rangs et vos records restent chez vous.',
+      body: 'Les grilles se génèrent directement sur votre appareil et la partie se joue même sans connexion. Votre carnet de tampons et vos rangs restent chez vous ; seuls votre nom de joueur et vos scores partent aux classements, sous un identifiant anonyme.',
     },
   ],
 
@@ -94,7 +94,7 @@ const fr: AppCopy = {
 };
 
 const en: AppCopy = {
-  tagline: 'A newspaper of grids · iOS',
+  tagline: 'A newspaper of grids · iOS and Android',
 
   headline: {
     lead: 'Every morning, a grid.',
@@ -164,7 +164,7 @@ const en: AppCopy = {
       id: 'privacy',
       kicker: 'Privacy',
       title: 'No account to create, nothing to configure',
-      body: 'Grids are generated on your device and a game can be played with no connection at all. Your stamp book, your ranks and your records stay with you.',
+      body: 'Grids are generated on your device and a game can be played with no connection at all. Your stamp book and your ranks stay with you; only your player name and your scores go to the leaderboards, under an anonymous identifier.',
     },
   ],
 
