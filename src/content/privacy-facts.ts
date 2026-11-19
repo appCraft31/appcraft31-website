@@ -989,22 +989,155 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     ],
   },
 
+  // Le Sudoku du jour 2.0 — relu le 19 novembre 2026 dans
+  // ~/StudioProjects/Multistore/sudoku/unity (Unity 6, remplace l'app Flutter
+  // 1.3.1, `com.appcraft31.dailysudoku`, iOS et Android).
+  // `App/Services/Native/AdMobLoader.cs` : interstitiel et vidéo récompensée
+  // (indice), pas de bannière ni de médiation ; ATT d'abord, puis UMP seulement
+  // si le suivi n'est pas refusé, sinon annonces non personnalisées (`npa=1`) ;
+  // aucun `ShowPrivacyOptionsForm` (d'où `umpReopen: false`), aucun réglage de
+  // contenu familial. Achat `…noads` (Unity IAP) : plus d'annonce, l'indice est
+  // accordé sans vidéo. `FirebaseAnalyticsBackend.cs` : Firebase Analytics,
+  // collecte active dans les versions publiées, sans interrupteur ; propriété
+  // `groupe_rappel`. `UgsOnlineBackend.cs` : session anonyme Unity
+  // Authentication, nom généré par UGS et modifiable (Paramètres, Classements),
+  // Cloud Code `level-submit`, `levels-board`, `daily-*` (Tools/ugs/README.md) :
+  // classements `levels_total` et `daily`, Cloud Save protégé `levels_state` et
+  // `daily_state`, Remote Config. Rappels : notifications locales. Widget iOS :
+  // calcul du défi sur l'appareil, sans échange.
   sudoku: {
-    platforms: ['iOS'],
-    localData: ['carnet de tampons', 'rangs', 'séries', 'records de temps', 'réglages'],
-    ads: adFunded(),
-    purchases: [
-      { kind: 'non-consumable', what: 'le retrait de la publicité', productId: 'com.appcraft31.dailysudoku.noads' },
+    platforms: ['iOS', 'Android'],
+    localData: [
+      {
+        fr: 'partie en cours, niveau atteint, historique et total des niveaux réussis, stock d’indices',
+        en: 'game in progress, level reached, history and total of the levels completed, hint stock',
+        es: 'partida en curso, nivel alcanzado, historial y total de niveles superados, reserva de pistas',
+        de: 'laufende Partie, erreichtes Level, Verlauf und Summe der geschafften Level, Hinweisvorrat',
+        ja: '進行中のゲーム、到達したレベル、クリアしたレベルの履歴と合計、ヒントの残り',
+        ko: '진행 중인 게임, 도달한 레벨, 완료한 레벨의 기록과 합계, 힌트 보유량',
+      },
+      {
+        fr: 'carnet de tampons, défis du jour résolus, séries, rangs et statistiques',
+        en: 'stamp book, daily challenges solved, streaks, ranks and statistics',
+        es: 'cuaderno de sellos, retos diarios resueltos, rachas, rangos y estadísticas',
+        de: 'Stempelheft, gelöste Tagesrätsel, Serien, Ränge und Statistiken',
+        ja: 'スタンプ帳、解いたデイリーチャレンジ、連続記録、ランク、統計',
+        ko: '도장 수첩, 푼 오늘의 도전, 연속 기록, 등급, 통계',
+      },
+      {
+        fr: 'réglages (son, mode de saisie, heure du rappel), visite guidée et achat « Sans publicité »',
+        en: 'settings (sound, input mode, reminder time), guided tour and the “No ads” purchase',
+        es: 'ajustes (sonido, modo de entrada, hora del recordatorio), visita guiada y la compra «Sin anuncios»',
+        de: 'Einstellungen (Ton, Eingabemodus, Uhrzeit der Erinnerung), Einführung und der Kauf „Ohne Werbung“',
+        ja: '設定（サウンド、入力方法、リマインダーの時刻）、ガイドツアー、「広告なし」の購入',
+        ko: '설정(소리, 입력 방식, 알림 시간), 둘러보기, «광고 없음» 구매',
+      },
     ],
-    analytics: null,
-    network: null,
-    accounts: null,
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      umpReopen: false,
+      removedBy: 'Sans publicité',
+      familyContent: false,
+      notes: [
+        {
+          fr: "Sur iPhone, la demande de suivi d'Apple est présentée en premier. Si vous la refusez, l'écran de consentement publicitaire n'est pas affiché : les annonces sont alors demandées sans personnalisation. La vidéo récompensée ne se lance que si vous la choisissez pour obtenir un indice.",
+          en: 'On iPhone, Apple’s tracking request is shown first. If you decline it, the advertising consent form is not shown: ads are then requested without personalisation. The rewarded video only starts if you choose it to get a hint.',
+          es: 'En iPhone se muestra primero la solicitud de seguimiento de Apple. Si la rechazas, no aparece la pantalla de consentimiento publicitario: los anuncios se piden entonces sin personalización. El vídeo con recompensa solo se inicia si lo eliges para obtener una pista.',
+          de: 'Auf dem iPhone wird zuerst Apples Tracking-Anfrage angezeigt. Lehnst du sie ab, erscheint das Werbe-Einwilligungsformular nicht: Die Anzeigen werden dann ohne Personalisierung angefordert. Das Belohnungsvideo startet nur, wenn du es wählst, um einen Hinweis zu erhalten.',
+          ja: 'iPhoneでは、まずAppleのトラッキング許可のリクエストが表示されます。これを拒否すると広告の同意画面は表示されず、広告はパーソナライズなしで配信されます。リワード動画は、ヒントを得るためにあなたが選んだときだけ再生されます。',
+          ko: 'iPhone에서는 Apple의 추적 요청이 먼저 표시됩니다. 이를 거부하면 광고 동의 화면은 표시되지 않고, 광고는 개인 맞춤 없이 요청됩니다. 보상형 동영상은 힌트를 얻기 위해 직접 선택할 때만 재생됩니다.',
+        },
+      ],
+    },
+    purchases: [
+      {
+        kind: 'non-consumable',
+        what: {
+          fr: 'le retrait de la publicité (« Sans publicité ») ; les indices sont alors accordés sans vidéo',
+          en: 'the removal of ads (“No ads”); hints are then granted without a video',
+          es: 'la eliminación de los anuncios («Sin anuncios»); las pistas se conceden entonces sin vídeo',
+          de: 'das Entfernen der Werbung („Ohne Werbung“); Hinweise gibt es dann ohne Video',
+          ja: '広告の削除（「広告なし」）。以後、ヒントは動画なしで受け取れます',
+          ko: '광고 제거(«광고 없음»). 이후 힌트는 동영상 없이 받을 수 있습니다',
+        },
+        productId: 'com.appcraft31.dailysudoku.noads',
+      },
+    ],
+    analytics: {
+      vendors: ['Firebase Analytics'],
+      optOut: false,
+      anonymous: false,
+      purpose: {
+        fr: "comprendre comment le jeu est joué et l'améliorer : niveaux et défis du jour commencés, réussis, perdus ou quittés (type de grille, difficulté, durée, erreurs, indices, score, rang), indices utilisés ou obtenus, classements consultés, rappels proposés et acceptés, publicités proposées et vues, demandes d'avis, ouvertures depuis un rappel ou un lien, ainsi que les données automatiques de Firebase (identifiant d'instance de l'application, modèle et système de l'appareil, version du jeu, pays, langue, sessions). L'identifiant publicitaire de l'appareil peut y être associé — sur iPhone, seulement si vous avez accepté la demande de suivi. Ces mesures ne se désactivent pas depuis le jeu",
+        en: 'understand how the game is played and improve it: levels and daily challenges started, completed, lost or abandoned (grid type, difficulty, duration, mistakes, hints, score, rank), hints used or earned, leaderboards viewed, reminders offered and accepted, ads offered and watched, review requests, launches from a reminder or a link, along with Firebase’s automatic data (app instance identifier, device model and operating system, game version, country, language, sessions). The device advertising identifier may be associated with them — on iPhone, only if you accepted the tracking request. These measurements cannot be switched off from within the game',
+        es: 'entender cómo se juega y mejorar el juego: niveles y retos diarios empezados, superados, perdidos o abandonados (tipo de cuadrícula, dificultad, duración, errores, pistas, puntuación, puesto), pistas usadas u obtenidas, clasificaciones consultadas, recordatorios ofrecidos y aceptados, anuncios ofrecidos y vistos, solicitudes de valoración, aperturas desde un recordatorio o un enlace, junto con los datos automáticos de Firebase (identificador de instancia de la aplicación, modelo y sistema del dispositivo, versión del juego, país, idioma, sesiones). Puede asociarse el identificador publicitario del dispositivo; en iPhone, solo si aceptaste la solicitud de seguimiento. Estas mediciones no se pueden desactivar desde el juego',
+        de: 'zu verstehen, wie das Spiel gespielt wird, und es zu verbessern: begonnene, geschaffte, verlorene oder abgebrochene Level und Tagesrätsel (Rätseltyp, Schwierigkeit, Dauer, Fehler, Hinweise, Punktzahl, Platz), genutzte oder erhaltene Hinweise, aufgerufene Bestenlisten, angebotene und angenommene Erinnerungen, angebotene und angesehene Werbung, Bewertungsanfragen, Starts über eine Erinnerung oder einen Link, dazu die automatischen Daten von Firebase (App-Instanz-ID, Gerätemodell und Betriebssystem, Spielversion, Land, Sprache, Sitzungen). Die Werbe-ID des Geräts kann damit verknüpft werden — auf dem iPhone nur, wenn du der Tracking-Anfrage zugestimmt hast. Diese Messungen lassen sich im Spiel nicht abschalten',
+        ja: 'レベルやデイリーチャレンジの開始・クリア・失敗・中断（パズルの種類、難易度、時間、ミス、ヒント、スコア、順位）、ヒントの使用と獲得、ランキングの閲覧、リマインダーの提案と承諾、広告の提案と視聴、レビューの依頼、リマインダーやリンクからの起動を、Firebaseが自動で集めるデータ（アプリのインスタンスID、端末のモデルとOS、ゲームのバージョン、国、言語、セッション）とあわせて計測し、ゲームの遊ばれ方を理解して改善する。端末の広告IDが結びつけられる場合があり、iPhoneではトラッキングを許可した場合に限られる。この計測はゲーム内から無効にできない',
+        ko: '레벨과 오늘의 도전의 시작·완료·실패·중단(퍼즐 종류, 난이도, 시간, 실수, 힌트, 점수, 순위), 힌트 사용과 획득, 순위표 조회, 알림 제안과 수락, 광고 제안과 시청, 리뷰 요청, 알림이나 링크를 통한 실행을 Firebase가 자동으로 모으는 데이터(앱 인스턴스 식별자, 기기 모델과 운영체제, 게임 버전, 국가, 언어, 세션)와 함께 측정해 게임이 어떻게 플레이되는지 이해하고 개선하기. 기기의 광고 식별자가 연결될 수 있으며, iPhone에서는 추적을 허용한 경우에만 해당합니다. 이 측정은 게임 안에서 끌 수 없습니다',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "le chargement des publicités et de leur écran de consentement, l'envoi des statistiques d'usage à Firebase, la vérification des achats par l'App Store ou Google Play, ainsi que les classements et le défi du jour classé (Unity Gaming Services). Aucun autre serveur n'est contacté. Les grilles sont générées sur l'appareil et se jouent hors ligne : sans connexion, seuls les classements sont indisponibles, et vos résultats sont envoyés au retour du réseau",
+        en: 'loading ads and their consent form, sending usage statistics to Firebase, verifying purchases with the App Store or Google Play, and for the leaderboards and the ranked daily challenge (Unity Gaming Services). No other server is contacted. Grids are generated on the device and can be played offline: without a connection only the leaderboards are unavailable, and your results are sent once the network is back',
+        es: 'cargar los anuncios y su pantalla de consentimiento, enviar las estadísticas de uso a Firebase, verificar las compras con App Store o Google Play, así como las clasificaciones y el reto diario clasificado (Unity Gaming Services). No se contacta con ningún otro servidor. Las cuadrículas se generan en el dispositivo y se juegan sin conexión: sin red solo dejan de estar disponibles las clasificaciones, y tus resultados se envían cuando vuelve la conexión',
+        de: 'das Laden der Werbung und ihres Einwilligungsformulars, das Senden von Nutzungsstatistiken an Firebase, die Prüfung der Käufe über den App Store oder Google Play sowie für die Bestenlisten und das gewertete Tagesrätsel (Unity Gaming Services). Kein anderer Server wird kontaktiert. Die Rätsel werden auf dem Gerät erzeugt und laufen offline: Ohne Verbindung sind nur die Bestenlisten nicht verfügbar, und deine Ergebnisse werden gesendet, sobald das Netz zurück ist',
+        ja: '広告とその同意画面の読み込み、Firebaseへの利用統計の送信、App StoreまたはGoogle Playによる購入の確認、そしてランキングと順位のつくデイリーチャレンジ（Unity Gaming Services）。それ以外のサーバーには接続しません。パズルは端末上で生成され、オフラインでも遊べます。接続がないときに使えないのはランキングだけで、結果はネットワークが戻ったときに送信されます',
+        ko: '광고와 동의 화면 불러오기, Firebase로 사용 통계 전송, App Store 또는 Google Play를 통한 구매 확인, 그리고 순위표와 순위가 매겨지는 오늘의 도전(Unity Gaming Services). 그 밖의 서버에는 접속하지 않습니다. 퍼즐은 기기에서 만들어지고 오프라인으로도 할 수 있으며, 연결이 없으면 순위표만 이용할 수 없고 결과는 네트워크가 돌아오면 전송됩니다',
+      },
+    },
+    accounts: {
+      service: 'Unity Gaming Services',
+      what: 'les classements et le défi du jour',
+      bodyTitle: 'service',
+      body: [
+        {
+          fr: "Le Sudoku du jour ne vous demande ni compte, ni adresse e-mail, ni numéro de téléphone. Pour les classements et le défi du jour, le jeu ouvre une session anonyme auprès de Unity Gaming Services, un service de Unity Technologies : un identifiant de joueur créé automatiquement, sans lien avec votre identité. L'appareil garde le jeton de cette session pour vous reconnaître d'une partie à l'autre.",
+          en: 'Le Sudoku du jour never asks for an account, an email address or a phone number. For the leaderboards and the daily challenge, the game opens an anonymous session with Unity Gaming Services, a Unity Technologies service: a player identifier created automatically, with no link to your identity. The device keeps this session’s token so you are recognised from one game to the next.',
+          es: 'Le Sudoku du jour nunca te pide una cuenta, una dirección de correo ni un número de teléfono. Para las clasificaciones y el reto diario, el juego abre una sesión anónima en Unity Gaming Services, un servicio de Unity Technologies: un identificador de jugador creado automáticamente, sin relación con tu identidad. El dispositivo guarda el token de esa sesión para reconocerte de una partida a otra.',
+          de: 'Le Sudoku du jour verlangt weder ein Konto noch eine E-Mail-Adresse oder Telefonnummer. Für die Bestenlisten und das Tagesrätsel eröffnet das Spiel eine anonyme Sitzung bei Unity Gaming Services, einem Dienst von Unity Technologies: eine automatisch erzeugte Spieler-ID ohne Bezug zu deiner Identität. Das Gerät speichert das Token dieser Sitzung, damit du von Partie zu Partie wiedererkannt wirst.',
+          ja: 'Le Sudoku du jourがアカウント、メールアドレス、電話番号を求めることはありません。ランキングとデイリーチャレンジのために、ゲームはUnity Technologiesのサービス、Unity Gaming Servicesで匿名のセッションを開きます。自動で作られるプレイヤーIDで、あなたの身元とは結びついていません。端末はこのセッションのトークンを保存し、ゲームをまたいであなたを識別します。',
+          ko: 'Le Sudoku du jour는 계정, 이메일 주소, 전화번호를 요구하지 않습니다. 순위표와 오늘의 도전을 위해 게임은 Unity Technologies의 서비스인 Unity Gaming Services에 익명 세션을 엽니다. 자동으로 만들어지는 플레이어 식별자로, 당신의 신원과 연결되어 있지 않습니다. 기기는 게임이 바뀌어도 당신을 알아볼 수 있도록 이 세션의 토큰을 보관합니다.',
+        },
+        {
+          fr: "Sont transmis à Unity et visibles des autres joueurs, dans les classements : votre nom de joueur (tiré au hasard par Unity, modifiable dans les Paramètres ou depuis les classements), le total des points de vos niveaux réussis et votre score au défi du jour. Pour calculer et vérifier chaque score, le jeu envoie aussi, pour chaque niveau ou défi réussi : son numéro ou sa date, la difficulté, la durée, le nombre d'erreurs et d'indices, et l'heure de début de la partie. Le serveur garde le dernier niveau compté, votre total et vos résultats des dix derniers défis, pour qu'un score ne soit jamais compté deux fois et que les indices gagnés au classement ne soient versés qu'une fois.",
+          en: 'Sent to Unity and visible to other players, in the leaderboards: your player name (picked at random by Unity, editable in Settings or from the leaderboards), the points total of the levels you have completed and your daily challenge score. To calculate and check each score, the game also sends, for every level or challenge completed: its number or date, the difficulty, the duration, the number of mistakes and hints, and the time the game started. The server keeps the last level counted, your total and your results for the last ten challenges, so that a score is never counted twice and hints earned in the rankings are paid only once.',
+          es: 'Se envían a Unity y son visibles para los demás jugadores, en las clasificaciones: tu nombre de jugador (elegido al azar por Unity, modificable en Ajustes o desde las clasificaciones), el total de puntos de los niveles superados y tu puntuación en el reto diario. Para calcular y verificar cada puntuación, el juego envía también, por cada nivel o reto superado: su número o su fecha, la dificultad, la duración, el número de errores y de pistas, y la hora de inicio de la partida. El servidor guarda el último nivel contado, tu total y tus resultados de los diez últimos retos, para que una puntuación nunca se cuente dos veces y las pistas ganadas en la clasificación solo se entreguen una vez.',
+          de: 'An Unity übermittelt und für andere Spieler in den Bestenlisten sichtbar sind: dein Spielername (von Unity zufällig gewählt, in den Einstellungen oder in den Bestenlisten änderbar), die Punktesumme deiner geschafften Level und deine Punktzahl beim Tagesrätsel. Um jede Punktzahl zu berechnen und zu prüfen, sendet das Spiel außerdem für jedes geschaffte Level oder Rätsel: dessen Nummer oder Datum, die Schwierigkeit, die Dauer, die Anzahl der Fehler und Hinweise und die Startzeit der Partie. Der Server speichert das zuletzt gezählte Level, deine Summe und deine Ergebnisse der letzten zehn Rätsel, damit keine Punktzahl doppelt zählt und in der Rangliste gewonnene Hinweise nur einmal ausgezahlt werden.',
+          ja: 'Unityに送られ、ランキングでほかのプレイヤーに表示されるのは、プレイヤー名（Unityが無作為に選び、設定またはランキング画面から変更可能）、クリアしたレベルの合計ポイント、デイリーチャレンジのスコアです。スコアを計算・確認するため、ゲームはクリアしたレベルやチャレンジごとに、その番号または日付、難易度、所要時間、ミスとヒントの数、ゲームの開始時刻も送信します。サーバーは、同じスコアが二重に数えられず、ランキングで得たヒントが一度だけ付与されるよう、最後に数えたレベル、合計、直近10回のチャレンジの結果を保存します。',
+          ko: 'Unity로 전송되어 순위표에서 다른 플레이어에게 보이는 것은 플레이어 이름(Unity가 무작위로 정하며 설정이나 순위표에서 변경 가능), 완료한 레벨의 총점, 오늘의 도전 점수입니다. 점수를 계산하고 확인하기 위해 게임은 완료한 레벨이나 도전마다 그 번호 또는 날짜, 난이도, 소요 시간, 실수와 힌트 횟수, 게임 시작 시각도 보냅니다. 서버는 점수가 두 번 계산되지 않고 순위로 얻은 힌트가 한 번만 지급되도록 마지막으로 계산한 레벨, 총점, 최근 10번의 도전 결과를 보관합니다.',
+        },
+        {
+          fr: "Ces données servent uniquement au fonctionnement du jeu et sont traitées par Unity Technologies pour le compte du studio (politique de Unity : https://unity.com/legal/game-player-and-app-user-privacy-policy). Pour faire supprimer vos données en ligne (nom de joueur, scores, résultats des défis), écrivez-nous en indiquant votre nom de joueur : elles seront effacées sous 30 jours.",
+          en: 'This data is used solely to run the game and is processed by Unity Technologies on the studio’s behalf (Unity’s policy: https://unity.com/legal/game-player-and-app-user-privacy-policy). To have your online data deleted (player name, scores, challenge results), write to us with your player name: it will be erased within 30 days.',
+          es: 'Estos datos solo sirven para el funcionamiento del juego y los trata Unity Technologies por cuenta del estudio (política de Unity: https://unity.com/legal/game-player-and-app-user-privacy-policy). Para que borremos tus datos en línea (nombre de jugador, puntuaciones, resultados de los retos), escríbenos indicando tu nombre de jugador: se eliminarán en un plazo de 30 días.',
+          de: 'Diese Daten dienen ausschließlich dem Betrieb des Spiels und werden von Unity Technologies im Auftrag des Studios verarbeitet (Datenschutzrichtlinie von Unity: https://unity.com/legal/game-player-and-app-user-privacy-policy). Wenn deine Online-Daten (Spielername, Punktzahlen, Rätselergebnisse) gelöscht werden sollen, schreib uns mit deinem Spielernamen: Sie werden innerhalb von 30 Tagen gelöscht.',
+          ja: 'これらのデータはゲームの動作のためだけに使われ、スタジオに代わってUnity Technologiesが処理します（Unityのポリシー：https://unity.com/legal/game-player-and-app-user-privacy-policy）。オンラインのデータ（プレイヤー名、スコア、チャレンジの結果）の削除を希望する場合は、プレイヤー名を添えてご連絡ください。30日以内に削除します。',
+          ko: '이 데이터는 게임 운영에만 사용되며, 스튜디오를 대신해 Unity Technologies가 처리합니다(Unity 정책: https://unity.com/legal/game-player-and-app-user-privacy-policy). 온라인 데이터(플레이어 이름, 점수, 도전 결과) 삭제를 원하시면 플레이어 이름을 적어 연락해 주세요. 30일 이내에 삭제됩니다.',
+        },
+      ],
+    },
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-11-19',
     notes: [
       {
-        fr: 'Les grilles sont générées sur votre appareil : le défi du jour ne nécessite aucun échange avec un serveur.',
-        en: 'Grids are generated on your device: the daily challenge requires no exchange with any server.',
+        fr: "Pour les classements, l'appareil garde aussi le jeton de session, l'identifiant de joueur anonyme, votre nom de joueur et, tant que la connexion manque, les résultats qui attendent d'être envoyés : ceux-là partent vers Unity Gaming Services, comme décrit à la rubrique « Comptes et services de jeu ».",
+        en: 'For the leaderboards, the device also keeps the session token, the anonymous player identifier, your player name and, while there is no connection, the results waiting to be sent: these go to Unity Gaming Services, as described under “Accounts and game services”.',
+        es: 'Para las clasificaciones, el dispositivo guarda también el token de sesión, el identificador de jugador anónimo, tu nombre de jugador y, mientras no hay conexión, los resultados pendientes de envío: estos se envían a Unity Gaming Services, como se describe en el apartado «Cuentas y servicios de juego».',
+        de: 'Für die Bestenlisten speichert das Gerät außerdem das Sitzungstoken, die anonyme Spieler-ID, deinen Spielernamen und, solange keine Verbindung besteht, die noch zu sendenden Ergebnisse: Diese gehen an Unity Gaming Services, wie im Abschnitt „Konten und Spieldienste“ beschrieben.',
+        ja: 'ランキングのために、端末はセッショントークン、匿名のプレイヤーID、プレイヤー名、そして接続がないあいだは送信待ちの結果も保存します。これらは「アカウントとゲームサービス」の項で説明するとおり、Unity Gaming Servicesに送られます。',
+        ko: '순위표를 위해 기기는 세션 토큰, 익명 플레이어 식별자, 플레이어 이름, 그리고 연결이 없는 동안에는 전송을 기다리는 결과도 보관합니다. 이것들은 «계정과 게임 서비스» 항목에서 설명하듯 Unity Gaming Services로 전송됩니다.',
+      },
+      {
+        fr: "Les grilles, y compris celle du défi du jour, sont générées sur votre appareil ; le widget iPhone calcule lui aussi le défi sans rien échanger. Les rappels sont des notifications programmées sur l'appareil, sans serveur. Le Sudoku du jour n'a accès ni à vos contacts, ni à vos photos, ni au micro, ni à la caméra, ni à votre position, et nous ne vendons pas vos données.",
+        en: 'Grids, including the daily challenge, are generated on your device; the iPhone widget also works out the challenge without exchanging anything. Reminders are notifications scheduled on the device, with no server. Le Sudoku du jour has no access to your contacts, photos, microphone, camera or location, and we do not sell your data.',
+        es: 'Las cuadrículas, incluida la del reto diario, se generan en tu dispositivo; el widget del iPhone también calcula el reto sin intercambiar nada. Los recordatorios son notificaciones programadas en el dispositivo, sin servidor. Le Sudoku du jour no tiene acceso a tus contactos, fotos, micrófono, cámara ni a tu ubicación, y no vendemos tus datos.',
+        de: 'Die Rätsel, auch das Tagesrätsel, werden auf deinem Gerät erzeugt; auch das iPhone-Widget berechnet das Rätsel, ohne etwas auszutauschen. Erinnerungen sind auf dem Gerät geplante Benachrichtigungen, ohne Server. Le Sudoku du jour hat keinen Zugriff auf deine Kontakte, Fotos, dein Mikrofon, deine Kamera oder deinen Standort, und wir verkaufen deine Daten nicht.',
+        ja: 'デイリーチャレンジを含むパズルはすべて端末上で生成され、iPhoneのウィジェットも何も通信せずにチャレンジを計算します。リマインダーは端末上で予約される通知で、サーバーは使いません。Le Sudoku du jourは連絡先、写真、マイク、カメラ、位置情報にアクセスせず、私たちがあなたのデータを販売することもありません。',
+        ko: '오늘의 도전을 포함한 퍼즐은 모두 기기에서 만들어지며, iPhone 위젯도 아무것도 주고받지 않고 도전을 계산합니다. 알림은 기기에 예약되는 알림으로, 서버를 쓰지 않습니다. Le Sudoku du jour는 연락처, 사진, 마이크, 카메라, 위치에 접근하지 않으며, 저희는 당신의 데이터를 판매하지 않습니다.',
       },
     ],
   },
