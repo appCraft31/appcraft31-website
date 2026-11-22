@@ -31,15 +31,22 @@ const adFunded = (removedBy?: string): PrivacyFacts['ads'] => ({
 export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
   // Ghost Hunt — lu dans ~/StudioProjects/En_developpement/GhostHunt le
   // 22 novembre 2026. `AdMobRewardedAds.cs` : vidéo récompensée seulement, UMP
-  // puis ATT, aucun formulaire rouvrable (`umpReopen: false`), aucune
+  // puis ATT, formulaire rouvrable depuis les Réglages quand UMP l'exige
+  // (`ShowPrivacyOptionsForm`, d'où `umpReopen: true`), aucune
   // restriction de contenu (`familyContent: false`). Le message RGPD du compte
   // n'a pas de « Refuser » au premier écran : le refus passe par « Gérer les
   // options ». Unity Ads (médiation AdMob, enchères) est décrit dans
   // `ads.notes` et non dans `mediation` : ce champ affirme que le choix du
-  // joueur est relayé à la régie, ce qui n'a pas été vérifié.
-  // `GameAnalytics.cs` : Unity Analytics activé d'office sur téléphone, sans
-  // question ni interrupteur (`optOut: false`), identifiant d'installation
-  // (`anonymous: false`). À revoir dès que le jeu demandera le consentement.
+  // joueur est relayé avec chaque demande d'annonce. `UnityAdsConsent.cs` le
+  // transmet avant l'initialisation et à chaque changement, là où le RGPD
+  // s'applique ; sa réception par Unity n'a pas été observée.
+  // `GameAnalytics.cs` (build 1.0 (2)) : question au premier lancement, SDK
+  // non initialisé avant l'accord, retrait dans les Réglages avec
+  // `RequestDataDeletion` (`optOut: true`), identifiant d'installation
+  // (`anonymous: false`). Au retrait, le SDK envoie d'abord ce qui était en
+  // attente (`DeactivateWithFlush`), puis la demande d'effacement.
+  // `submitAnalytics: 1` : le moteur Unity peut envoyer des informations
+  // techniques quel que soit ce choix, d'où la note de la rubrique locale.
   // Sauvegarde : `progress.json` dans persistentDataPath, que la sauvegarde
   // iCloud ou Google de l'appareil peut copier (d'où `cloudSync`).
   ghosthunt: {
@@ -59,14 +66,18 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
         en: 'hint balance, date of the last completed daily challenge and number of challenges completed',
       },
       {
-        fr: 'réglages : son, musique, vibrations, croix automatiques et langue',
-        en: 'settings: sound, music, vibrations, automatic crosses and language',
+        fr: 'réglages : son, musique, vibrations, croix automatiques, langue et choix des statistiques',
+        en: 'settings: sound, music, vibrations, automatic crosses, language and statistics choice',
       },
     ],
     notes: [
       {
-        fr: "Ce fichier de sauvegarde peut être copié par la sauvegarde de votre appareil (iCloud ou compte Google), si elle est activée. Cette copie se gère dans les réglages de sauvegarde de l'appareil. Certains résultats de jeu sont par ailleurs envoyés sous forme de statistiques, comme décrit dans la rubrique « Mesure d’audience ».",
-        en: 'This save file may be copied by your device’s backup (iCloud or Google account), if enabled. That copy is managed in the device’s backup settings. Some gameplay results are also sent as statistics, as described in the analytics section.',
+        fr: "Ce fichier de sauvegarde peut être copié par la sauvegarde de votre appareil (iCloud ou compte Google), si elle est activée. Cette copie se gère dans les réglages de sauvegarde de l'appareil. Si vous acceptez les statistiques, certains résultats de jeu sont par ailleurs envoyés, comme décrit dans la rubrique « Mesure d’audience ».",
+        en: 'This save file may be copied by your device’s backup (iCloud or Google account), if enabled. That copy is managed in the device’s backup settings. If you accept statistics, some gameplay results are also sent, as described in the analytics section.',
+      },
+      {
+        fr: "Le jeu est construit avec le moteur Unity qui, indépendamment de votre choix sur les statistiques de jeu, peut transmettre à Unity Technologies des informations techniques sur l'appareil et l'application (modèle, système, identifiant d'installation, adresse IP). Leur traitement est décrit dans la politique d'Unity : https://unity.com/legal/game-player-and-app-user-privacy-policy",
+        en: 'The game is built with the Unity engine which, independently of your choice about gameplay statistics, may send Unity Technologies technical information about the device and the app (model, operating system, installation identifier, IP address). Its processing is described in Unity’s policy: https://unity.com/legal/game-player-and-app-user-privacy-policy',
       },
     ],
     ads: {
@@ -74,7 +85,7 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
       formats: ['rewarded'],
       ump: true,
       att: true,
-      umpReopen: false,
+      umpReopen: true,
       familyContent: false,
       notes: [
         {
@@ -86,6 +97,14 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
           en: 'In the consent form, you refuse or customise through “Manage options”.',
         },
         {
+          fr: "Le bouton « Choix publicitaires » des Réglages rouvre cet écran. Il apparaît là où Google exige qu'un tel accès soit proposé.",
+          en: 'The “Ad privacy choices” button in Settings reopens this form. It appears where Google requires that such access be offered.',
+        },
+        {
+          fr: "Là où le RGPD s'applique, le jeu transmet à Unity Ads le choix fait pour cette régie dans l'écran de consentement, avant son démarrage et après chaque changement.",
+          en: 'Where the GDPR applies, the game passes the choice you made for Unity Ads in the consent form on to that network, before it starts and after every change.',
+        },
+        {
           fr: "Le jeu intègre aussi le SDK Unity Ads (Unity Technologies), qui participe aux enchères de la médiation AdMob. Unity peut traiter, pour ces enchères et pour les annonces qu'il diffuse, l'adresse IP, des informations sur l'appareil, des identifiants publicitaires ou liés à l'application et les interactions avec les annonces. Politique d'Unity, auprès de qui vous pouvez aussi exercer vos droits : https://unity.com/legal/game-player-and-app-user-privacy-policy",
           en: 'The game also includes the Unity Ads SDK (Unity Technologies), which bids through AdMob mediation. For these auctions and for the ads it serves, Unity may process IP address, device information, advertising or app-related identifiers and interactions with ads. Unity’s policy, under which you can also exercise your rights: https://unity.com/legal/game-player-and-app-user-privacy-policy',
         },
@@ -94,17 +113,17 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     purchases: [],
     analytics: {
       vendors: ['Unity Analytics'],
-      optOut: false,
+      optOut: true,
       anonymous: false,
       purpose: {
-        fr: "mesurer la fréquentation et améliorer le jeu : sessions, informations sur l'appareil et l'application, pays, identifiant propre à l'installation, niveaux commencés, réussis ou perdus (numéro, défi du jour ou non, étoiles, durée, indices), indices utilisés et vidéos récompensées. Cette collecte commence au lancement, sans question préalable, et le jeu ne propose pas encore de réglage pour la couper : désinstaller l'application l'arrête. Unity Technologies traite ces données (https://unity.com/legal/game-player-and-app-user-privacy-policy)",
-        en: 'measure usage and improve the game: sessions, device and app information, country, an installation identifier, levels started, completed or lost (number, whether it is the daily challenge, stars, duration, hints), hints used and rewarded videos. Collection starts at launch without asking first, and the game does not yet offer a setting to turn it off: uninstalling the app stops it. Unity Technologies processes this data (https://unity.com/legal/game-player-and-app-user-privacy-policy)',
+        fr: "mesurer la fréquentation et améliorer le jeu : sessions, informations sur l'appareil et l'application, pays, identifiant propre à l'installation, niveaux commencés, réussis ou perdus (numéro, défi du jour ou non, étoiles, durée, indices), indices utilisés et vidéos récompensées. Cette collecte n'a lieu que si vous l'acceptez : la question est posée au premier lancement, rien n'est collecté à ce titre avant votre accord, et refuser ne change rien au jeu. Le bouton « Statistiques » des Réglages permet de changer d'avis. Retirer votre accord arrête la collecte, après envoi des événements déjà enregistrés avec votre accord, et demande à Unity d'effacer ces données ; cette demande nécessite une connexion. Unity Technologies traite ces données (https://unity.com/legal/game-player-and-app-user-privacy-policy)",
+        en: 'measure usage and improve the game: sessions, device and app information, country, an installation identifier, levels started, completed or lost (number, whether it is the daily challenge, stars, duration, hints), hints used and rewarded videos. Collection only takes place if you accept it: you are asked at first launch, nothing is collected for this purpose before you agree, and declining does not change the game. The “Statistics” button in Settings lets you change your mind. Withdrawing your consent stops collection, once events already recorded with your consent have been sent, and asks Unity to erase this data; that request needs a connection. Unity Technologies processes this data (https://unity.com/legal/game-player-and-app-user-privacy-policy)',
       },
     },
     network: {
       purpose: {
-        fr: "charger les vidéos publicitaires et l'écran de consentement (Google, Unity Ads) et envoyer les statistiques de jeu (Unity Analytics). Le jeu lui-même se joue hors ligne, et le studio n'exploite aucun serveur pour lui",
-        en: 'loading video ads and the consent form (Google, Unity Ads) and sending gameplay statistics (Unity Analytics). The game itself plays offline, and the studio runs no server for it',
+        fr: "charger les vidéos publicitaires et l'écran de consentement (Google, Unity Ads), envoyer les statistiques de jeu si vous les acceptez (Unity Analytics) et transmettre les éventuelles informations techniques du moteur Unity. Le jeu lui-même se joue hors ligne, et le studio n'exploite aucun serveur pour lui",
+        en: 'loading video ads and the consent form (Google, Unity Ads), sending gameplay statistics if you accept them (Unity Analytics) and sending any technical information from the Unity engine. The game itself plays offline, and the studio runs no server for it',
       },
     },
     accounts: null,
