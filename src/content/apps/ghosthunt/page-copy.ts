@@ -58,7 +58,7 @@ const fr: AppCopy = {
         { title: 'Des indices qui expliquent', body: 'Trois indices au départ. Chacun se dévoile en trois temps et montre le raisonnement.' },
         { title: 'Pas de limite de temps', body: 'Réfléchissez autant que vous voulez. Votre temps est noté pour battre vos records, et chaque cœur gardé vaut une étoile.' },
         { title: 'Gratuit', body: 'Aucun achat intégré, ni bannière, ni interstitiel. Une vidéo publicitaire facultative rapporte un indice.' },
-        { title: 'Hors connexion', body: 'Le jeu se joue sans réseau, en 14 langues. La connexion sert aux vidéos et aux statistiques de jeu.' },
+        { title: 'Hors connexion', body: 'Le jeu se joue sans réseau, en 14 langues. La connexion sert aux vidéos et, si vous les acceptez, aux statistiques de jeu.' },
       ],
     },
     {
@@ -70,7 +70,7 @@ const fr: AppCopy = {
       id: 'privacy',
       kicker: 'Vie privée',
       title: 'Aucun compte à créer',
-      body: 'Votre progression est enregistrée sur votre appareil. Le jeu utilise Google AdMob et Unity Ads pour les vidéos, et Unity Analytics pour les statistiques de jeu : la politique de confidentialité détaille ce que chacun reçoit.',
+      body: 'Votre progression est enregistrée sur votre appareil. Le jeu utilise Google AdMob et Unity Ads pour les vidéos, et Unity Analytics pour les statistiques de jeu, seulement si vous les acceptez : la politique de confidentialité détaille ce que chacun reçoit.',
     },
   ],
 
@@ -161,7 +161,7 @@ const en: AppCopy = {
         { title: 'Hints that explain', body: 'You start with three hints. Each unfolds in three steps and shows the reasoning.' },
         { title: 'No time limit', body: 'Think for as long as you like. Your time is recorded so you can beat your records, and each heart kept earns a star.' },
         { title: 'Free', body: 'No in-app purchases, banners or interstitials. An optional video ad earns you a hint.' },
-        { title: 'Offline', body: 'The game plays without a network, in 14 languages. The connection is used for videos and gameplay statistics.' },
+        { title: 'Offline', body: 'The game plays without a network, in 14 languages. The connection is used for videos and, if you accept them, gameplay statistics.' },
       ],
     },
     {
@@ -173,7 +173,7 @@ const en: AppCopy = {
       id: 'privacy',
       kicker: 'Privacy',
       title: 'No account needed',
-      body: 'Your progress is saved on your device. The game uses Google AdMob and Unity Ads for videos, and Unity Analytics for gameplay statistics: the privacy policy details what each one receives.',
+      body: 'Your progress is saved on your device. The game uses Google AdMob and Unity Ads for videos, and Unity Analytics for gameplay statistics, only if you accept them: the privacy policy details what each one receives.',
     },
   ],
 
