@@ -105,7 +105,7 @@ export function privacySections(
       body.push(s.adsMediation(list(lang, partners)));
       body.push(facts.ads.mediationNoConsent ? s.adsMediationNoConsent : s.adsMediationConsent);
     }
-    if (facts.ads.att) body.push(s.adsAtt);
+    if (facts.ads.att) body.push(facts.ads.attDetail ? loc(lang, facts.ads.attDetail) : s.adsAtt);
     if (facts.ads.ump) {
       body.push(s.adsUmp);
       // `umpReopen` non renseigné = l'app propose bien un accès au formulaire.
