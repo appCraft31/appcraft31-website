@@ -59,7 +59,7 @@ const fr: AppCopy = {
       id: 'privacy',
       kicker: 'Vie privée',
       title: 'Ce que GraviWords enregistre',
-      body: 'Ta progression, tes pièces et tes pouvoirs restent sur l’appareil ; seuls les scores passent par Game Center. Le détail des SDK intégrés figure dans la politique de confidentialité.',
+      body: 'Ta progression, tes pièces et tes pouvoirs sont enregistrés sur l’appareil. Scores et succès passent par Game Center, et Google reçoit des statistiques de jeu et des données publicitaires. Le détail des SDK intégrés figure dans la politique de confidentialité.',
     },
   ],
 
@@ -135,7 +135,7 @@ const en: AppCopy = {
       id: 'privacy',
       kicker: 'Privacy',
       title: 'What GraviWords stores',
-      body: 'Your progress, coins and powers stay on the device; only scores go through Game Center. The full list of included SDKs is in the privacy policy.',
+      body: 'Your progress, coins and powers are saved on the device. Scores and achievements go through Game Center, and Google receives gameplay statistics and advertising data. The full list of included SDKs is in the privacy policy.',
     },
   ],
 

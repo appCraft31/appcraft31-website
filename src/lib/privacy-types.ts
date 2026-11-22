@@ -40,6 +40,11 @@ export interface AdsFacts {
   /** Demande App Tracking Transparency réellement implémentée. */
   att: boolean;
   /**
+   * Remplace la phrase type sur ATT, qui situe la demande « au premier lancement »,
+   * quand l'app la présente à un autre moment (GraviWords : après la première partie).
+   */
+  attDetail?: Localized;
+  /**
    * L'app propose-t-elle un accès pour rouvrir le formulaire de consentement ?
    * Non renseigné vaut oui. À mettre à `false` quand le code n'appelle nulle
    * part `showPrivacyOptionsForm` : promettre un réglage qui n'existe pas est

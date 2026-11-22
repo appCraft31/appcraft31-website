@@ -1484,18 +1484,78 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     updated: REVIEWED,
   },
 
+  // GraviWords 2.0.1 (iOS) — relu dans le code Swift le 22 novembre 2026.
+  // `RewardedAdManager.swift` : vidéo récompensée seulement, ni UMP ni restriction de contenu.
+  // `ContentView.startTrackingFlow` : ATT après la première partie, puis Firebase Analytics et
+  // AdMob, quelle que soit la réponse (`anonymous: false`, `optOut: false`).
+  // Conservation lue dans la propriété GA4 540122450 : événements 2 mois, utilisateurs 14 mois.
   graviwords: {
     platforms: ['iOS'],
-    localData: ['pièces', 'pouvoirs débloqués', 'meilleurs scores', 'réglages'],
-    ads: adFunded(),
-    purchases: [
-      { kind: 'consumable', what: 'des pièces pour la boutique de pouvoirs (3 paliers)', productId: 'com.appcraft31.graviword.coins.small' },
+    cloudSync: true,
+    localData: [
+      { fr: 'pièces et pouvoirs débloqués', en: 'coins and unlocked powers' },
+      { fr: 'record, score et série du défi du jour', en: 'best score, daily challenge score and streak' },
+      { fr: 'succès déjà signalés', en: 'achievements already reported' },
+      { fr: 'réglages', en: 'settings' },
     ],
-    analytics: null,
-    network: null,
-    accounts: { service: 'Game Center', what: 'le classement mondial' },
+    notes: [
+      {
+        fr: "Ces données peuvent figurer dans la sauvegarde de votre appareil, si elle est activée. Certains résultats de jeu sont aussi transmis à Game Center et à Firebase Analytics, comme décrit plus bas.",
+        en: 'This data may be included in your device backup, if enabled. Some gameplay results are also sent to Game Center and Firebase Analytics, as described below.',
+      },
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['rewarded'],
+      ump: false,
+      att: true,
+      attDetail: {
+        fr: "Sur iOS, le système vous demande, après votre première partie, si vous autorisez le suivi de votre activité. La publicité et la mesure d'audience démarrent après votre réponse, quelle qu'elle soit. Si vous refusez, l'identifiant publicitaire (IDFA) n'est pas communiqué.",
+        en: 'On iOS, the system asks after your first game whether you allow tracking of your activity. Ads and analytics start once you have answered, whatever your answer. If you decline, the advertising identifier (IDFA) is not shared.',
+      },
+      familyContent: false,
+      notes: [
+        {
+          fr: "Les vidéos sont facultatives et ne se lancent que si vous touchez leur bouton. Google peut aussi traiter l'adresse IP, dont se déduit une position approximative, et des diagnostics, à des fins de publicité, d'analyse et de prévention de la fraude.",
+          en: 'Videos are optional and only start when you tap their button. Google may also process the IP address, from which an approximate location is derived, and diagnostics, for advertising, analytics and fraud prevention.',
+        },
+      ],
+    },
+    purchases: [
+      {
+        kind: 'consumable',
+        what: { fr: 'des pièces pour la boutique de pouvoirs (3 paliers)', en: 'coins for the power shop (3 tiers)' },
+        productId: 'com.appcraft31.graviword.coins.small',
+      },
+    ],
+    analytics: {
+      vendors: ['Firebase Analytics (Google)'],
+      optOut: false,
+      anonymous: false,
+      purpose: {
+        fr: "comprendre comment le jeu est joué et l'améliorer : parties, scores, durée, longueur des mots, combos, pouvoirs, défi du jour, tutoriel, partages, ouvertures par lien, vidéos récompensées et achats de pièces, ainsi que les données automatiques de Firebase (identifiant de l'installation, appareil, système, version du jeu, pays, langue, sessions). Les événements de la première partie attendent sur l'appareil votre réponse à la demande de suivi, puis sont envoyés. Les événements sont conservés 2 mois et les données liées à un identifiant 14 mois après la dernière activité ; le jeu ne propose pas de réglage pour couper cette mesure",
+        en: 'understanding how the game is played and improving it: games, scores, duration, word length, combos, powers, daily challenge, tutorial, shares, link opens, rewarded videos and coin purchases, plus Firebase’s automatic data (installation identifier, device, operating system, game version, country, language, sessions). Events from the first game wait on the device until you answer the tracking request, then are sent. Events are kept for 2 months and data linked to an identifier for 14 months after the last activity; the game has no setting to turn this measurement off',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "charger les vidéos publicitaires, envoyer la mesure d'audience, les scores et les succès, et traiter les achats. Les parties elles-mêmes se jouent hors ligne",
+        en: 'loading video ads, sending analytics, scores and achievements, and processing purchases. The games themselves play offline',
+      },
+    },
+    accounts: {
+      service: 'Game Center',
+      what: 'les classements et les succès',
+      bodyTitle: 'service',
+      body: [
+        {
+          fr: "GraviWords ne vous demande jamais de créer un compte. Si vous êtes connecté à Game Center, le service d'Apple reçoit vos scores et vos succès, et les associe à votre profil Game Center, selon ses propres règles.",
+          en: 'GraviWords never asks you to create an account. If you are signed in to Game Center, Apple’s service receives your scores and achievements and links them to your Game Center profile, under its own rules.',
+        },
+      ],
+    },
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-11-22',
   },
 
   // Orbis 3.0.2 — lu dans ~/StudioProjects/En_developpement/Orbis_Unity le
