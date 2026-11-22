@@ -1498,16 +1498,72 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     updated: REVIEWED,
   },
 
+  // Orbis 3.0.2 — lu dans ~/StudioProjects/En_developpement/Orbis_Unity le
+  // 22 novembre 2026 (Unity 6, remplace l'app Swift 2.x sous le même identifiant).
+  // `AdMobAds.cs` : UMP puis ATT, interstitiel et vidéo récompensée, formulaire
+  // rouvrable là où il est requis, aucune restriction de contenu. `ConsentGate` :
+  // Firebase Analytics et Unity Analytics exigent les finalités TCF 1, 7 et 8 sous
+  // RGPD ; Crashlytics n'attend que la réponse ATT. Unity Ads et Liftoff sont
+  // décrits dans `ads.notes` et non dans `mediation` : le relais du consentement
+  // n'a pas été vérifié sur appareil. « Supprimer les pubs » ne coupe que les
+  // interstitiels (`AdPacing`), d'où une note plutôt que `removedBy`.
+  // Sauvegarde : `orbis_save.json` dans persistentDataPath, copié par la
+  // sauvegarde iCloud de l'appareil (d'où `cloudSync`).
   orbis: {
     platforms: ['iOS'],
-    localData: ['progression', 'meilleurs scores', 'réglages'],
-    ads: adFunded(),
-    purchases: [],
-    analytics: null,
-    network: null,
-    accounts: { service: 'Game Center', what: 'les classements iPhone et iPad' },
+    cloudSync: true,
+    localData: [
+      { fr: 'progression, meilleurs scores, missions et défi du jour', en: 'progress, best scores, missions and daily challenge' },
+      { fr: 'Éclats, coffres, objets débloqués et achats', en: 'Shards, chests, unlocked items and purchases' },
+      { fr: 'réglages et rappels programmés', en: 'settings and scheduled reminders' },
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      familyContent: false,
+      notes: [
+        {
+          fr: "Le jeu intègre aussi, par la médiation AdMob, les SDK Unity Ads (Unity Technologies) et Liftoff Monetize (Vungle). Pour les enchères et les annonces qu'ils diffusent, ils peuvent traiter l'adresse IP, des informations sur l'appareil, des identifiants publicitaires ou liés à l'application et les interactions avec les annonces. Leurs politiques, où vous pouvez aussi exercer vos droits : https://unity.com/legal/game-player-and-app-user-privacy-policy et https://liftoff.ai/privacy-policy/",
+          en: 'Through AdMob mediation, the game also includes the Unity Ads (Unity Technologies) and Liftoff Monetize (Vungle) SDKs. For auctions and the ads they serve, they may process IP address, device information, advertising or app-related identifiers and interactions with ads. Their policies, under which you can also exercise your rights: https://unity.com/legal/game-player-and-app-user-privacy-policy and https://liftoff.ai/privacy-policy/',
+        },
+        {
+          fr: "L'achat « Supprimer les pubs » et le pack de démarrage retirent les publicités entre les parties. Les vidéos facultatives qui donnent une récompense restent proposées.",
+          en: 'The “Remove ads” purchase and the starter pack remove the ads shown between games. Optional rewarded videos are still offered.',
+        },
+      ],
+    },
+    purchases: [
+      { kind: 'consumable', what: { fr: 'des coffres (3 tailles)', en: 'chests (3 sizes)' }, productId: 'orbis.chest.bronze' },
+      { kind: 'consumable', what: { fr: "des Éclats, la monnaie du jeu (3 paliers)", en: 'Shards, the in-game currency (3 tiers)' }, productId: 'orbis.shards.500' },
+      { kind: 'non-consumable', what: { fr: 'la suppression des publicités entre les parties', en: 'removal of ads between games' }, productId: 'orbis.noads' },
+      { kind: 'non-consumable', what: { fr: 'le pack de démarrage (Éclats, objet exclusif, suppression des publicités entre les parties)', en: 'the starter pack (Shards, exclusive item, removal of ads between games)' }, productId: 'orbis.starter' },
+    ],
+    analytics: {
+      vendors: ['Firebase Analytics', 'Firebase Crashlytics', 'Unity Analytics'],
+      optOut: false,
+      anonymous: false,
+      purpose: {
+        fr: "comprendre comment le jeu est utilisé, l'améliorer, corriger ses plantages et mesurer ses revenus publicitaires : sessions, identifiants propres à l'installation, modèle et système de l'appareil, langue, pays déduit de l'adresse IP, version du jeu, tutoriel, parties (mode, niveau, durée, score), défis et missions, objets débloqués, rappels, publicités proposées, vues, cliquées ou en échec et revenu de chaque annonce, ainsi que les rapports de plantage",
+        en: 'understand how the game is used, improve it, fix crashes and measure its ad revenue: sessions, installation identifiers, device model and operating system, language, country inferred from the IP address, game version, tutorial, games (mode, level, duration, score), challenges and missions, unlocked items, reminders, ads offered, watched, clicked or failed and the revenue of each ad, as well as crash reports',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "le chargement des publicités (Google, Unity Ads, Liftoff) et de l'écran de consentement, l'envoi des statistiques (Firebase Analytics, Unity Analytics) et des rapports de plantage (Firebase Crashlytics), les achats (App Store) et les classements (Game Center). Le jeu lui-même se joue hors ligne",
+        en: 'loading ads (Google, Unity Ads, Liftoff) and the consent form, sending statistics (Firebase Analytics, Unity Analytics) and crash reports (Firebase Crashlytics), purchases (App Store) and leaderboards (Game Center). The game itself can be played offline',
+      },
+    },
+    accounts: { service: 'Game Center', what: 'les classements et les succès' },
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-11-22',
+    notes: [
+      {
+        fr: "À partir de la version 3.0.2, Firebase Analytics et Unity Analytics ne démarrent qu'après votre réponse aux écrans de consentement et de suivi. Là où le RGPD s'applique, ils exigent votre accord au stockage sur l'appareil et à la mesure des annonces et des contenus. Vous pouvez le retirer dans Réglages → Confidentialité : la collecte s'arrête, sans effacer les données déjà envoyées, dont vous pouvez demander la suppression en nous écrivant. Là où aucun consentement n'est requis, le jeu ne propose pas de réglage pour couper ces statistiques. Les rapports de plantage (Crashlytics) partent après la réponse à la demande de suivi, quel que soit votre choix.",
+        en: 'From version 3.0.2, Firebase Analytics and Unity Analytics only start after you answer the consent and tracking prompts. Where GDPR applies, they require your agreement to storage on the device and to measurement of ads and content. You can withdraw it in Settings → Privacy: collection stops, without erasing data already sent, which you can ask us to delete by writing to us. Where no consent is required, the game offers no setting to turn these statistics off. Crash reports (Crashlytics) are sent after you answer the tracking prompt, whatever your choice.',
+      },
+    ],
   },
 
   // Mêliz 3.0 — relu le 13 novembre 2026 dans ~/StudioProjects/Multistore/meliz/unity
