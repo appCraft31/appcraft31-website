@@ -1,0 +1,62 @@
+{
+  "fr": {
+    "tagline": "Retrouvez les fantômes cachés du jardin",
+    "desc": "Un puzzle de logique tout doux : suivez les flèches, observez les parterres et placez chaque petit fantôme. 30 niveaux, un défi chaque jour et des indices qui expliquent le raisonnement.",
+    "c1": "30 niveaux",
+    "c2": "Défi du jour",
+    "c3": "Solution unique",
+    "c4": "Indices expliqués",
+    "c5": "14 langues",
+    "c6": "Se joue hors ligne"
+  },
+  "en": {
+    "tagline": "Find the ghosts hidden in the garden",
+    "desc": "A cozy logic puzzle: follow the arrows, study the flower beds and place every little ghost. 30 levels, a daily challenge and hints that explain the reasoning.",
+    "c1": "30 levels",
+    "c2": "Daily challenge",
+    "c3": "One solution",
+    "c4": "Hints that explain",
+    "c5": "14 languages",
+    "c6": "Plays offline"
+  },
+  "ja": {
+    "tagline": "庭に隠れたおばけを見つけよう",
+    "desc": "ほっこりかわいい論理パズル。矢印をたどり、花壇をよく見て、小さなおばけを置いていこう。全30レベル、デイリーチャレンジ、考え方がわかるヒント付き。",
+    "c1": "全30レベル",
+    "c2": "デイリーチャレンジ",
+    "c3": "答えは1つ",
+    "c4": "考え方がわかるヒント",
+    "c5": "14言語",
+    "c6": "オフラインで遊べる"
+  },
+  "ko": {
+    "tagline": "정원에 숨은 유령을 찾아보세요",
+    "desc": "아늑한 논리 퍼즐. 화살표를 따라가고 꽃밭을 살펴 꼬마 유령을 하나씩 배치하세요. 30개 레벨, 일일 도전, 풀이 과정을 알려 주는 힌트.",
+    "c1": "30개 레벨",
+    "c2": "일일 도전",
+    "c3": "정답은 하나",
+    "c4": "풀이를 알려 주는 힌트",
+    "c5": "14개 언어",
+    "c6": "오프라인 플레이"
+  },
+  "es": {
+    "tagline": "Encuentra los fantasmas escondidos en el jardín",
+    "desc": "Un puzle de lógica acogedor: sigue las flechas, observa los parterres y coloca cada pequeño fantasma. 30 niveles, un reto diario y pistas que explican el razonamiento.",
+    "c1": "30 niveles",
+    "c2": "Reto diario",
+    "c3": "Solución única",
+    "c4": "Pistas explicadas",
+    "c5": "14 idiomas",
+    "c6": "Se juega sin conexión"
+  },
+  "de": {
+    "tagline": "Finde die versteckten Geister im Garten",
+    "desc": "Ein gemütliches Logikrätsel: Folge den Pfeilen, beobachte die Beete und platziere jeden kleinen Geist. 30 Level, eine tägliche Aufgabe und Tipps, die den Gedankengang erklären.",
+    "c1": "30 Level",
+    "c2": "Tägliche Aufgabe",
+    "c3": "Eine Lösung",
+    "c4": "Erklärende Tipps",
+    "c5": "14 Sprachen",
+    "c6": "Offline spielbar"
+  }
+}

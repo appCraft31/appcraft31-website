@@ -22,6 +22,8 @@ const PROJECTS = join(homedir(), 'StudioProjects');
  * quand le projet vit ailleurs (Elastic Hero est sur le disque Appcraft).
  */
 const SOURCES = {
+  // Ghost Hunt (Unity 6), encore dans le dossier des projets en cours.
+  ghosthunt: join('En_developpement', 'GhostHunt'),
   // Rangement de ~/StudioProjects par distribution (novembre 2026) :
   // `AppStore/` (iOS seul), `Multistore/` (iOS et Android), `PlayStore/`,
   // `En_developpement/`. tenGO, Binero et Zellige y sont des projets Unity.

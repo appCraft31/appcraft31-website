@@ -29,6 +29,88 @@ const adFunded = (removedBy?: string): PrivacyFacts['ads'] => ({
 });
 
 export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
+  // Ghost Hunt — lu dans ~/StudioProjects/En_developpement/GhostHunt le
+  // 22 novembre 2026. `AdMobRewardedAds.cs` : vidéo récompensée seulement, UMP
+  // puis ATT, aucun formulaire rouvrable (`umpReopen: false`), aucune
+  // restriction de contenu (`familyContent: false`). Le message RGPD du compte
+  // n'a pas de « Refuser » au premier écran : le refus passe par « Gérer les
+  // options ». Unity Ads (médiation AdMob, enchères) est décrit dans
+  // `ads.notes` et non dans `mediation` : ce champ affirme que le choix du
+  // joueur est relayé à la régie, ce qui n'a pas été vérifié.
+  // `GameAnalytics.cs` : Unity Analytics activé d'office sur téléphone, sans
+  // question ni interrupteur (`optOut: false`), identifiant d'installation
+  // (`anonymous: false`). À revoir dès que le jeu demandera le consentement.
+  // Sauvegarde : `progress.json` dans persistentDataPath, que la sauvegarde
+  // iCloud ou Google de l'appareil peut copier (d'où `cloudSync`).
+  ghosthunt: {
+    platforms: ['iOS', 'Android'],
+    cloudSync: true,
+    localData: [
+      {
+        fr: 'niveaux débloqués et réussis, étoiles, niveaux sans faute et meilleurs temps',
+        en: 'unlocked and completed levels, stars, flawless levels and best times',
+      },
+      {
+        fr: 'parties en cours : grille, cœurs restants, temps et indices utilisés',
+        en: 'games in progress: board, remaining hearts, time and hints used',
+      },
+      {
+        fr: "réserve d'indices, date du dernier défi du jour réussi et nombre de défis réussis",
+        en: 'hint balance, date of the last completed daily challenge and number of challenges completed',
+      },
+      {
+        fr: 'réglages : son, musique, vibrations, croix automatiques et langue',
+        en: 'settings: sound, music, vibrations, automatic crosses and language',
+      },
+    ],
+    notes: [
+      {
+        fr: "Ce fichier de sauvegarde peut être copié par la sauvegarde de votre appareil (iCloud ou compte Google), si elle est activée. Cette copie se gère dans les réglages de sauvegarde de l'appareil. Certains résultats de jeu sont par ailleurs envoyés sous forme de statistiques, comme décrit dans la rubrique « Mesure d’audience ».",
+        en: 'This save file may be copied by your device’s backup (iCloud or Google account), if enabled. That copy is managed in the device’s backup settings. Some gameplay results are also sent as statistics, as described in the analytics section.',
+      },
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['rewarded'],
+      ump: true,
+      att: true,
+      umpReopen: false,
+      familyContent: false,
+      notes: [
+        {
+          fr: "La vidéo est toujours facultative : elle ne se lance que si vous touchez son bouton, et rapporte un indice. Le jeu n'affiche ni bannière ni interstitiel.",
+          en: 'The video is always optional: it only starts if you tap its button, and earns one hint. The game shows no banners or interstitials.',
+        },
+        {
+          fr: "Dans l'écran de consentement, le refus et la personnalisation se font depuis « Gérer les options ».",
+          en: 'In the consent form, you refuse or customise through “Manage options”.',
+        },
+        {
+          fr: "Le jeu intègre aussi le SDK Unity Ads (Unity Technologies), qui participe aux enchères de la médiation AdMob. Unity peut traiter, pour ces enchères et pour les annonces qu'il diffuse, l'adresse IP, des informations sur l'appareil, des identifiants publicitaires ou liés à l'application et les interactions avec les annonces. Politique d'Unity, auprès de qui vous pouvez aussi exercer vos droits : https://unity.com/legal/game-player-and-app-user-privacy-policy",
+          en: 'The game also includes the Unity Ads SDK (Unity Technologies), which bids through AdMob mediation. For these auctions and for the ads it serves, Unity may process IP address, device information, advertising or app-related identifiers and interactions with ads. Unity’s policy, under which you can also exercise your rights: https://unity.com/legal/game-player-and-app-user-privacy-policy',
+        },
+      ],
+    },
+    purchases: [],
+    analytics: {
+      vendors: ['Unity Analytics'],
+      optOut: false,
+      anonymous: false,
+      purpose: {
+        fr: "mesurer la fréquentation et améliorer le jeu : sessions, informations sur l'appareil et l'application, pays, identifiant propre à l'installation, niveaux commencés, réussis ou perdus (numéro, défi du jour ou non, étoiles, durée, indices), indices utilisés et vidéos récompensées. Cette collecte commence au lancement, sans question préalable, et le jeu ne propose pas encore de réglage pour la couper : désinstaller l'application l'arrête. Unity Technologies traite ces données (https://unity.com/legal/game-player-and-app-user-privacy-policy)",
+        en: 'measure usage and improve the game: sessions, device and app information, country, an installation identifier, levels started, completed or lost (number, whether it is the daily challenge, stars, duration, hints), hints used and rewarded videos. Collection starts at launch without asking first, and the game does not yet offer a setting to turn it off: uninstalling the app stops it. Unity Technologies processes this data (https://unity.com/legal/game-player-and-app-user-privacy-policy)',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "charger les vidéos publicitaires et l'écran de consentement (Google, Unity Ads) et envoyer les statistiques de jeu (Unity Analytics). Le jeu lui-même se joue hors ligne, et le studio n'exploite aucun serveur pour lui",
+        en: 'loading video ads and the consent form (Google, Unity Ads) and sending gameplay statistics (Unity Analytics). The game itself plays offline, and the studio runs no server for it',
+      },
+    },
+    accounts: null,
+    forChildren: false,
+    updated: '2026-11-22',
+  },
   // Vroomics — lu dans ~/essaies_dev/kart (Godot 4.7) le 18 octobre 2026.
   // `scripts/ads.gd` : greffon godot-admob v7 (`addons/AdmobPlugin`),
   // interstitiel et vidéo récompensée « ×2 CRÉDITS » ; formulaire UMP au
