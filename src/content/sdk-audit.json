@@ -1,4 +1,15 @@
 {
+  "ghosthunt": {
+    "source": "En_developpement/GhostHunt",
+    "hits": {
+      "ads": 9,
+      "purchases": 0,
+      "analytics": 1,
+      "network": 0,
+      "accounts": 0,
+      "consent": 2
+    }
+  },
   "fioleetpoison": {
     "source": "En_developpement/sort_bottle",
     "hits": {

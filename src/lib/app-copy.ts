@@ -17,6 +17,7 @@ import { pageCopy as contree } from '@/content/apps/contree/page-copy';
 import { pageCopy as ding } from '@/content/apps/ding/page-copy';
 import { pageCopy as elastichero } from '@/content/apps/elastichero/page-copy';
 import { pageCopy as fioleetpoison } from '@/content/apps/fioleetpoison/page-copy';
+import { pageCopy as ghosthunt } from '@/content/apps/ghosthunt/page-copy';
 import { pageCopy as glowmi } from '@/content/apps/glowmi/page-copy';
 import { pageCopy as ecopompe } from '@/content/apps/ecopompe/page-copy';
 import { pageCopy as glyphe } from '@/content/apps/glyphe/page-copy';
@@ -53,6 +54,7 @@ const FULL: Record<string, PerLang> = {
   ding,
   elastichero,
   fioleetpoison,
+  ghosthunt,
   glowmi,
   ecopompe,
   glyphe,

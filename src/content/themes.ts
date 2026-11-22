@@ -46,6 +46,26 @@ const F = {
 } as const;
 
 export const THEMES: Record<string, AppTheme> = {
+  /* ── Ghost Hunt : `Assets/GhostHunt/Scripts/App/Palette.cs` — nuit prune
+     #302D49 (`Background`), boutons #46435F (`Button`), crème #FFF8EF
+     (`Text`), or #FFD88A (`Gold`) du titre, menthe #94D4BE (`Mint`) du bouton
+     Jouer, lilas #B9A6E3 (`Selection`). Nunito partout, comme dans le jeu. ── */
+  ghosthunt: {
+    palette: {
+      ink: '#FFF8EF',
+      paper: '#302D49',
+      surface: '#46435F',
+      accent: '#FFD88A',
+      accentAlt: '#94D4BE',
+      glow: 'rgba(255, 216, 138, 0.26)',
+      line: '#B9A6E3',
+    },
+    fonts: { display: F.roundedBody, body: F.roundedBody },
+    backdrop: 'starfield',
+    shape: { radius: 24, border: 'soft' },
+    motion: 'calm',
+    layout: ['hero-split', 'stat-band', 'how-it-plays', 'gallery-device', 'features', 'faq', 'privacy', 'cta'],
+  },
   /* ── Fioles & Poisons : la palette de scripts/ui_style.gd — violet nuit
      #1C0A33 de l'écran de lancement (`boot_splash/bg_color` de
      project.godot), contour violet très foncé #2B0F45 (`OUTLINE`), crème

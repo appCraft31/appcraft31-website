@@ -8,6 +8,28 @@ import type { AppData } from './types';
 import { tintaPlayUrls } from './play';
 
 export const APPS: AppData[] = [
+  /* Ghost Hunt — pas encore publié (com.appcraft31.ghosthunt, Unity 6, iPhone,
+     iPad et Android). La fiche App Store (id 6837963323) est en préparation et
+     ses URL d'assistance et de confidentialité pointent ici : ajouter les liens
+     store et passer `status` à 'available' le jour de la sortie. Captures de la
+     scène du jeu (`GhostHunt.Editor.Captures.Game`, 1080×1920, fr) ; icône
+     provisoire, recadrée sur le fantôme de l'accueil du jeu. */
+  {
+    slug: 'ghosthunt',
+    name: 'Ghost Hunt',
+    category: 'game',
+    status: 'soon',
+    store: {},
+    icon: '/assets/icons/ghosthunt.webp',
+    screenshots: [
+      { src: '/assets/ghosthunt-screen-partie.webp', alt: 'Le niveau 9 en cours : trois fantômes posés et des croix sur un jardin découpé en parterres pastel, parmi les flèches, avec trois cœurs en haut' },
+      { src: '/assets/ghosthunt-screen-coeurs.webp', alt: 'Le niveau 12 avec un seul cœur restant sur trois, les silhouettes des fantômes à trouver et la grille de flèches' },
+      { src: '/assets/ghosthunt-screen-niveaux.webp', alt: 'Les 30 niveaux, colorés selon leur difficulté : Facile, Modéré, Difficile et Super dur' },
+      { src: '/assets/ghosthunt-screen-accueil.webp', alt: 'L’accueil : le titre Ghost Hunt, un fantôme entre deux citrouilles, les boutons Jouer et Défi du jour' },
+    ],
+    sdk: { ads: true, purchases: false, analytics: true, network: true, accounts: false },
+    privacyUpdated: '2026-11-22',
+  },
   /* Fioles & Poisons — pas encore publié (com.appcraft31.fioleetpoison, jeu
      Godot 4.7, iPhone seulement : `targeted_device_family=0` dans
      export_presets.cfg). La fiche App Store (id 6828982573) existe mais
