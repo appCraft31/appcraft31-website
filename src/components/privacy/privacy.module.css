@@ -122,11 +122,17 @@
   color: color-mix(in srgb, var(--u-ink) 84%, transparent);
 }
 
-.section ul {
+.section ul,
+.section ol {
   margin: 0 0 14px;
   padding-inline-start: 22px;
   display: grid;
   gap: 6px;
+}
+
+/* Une marche à suivre se lit par étapes : ses numéros restent visibles. */
+.section ol {
+  list-style: decimal;
 }
 
 .section li {
