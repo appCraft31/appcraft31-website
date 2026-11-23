@@ -1514,6 +1514,10 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
   // record et score du défi publiés, suppression dans le jeu. Play Jeux ne démarre qu'avec un projet
   // (`AndroidIds.PlayGamesProject`) ; Game Center ne garde que les succès en 3.0.
   // Textes des classements validés par Nicolas le 23/11/2026 (docs/confidentialite/3-classements-proposition.md).
+  // Pubs 3.0 (branche feat/unity-pubs, docs/confidentialite/4-pubs-proposition.md) : `GameConfig.CoinAdsPerDay` = 5,
+  // interstitiel toutes les 2 parties (`GameState.InterstitialDue`), Unity Ads 4.21 par la médiation AdMob
+  // (adaptateur 3.22.0, enchères). Décrit en note et non dans `mediation` : la phrase type affirme que le choix
+  // de l'écran de consentement est relayé, or iOS n'a pas d'UMP et le relais n'est pas vérifié sur Android.
   graviwords: {
     platforms: ['iOS', 'Android'],
     cloudSync: true,
@@ -1531,7 +1535,7 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     ],
     ads: {
       network: 'Google AdMob',
-      formats: ['rewarded'],
+      formats: ['rewarded', 'interstitial'],
       ump: false,
       att: true,
       attDetail: {
@@ -1541,8 +1545,12 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
       familyContent: false,
       notes: [
         {
-          fr: "Les vidéos sont facultatives et ne se lancent que si vous touchez leur bouton. Google peut aussi traiter l'adresse IP, dont se déduit une position approximative, et des diagnostics, à des fins de publicité, d'analyse et de prévention de la fraude.",
-          en: 'Videos are optional and only start when you tap their button. Google may also process the IP address, from which an approximate location is derived, and diagnostics, for advertising, analytics and fraud prevention.',
+          fr: "Les vidéos sont facultatives et ne se lancent que si vous touchez leur bouton : 5 par jour au plus pour gagner des pièces, et le sauvetage en fin de partie. Jusqu'à la version 2.0.1, ce sont les seules annonces du jeu. À partir de la version 3.0, une annonce plein écran (interstitiel) s'affiche aussi toutes les deux parties, en quittant l'écran de fin de partie. Google peut aussi traiter l'adresse IP, dont se déduit une position approximative, et des diagnostics, à des fins de publicité, d'analyse et de prévention de la fraude.",
+          en: 'Videos are optional and only start when you tap their button: up to 5 a day to earn coins, plus the rescue at the end of a game. Up to version 2.0.1, these are the only ads in the game. From version 3.0, a full-screen ad (interstitial) is also shown every two games, when leaving the game-over screen. Google may also process the IP address, from which an approximate location is derived, and diagnostics, for advertising, analytics and fraud prevention.',
+        },
+        {
+          fr: "À partir de la version 3.0, le jeu intègre aussi le SDK Unity Ads (Unity Technologies), qui participe aux enchères de la médiation AdMob. Pour ces enchères et pour les annonces qu'il diffuse, Unity peut traiter l'adresse IP, des informations sur l'appareil, des identifiants publicitaires ou liés à l'application et les interactions avec les annonces. Politique d'Unity, auprès de qui vous pouvez aussi exercer vos droits : https://unity.com/legal/game-player-and-app-user-privacy-policy",
+          en: 'From version 3.0, the game also includes the Unity Ads SDK (Unity Technologies), which bids through AdMob mediation. For these auctions and for the ads it serves, Unity may process IP address, device information, advertising or app-related identifiers and interactions with ads. Unity’s policy, under which you can also exercise your rights: https://unity.com/legal/game-player-and-app-user-privacy-policy',
         },
         {
           fr: "Sur Android, un formulaire Google recueille vos choix lorsque la loi l'exige ; ils se modifient alors dans Réglages > Choix publicitaires. L'identifiant publicitaire se réinitialise ou se supprime dans les réglages Android.",
@@ -1568,8 +1576,8 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     },
     network: {
       purpose: {
-        fr: "charger les vidéos publicitaires, envoyer la mesure d'audience (iOS), les scores et les succès, publier les classements en ligne à partir de la version 3.0, et traiter les achats. Les parties elles-mêmes se jouent hors ligne",
-        en: 'loading video ads, sending analytics (iOS), scores and achievements, posting the online leaderboards from version 3.0, and processing purchases. The games themselves play offline',
+        fr: "charger les annonces (Google, et Unity Ads à partir de la version 3.0), envoyer la mesure d'audience (iOS), les scores et les succès, publier les classements en ligne à partir de la version 3.0, et traiter les achats. Les parties elles-mêmes se jouent hors ligne",
+        en: 'loading ads (Google, and Unity Ads from version 3.0), sending analytics (iOS), scores and achievements, posting the online leaderboards from version 3.0, and processing purchases. The games themselves play offline',
       },
     },
     accounts: {
