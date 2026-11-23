@@ -1508,8 +1508,14 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
   // `ContentView.startTrackingFlow` : ATT après la première partie, puis Firebase Analytics et
   // AdMob, quelle que soit la réponse (`anonymous: false`, `optOut: false`).
   // Conservation lue dans la propriété GA4 540122450 : événements 2 mois, utilisateurs 14 mois.
+  // GraviWords 3.0 (Unity, iOS et Android) — relu le 23 novembre 2026 dans le dépôt graviword, dossier unity/.
+  // `AdMobRewardedAds.cs` : UMP sur Android seulement, iOS inchangé. Pas de google-services.json : aucune
+  // mesure sur Android. `UnityLeaderboards.cs` + Cloud Code `delete_player_data` : compte anonyme Unity,
+  // record et score du défi publiés, suppression dans le jeu. Play Jeux ne démarre qu'avec un projet
+  // (`AndroidIds.PlayGamesProject`) ; Game Center ne garde que les succès en 3.0.
+  // Textes des classements validés par Nicolas le 23/11/2026 (docs/confidentialite/3-classements-proposition.md).
   graviwords: {
-    platforms: ['iOS'],
+    platforms: ['iOS', 'Android'],
     cloudSync: true,
     localData: [
       { fr: 'pièces et pouvoirs débloqués', en: 'coins and unlocked powers' },
@@ -1519,8 +1525,8 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     ],
     notes: [
       {
-        fr: "Ces données peuvent figurer dans la sauvegarde de votre appareil, si elle est activée. Certains résultats de jeu sont aussi transmis à Game Center et à Firebase Analytics, comme décrit plus bas.",
-        en: 'This data may be included in your device backup, if enabled. Some gameplay results are also sent to Game Center and Firebase Analytics, as described below.',
+        fr: "Ces données peuvent figurer dans la sauvegarde de votre appareil, si elle est activée. Certains résultats de jeu sont aussi transmis, comme décrit plus bas : sur iOS à Game Center et à Firebase Analytics, sur Android à Google Play Jeux et, à partir de la version 3.0, aux classements en ligne de Unity. Sur Android, la copie se supprime depuis les réglages de sauvegarde du compte Google.",
+        en: 'This data may be included in your device backup, if enabled. Some gameplay results are also sent, as described below: on iOS to Game Center and Firebase Analytics, on Android to Google Play Games and, from version 3.0, to Unity’s online leaderboards. On Android, the copy is deleted from the Google account backup settings.',
       },
     ],
     ads: {
@@ -1538,6 +1544,10 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
           fr: "Les vidéos sont facultatives et ne se lancent que si vous touchez leur bouton. Google peut aussi traiter l'adresse IP, dont se déduit une position approximative, et des diagnostics, à des fins de publicité, d'analyse et de prévention de la fraude.",
           en: 'Videos are optional and only start when you tap their button. Google may also process the IP address, from which an approximate location is derived, and diagnostics, for advertising, analytics and fraud prevention.',
         },
+        {
+          fr: "Sur Android, un formulaire Google recueille vos choix lorsque la loi l'exige ; ils se modifient alors dans Réglages > Choix publicitaires. L'identifiant publicitaire se réinitialise ou se supprime dans les réglages Android.",
+          en: 'On Android, a Google form collects your choices where the law requires it; you can then change them in Settings > Ad privacy choices. The advertising ID can be reset or deleted in Android settings.',
+        },
       ],
     },
     purchases: [
@@ -1552,29 +1562,53 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
       optOut: false,
       anonymous: false,
       purpose: {
-        fr: "comprendre comment le jeu est joué et l'améliorer : parties, scores, durée, longueur des mots, combos, pouvoirs, défi du jour, tutoriel, partages, ouvertures par lien, vidéos récompensées et achats de pièces, ainsi que les données automatiques de Firebase (identifiant de l'installation, appareil, système, version du jeu, pays, langue, sessions). Les événements de la première partie attendent sur l'appareil votre réponse à la demande de suivi, puis sont envoyés. Les événements sont conservés 2 mois et les données liées à un identifiant 14 mois après la dernière activité ; le jeu ne propose pas de réglage pour couper cette mesure",
-        en: 'understanding how the game is played and improving it: games, scores, duration, word length, combos, powers, daily challenge, tutorial, shares, link opens, rewarded videos and coin purchases, plus Firebase’s automatic data (installation identifier, device, operating system, game version, country, language, sessions). Events from the first game wait on the device until you answer the tracking request, then are sent. Events are kept for 2 months and data linked to an identifier for 14 months after the last activity; the game has no setting to turn this measurement off',
+        fr: "comprendre, sur iOS uniquement (aucune mesure sur Android), comment le jeu est joué et l'améliorer : parties, scores, durée, longueur des mots, combos, pouvoirs, défi du jour, tutoriel, partages, ouvertures par lien, vidéos récompensées et achats de pièces, ainsi que les données automatiques de Firebase (identifiant de l'installation, appareil, système, version du jeu, pays, langue, sessions). Les événements de la première partie attendent sur l'appareil votre réponse à la demande de suivi, puis sont envoyés. Les événements sont conservés 2 mois et les données liées à un identifiant 14 mois après la dernière activité ; le jeu ne propose pas de réglage pour couper cette mesure",
+        en: 'understanding, on iOS only (no measurement on Android), how the game is played and improving it: games, scores, duration, word length, combos, powers, daily challenge, tutorial, shares, link opens, rewarded videos and coin purchases, plus Firebase’s automatic data (installation identifier, device, operating system, game version, country, language, sessions). Events from the first game wait on the device until you answer the tracking request, then are sent. Events are kept for 2 months and data linked to an identifier for 14 months after the last activity; the game has no setting to turn this measurement off',
       },
     },
     network: {
       purpose: {
-        fr: "charger les vidéos publicitaires, envoyer la mesure d'audience, les scores et les succès, et traiter les achats. Les parties elles-mêmes se jouent hors ligne",
-        en: 'loading video ads, sending analytics, scores and achievements, and processing purchases. The games themselves play offline',
+        fr: "charger les vidéos publicitaires, envoyer la mesure d'audience (iOS), les scores et les succès, publier les classements en ligne à partir de la version 3.0, et traiter les achats. Les parties elles-mêmes se jouent hors ligne",
+        en: 'loading video ads, sending analytics (iOS), scores and achievements, posting the online leaderboards from version 3.0, and processing purchases. The games themselves play offline',
       },
     },
     accounts: {
-      service: 'Game Center',
-      what: 'les classements et les succès',
+      service: 'Unity Gaming Services',
+      what: 'les classements en ligne',
       bodyTitle: 'service',
       body: [
         {
-          fr: "GraviWords ne vous demande jamais de créer un compte. Si vous êtes connecté à Game Center, le service d'Apple reçoit vos scores et vos succès, et les associe à votre profil Game Center, selon ses propres règles.",
-          en: 'GraviWords never asks you to create an account. If you are signed in to Game Center, Apple’s service receives your scores and achievements and links them to your Game Center profile, under its own rules.',
+          fr: "GraviWords ne vous demande jamais de créer un compte, ni adresse e-mail, ni mot de passe.",
+          en: 'GraviWords never asks you to create an account, nor for an email address or a password.',
+        },
+        {
+          fr: "Classements en ligne. À partir de la version 3.0, GraviWords utilise Unity Authentication, Unity Leaderboards et Unity Cloud Code, des services de Unity Technologies. À la fin de votre première partie, ou dès que vous ouvrez le classement, Unity crée un compte de joueur anonyme : un identifiant et un pseudo tirés au hasard, sans nom, adresse e-mail ni mot de passe.",
+          en: 'Online leaderboards. From version 3.0, GraviWords uses Unity Authentication, Unity Leaderboards and Unity Cloud Code, services provided by Unity Technologies. At the end of your first game, or as soon as you open the leaderboard, Unity creates an anonymous player account: a random identifier and nickname, with no name, email address or password.',
+        },
+        {
+          fr: "À la fin de chaque partie, le jeu envoie votre record et, pour le défi du jour, votre score. Sans connexion, ils attendent sur l'appareil et partent plus tard. Un record obtenu avec une version précédente part aussi. Votre pseudo, votre rang et vos scores sont visibles des autres joueurs. Pour arrêter cet envoi, supprimez votre compte de classement.",
+          en: 'After each game, the app sends your best score and, for the daily challenge, that game’s score. Without a connection they wait on your device and are sent later. A best score from an earlier version is sent too. Your nickname, rank and scores are visible to other players. To stop this, delete your leaderboard account.',
+        },
+        {
+          fr: "Unity reçoit aussi les informations techniques nécessaires à la connexion, dont votre adresse IP, et les traite selon sa politique de confidentialité : https://unity.com/legal/privacy-policy",
+          en: 'Unity also receives the technical information needed for the connection, including your IP address, and processes it under its privacy policy: https://unity.com/legal/privacy-policy',
+        },
+        {
+          fr: "Le classement des records est conservé sans limite de durée. Celui de chaque défi est remis à zéro chaque semaine sans copie archivée. Désinstaller le jeu n'efface pas ces données.",
+          en: 'The best-score leaderboard is kept indefinitely. Each daily leaderboard is reset every week, with no archived copy. Uninstalling the game does not erase this data.',
+        },
+        {
+          fr: "Pour les effacer, touchez « Supprimer mon compte de classement » dans les réglages ou au bas du classement : votre compte, votre pseudo et vos scores en ligne sont supprimés, dès que l'appareil est connecté, et plus aucun score ne part. Si vous revenez depuis le classement, un nouveau compte est créé. Vous pouvez aussi écrire à appcraft31@gmail.com avec votre pseudo et votre score, affichés dans le classement. Marche à suivre : https://appcraft31.app/privacy/graviwords-suppression.html",
+          en: 'To erase it, tap "Delete my leaderboard account" in the settings or at the bottom of the leaderboard: your account, nickname and online scores are deleted as soon as the device is online, and no more scores are sent. If you rejoin from the leaderboard, a new account is created. You can also email appcraft31@gmail.com with your nickname and score, as shown in the leaderboard. Step-by-step: https://appcraft31.app/privacy/graviwords-suppression.html',
+        },
+        {
+          fr: "Game Center et Google Play Jeux. Si vous êtes connecté à Game Center (iOS) ou à Google Play Jeux (Android), le service d'Apple ou de Google reçoit vos succès, et jusqu'à la version 2.0.1 vos scores sur iOS, et les associe à votre profil, selon ses propres règles.",
+          en: 'Game Center and Google Play Games. If you are signed in to Game Center (iOS) or Google Play Games (Android), Apple’s or Google’s service receives your achievements, and up to version 2.0.1 your scores on iOS, and links them to your profile, under its own rules.',
         },
       ],
     },
     forChildren: false,
-    updated: '2026-11-22',
+    updated: '2026-11-23',
   },
 
   // Orbis 3.0.2 — lu dans ~/StudioProjects/En_developpement/Orbis_Unity le
