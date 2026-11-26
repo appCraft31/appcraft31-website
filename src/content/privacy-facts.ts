@@ -1542,8 +1542,8 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
           en: 'Unity also receives the technical information needed for the connection, including your IP address, and processes it under its privacy policy: https://unity.com/legal/privacy-policy',
         },
         {
-          fr: "Désinstaller le jeu n'efface pas ces données. Pour faire supprimer votre compte de classement et vos scores, écrivez à appcraft31@gmail.com en indiquant votre pseudo tel qu'affiché dans le classement : nous les supprimons sous 30 jours et vous le confirmons par e-mail.",
-          en: 'Uninstalling the game does not erase this data. To have your leaderboard account and scores deleted, email appcraft31@gmail.com with your nickname as shown in the leaderboard: we delete them within 30 days and confirm by email.',
+          fr: "Désinstaller le jeu n'efface pas ces données. Pour faire supprimer votre compte de classement et vos scores, écrivez à appcraft31@gmail.com en indiquant votre pseudo tel qu'affiché dans le classement : nous les supprimons sous 30 jours, demandons à Unity d'effacer les statistiques d'usage rattachées, et vous le confirmons par e-mail. Procédure détaillée : https://appcraft31.app/privacy/tinta-suppression.html",
+          en: 'Uninstalling the game does not erase this data. To have your leaderboard account and scores deleted, email appcraft31@gmail.com with your nickname as shown in the leaderboard: we delete them within 30 days, ask Unity to erase the linked usage statistics, and confirm by email. Full procedure: https://appcraft31.app/privacy/tinta-suppression.html',
         },
       ],
     },

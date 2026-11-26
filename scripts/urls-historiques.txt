@@ -48,3 +48,4 @@ privacy/tinta.html
 privacy/zenkuto-privacy.html
 privacy/zenkuro-privacy.html
 terms/tinta.html
+privacy/tinta-suppression.html
