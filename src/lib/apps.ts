@@ -306,8 +306,8 @@ export const APPS: AppData[] = [
     },
     icon: '/assets/icons/tinta.svg',
     screenshots: [],
-    sdk: { ads: true, purchases: true, analytics: false, network: false, accounts: false },
-    privacyUpdated: '2026-08-16',
+    sdk: { ads: true, purchases: true, analytics: true, network: true, accounts: true },
+    privacyUpdated: '2026-11-26',
   },
   {
     slug: 'binero',

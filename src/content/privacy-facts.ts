@@ -1437,24 +1437,118 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     updated: '2026-11-13',
   },
 
+  // Tinta 3.0 (Unity) — lu dans ~/StudioProjects/AppStore/Tinta (worktree
+  // `da-claire`, branche feat/unity-migration) le 26 novembre 2026.
+  // `AdMobAds.cs` : UMP puis ATT (`TrackingGate`), SDK lancé après la réponse ;
+  // interstitiel et vidéo récompensée seulement, pas de bannière
+  // (`AdPolicy.InterstitialEveryGames = 2`) ; aucun `ShowPrivacyOptionsForm`
+  // (`umpReopen: false`) ni `RequestConfiguration` (`familyContent: false`).
+  // Médiation Unity Ads (`com.google.ads.mobile.mediation.unity`) sans relais
+  // propre du consentement : décrite dans `ads.notes`, pas dans `mediation`.
+  // `UnityAnalyticsSink.cs` : builds release seulement, collecte démarrée
+  // avec le consentement UMP (accordé, ou non requis hors RGPD), arrêtée s'il
+  // est retiré ; pas d'identifiant publicitaire. Événements : `TintaEvents.cs`.
+  // `UgsChallengeBoard.cs` + `unity/cloud_code/` : connexion anonyme Unity,
+  // score du défi du jour (temps + 30 s par erreur + 60 s par indice), classement
+  // remis à zéro chaque jour à 00:00 UTC avec archive. Pas de suppression dans
+  // le jeu : demande par e-mail. Firebase Crashlytics n'est pas configuré et
+  // Firebase Analytics n'est pas utilisé (`FirebaseAnalyticsSink` non branché).
   tinta: {
-    platforms: ['iOS'],
-    localData: ['progression des 360 niveaux', 'étoiles obtenues', 'grilles du jour et série', 'indices du jour', 'réglages (dont le rappel)'],
-    ads: adFunded(),
-    purchases: [
-      { kind: 'non-consumable', what: 'le retrait de la publicité', productId: 'com.appcraft31.tinta.removeads' },
+    platforms: ['iOS', 'Android'],
+    localData: [
+      { fr: 'progression des 800 niveaux des trois jeux (Tinta, Duo, Couronnes) et étoiles obtenues', en: 'progress through the 800 levels of the three games (Tinta, Duo, Crowns) and stars earned' },
+      { fr: 'grilles du jour, résultats et séries', en: 'daily grids, results and streaks' },
+      { fr: "réserve d'indices", en: 'hint balance' },
+      { fr: 'achat « Sans publicité » et compteur des annonces', en: '“Remove Ads” purchase and ad counter' },
+      { fr: 'réglages (dont le rappel et son heure)', en: 'settings (including the reminder and its time)' },
     ],
-    analytics: null,
-    network: null,
-    accounts: null,
     notes: [
       {
-        fr: "Le rappel quotidien est une notification locale : elle est programmée par l'appareil, sans serveur, et se coupe depuis les réglages du jeu.",
-        en: 'The daily reminder is a local notification: it is scheduled by the device itself, with no server involved, and can be turned off in the game settings.',
+        fr: "Le rappel quotidien est une notification locale, programmée par l'appareil sans serveur. L'autorisation n'est demandée que si vous activez le rappel, et il se coupe depuis les réglages du jeu.",
+        en: 'The daily reminder is a local notification, scheduled by the device with no server involved. Permission is only requested if you turn the reminder on, and it can be turned off in the game settings.',
+      },
+      {
+        fr: "Ces données peuvent figurer dans la sauvegarde de votre appareil (iCloud ou compte Google), si elle est activée. Le résultat du défi du jour, si vous y participez, et des statistiques d'usage sont par ailleurs envoyés, comme décrit plus bas.",
+        en: 'This data may be included in your device backup (iCloud or Google account), if enabled. Your daily challenge result, if you take part, and usage statistics are also sent, as described below.',
       },
     ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      umpReopen: false,
+      familyContent: false,
+      notes: [
+        {
+          fr: "Une annonce plein écran (interstitiel) s'affiche au plus toutes les deux parties terminées, en quittant l'écran de victoire ; l'achat « Sans publicité » la supprime. La vidéo récompensée est toujours facultative : elle ne se lance que si vous touchez son bouton, et ajoute un indice. Le jeu n'affiche pas de bannière.",
+          en: 'A full-screen ad (interstitial) is shown at most every two completed games, when leaving the win screen; the “Remove Ads” purchase removes it. The rewarded video is always optional: it only starts if you tap its button, and adds one hint. The game shows no banners.',
+        },
+        {
+          fr: "Le SDK publicitaire ne démarre qu'après vos réponses à l'écran de consentement (là où le RGPD s'applique) et, sur iOS, à la demande de suivi.",
+          en: 'The ad SDK only starts once you have answered the consent form (where the GDPR applies) and, on iOS, the tracking request.',
+        },
+        {
+          fr: "Le jeu intègre aussi le SDK Unity Ads (Unity Technologies), qui participe aux enchères de la médiation AdMob. Pour ces enchères et pour les annonces qu'il diffuse, Unity peut traiter l'adresse IP, des informations sur l'appareil, des identifiants publicitaires ou liés à l'application et les interactions avec les annonces. Politique d'Unity, auprès de qui vous pouvez aussi exercer vos droits : https://unity.com/legal/game-player-and-app-user-privacy-policy",
+          en: 'The game also includes the Unity Ads SDK (Unity Technologies), which bids through AdMob mediation. For these auctions and for the ads it serves, Unity may process IP address, device information, advertising or app-related identifiers and interactions with ads. Unity’s policy, under which you can also exercise your rights: https://unity.com/legal/game-player-and-app-user-privacy-policy',
+        },
+        {
+          fr: "Sur Android, l'identifiant publicitaire se réinitialise ou se supprime dans les réglages du système ; sur iOS, l'autorisation de suivi se modifie dans Réglages > Confidentialité et sécurité > Suivi.",
+          en: 'On Android, the advertising ID can be reset or deleted in the system settings; on iOS, tracking permission is changed in Settings > Privacy & Security > Tracking.',
+        },
+      ],
+    },
+    purchases: [
+      {
+        kind: 'non-consumable',
+        what: { fr: 'le retrait des annonces plein écran (« Sans publicité »), restaurable depuis les réglages', en: 'the removal of full-screen ads (“Remove Ads”), restorable from the settings' },
+        productId: 'com.appcraft31.tinta.removeads',
+      },
+    ],
+    analytics: {
+      vendors: ['Unity Analytics (Unity Technologies)'],
+      optOut: false,
+      anonymous: false,
+      purpose: {
+        fr: "comprendre comment le jeu est joué et l'améliorer : parties commencées et réussies (jeu, niveau ou défi du jour, étoiles, erreurs, indices, durée), indices utilisés ou épuisés, recommencements, ouverture du classement, vidéos récompensées, annonces plein écran et achats, ainsi que les données automatiques d'Unity (identifiant propre à l'installation, appareil, système, version du jeu, pays, sessions). Aucun identifiant publicitaire n'y est associé. Là où le RGPD s'applique, cette mesure ne démarre qu'avec votre consentement donné dans l'écran de consentement, et s'arrête si vous le retirez ; ailleurs, elle fonctionne sans demande préalable. Unity Technologies traite ces données (https://unity.com/legal/game-player-and-app-user-privacy-policy)",
+        en: 'understanding how the game is played and improving it: games started and won (game, level or daily challenge, stars, mistakes, hints, duration), hints used or run out, restarts, leaderboard opens, rewarded videos, full-screen ads and purchases, plus Unity’s automatic data (installation identifier, device, operating system, game version, country, sessions). No advertising identifier is attached. Where the GDPR applies, this measurement only starts with the consent you give in the consent form, and stops if you withdraw it; elsewhere, it runs without prior request. Unity Technologies processes this data (https://unity.com/legal/game-player-and-app-user-privacy-policy)',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "charger les annonces et l'écran de consentement (Google, Unity Ads), envoyer les statistiques d'usage (Unity Analytics), publier et afficher le classement du défi du jour (Unity Gaming Services) et traiter les achats (Apple, Google). Les 800 niveaux se jouent hors ligne ; sans réseau, seul le classement est indisponible",
+        en: 'loading ads and the consent form (Google, Unity Ads), sending usage statistics (Unity Analytics), posting and showing the daily challenge leaderboard (Unity Gaming Services) and processing purchases (Apple, Google). The 800 levels play offline; without a network, only the leaderboard is unavailable',
+      },
+    },
+    accounts: {
+      service: 'Unity Gaming Services',
+      what: 'le classement du défi du jour',
+      bodyTitle: 'service',
+      body: [
+        {
+          fr: 'Tinta ne vous demande jamais de créer un compte, ni adresse e-mail, ni mot de passe.',
+          en: 'Tinta never asks you to create an account, nor for an email address or a password.',
+        },
+        {
+          fr: "Classement du défi du jour. Tinta utilise Unity Authentication, Unity Leaderboards et Unity Cloud Code, des services de Unity Technologies. Quand vous jouez le défi du jour ou ouvrez son classement, Unity crée un compte de joueur anonyme : un identifiant et un pseudo tirés au hasard, sans nom, adresse e-mail ni mot de passe.",
+          en: 'Daily challenge leaderboard. Tinta uses Unity Authentication, Unity Leaderboards and Unity Cloud Code, services provided by Unity Technologies. When you play the daily challenge or open its leaderboard, Unity creates an anonymous player account: a random identifier and nickname, with no name, email address or password.',
+        },
+        {
+          fr: "À la fin du défi, le jeu envoie votre temps, vos erreurs et vos indices, dont est tiré votre score. Sans connexion, l'envoi attend sur l'appareil et part plus tard dans la journée. Votre pseudo, votre rang et votre score sont visibles des autres joueurs. Le classement repart à zéro chaque jour à minuit (UTC) ; les classements des jours passés sont archivés chez Unity.",
+          en: 'At the end of the challenge, the game sends your time, mistakes and hints, from which your score is computed. Without a connection, it waits on your device and is sent later that day. Your nickname, rank and score are visible to other players. The leaderboard resets every day at midnight (UTC); past days’ leaderboards are archived at Unity.',
+        },
+        {
+          fr: "Unity reçoit aussi les informations techniques nécessaires à la connexion, dont votre adresse IP, et les traite selon sa politique de confidentialité : https://unity.com/legal/privacy-policy",
+          en: 'Unity also receives the technical information needed for the connection, including your IP address, and processes it under its privacy policy: https://unity.com/legal/privacy-policy',
+        },
+        {
+          fr: "Désinstaller le jeu n'efface pas ces données. Pour faire supprimer votre compte de classement et vos scores, écrivez à appcraft31@gmail.com en indiquant votre pseudo tel qu'affiché dans le classement : nous les supprimons sous 30 jours et vous le confirmons par e-mail.",
+          en: 'Uninstalling the game does not erase this data. To have your leaderboard account and scores deleted, email appcraft31@gmail.com with your nickname as shown in the leaderboard: we delete them within 30 days and confirm by email.',
+        },
+      ],
+    },
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-11-26',
   },
 
   contree: {
