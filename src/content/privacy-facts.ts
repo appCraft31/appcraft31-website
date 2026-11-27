@@ -1581,20 +1581,130 @@ export const PRIVACY_FACTS: Record<string, PrivacyFacts> = {
     updated: REVIEWED,
   },
 
+  // SquareLink 3.0 (Unity, slug historique `combo`) — lu dans
+  // ~/StudioProjects/AppStore/squareLink/unity le 27 novembre 2026.
+  // `AdMobAds.cs` : UMP puis ATT (`TrackingGate`), SDK lancé après la réponse ;
+  // interstitiel (fin de partie, au plus toutes les 90 s, `AdPolicy`) et vidéo
+  // récompensée (« Continuer », « Recommencer », indice), pas de bannière.
+  // Premier lancement : consentement et ATT attendent la première tuile ou la
+  // fin de l'introduction (`DeferStartUntilFirstMove`, d'où `attDetail`).
+  // Rangée « Confidentialité » des Réglages (`ShowPrivacyOptionsForm`) quand UMP
+  // l'exige (`umpReopen: true`) ; aucune `RequestConfiguration`
+  // (`familyContent: false`). Médiation Unity Ads et Liftoff (Vungle) décrite
+  // dans `ads.notes` et non dans `mediation` : le relais du consentement n'a pas
+  // été vérifié sur appareil. `FirebaseAnalyticsSink.cs` : Firebase Analytics +
+  // Crashlytics en build release, indépendamment d'UMP et d'ATT (pas d'IDFA).
+  // `UgsAnalyticsSink.cs` : Unity Analytics démarré avec le consentement TCF
+  // (ou hors RGPD), arrêté s'il est retiré. `UgsLeaderboard.cs` : connexion
+  // anonyme Unity, pseudo généré par UGS, classements `infinite` et
+  // `player_level`. Pas de suppression dans le jeu : demande par e-mail.
+  // Achats (`PurchasesState.cs`) : removeads et cosmetics.pack ; le mode infini
+  // n'est plus vendu. Game Center n'est plus utilisé.
   combo: {
-    platforms: ['iOS'],
-    localData: ['meilleurs scores', 'partie en cours', 'réglages'],
-    ads: adFunded(),
-    purchases: [
-      { kind: 'non-consumable', what: 'le retrait de la publicité', productId: 'com.appcraft31.squarelink.removeads' },
-      { kind: 'non-consumable', what: 'un lot de cosmétiques', productId: 'com.appcraft31.squarelink.cosmetics.pack' },
-      { kind: 'non-consumable', what: 'le mode infini', productId: 'com.appcraft31.squarelink.infinite.v2' },
+    platforms: ['iOS', 'Android'],
+    localData: [
+      { fr: 'progression du mode Voyage (niveaux terminés, étoiles, meilleurs scores), records du mode Infini et niveau du joueur', en: 'Travel mode progress (completed levels, stars, best scores), Infinite mode records and player level' },
+      { fr: 'défi du jour et partie en cours', en: 'daily challenge and game in progress' },
+      { fr: 'cosmétiques choisis et achats', en: 'chosen cosmetics and purchases' },
+      { fr: "scores en attente d'envoi au classement", en: 'scores waiting to be sent to the leaderboard' },
+      { fr: 'réglages (sons, vibrations, apparence) et compteurs de sessions', en: 'settings (sounds, vibrations, appearance) and session counters' },
     ],
-    analytics: null,
-    network: null,
-    accounts: { service: 'Game Center', what: 'le classement' },
+    notes: [
+      {
+        fr: "Ces données peuvent figurer dans la sauvegarde de votre appareil (iCloud ou compte Google), si elle est activée. Vos scores du classement mondial et des statistiques d'usage sont par ailleurs envoyés, comme décrit plus bas.",
+        en: 'This data may be included in your device backup (iCloud or Google account), if enabled. Your global leaderboard scores and usage statistics are also sent, as described below.',
+      },
+      {
+        fr: "Le jeu vous propose de temps en temps de le noter, par l'outil de notation de l'App Store ou de Google Play : la note et l'avis éventuel vont directement à Apple ou à Google, pas à nous.",
+        en: 'From time to time the game offers to let you rate it, through the App Store or Google Play rating tool: the rating and any review go straight to Apple or Google, not to us.',
+      },
+    ],
+    ads: {
+      network: 'Google AdMob',
+      formats: ['interstitial', 'rewarded'],
+      ump: true,
+      att: true,
+      attDetail: {
+        fr: "Sur iOS, le système vous demande si vous autorisez le suivi de votre activité ; au premier lancement, cette demande attend votre première tuile posée ou la fin de l'introduction. Si vous refusez, aucun identifiant publicitaire (IDFA) n'est partagé et les annonces ne sont pas personnalisées.",
+        en: 'On iOS, the system asks whether you allow tracking of your activity; on first launch, this request waits until you place your first tile or finish the introduction. If you decline, no advertising identifier (IDFA) is shared and ads are not personalised.',
+      },
+      umpReopen: true,
+      familyContent: false,
+      notes: [
+        {
+          fr: "Le SDK publicitaire ne charge aucune annonce avant vos réponses à l'écran de consentement (là où le RGPD s'applique) et, sur iOS, à la demande de suivi. Là où le consentement est requis, la rangée « Confidentialité » des Réglages du jeu rouvre ce formulaire.",
+          en: 'The ad SDK loads no ads until you have answered the consent form (where the GDPR applies) and, on iOS, the tracking request. Where consent is required, the “Privacy” row in the game Settings reopens this form.',
+        },
+        {
+          fr: "Une annonce plein écran (interstitiel) peut s'afficher en fin de partie, quand vous rejouez ou revenez au menu, au plus une fois toutes les 90 secondes ; l'achat « Sans publicité » la supprime. La vidéo récompensée est toujours facultative : elle ne se lance que si vous touchez son bouton (continuer ou recommencer une partie, obtenir une indication). Le jeu n'affiche pas de bannière.",
+          en: 'A full-screen ad (interstitial) may be shown at the end of a game, when you play again or go back to the menu, at most once every 90 seconds; the “Remove Ads” purchase removes it. The rewarded video is always optional: it only starts if you tap its button (to continue or restart a game, or get a hint). The game shows no banners.',
+        },
+        {
+          fr: "Le jeu intègre aussi, par la médiation AdMob, les SDK Unity Ads (Unity Technologies) et Liftoff Monetize (Vungle). Pour les enchères et les annonces qu'ils diffusent, ils peuvent traiter l'adresse IP, des informations sur l'appareil, des identifiants publicitaires ou liés à l'application et les interactions avec les annonces. Leurs politiques, où vous pouvez aussi exercer vos droits : https://unity.com/legal/game-player-and-app-user-privacy-policy et https://liftoff.ai/privacy-policy/",
+          en: 'Through AdMob mediation, the game also includes the Unity Ads (Unity Technologies) and Liftoff Monetize (Vungle) SDKs. For auctions and the ads they serve, they may process IP address, device information, advertising or app-related identifiers and interactions with ads. Their policies, under which you can also exercise your rights: https://unity.com/legal/game-player-and-app-user-privacy-policy and https://liftoff.ai/privacy-policy/',
+        },
+        {
+          fr: "Sur Android, l'identifiant publicitaire se réinitialise ou se supprime dans les réglages du système ; sur iOS, l'autorisation de suivi se modifie dans Réglages > Confidentialité et sécurité > Suivi.",
+          en: 'On Android, the advertising ID can be reset or deleted in the system settings; on iOS, tracking permission is changed in Settings > Privacy & Security > Tracking.',
+        },
+      ],
+    },
+    purchases: [
+      {
+        kind: 'non-consumable',
+        what: { fr: 'le retrait des annonces plein écran (« Sans publicité »)', en: 'the removal of full-screen ads (“Remove Ads”)' },
+        productId: 'com.appcraft31.squarelink.removeads',
+      },
+      {
+        kind: 'non-consumable',
+        what: { fr: 'un pack de cosmétiques (thèmes de tuiles et de plateau, apparences de mascotte)', en: 'a cosmetics pack (tile and board themes, mascot skins)' },
+        productId: 'com.appcraft31.squarelink.cosmetics.pack',
+      },
+    ],
+    analytics: {
+      vendors: ['Firebase Analytics', 'Firebase Crashlytics', 'Unity Analytics'],
+      optOut: false,
+      anonymous: false,
+      purpose: {
+        fr: "comprendre comment le jeu est joué, l'améliorer et corriger ses plantages : parties commencées et terminées (mode, score, tuiles posées, séries), introduction et tutoriel, écrans vus, annonces proposées, vues ou en échec (et leur revenu estimé), achat « Sans publicité », ainsi que les données automatiques de Firebase et d'Unity (identifiant propre à l'installation, appareil, système, version du jeu, pays, sessions) et les rapports de plantage avec leurs diagnostics. Aucun nom, adresse e-mail ni identifiant publicitaire n'y est associé : Firebase utilise un identifiant d'instance, Unity un identifiant d'installation et l'identifiant de joueur Unity. Firebase Analytics et Crashlytics fonctionnent quel que soit votre choix publicitaire, et le jeu ne propose pas de réglage pour les couper. Unity Analytics, lui, ne démarre là où le RGPD s'applique qu'avec votre consentement donné dans l'écran de consentement, et s'arrête si vous le retirez (rangée « Confidentialité » des Réglages) ; ailleurs, il fonctionne sans demande préalable. Google (https://policies.google.com/privacy) et Unity Technologies (https://unity.com/legal/game-player-and-app-user-privacy-policy) traitent ces données",
+        en: 'understanding how the game is played, improving it and fixing crashes: games started and finished (mode, score, tiles placed, streaks), introduction and tutorial, screens viewed, ads offered, shown or failed (and their estimated revenue), the “Remove Ads” purchase, plus Firebase’s and Unity’s automatic data (installation identifier, device, operating system, game version, country, sessions) and crash reports with their diagnostics. No name, email address or advertising identifier is attached: Firebase uses an instance identifier, Unity an installation identifier and the Unity player identifier. Firebase Analytics and Crashlytics run whatever your advertising choice, and the game has no setting to turn them off. Unity Analytics, where the GDPR applies, only starts with the consent you give in the consent form, and stops if you withdraw it (“Privacy” row in Settings); elsewhere, it runs without prior request. Google (https://policies.google.com/privacy) and Unity Technologies (https://unity.com/legal/game-player-and-app-user-privacy-policy) process this data',
+      },
+    },
+    network: {
+      purpose: {
+        fr: "charger les annonces et l'écran de consentement (Google, Unity Ads, Liftoff), envoyer les statistiques d'usage et les rapports de plantage (Firebase, Unity Analytics), publier et afficher le classement mondial (Unity Gaming Services) et traiter les achats (Apple, Google). Le jeu se joue hors ligne ; sans réseau, seul le classement est indisponible et les scores attendent sur l'appareil",
+        en: 'loading ads and the consent form (Google, Unity Ads, Liftoff), sending usage statistics and crash reports (Firebase, Unity Analytics), posting and showing the global leaderboard (Unity Gaming Services) and processing purchases (Apple, Google). The game plays offline; without a network, only the leaderboard is unavailable and scores wait on the device',
+      },
+    },
+    accounts: {
+      service: 'Unity Gaming Services',
+      what: 'le classement mondial',
+      bodyTitle: 'service',
+      body: [
+        {
+          fr: "SquareLink ne vous demande jamais de créer un compte, ni adresse e-mail, ni mot de passe. Il ne propose ni messagerie ni contenu à saisir, et n'utilise plus Game Center.",
+          en: 'SquareLink never asks you to create an account, nor for an email address or a password. It has no chat or user-entered content, and no longer uses Game Center.',
+        },
+        {
+          fr: "Classement mondial. SquareLink utilise Unity Authentication et Unity Leaderboards, des services de Unity Technologies. Le jeu se connecte automatiquement à un compte de joueur anonyme : un identifiant de joueur Unity, conservé sur l'appareil, et un pseudo généré automatiquement par Unity, sans lien avec votre identité et non modifiable.",
+          en: 'Global leaderboard. SquareLink uses Unity Authentication and Unity Leaderboards, services provided by Unity Technologies. The game automatically signs in to an anonymous player account: a Unity player identifier, kept on the device, and a nickname generated automatically by Unity, unrelated to your identity and not editable.',
+        },
+        {
+          fr: "Le jeu envoie votre meilleur score du mode Infini et votre niveau de joueur. Sans connexion, l'envoi attend sur l'appareil. Votre pseudo, votre rang, votre meilleur score et votre niveau sont visibles des autres joueurs.",
+          en: 'The game sends your best Infinite mode score and your player level. Without a connection, it waits on your device. Your nickname, rank, best score and level are visible to other players.',
+        },
+        {
+          fr: "Unity reçoit aussi les informations techniques nécessaires à la connexion, dont votre adresse IP, et les traite selon sa politique de confidentialité : https://unity.com/legal/privacy-policy",
+          en: 'Unity also receives the technical information needed for the connection, including your IP address, and processes it under its privacy policy: https://unity.com/legal/privacy-policy',
+        },
+        {
+          fr: "Le jeu ne propose pas de suppression intégrée, et désinstaller le jeu n'efface pas ces données. Pour faire supprimer votre compte de classement anonyme, vos scores et les données d'analyse associées, écrivez à appcraft31@gmail.com en indiquant votre pseudo tel qu'affiché dans le classement : nous les supprimons sous 30 jours, demandons à Unity d'effacer les statistiques d'usage rattachées, et vous le confirmons par e-mail. Procédure détaillée : https://appcraft31.app/privacy/combo-suppression.html",
+          en: 'The game has no built-in deletion, and uninstalling it does not erase this data. To have your anonymous leaderboard account, your scores and the related analytics data deleted, email appcraft31@gmail.com with your nickname as shown in the leaderboard: we delete them within 30 days, ask Unity to erase the linked usage statistics, and confirm by email. Full procedure: https://appcraft31.app/privacy/combo-suppression.html',
+        },
+      ],
+    },
     forChildren: false,
-    updated: REVIEWED,
+    updated: '2026-11-27',
   },
 
   // GraviWords 2.0.1 (iOS) — relu dans le code Swift le 22 novembre 2026.
