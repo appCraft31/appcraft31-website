@@ -405,8 +405,8 @@ export const APPS: AppData[] = [
       { src: '/assets/combo-game.webp', alt: "Une partie avancée, tuiles encastrées" },
       { src: '/assets/combo-summary.webp', alt: "Le résumé de fin de partie" },
     ],
-    sdk: { ads: true, purchases: true, analytics: true, network: false, accounts: true },
-    privacyUpdated: '2026-08-16',
+    sdk: { ads: true, purchases: true, analytics: true, network: true, accounts: true },
+    privacyUpdated: '2026-11-27',
   },
   {
     slug: 'randompix',

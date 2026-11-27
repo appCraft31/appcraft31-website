@@ -47,8 +47,8 @@ const fr: AppCopy = {
           body: 'Chaque pose, chaque combo et chaque encastrement parfait est ponctué d’une vibration discrète — et de confettis pastel.',
         },
         {
-          title: 'Game Center',
-          body: 'Soumets ton score et compare-toi aux autres joueurs.',
+          title: 'Classement mondial',
+          body: 'Ton meilleur score du mode Infini et ton niveau, comparés à ceux des autres joueurs, sous un pseudo anonyme.',
         },
         {
           title: 'Mode sombre',
@@ -64,7 +64,7 @@ const fr: AppCopy = {
       id: 'privacy',
       kicker: 'Vie privée',
       title: 'Ce que SquareLink enregistre',
-      body: 'Ta progression et tes réglages restent sur l’appareil ; seuls les scores passent par Game Center. Le jeu est gratuit et intègre de la publicité, dont une vidéo bonus facultative. Le détail figure dans la politique de confidentialité.',
+      body: 'Ta progression et tes réglages restent sur l’appareil ; seuls ton meilleur score et ton niveau partent au classement, sous un pseudo anonyme, avec des statistiques d’usage. Le jeu est gratuit et intègre de la publicité, dont une vidéo bonus facultative. Le détail figure dans la politique de confidentialité.',
     },
   ],
 
@@ -124,8 +124,8 @@ const en: AppCopy = {
           body: 'Every placement, every combo and every perfect fit comes with a discreet buzz — and pastel confetti.',
         },
         {
-          title: 'Game Center',
-          body: 'Submit your score and measure yourself against other players.',
+          title: 'Global leaderboard',
+          body: 'Your best Infinite mode score and your level, measured against other players, under an anonymous nickname.',
         },
         {
           title: 'Dark mode',
@@ -141,7 +141,7 @@ const en: AppCopy = {
       id: 'privacy',
       kicker: 'Privacy',
       title: 'What SquareLink stores',
-      body: 'Your progress and settings stay on the device; only scores go through Game Center. The game is free and includes advertising, with an optional bonus video. The details are in the privacy policy.',
+      body: 'Your progress and settings stay on the device; only your best score and level go to the leaderboard, under an anonymous nickname, along with usage statistics. The game is free and includes advertising, with an optional bonus video. The details are in the privacy policy.',
     },
   ],
 
